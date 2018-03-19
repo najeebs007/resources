@@ -1,0 +1,1 @@
+# scholarsmerit-resources
