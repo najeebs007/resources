@@ -1,0 +1,16 @@
+.switchery{background-color:rgb(109, 92, 174);border:1px solid #dfdfdf;border-radius:20px;cursor:pointer;display:inline-block;height:30px;position:relative;vertical-align:middle;width:50px;-moz-user-select:none;-khtml-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;box-sizing:content-box;background-clip:content-box}.switchery>small{background:#fff;border-radius:100%;box-shadow:0 1px 3px rgba(0,0,0,0.4);height:30px;position:absolute;top:0;width:30px}.switchery-small{border-radius:20px;height:20px;width: 47px;}.switchery-small>small{height:20px;width:20px}.switchery-large{border-radius:40px;height:40px;width:66px}.switchery-large>small{height:40px;width:40px}
+.switchery:before {
+  content: 'on'; // your text
+    content: 'on';
+    position: absolute;
+    left: 8px;
+    top: 44%;
+    color: white;
+    transform: translateY(-50%) translateX(-10%);
+}
+.switchery:checked + .switchery:after {
+  color: #fff;
+  content: 'off';
+  width:100px;
+  left:40px;
+}

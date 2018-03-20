@@ -1,0 +1,104 @@
+/*
+* MOET - Multi-Scrolling Coming Soon Template
+* Build Date: July 2015
+* Author: Madeon08
+* Copyright (C) 2015 Madeon08
+* This is a premium product available exclusively here : http://themeforest.net/user/Madeon08/portfolio
+*/
+/*  TABLE OF CONTENTS
+    ---------------------------
+    *. @Import & Reset
+    1. Generic styles
+    2. Loading
+    3. Navigation
+    4. Home
+    5. Countdown
+    6. Newsletter
+    7. About
+    8. Services
+    9. Contact
+   10. Media Queries
+*/
+/* ------------------------------------- */
+/* *. @Import & Reset .................. */
+/* ------------------------------------- */
+/* custom CSS files */
+@import url(vegas.css);
+.opacity-0 {
+  opacity: 0 !important;
+}
+.index-999 {
+  z-index: -999 !important;
+}
+.opacity-0-player {
+  opacity: 0;
+  -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+  -moz-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+  -ms-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+  -o-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+  transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+}
+#left1 {
+  background: none;
+  /* Slideshow displayed */
+}
+ 
+@-webkit-keyframes loader-fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes loader-fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes loader-fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+} 
+  #left1 .item-title {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  #left1 .mouse {
+    display: none;
+  }
+  #left1 p.scroll {
+    bottom: 35px;
+  }
+  #left1 p.scroll span {
+    display: none;
+  }
+ 
+  .vegas-wrapper {
+    position: relative;
+  }
+ 
+/* Small Devices, Tablets */
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+  .brand-logo {
+    max-width: 200px;
+  }
+
+   
