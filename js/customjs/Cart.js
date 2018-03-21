@@ -15,7 +15,7 @@ function checkOutCart(){
 function addToCart(l_cartId,l_productId,l_productType){ debugger;
 	
 	//alert(l_cartId+" : "+l_productId+" : "+l_productType);
-	if (confirm("Do you Want to buy this product?"+"\n"+"click ok") ) {
+	if (confirm("Do you Want to buy this product?"+"\n"+"click Place Order") ) {
 		var l_input_map = {};
 		l_input_map.cartId = l_cartId;
 		l_input_map.productId=l_productId;

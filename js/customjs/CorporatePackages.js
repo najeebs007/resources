@@ -4,12 +4,21 @@
 var g_map = {};
 var existMap ={};
 var package_price = 0;
-function addNumberOfStudent(count) {
+function addNumberOfStudent(count,flag) {
 	$('.c_examName').val($('.c_name' + count).val());
 	$('.c_examId').val($('.c_examId' + count).val());
 	$('.c_examPrice').val($('.c_price'+count).val());
 	$('.c_count').val(count);
-	$("#myModalabout").modal('show');
+	 
+	if(flag){
+		$("#myModalabout").modal('show');
+		}
+	else
+		{
+		$('.c_numberOfStudent').val("1");
+		addToPackage();
+		}
+	
 }
 
 function addToPackage() {debugger;
@@ -105,7 +114,7 @@ $(".c_savePackage").click(function() {
 						}
 					g_map.price = $('.c_totalPrice').val();
 					g_map.packageName = $('.c_packageName').val();
-					g_map["status"] = "INACTIVE";
+					g_map["status"] = "ACTIVE";
 					g_map.validity = $('.c_validity').val();
 					g_map["source"] = "SAVE";
 					g_map ["productType"] = "CUSTOM";
@@ -182,7 +191,7 @@ $(".c_savePackageWithCart")
 					g_map.packageName = $('.c_packageName').val();
 					g_map.price = $('.c_totalPrice').val();
 
-					g_map["status"] = "INACTIVE";
+					g_map["status"] = "ACTIVE";
 					g_map.validity = $('.c_validity').val();
 					g_map["source"] = "CART";
 					g_map ["productType"] = "CUSTOM";
@@ -595,13 +604,14 @@ function candidateActions(packageId,examId,candidateId,count,actionType,status){
 		contentType : "application/json; charset=UTF-8",dataType : 'json',type : 'POST',
 		success : function(data) {debugger;
 			$(".loading").hide();
-			if(data.status = 'SUCCESS'){
+			if(data.status == 'SUCCESS'){
 				//$('.c_generate_pin'+count).html(data.object);
-				toastr.success(actionType+" successfully.");
+				toastr.success(actionType+" update success");
 				location.reload();
 			}
 			if(data.status=='ERROR'){
 				toastr.error(data.message);
+				location.reload();
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
