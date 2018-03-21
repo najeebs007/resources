@@ -39,7 +39,6 @@ function addToPackage() {debugger;
 		return false;
 	}
 
-
 	var count = $('.c_count').val();
 	g_map["examId" + count] = $('.c_examId').val();
 	g_map["examName" + "examId" + count] = $('.c_examName').val();
