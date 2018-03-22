@@ -4,12 +4,21 @@
 var g_map = {};
 var existMap ={};
 var package_price = 0;
-function addNumberOfStudent(count) {
+function addNumberOfStudent(count,flag) {
 	$('.c_examName').val($('.c_name' + count).val());
 	$('.c_examId').val($('.c_examId' + count).val());
 	$('.c_examPrice').val($('.c_price'+count).val());
 	$('.c_count').val(count);
-	$("#myModalabout").modal('show');
+	 
+	if(flag){
+		$("#myModalabout").modal('show');
+		}
+	else
+		{
+		$('.c_numberOfStudent').val("1");
+		addToPackage();
+		}
+	
 }
 
 function addToPackage() {debugger;
@@ -29,7 +38,6 @@ function addToPackage() {debugger;
 		$('#i_errorMessage').html("Not allow 0 Student!");
 		return false;
 	}
-
 
 	var count = $('.c_count').val();
 	g_map["examId" + count] = $('.c_examId').val();
@@ -105,7 +113,7 @@ $(".c_savePackage").click(function() {
 						}
 					g_map.price = $('.c_totalPrice').val();
 					g_map.packageName = $('.c_packageName').val();
-					g_map["status"] = "INACTIVE";
+					g_map["status"] = "ACTIVE";
 					g_map.validity = $('.c_validity').val();
 					g_map["source"] = "SAVE";
 					g_map ["productType"] = "CUSTOM";
@@ -182,7 +190,7 @@ $(".c_savePackageWithCart")
 					g_map.packageName = $('.c_packageName').val();
 					g_map.price = $('.c_totalPrice').val();
 
-					g_map["status"] = "INACTIVE";
+					g_map["status"] = "ACTIVE";
 					g_map.validity = $('.c_validity').val();
 					g_map["source"] = "CART";
 					g_map ["productType"] = "CUSTOM";
@@ -492,125 +500,134 @@ function searchByPagination(selectedPage) {
 
 }
 
-function showModal(packageId,examId) {debugger;
+function showModal(packageId, examId) {
+	debugger;
 	// data-target='' data-toggle='modal'
 	$('#addStudent').modal('show');
 	$('.c_packageId').val(packageId);
 	$('.c_examId').val(examId);
 }
 
-function addOneByOne() {debugger;
+function addOneByOne() {
+	debugger;
 	$('.c_errorInfo').html("");
-	
-	if(!(isBlank($('.c_Name').val()))){
+
+	if (!(isBlank($('.c_Name').val()))) {
 		$('.c_errorInfo').html("enter name.");
 		return false;
 	}
-	
-	
-	if(!(isValidEmail($('.c_email').val()))){
+
+	if (!(isValidEmail($('.c_email').val()))) {
 		$('.c_errorInfo').html("invalid email.");
 		return false;
 	}
-	if(!(isValidMobile($('.c_phone').val()))){
+	if (!(isValidMobile($('.c_phone').val()))) {
 		$('.c_errorInfo').html("invalid mobile.");
 		return false;
 	}
-	
 
-			var l_map = {};
-			l_map.packageId = $('.c_packageId').val();
-			l_map.examId = $('.c_examId').val();
-			l_map.name = $('.c_Name').val();
-			l_map.phone = $('.c_phone').val();
-			l_map.email = $('.c_email').val();
-			
-			$(".loading").show();
-			$.ajax({
-						url : '/corporate/add-candidate',
-						data : JSON.stringify(l_map),
-						cache : false,
-						async : true,
-						contentType : "application/json; charset=UTF-8",
-						dataType : 'json',
-						type : 'POST',
-						success : function(response) {debugger;
-							$(".loading").hide();
-							if (response.status == 'SUCCESS') {
-								$('#addStudent').modal('hide');
-								    toastr.success('Candidate Added Successfully.');
-									location.reload();
-								    
-							}
+	var l_map = {};
+	l_map.packageId = $('.c_packageId').val();
+	l_map.examId = $('.c_examId').val();
+	l_map.name = $('.c_Name').val();
+	l_map.phone = $('.c_phone').val();
+	l_map.email = $('.c_email').val();
 
-							if (response.status == 'EXIST') {
-								$('.c_errorInfo').html(response.message);
-							
-							}
-							if (response.status == 'ERROR') {
-								
-								$('.c_errorInfo').html(response.message);
-							}
+	$(".loading").show();
+	$.ajax({
+		url : '/corporate/add-candidate',
+		data : JSON.stringify(l_map),
+		cache : false,
+		async : true,
+		contentType : "application/json; charset=UTF-8",
+		dataType : 'json',
+		type : 'POST',
+		success : function(response) {
+			debugger;
+			$(".loading").hide();
+			if (response.status == 'SUCCESS') {
+				$('#addStudent').modal('hide');
+				toastr.success('Candidate Added Successfully.');
+				location.reload();
 
-						},
-						error : function(err) {
-							$(".loading").hide();
-							toastr.error('Candidate cannot be add. Try again later!');
-						}
-					});
-		
-	
+			}
+
+			if (response.status == 'EXIST') {
+				$('.c_errorInfo').html(response.message);
+
+			}
+			if (response.status == 'ERROR') {
+
+				$('.c_errorInfo').html(response.message);
+			}
+
+		},
+		error : function(err) {
+			$(".loading").hide();
+			toastr.error('Candidate cannot be add. Try again later!');
+		}
+	});
+
 }
 
-function candidateActions(packageId,examId,candidateId,count,actionType,status){debugger;
+function candidateActions(packageId, examId, candidateId, count, actionType,
+		status) {
+	debugger;
 	var l_map = {};
-	var l_confirm  = true;
+	var l_confirm = true;
 	l_map.packageId = packageId;
 	l_map.examId = examId;
 	l_map.candidateId = candidateId;
 	l_map.actionType = actionType;
-	if(actionType == 'status'){
-		if(status == 'ACTIVE')
-		  l_map.status = 'INACTIVE';
+	if (actionType == 'status') {
+		if (status == 'ACTIVE')
+			l_map.status = 'INACTIVE';
 		else
 			l_map.status = 'ACTIVE';
 	}
-	if(actionType == 'delete'){
-		if(confirm("Are you sure !") == true)
-			l_confirm =true;
+	if (actionType == 'delete') {
+		if (confirm("Are you sure !") == true)
+			l_confirm = true;
 		else
-			l_confirm =false;
+			l_confirm = false;
 	}
-	if(actionType == 'edit'){
+	if (actionType == 'edit') {
 		edit_row(count);
 		return false;
 	}
-	if(actionType =='save'){
+	if (actionType == 'save') {
 		l_map.actionType = 'edit';
 		l_map.name = $("#name_text" + count).val();
 		l_map.phone = $("#phone_text" + count).val();
 	}
-	if(l_confirm)	{
-	$.ajax({url : '/corporate/candidate-actions',data : JSON.stringify(l_map),cache : false,async : true,
-		contentType : "application/json; charset=UTF-8",dataType : 'json',type : 'POST',
-		success : function(data) {debugger;
-			$(".loading").hide();
-			if(data.status = 'SUCCESS'){
-				//$('.c_generate_pin'+count).html(data.object);
-				toastr.success(actionType+" successfully.");
-				location.reload();
+	if (l_confirm) {
+		$.ajax({
+			url : '/corporate/candidate-actions',
+			data : JSON.stringify(l_map),
+			cache : false,
+			async : true,
+			contentType : "application/json; charset=UTF-8",
+			dataType : 'json',
+			type : 'POST',
+			success : function(data) {
+				debugger;
+				$(".loading").hide();
+				if (data.status = 'SUCCESS') {
+					//$('.c_generate_pin'+count).html(data.object);
+					toastr.success(actionType + " updated success.");
+					location.reload();
+				}
+				if (data.status == 'ERROR') {
+					toastr.error(data.message);
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				$(".loading").hide();
+				toastr.error('Not a valid input. Try again later!');
 			}
-			if(data.status=='ERROR'){
-				toastr.error(data.message);
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			$(".loading").hide();
-			toastr.error('Not a valid input. Try again later!');
-		}
-	});
+		});
 	}
-	
+
 }
 
 function edit_row(no) {
@@ -630,36 +647,24 @@ function edit_row(no) {
 	var phone_data = phone.innerHTML;
 	//var pin_data = pin.innerHTML;
 	//var password_data = password.innerHTML;
-	
+
 	sr.innerHTML = "<input readonly type='text' id='sr_text" + no + "' value='"
-	+ sr_data + "'>";
+			+ sr_data + "'>";
 	name.innerHTML = "<input type='text' id='name_text" + no + "' value='"
 			+ name_data + "'>";
 	email.innerHTML = "<input readonly type='text' id='email_text" + no
 			+ "' value='" + email_data + "'>";
-	phone.innerHTML = "<input type='text' id='phone_text" + no + "' value='" 
-			+ phone_data + "' maxlength='10' onkeypress='return isMobile(event)'>";
+	phone.innerHTML = "<input type='text' id='phone_text" + no + "' value='"
+			+ phone_data
+			+ "' maxlength='10' onkeypress='return isMobile(event)'>";
 	//pin.innerHTML = "<input type='text' id='pin_text" + no + "' value='"
 	//+ pin_data + "'maxlength='6' onkeypress='return isMobile(event)'>";
 	//password.innerHTML = "<input type='text' id='password_text" + no + "' value='"
-//	+ password_data + "'>";
+	//	+ password_data + "'>";
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-function selectNumberOfIds(packageId,examId) {
-	$('#i_errorGenerate').html(""); 
+function selectNumberOfIds(packageId, examId) {
+	$('#i_errorGenerate').html("");
 	$("#myModalabout").modal('show');
 	$('.c_package_id').val(packageId);
 	$('.c_exam_id').val(examId);
@@ -676,66 +681,99 @@ function generateRandomIds() {
 	l_map = {};
 	l_map.numberOfIds = $('.c_howmany').val();
 	l_map.examId = $('.c_exam_id').val();
-	l_map.packageId =  $('.c_package_id').val();
+	l_map.packageId = $('.c_package_id').val();
 	$(".loading").show();
 	$.ajax({
-				url : '/corporate/generate-random-password',
-				data : JSON.stringify(l_map),
-				cache : false,
-				async : true,
-				contentType : "application/json; charset=UTF-8",
-				dataType : 'json',
-				type : 'POST',
-				success : function(data) {
-					debugger;
-					$("#myModalabout").modal('hide');
-					$(".loading").hide();
-					if(data.status == 'SUCCESS'){
-					 toastr.success('Random ids generated Successfully.');
-					 location.reload();
-					}
-					if(data.status=='ERROR'){
-						toastr.error(data.message);
-					}
-				},
-				error : function(jqXHR, textStatus, errorThrown) {
-					$("#myModalabout").modal('hide');
-					$(".loading").hide();
-					toastr.error('Ids cannot be generated. Try again later!');
-				}
-			});
+		url : '/corporate/generate-random-password',
+		data : JSON.stringify(l_map),
+		cache : false,
+		async : true,
+		contentType : "application/json; charset=UTF-8",
+		dataType : 'json',
+		type : 'POST',
+		success : function(data) {
+			debugger;
+			$("#myModalabout").modal('hide');
+			$(".loading").hide();
+			if (data.status == 'SUCCESS') {
+				toastr.success('Random ids generated Successfully.');
+				location.reload();
+			}
+			if (data.status == 'ERROR') {
+				toastr.error(data.message);
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			$("#myModalabout").modal('hide');
+			$(".loading").hide();
+			toastr.error('Ids cannot be generated. Try again later!');
+		}
+	});
 
 }
-function managCredential(examId, packageId, status,count) {debugger;
+function managCredential(examId, packageId, status, count) {
+	debugger;
 
-    
-	var examDetail ="";
-	
-	examDetail +="<div class='card-body' id='addStudent'><div class='row'>";
-    examDetail +="<div class='col-md-12'><div style='display:flex;margin-bottom:20px;'> ";
-    examDetail +="<h3 style='margin-left:0px;margin-top:9px;'>Choose Your Option</span></h3></div> </div>";
-    examDetail +="<div class='col-md-12'><div class='row'> <a href='/corporate/add-candidates'>";
-    // start for one by one
-    examDetail +="<a href='/corporate/add-candidates?packageId="+packageId+"&examId="+examId+"&from=one'><div class='col-md-4'><div class='card ck1' style='border-radius: 25px;'>";
-    examDetail +="<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-    examDetail +="<img src='../../resources/img/check-icon.png' alt='Check Icon'></div>";
-    examDetail +="<div class='col-md-12'><h5><strong>I have Candidate details (Email,Phone) and want to create one by one.</strong></h5>";
-    examDetail +="</div></div></div></div></div></a>";
-    // start for excel
-    examDetail +="<a href='/corporate/add-candidates?packageId="+packageId+"&examId="+examId+"&from=excel'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
-    examDetail +="<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-    examDetail +="<img src='../../resources/img/check-icon.png' alt='Check Icon'> </div><div class='col-md-12'>";
-    examDetail +="<h5><strong>I want to upload excel file [ Please note that your excel should have email & phone ].</strong></h5>";
-    examDetail +="</div></div></div></div></div></a>";
-    // start for random
-    examDetail +="<a href='/corporate/add-candidates?packageId="+packageId+"&examId="+examId+"&from=random'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
-    examDetail +="<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-    examDetail +="<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
-    examDetail +="<h5><strong>I don't have any information about Candidate. I want to generate Random Id.</strong></h5>";
-    examDetail +=" </div></div></div></div></div></a></div></div></div></div>";
-   
-    $('.credential_space'+count).html(examDetail);
-	
+	var examDetail = "";
+
+	examDetail += "<div class='card-body' id='addStudent'><div class='row'>";
+	examDetail += "<div class='col-md-12'><div style='display:flex;margin-bottom:20px;'> ";
+	examDetail += "<h3 style='margin-left:0px;margin-top:9px;'>Choose Your Option</span></h3></div> </div>";
+	examDetail += "<div class='col-md-12'><div class='row'> <a href='/corporate/add-candidates'>";
+	// start for one by one
+	examDetail += "<a href='/corporate/add-candidates?packageId="
+			+ packageId
+			+ "&examId="
+			+ examId
+			+ "&from=one'><div class='col-md-4'><div class='card ck1' style='border-radius: 25px;'>";
+	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
+	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div>";
+	examDetail += "<div class='col-md-12'><h5><strong>I have Candidate details (Email,Phone) and want to create one by one.</strong></h5>";
+	examDetail += "</div></div></div></div></div></a>";
+	// start for excel
+	examDetail += "<a href='/corporate/add-candidates?packageId="
+			+ packageId
+			+ "&examId="
+			+ examId
+			+ "&from=excel'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
+	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
+	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'> </div><div class='col-md-12'>";
+	examDetail += "<h5><strong>I want to upload excel file [ Please note that your excel should have email & phone ].</strong></h5>";
+	examDetail += "</div></div></div></div></div></a>";
+	// start for random
+	examDetail += "<a href='/corporate/add-candidates?packageId="
+			+ packageId
+			+ "&examId="
+			+ examId
+			+ "&from=random'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
+	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
+	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
+	examDetail += "<h5><strong>I don't have any information about Candidate. I want to generate Random Id.</strong></h5>";
+	examDetail += " </div></div></div></div></div></a>";
+	// start for Custom form
+	examDetail += "<a href='/corporate/build-custom-form?packageId="
+			+ packageId
+			+ "&examId="
+			+ examId
+			+ "'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
+	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
+	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
+	examDetail += "<h5 title=' Make your own registration form to plan your next event. Get started by editing a form template then send an email to your list and watch the responses pile up!'><strong>Customize your registration form to invite diverse candidate pool.</strong></h5>";
+	examDetail += " </div></div></div></div></div></a>";
+	// end for Custom form
+	examDetail += "<a href='/corporate/add-candidates?packageId="
+			+ packageId
+			+ "&examId="
+			+ examId
+			+ "&from=none'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
+	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
+	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
+	examDetail += "<h5><strong>I don't want to add candidates just view candidates.</strong></h5>";
+	examDetail += " </div></div></div></div></div></a>";
+	examDetail += "</div></div></div></div>";
+
+	$('.credential_space' + count).html(examDetail);
+
 }
 
 function managExam(examId, packageId, status) {
@@ -744,8 +782,7 @@ function managExam(examId, packageId, status) {
 	var examDetail = "";
 	var exam = null;
 	$(".loading").show();
-	$
-			.ajax({
+	$.ajax({
 				url : '/corporate/exam-detail',
 				type : 'POST',
 				data : {
@@ -758,27 +795,27 @@ function managExam(examId, packageId, status) {
 						var object = data.object[0];
 						exam = object[0];
 
-						 examDetail +="<div class='card-body' id='addStudent'><div class='row'>";
-				          examDetail +="<div class='col-md-12'><div style='display:flex;margin-bottom:20px;'> ";
-				          examDetail +="<h3 style='margin-left:0px;margin-top:9px;'>Choose Your Option</span></h3></div> </div>";
-				          examDetail +="<div class='col-md-12'><div class='row'> <a href='/corporate/add-candidates'>";
-				          examDetail +="<div class='col-md-4'><div class='card ck1' style='border-radius: 25px;'>";
-				          examDetail +="<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-				          examDetail +="<img src='../../resources/img/check-icon.png' alt='Check Icon'></div>";
-				          examDetail +="<div class='col-md-12'><h5><strong>I have Candidate details (Email,Phone) and want to create one by one.</strong></h5>";
-				          examDetail +="</div></div></div></div></div></a>";
-				          examDetail +="<a href='#'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
-				          examDetail +="<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-				          examDetail +="<img src='../../resources/img/check-icon.png' alt='Check Icon'> </div><div class='col-md-12'>";
-				          examDetail +="<h5><strong>I want to upload excel file [ Please note that your excel should have email & phone ].</strong></h5>";
-				          examDetail +="</div></div></div></div></div></a>";
-				          examDetail +="<a href='#'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
-				          examDetail +="<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-				          examDetail +="<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
-				          examDetail +="<h5><strong>I don't have any information about Candidate. I want to generate Random Id.</strong></h5>";
-				          examDetail +=" </div></div></div></div></div></a></div></div></div></div>";
-				        $(".loading").hide();
-				        $('.credential_space'+packageId).html(examDetail);
+						examDetail += "<div class='card-body' id='addStudent'><div class='row'>";
+						examDetail += "<div class='col-md-12'><div style='display:flex;margin-bottom:20px;'> ";
+						examDetail += "<h3 style='margin-left:0px;margin-top:9px;'>Choose Your Option</span></h3></div> </div>";
+						examDetail += "<div class='col-md-12'><div class='row'> <a href='/corporate/add-candidates'>";
+						examDetail += "<div class='col-md-4'><div class='card ck1' style='border-radius: 25px;'>";
+						examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
+						examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div>";
+						examDetail += "<div class='col-md-12'><h5><strong>I have Candidate details (Email,Phone) and want to create one by one.</strong></h5>";
+						examDetail += "</div></div></div></div></div></a>";
+						examDetail += "<a href='#'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
+						examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
+						examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'> </div><div class='col-md-12'>";
+						examDetail += "<h5><strong>I want to upload excel file [ Please note that your excel should have email & phone ].</strong></h5>";
+						examDetail += "</div></div></div></div></div></a>";
+						examDetail += "<a href='#'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
+						examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
+						examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
+						examDetail += "<h5><strong>I don't have any information about Candidate. I want to generate Random Id.</strong></h5>";
+						examDetail += " </div></div></div></div></div></a></div></div></div></div>";
+						$(".loading").hide();
+						$('.credential_space' + packageId).html(examDetail);
 
 						//$(".loading").hide();
 
@@ -798,8 +835,6 @@ function managExam(examId, packageId, status) {
 
 }
 
-
-
 function generatePassword(examId, packageId) {
 	debugger;
 
@@ -807,7 +842,8 @@ function generatePassword(examId, packageId) {
 	l_map.examId = examId;
 	l_map.packageId = packageId;
 	$(".loading").show();
-	$.ajax({
+	$
+			.ajax({
 				url : '/corporate/generate-password',
 				type : 'POST',
 				data : JSON.stringify(l_map),
@@ -932,8 +968,6 @@ function deleteAllStudent() {
 
 }
 
-
-
 function edit_row(no) {
 	document.getElementById("edit_button" + no).style.display = "none";
 	document.getElementById("save_button" + no).style.display = "block";
@@ -951,30 +985,31 @@ function edit_row(no) {
 	var phone_data = phone.innerHTML;
 	//var pin_data = pin.innerHTML;
 	//var password_data = password.innerHTML;
-	
+
 	sr.innerHTML = "<input readonly type='text' id='sr_text" + no + "' value='"
-	+ sr_data + "'>";
+			+ sr_data + "'>";
 	name.innerHTML = "<input type='text' id='name_text" + no + "' value='"
 			+ name_data + "'>";
 	email.innerHTML = "<input readonly type='text' id='email_text" + no
 			+ "' value='" + email_data + "'>";
-	phone.innerHTML = "<input type='text' id='phone_text" + no + "' value='" 
-			+ phone_data + "' maxlength='10' onkeypress='return isMobile(event)'>";
+	phone.innerHTML = "<input type='text' id='phone_text" + no + "' value='"
+			+ phone_data
+			+ "' maxlength='10' onkeypress='return isMobile(event)'>";
 	//pin.innerHTML = "<input type='text' id='pin_text" + no + "' value='"
 	//+ pin_data + "'maxlength='6' onkeypress='return isMobile(event)'>";
 	//password.innerHTML = "<input type='text' id='password_text" + no + "' value='"
-//	+ password_data + "'>";
+	//	+ password_data + "'>";
 }
 
-function save_row(no,info_id) {
+function save_row(no, info_id) {
 	var sr_val = document.getElementById("sr_text" + no).value;
 	var name_val = document.getElementById("name_text" + no).value;
 	var email_val = document.getElementById("email_text" + no).value;
 	var phone_val = document.getElementById("phone_text" + no).value;
 	var pin_val = document.getElementById("pin_text" + no).value;
 	var password_val = document.getElementById("password_text" + no).value;
-    var l_map = {};
-   
+	var l_map = {};
+
 	l_map.name = name_val;
 	l_map.phone = phone_val;
 	l_map.email = email_val;
@@ -982,49 +1017,47 @@ function save_row(no,info_id) {
 	l_map.password = password_val;
 	l_map.info_id = info_id;
 	$(".loading").show();
-	$.ajax({
-		url : '/corporate/update-candidate',
-		type : 'POST',
-		data : JSON.stringify(l_map),
-		cache : false,
-		async : true,
-		contentType : "application/json; charset=UTF-8",
-		dataType : 'json',
-		success : function(data) {
-			debugger;
+	$
+			.ajax({
+				url : '/corporate/update-candidate',
+				type : 'POST',
+				data : JSON.stringify(l_map),
+				cache : false,
+				async : true,
+				contentType : "application/json; charset=UTF-8",
+				dataType : 'json',
+				success : function(data) {
+					debugger;
 
-			$(".loading").hide();
-			if (data.status =='SUCCESS') {
-				document.getElementById("sr_row" + no).innerHTML = sr_val;
-				document.getElementById("name_row" + no).innerHTML = name_val;
-				document.getElementById("email_row" + no).innerHTML = email_val;
-				document.getElementById("phone_row" + no).innerHTML = phone_val;
-				document.getElementById("pin_row" + no).innerHTML = pin_val;
-				document.getElementById("password_row" + no).innerHTML = password_val;
+					$(".loading").hide();
+					if (data.status == 'SUCCESS') {
+						document.getElementById("sr_row" + no).innerHTML = sr_val;
+						document.getElementById("name_row" + no).innerHTML = name_val;
+						document.getElementById("email_row" + no).innerHTML = email_val;
+						document.getElementById("phone_row" + no).innerHTML = phone_val;
+						document.getElementById("pin_row" + no).innerHTML = pin_val;
+						document.getElementById("password_row" + no).innerHTML = password_val;
 
-				document.getElementById("edit_button" + no).style.display = "block";
-				document.getElementById("save_button" + no).style.display = "none";
-				toastr.success('Successfully Updated');
-			}
-			if (data.status =='ERROR') {
-				toastr.error('There is some error. try again !');
-			}
+						document.getElementById("edit_button" + no).style.display = "block";
+						document.getElementById("save_button" + no).style.display = "none";
+						toastr.success('Successfully Updated');
+					}
+					if (data.status == 'ERROR') {
+						toastr.error('There is some error. try again !');
+					}
 
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			$(".loading").hide();
-			toastr.error('There is some error. try again !');
-		}
-	});
-	
-	
-	
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					$(".loading").hide();
+					toastr.error('There is some error. try again !');
+				}
+			});
 
 }
 
 /*function delete_row(no) {
-	
-}*/
+
+ }*/
 
 function delete_row(infoId, email, row) {
 
@@ -1043,18 +1076,18 @@ function delete_row(infoId, email, row) {
 				if (data.status == 'SUCCESS') {
 
 					//document.getElementById("row" + row + "").outerHTML = "";
-					
-				    //var tb = $('tbody');
-			/*	    var rows = tb.find('tr');
-				    rows.sort(function(a, b) {
-				        var keyA = $(a).attr('index');
-				        var keyB = $(b).attr('index');
-				        return keyA - keyB;
-				    });
-				    $.each(rows, function(index, row) {
-				        tb.append(row);
-				    });
-				    */
+
+					//var tb = $('tbody');
+					/*	    var rows = tb.find('tr');
+						    rows.sort(function(a, b) {
+						        var keyA = $(a).attr('index');
+						        var keyB = $(b).attr('index');
+						        return keyA - keyB;
+						    });
+						    $.each(rows, function(index, row) {
+						        tb.append(row);
+						    });
+					 */
 					toastr.success('Successfully removed !');
 					location.reload();
 
@@ -1071,7 +1104,6 @@ function delete_row(infoId, email, row) {
 		return false;
 
 }
-
 
 function add_row() {
 	var new_name = document.getElementById("new_name").value;
@@ -1109,3 +1141,109 @@ function add_row() {
 	document.getElementById("new_country").value = "";
 	document.getElementById("new_age").value = "";
 }
+
+function getCustomFormURLs() {
+	debugger;
+	// reset modal 
+	$(".loading").show();
+	$
+			.ajax({
+				url : '/common/custom-form-urls',
+				cache : false,
+				async : true,
+				contentType : "application/json; charset=UTF-8",
+				dataType : 'json',
+				type : 'POST',
+				success : function(response) {
+					debugger;
+					$(".loading").hide();
+
+					if (response.status == 'SUCCESS') {
+						$("#i_url_container").html('');
+						var l_html = "";
+						var l_urls = response.object;
+						$(".loading").hide();
+						//alert(JSON.stringify(response.object));
+						l_html += '<table class="table"> <thead><tr><th>Title</th><th>Link</th><th>Action</th></tr></thead><tbody>';
+						for (var i = 0; i < l_urls.length; i++) {
+							var b_url = l_urls[i];
+
+							l_html += '<tr><td>'
+									+ b_url[0]
+									+ '</td><td><input style="outline: none;border: 0;" id="i_link_'
+									+ i
+									+ '" type="text" value="'
+									+ b_url[1]
+									+ '" readonly></td><td><button class="btn success" onclick="copyText(\'i_link_'
+									+ i + '\')">Copy Link</button></td></tr>';
+							
+						}
+						l_html += '</tbody></table>';
+
+						$("#i_url_container").html(l_html);
+						$('#viewURLs').modal('show');
+						// $('#myModal').modal('hide');
+						//toastr.success(response.message);
+					}
+
+					if (response.status == 'ERROR') {
+						$(".loading").hide();
+						toastr.error(response.message);
+					}
+				},
+				error : function(err) {
+					$(".loading").hide();
+					toastr
+							.error("we don't find proper input . Try again later!");
+				}
+		});
+}
+
+
+ var is_checked = false;
+ var search_indexes = [];
+ var indexes_checked = [];
+ $(document).ready(function(){  
+    $('#search_candidates').keyup(function(){  
+    	 search_indexes=[];
+         search_table($(this).val());  
+    });  
+  function search_table(value){  
+         $('#i_candidate_list tr').each(function(){  
+              var found = 'false';  
+              $(this).each(function(){  
+                   if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                   {  
+                        found = 'true';  
+                   }  
+              });  
+              if(found == 'true')  
+              {  
+                   $(this).show(); 
+                   search_indexes.push($("tr").index(this));
+                   alert($("tr").index(this));
+              }  
+              else  
+              {  
+                   $(this).hide();  
+              }  
+         });  
+    }  
+}); 
+ 
+ function addToConsiderAction(){
+	 
+	    var checkBox = document.getElementById("myCheck");
+	    var text = document.getElementById("text");
+	    if (checkBox.checked == true){
+	        text.style.display = "block";
+	    } else {
+	       text.style.display = "none";
+	    }
+ }
+ 
+ function bulkCandidateActions(){
+	 
+	 
+	 
+ }
