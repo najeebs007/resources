@@ -282,6 +282,56 @@ button:focus {
     outline: none !important;
 }
 
+/* small button */
+.orange
+{
+	background-color: #f05712 !important;
+}
+.btn-small {
+    height: 35px;
+    padding: 12px 20px;
+    font-size: 16px;
+    line-height: 12px;
+    border-radius: 2px;
+    background-color: #03a9f4; /*brand primary color*/
+    border: 0;
+	color:white;
+	font-family:inherit;
+	margin-left:18px;
+}
+
+ 
+
+.btn-small:hover{
+    background-color: #03a9f4;
+	box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.btn-small.active, 
+.btn-small:active {
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+
+.btn-small.white,
+.btn-small.white:hover,
+.btn-small.white:focus {
+    color: #03a9f4;
+}
+
+.btn-small i.material-icons {
+    font-size: 20px;
+}
+
+.btn-small.focus, 
+.btn-small:focus, 
+.btn-small:hover {
+    color: #fff;
+}
+.btn-small:focus,
+button:focus {
+    outline: none !important;
+}
 
 /*Download Button*/
 .btn-download {
@@ -1680,10 +1730,108 @@ i[class^="flaticon-"]:before {
     margin-left: 0;
 }
 
+.follow-us
+{
+    color: rgb(165, 165, 165);
+    font-weight: 600;
+    font-size: 20px;
+}
+.social-icon-section
+{
+	display:inline-flex;
+}
+.social-icon{
+  border-radius: 50%;
+  background-color: rgb(242, 234, 234) !important;
+  margin-right:5px;
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.05); 
+  width: 32px;
+  height: 32px;
+  text-align:center;
+  line-height: 30px;
+}
+.input-class
+{
+	font-size: 20px !important;
+    width: 100% !important;
+    height: 60px !important;
+    background: rgb(242, 234, 234) !important;
+    margin-top: 25px !important;
+    border-radius: 3px !important;
+    box-shadow: 0px 1px 2px 0px #80808026 !important;
+    padding: 2px 20px !important;
+    color: rgb(190, 190, 190) !important;
+	border-bottom:0 !important;
+}
+.newsletter-btn{
+  border-radius: 8px;
+  background-color: rgb(17, 144, 232);
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.15);
+  border:0;
+  width: 39px;
+  height: 39px; 
+  color:white;
+  margin-top:20px;
+  margin-left:-20px;
+}
+.padding-input
+{
+	padding-left:0px !important;
+}
+.need-help{
+  font-size:50px; 
+  color: rgb(17, 144, 232);
+  font-weight: bold; 
+  
+}
+.calnder-height{height:458px;}
+.owl-padding{margin-top:0px;}
+.login-container{padding:10px;}
+				  
+.registrationModal {
+/* some styles to position the modal at the center of the page */
+	position: absolute;
+    top:7%;
+    left: 75%;
+    width: 27%;
+    height: auto;
+    margin-left: -150px;
+    margin-top: 100px;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 0px;
+    z-index: 1000;
+	box-shadow: 0px 0px 2px 4px #8080801c;
+					
+}
+.login-input-margin{margin-top:-5px;}
 
-
-
-
+.btn-sm-scholar
+{   display: inline-block;
+     
+    font-size: 16px;
+    font-weight: 600; 
+    border-radius: 25px !important;
+    border: 1px solid rgb(17, 144, 232);
+    background: transparent !important;
+    width: 80px;
+	height:37px;
+	line-height: 35px !important;
+}
+.btn-sm-merit
+{   display: inline-block; 
+    font-size: 16px;
+    font-weight: 600;
+	 
+    border-radius: 25px !important;
+    border: 1px solid rgb(240, 85, 16);
+    background: transparent !important;
+    width: 80px;
+	width: 80px;
+	height:37px;
+	line-height: 35px !important;
+}
 /* ================= Material CSS Customization ==================== */
 nav {
     background-color: transparent;
@@ -1743,7 +1891,64 @@ nav ul a {
     width: 100%;
     height: auto;
 }
-
+/******* calendar ******/
+.border
+{
+	border: 2px solid #e85717;
+}
+  .hrclass  { 
+	margin-left: 27px;
+    margin-right: 28px;
+    margin-top: -3px;
+    border-top: 2px solid #e5e6e6;
+	margin-bottom: 0px;
+     
+	}
+	.divtbleth
+	{
+    width: 67px;
+    height: 48px;
+    background: #8080806e;
+    text-align: center;
+    border-radius: 5px;
+	margin:1px;
+	}
+	.thcalender1
+	{
+    padding: 0px 8px !important;;
+    background: #054d05;
+    color: white !important;
+	height: 45px;
+    line-height: 42px !important;
+	}
+	.thcalender2
+	{
+    padding: 0px 8px !important;
+    background:#01796F;
+    color: white !important;
+	height: 45px;
+    line-height: 42px !important;
+	}
+	.tblyear
+	{
+    height: 50px !important;
+    width: 163px !important;
+    background: #419b93 !important;
+    margin-bottom: 0px !important;
+    line-height: 55px !important;
+     display:block;
+	}
+	.tdheight{height:120px !important;}
+	.tblEventName{    
+	font-weight: 600;
+    color: red;
+    font-size: 14px;
+	}
+	.tblNotes{    
+	font-weight:500;
+    color: black;
+    font-size: 14px;
+	}
 
 /* Button Style In Shortcode Page
 /* ---------------------------------- */
@@ -1757,10 +1962,33 @@ nav ul a {
 }
 
 /*Equal Height Columns*/
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .equal-height-column {
         height: auto !important;
     }
+	.registrationModal {
+					/* some styles to position the modal at the center of the page */
+						top:-5%;
+					    left: 2%;
+						width: 80%; 
+						margin-left:30px;
+						display:none;
+					
+}
+.owl-padding{margin-top:50px;}
+.services-padding{margin-top:50px;}
+.calnder-height{
+    height: 640px;
+	margin-left: 15px;
+    margin-right: 15px;
+}
+.about-onMobile
+{
+	
+	margin-left: 15px !important;
+    margin-right: 15px !important;
+}
+.navbar-form{margin-left:0px;}
 }
 
 

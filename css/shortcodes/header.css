@@ -106,12 +106,21 @@ Header
 
 .tt-nav {
     width: 100%;
-    height: 100px;
+    height: 70px;
     z-index: 1000;
     position: relative;
 }
 
-
+.mt-35 {
+    margin-top:18px;
+}
+.tt-nav.sticky button
+{
+	 margin-top:15px;
+}
+.tt-nav .sticky .menuzord-menu li .mt-35 {
+    margin-top:10px;
+}
 .tt-nav.sticky .header-sticky,
 .tt-nav.transparent-header {
     position: fixed;
@@ -230,7 +239,7 @@ header.sticky .menuzord-menu>li>a,
 }
 
 .nav-border-bottom .menuzord-menu>li>a {
-    line-height: 99px;
+    line-height: 70px;
 }
 
 .tt-nav.sticky .menuzord-menu>li>a {
@@ -289,7 +298,7 @@ header.sticky .menuzord-menu>li>a,
     font-size: 24px;
     font-weight: 700;
     cursor: pointer;
-    margin: 33px 30px 0 0;
+    margin: 18px 30px 0 0;
     line-height: 100px;
 }
 .tt-nav.sticky .logo-brand {
@@ -300,7 +309,7 @@ header.sticky .menuzord-menu>li>a,
 .menuzord-menu {
     margin: 0;
     padding: 0;
-    float: left;
+    float: right;
     list-style: none
 }
 .menuzord-menu.menuzord-right {
@@ -723,11 +732,30 @@ Nav link border box
 .tt-nav.sticky .nav-border-box .menuzord-menu > li > a {
     margin: 15px 0;
 }
-
-
+.onMobilev{height:20px;}
+.mobile-view{display:none !important;}
+.regClose
+{
+    float: right;
+    margin-right: 3px;
+    display: block;
+    height: 25px;
+    width: 35px;
+    background: red;
+    line-height: 26px;
+    margin-top: 3px;
+    border-radius: 25px;
+    color: black;
+	display:none;
+}
 @media (max-width: 768px) {
     .nav-border-box .menuzord-menu > li > a {
         margin: 5px 0;
+    }
+	.mobile-view{display:block !important;}
+	.regClose
+    {
+	 display:block;
     }
 }
 
