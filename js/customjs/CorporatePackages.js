@@ -13,6 +13,7 @@ function addNumberOfStudent(count,flag) {
 	if(flag){
 		$("#myModalabout").modal('show');
 		}
+	
 	else
 		{
 		$('.c_numberOfStudent').val("1");
