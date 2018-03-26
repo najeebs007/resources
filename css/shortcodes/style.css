@@ -1960,7 +1960,11 @@ nav ul a {
 .button-style .btn-floating i {
     height: auto !important;
 }
-
+.mobileview
+{
+	height:458px;
+	 
+}
 /*Equal Height Columns*/
 @media (max-width: 768px) {
     .equal-height-column {
@@ -1988,9 +1992,23 @@ nav ul a {
 	margin-left: 15px !important;
     margin-right: 15px !important;
 }
+.mobileview{height:auto;}
 .navbar-form{margin-left:0px;}
 }
 
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
+      
+	.registrationModal {
+					/* some styles to position the modal at the center of the page */
+						    top: 5%;
+                            left: 56%;
+                            width: 33%;
+                            margin-left: 30px;
+						    display:block;
+					
+}
+ 
+}
 
 
 /*TT Animate CSS*/
