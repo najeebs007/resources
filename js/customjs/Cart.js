@@ -15,7 +15,7 @@ function checkOutCart(){
 function addToCart(l_cartId,l_productId,l_productType){ debugger;
 	
 	//alert(l_cartId+" : "+l_productId+" : "+l_productType);
-	if (confirm("Do you Want to buy this product?"+"\n"+"click Place Order") ) {
+	if (confirm("Do you Want to buy this product?"+"\n"+"click ok") ) {
 		var l_input_map = {};
 		l_input_map.cartId = l_cartId;
 		l_input_map.productId=l_productId;
@@ -97,5 +97,43 @@ $(".loading").show();
 }
 
 }
+
+
+function removeCartItem(cartId,cartItemId){
+	 	alert(cartId+": "+cartItemId);
+		var l_input_map = {};
+		l_input_map.cartId=cartId;
+		l_input_map.cartItemId = cartItemId;
+		  
+			$(".loading").show();
+		$.ajax({
+
+			  type : 'POST',
+			  url : "/cart/removeCartItem",
+			  data : JSON.stringify(l_input_map),
+			  cache : false,
+			  async : true,
+			  contentType : "application/json; charset=UTF-8",
+			  dataType : 'json',
+			  success : function(response) {
+			        //  alert(response);
+			    $(".loading").hide();
+			        
+			          toastr.success('Item removed successfully');
+			          setTimeout(function() {
+			        	  window.location.reload(true);
+			      	}, 1000);
+			         
+			  },
+			  error : function(jqXHR, textStatus, errorThrown) {
+			   $(".loading").hide();
+			     toastr.error(response);  
+			  // alert("error:" + textStatus + " exception:" + errorThrown);
+			   
+			  }
+			 });
+		 
+		
+	}
 
 
