@@ -1,4 +1,3 @@
- * 
 var g_map = {};
 var existMap = {};
 var package_price = 0;

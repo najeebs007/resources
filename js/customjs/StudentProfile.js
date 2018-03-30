@@ -7,13 +7,19 @@ $(document).ready(function() {
 	
 });
 
-function studentProfileRegistration() {
+function studentProfileRegistration() {debugger;
 	
 	if(!validateSudentGeneral()){
 		return false;
 	}
-	var l_input_data = {};
+
+	if(!checkValidDate($(".c_dateOfBirth").val(),'c_s_error')){
+		return false;
+	}
 	
+	
+	var l_input_data = {};
+	$('.c_ed_error').html('');
 	l_input_data.userName = $(".c_username").val();
 	l_input_data.fathersName = $(".c_studentFather").val();
 	l_input_data.mothersName = $(".c_mothersName").val();
@@ -34,13 +40,26 @@ function studentProfileRegistration() {
 		data : JSON.stringify(l_input_data),
 		datatype : "json",
 		success : function(response) {
-			$("#myModal").modal('hide');
-			$(".loading").hide();
-
+		//alert(JSON.stringify(response));
+			
+			if(response.status=='SUCCESS'){
+				$("#myModal").modal('hide');
+				location.reload();
+				toastr.success(response.message);
+			}
+			if(response.status=='ERROR'){
+				$(".loading").hide();
+				//toastr.success(response.message);
+				$('.c_ed_error').html(response.message);
+			}
+			
 		},
 
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert("error:" + textStatus + " exception:" + errorThrown);
+			//alert("error:" + textStatus + " exception:" + errorThrown);
+			$(".loading").hide();
+			$('.c_ed_error').html("we don't find proper input . try again.");
+			//toastr.success("we don't find proper input . try again.");
 		}
 
 	});
@@ -90,11 +109,14 @@ function addStudentEducation() {
 				    $(this).find('form').trigger('reset');
 				    })
 				    $('.c_ed_error').html('');
-				    $(".loading").hide();
+				   // $(".loading").hide();
+				    location.reload();
 				},
 
 				error : function(jqXHR, textStatus, errorThrown) {
-					alert("error:" + textStatus + " exception:" + errorThrown);
+					$(".loading").hide();
+					$('.c_ed_error').html("we don't find proper input . try again.");
+					//alert("error:" + textStatus + " exception:" + errorThrown);
 				}
 
 			});
@@ -120,7 +142,9 @@ function editStudentEducation(educationId) {
 					}
 				},
                  error : function(jqXHR, textStatus, errorThrown) {
-					alert("error:" + textStatus + " exception:" + errorThrown);
+                	 $(".loading").hide();
+         			$('.c_ed_error').html("we don't find proper input . try again.");
+					//alert("error:" + textStatus + " exception:" + errorThrown);
 				}
 
 			});
@@ -158,7 +182,9 @@ function editProfession(professionId) {
 				},
 
 				error : function(jqXHR, textStatus, errorThrown) {
-					alert("error:" + textStatus + " exception:" + errorThrown);
+					$(".loading").hide();
+					$('.c_ed_error').html("we don't find proper input . try again.");
+					//alert("error:" + textStatus + " exception:" + errorThrown);
 				}
 
 			});
@@ -205,11 +231,14 @@ function addStudentProfessionalDetail() {debugger;
 						   })
 					}
 						   
-					$(".loading").hide();
+					/*$(".loading").hide();*/
+					location.reload();
 				},
 
 				error : function(jqXHR, textStatus, errorThrown) {
-					alert("error:" + textStatus + " exception:" + errorThrown);
+					$(".loading").hide();
+					$('.c_ed_error').html("we don't find proper input . try again.");
+					//alert("error:" + textStatus + " exception:" + errorThrown);
 				}
 
 			});
@@ -217,7 +246,7 @@ function addStudentProfessionalDetail() {debugger;
 
 
 function addStudentCertificate() {debugger;
-
+    //in UserValidation.js
 	if(!(validateCertificate())){debugger;
 		return false;
 	}
@@ -226,7 +255,7 @@ var l_input_map = {};
     l_input_map.certificateId = $(".certificateIdClass").val();
 	l_input_map.certificateName = $(".certificateNameClass").val();
 	l_input_map.certificateNumber = $(".certificateNumberClass").val();
-	l_input_map.certificateExpire = $(".certificateExpiryClass").val();
+	//l_input_map.certificateExpire = $(".certificateExpiryClass").val();
 	l_input_map.certificateAuthority = $(".certificateAuthorityClass").val();
 	l_input_map.certificateDate = $(".certificateDateClass").val();
 
@@ -251,11 +280,14 @@ var l_input_map = {};
 					else
 						$('.c_c_error').html('There is some error while adding or updating certificate!');
 				
-					$(".loading").hide();
+					//$(".loading").hide();
+					location.reload();
 				},
 
 				error : function(jqXHR, textStatus, errorThrown) {
-					$('.c_c_error').html('There is some error while adding or updating certificate!');
+					$(".loading").hide();
+					$('.c_ed_error').html("we don't find proper input . try again.");
+					//$('.c_c_error').html('There is some error while adding or updating certificate!');
 					//alert("error:" + textStatus + " exception:" + errorThrown);
 				}
 
@@ -291,7 +323,9 @@ var l_input_map = {};
 				},
 
 				error : function(jqXHR, textStatus, errorThrown) {
-					alert("error:" + textStatus + " exception:" + errorThrown);
+					$(".loading").hide();
+					$('.c_ed_error').html("we don't find proper input . try again.");
+					//alert("error:" + textStatus + " exception:" + errorThrown);
 				}
 
 			});
