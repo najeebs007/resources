@@ -184,4 +184,47 @@ $(".loading").show();
 }
 
 }
+<<<<<<< HEAD
 
+
+function removeCartItem(cartId,cartItemId){
+	 	alert(cartId+": "+cartItemId);
+		var l_input_map = {};
+		l_input_map.cartId=cartId;
+		l_input_map.cartItemId = cartItemId;
+		  
+			$(".loading").show();
+		$.ajax({
+
+			  type : 'POST',
+			  url : "/cart/removeCartItem",
+			  data : JSON.stringify(l_input_map),
+			  cache : false,
+			  async : true,
+			  contentType : "application/json; charset=UTF-8",
+			  dataType : 'json',
+			  success : function(response) {
+			        //  alert(response);
+			    $(".loading").hide();
+			        
+			          toastr.success('Item removed successfully');
+			          setTimeout(function() {
+			        	  window.location.reload(true);
+			      	}, 1000);
+			         
+			  },
+			  error : function(jqXHR, textStatus, errorThrown) {
+			   $(".loading").hide();
+			     toastr.error(response);  
+			  // alert("error:" + textStatus + " exception:" + errorThrown);
+			   
+			  }
+			 });
+		 
+		
+	}
+
+
+=======
+
+>>>>>>> f1f4d0e53c3fac3960296139ef16e977a1a980d3

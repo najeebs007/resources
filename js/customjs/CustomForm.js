@@ -157,6 +157,67 @@ function addCandidate(p_form_id) {debugger;
 				}
 			});
 }
+
+
+function getExistFormContent(){debugger;
+var l_map = {};
+
+if(!(navigator.onLine)){
+    toastr.error('You are offline. please check internet connection.');
+	return;
+}
+if($('.c_exist_form').val()==''){
+	toastr.error("Please select any one option.");
+	return ;
+}
+l_map.customFormId = $('.c_exist_form').val();
+
+$(".loading").show();
+$.ajax({    url : '/common/load-exist-custom-form-content',
+			cache : false,
+			async : true,
+			contentType : "application/json; charset=UTF-8",
+			dataType : 'json',
+			data : JSON.stringify(l_map),
+			type : 'POST',
+			success : function(response) {debugger;
+				if (response.status == "SUCCESS") {
+					var l_html = "";
+					var l_content_data = response.object;
+					var l_json_data = l_content_data.jsonForm;
+					var l_parsed = JSON.parse(l_json_data);
+					var l_keys = Object.keys(l_parsed);
+					$('.c_form_title').val(l_content_data.title);
+					$('.c_form_instruction').val(l_content_data.instruction);
+					$('.c_form_logo_link').val(l_content_data.logoLink);
+					$('.dynamicInput').html('');
+					for(var i=0;i<l_keys.length;i++){
+					l_html+="<div class='col-md-4'>";
+					l_html+="<h5 class='title'>"+l_keys[i]+"</h5>";
+					l_html+="<div class='added-input'>";
+					l_html+="<input type='"+l_parsed[l_keys[i]]+"' name='"+l_keys[i]+"' id='email' tabindex='1' class='form-control cf-input-dynamic-left'>";
+					l_html+="<span class='tooltiptext-delete'>Remove This Field</span>";
+					l_html+="<span class='cf-cross-button-left'> <i class='fa fa-times' style='font-size:20px;'></i></span>";
+					l_html+="</div>";
+					l_html+="</div>";
+					$('.dynamicInput').append(l_html);
+					}
+					
+					toastr.success(response.message);
+					$(".loading").hide();
+				}
+				if (response.status == "ERROR") {
+					$(".loading").hide();
+					toastr.error(response.message);
+				}
+			},
+			error : function(err) {
+				$(".loading").hide();
+				toastr.error("we did not find proper input . Try again later!");
+			}
+	});
+}
+
 // Form creation js
 
 $(document).ready(function()

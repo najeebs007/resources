@@ -9094,11 +9094,12 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 .btn-padding {
 	position: absolute !important;
 	right: 30%;
-	top: 65%;
-	width: 270px;
-	border: 1px solid #00203f;
-	border-radius: 20px;
-	background-color: #00203f;
+	top: 85%;
+    width: 270px;
+    border: 1px solid #8080803d;
+    border-radius: 20px;
+    background-color: #0078d7;
+    color: white !important;
 }
 .labelHeading
 {
@@ -9272,10 +9273,10 @@ color: inherit;
 @media only screen and (max-width: 768px) {
 	.btn-padding {
 		position: absolute;
-    right: 21%;
-    top: 70%;
-    width: 200px;
-    font-size: 10px;
+    right: 33%;
+    top: 85%;
+    width: 209px;
+    font-size: 16px;
 	}
 	.labelHeading
 	{
@@ -10532,17 +10533,17 @@ xcustom form elements
 	margin:1px;
 	}
 	.thcalender1
-	{
+ {
     padding: 0px 8px !important;;
     background: #054d05;
     color: white !important;
-	}
-	.thcalender2
-	{
+ }
+  .thcalender2
+ {
     padding: 0px 8px !important;
     background:#01796F;
     color: white !important;
-	}
+  }
 	.tblyear
 	{
     height: 50px !important;
