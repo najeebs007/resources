@@ -10707,3 +10707,484 @@ xcustom form elements
     left: 0;
     opacity: 0.5;
 }
+
+
+.cf-no-div
+{
+	width: 75%;
+    border: 1px dashed rgb(172, 172, 172);
+    background-color: rgba(0, 0, 0, 0.059);
+    color: rgb(45, 45, 45);
+    font-size: 16px; 
+    font-weight: 500;
+} 
+.cf-align
+{
+	text-align:center;
+	text-align:-webkit-center;
+}
+.cf-l
+{margin-top:25px;}
+.cf-no-div-padding{padding:24px;}
+.cf-value{padding:35px;}
+.cf-edit-button-l-c
+{
+    margin-right:-18px !important; 
+    margin-top: -15px !important;
+   
+}
+.cf-span{margin-top:-10px;}
+.cf-input-area{cursor:pointer;}
+.cf-input
+{
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(229, 229, 229);
+  border-radius: 3px;
+  background-color: rgb(251, 251, 251);
+  box-shadow: inset 1px 1.732px 5px 0px rgba(0, 0, 0, 0.07); 
+  width: 100%;
+  height: 38px;
+  padding: 5px 10px;
+  
+} 
+.cf-button
+{
+   
+  background-color: rgb(111, 218, 68); 
+  width: 248px;
+  height: 38px;
+      color: white;
+    text-align: center;
+    line-height:37px;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 3px;
+	border:0;
+   
+}
+.cf-input-check
+{
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(84, 63, 174, 0.63);
+  border-radius:2px;
+  background-color: rgb(251, 251, 251);
+  box-shadow: inset 0px 0px 2px 3px rgba(0, 0, 0, 0.07); 
+  width:20px;
+  height:20px; 
+  
+}
+.cf-margin-top-15
+{
+	margin-top:15px;
+}
+.cf-margin-top-100
+{
+	margin-top:100px;
+}
+.cf-heading
+{
+	font-size: 16px; 
+    color: rgb(102, 102, 102); 
+  -moz-transform: matrix( 0.99948034898668,0,0,1,0,0);
+  -webkit-transform: matrix( 0.99948034898668,0,0,1,0,0);
+  -ms-transform: matrix( 0.99948034898668,0,0,1,0,0);
+  margin-top: 0px;
+}
+.cf-heading-f
+{
+	font-size: 16px; 
+    color: rgb(102, 102, 102); 
+  -moz-transform: matrix( 0.99948034898668,0,0,1,0,0);
+  -webkit-transform: matrix( 0.99948034898668,0,0,1,0,0);
+  -ms-transform: matrix( 0.99948034898668,0,0,1,0,0);
+  
+}
+.cf-e-height{height:120px !important;}
+.cf-agree-text
+{ 
+  font-size: 14px; 
+  color: rgb(0, 0, 0); 
+  -moz-transform: matrix( 0.99948034898668,0,0,1,0,0);
+  -webkit-transform: matrix( 0.99948034898668,0,0,1,0,0);
+  -ms-transform: matrix( 0.99948034898668,0,0,1,0,0); 
+  margin-left:10px;
+  margin-top:-2px;
+}
+.cf-agree-text-l
+{ 
+  font-size: 14px; 
+  color: rgb(0, 0, 0); 
+  -moz-transform: matrix( 0.99948034898668,0,0,1,0,0);
+  -webkit-transform: matrix( 0.99948034898668,0,0,1,0,0);
+  -ms-transform: matrix( 0.99948034898668,0,0,1,0,0); 
+  
+}
+ .cf-input-area .tooltiptext {
+    visibility: hidden; 
+    background-color: #6495ED; 
+    width: 130px; 
+    color: #fff;
+    text-align: center;
+    border-radius:25px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left:30%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.cf-input-area .tooltiptext-t {
+    visibility: hidden; 
+    background-color: #6495ED; 
+    width: 130px; 
+    color: #fff;
+    text-align: center;
+    border-radius:25px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 105%;
+    left:30%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.cf-input-area .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 75%;
+    margin-left: -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: #6495ED transparent transparent transparent;
+}
+.cf-input-area .tooltiptext-t::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 75%;
+    margin-left: -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: #6495ED transparent transparent transparent;
+}
+
+.cf-input-area:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+.cf-input-area:hover .tooltiptext-t {
+    visibility: visible;
+    opacity: 1;
+}
+.cf-input:hover{
+  border-style: dashed;
+  border-width: 1px;
+  border-color: gray;
+}
+.cf-checkbox:hover{ border-style: dashed;
+  border-width: 1px;
+  border-color: gray;}
+  .cf-button:hover{ border-style: dashed;
+  border-width: 1px;
+  border-color: gray;}
+.cf-hover-button-t
+{ 
+ visibility: hidden;  
+  border-radius: 50%;
+  background-color: #6495ED; 
+  width: 30px;
+  height: 30px;
+  display:block;
+  float: right;
+      margin-top: -50px;
+    margin-right: -10px;
+    color: white;
+    padding: 0px 8px;
+    font-size: 18px;
+}
+.cf-hover-button-textarea
+{ 
+ visibility: hidden;  
+  border-radius: 50%;
+  background-color: #6495ED; 
+  width: 30px;
+  height: 30px;
+  display:block;
+  float: right;
+      margin-top: -130px;
+    margin-right: -10px;
+    color: white;
+    padding: 0px 8px;
+    font-size: 18px;
+}
+.cf-hover-button-checkbox
+{ 
+ visibility: hidden;  
+  border-radius: 50%;
+  background-color: #6495ED; 
+  width: 30px;
+  height: 30px;
+  display:block;  
+  margin-top: -20px;
+    margin-left:189px;
+    color: white;
+    padding: 0px 8px;
+    font-size: 18px;
+}
+ .cf-hover-button-button
+{ 
+ visibility: hidden;  
+  border-radius: 50%;
+  background-color:#6495ED; 
+  width: 30px;
+  height: 30px;
+  display:block;
+  float: right;
+  margin-top: -50px;
+  margin-right:200px;
+  color: white;
+  padding: 0px 8px;
+  font-size: 18px;
+}
+.cf-input-area:hover .cf-hover-button-t {
+    visibility: visible;
+    opacity: 1;
+}
+.cf-input-area:hover .cf-hover-button-checkbox {
+    visibility: visible;
+    opacity: 1;
+}
+.cf-input-area:hover .cf-hover-button-textarea {
+    visibility: visible;
+    opacity: 1;
+}
+.cf-input-area:hover .cf-hover-button-button {
+    visibility: visible;
+    opacity: 1;
+}
+.cf-input-area .tooltiptext-button {
+    visibility: hidden; 
+    background-color: #6495ED; 
+    width: 130px; 
+    color: #fff;
+    text-align: center;
+    border-radius:25px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 63%;
+    left:30%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}  
+.cf-input-area .tooltiptext-button::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 75%;
+    margin-left: -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: #6495ED transparent transparent transparent;
+} 
+.cf-input-area:hover .tooltiptext-button {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/* dynamic form css */
+.cf-a-textDeco{text-decoration:none !important;}
+.cf-edit-button-left
+{
+   
+  border-radius: 50%;
+  background-color: rgb(244, 67, 54); 
+  width: 30px;
+  height: 30px;
+  display:block;
+  float: right;
+  margin-top: -15px;
+  margin-right: -18px;
+  color: white;
+   
+}
+.cf-cross-button-left
+{
+   visibility: hidden;
+  border-radius: 50%;
+  background-color: rgb(244, 67, 54); 
+  width: 30px;
+  height: 30px;
+  display:block;
+  float: right;
+  margin-top: -50px;
+  margin-right: -15px;
+  color: white;
+  padding: 5px 7px;
+  cursor:pointer;
+  z-index:9999;
+}
+.cf-cross-button-left-textarea
+{
+  visibility: hidden;
+  border-radius: 50%;
+  background-color: rgb(244, 67, 54); 
+  width: 30px;
+  height: 30px;
+  display:block;
+  float: right;
+  margin-top: -110px;
+  margin-right: -15px;
+  color: white;
+  padding: 5px 7px;
+  cursor:pointer;
+}
+.added-input:hover .cf-cross-button-left {
+    visibility: visible;
+    opacity: 1;
+}
+.added-input:hover .cf-cross-button-left-textarea {
+    visibility: visible;
+    opacity: 1;
+}
+.cf-input-dynamic-left
+{
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(229, 229, 229);
+  border-radius: 3px;
+  background-color: rgb(251, 251, 251);
+  box-shadow: inset 1px 1.732px 5px 0px rgba(0, 0, 0, 0.07); 
+  width: 100%;
+  height: 38px;
+  padding: 5px 10px !important;
+  color:#0c0c0c;
+  cursor:pointer;
+  
+}
+.added-input .tooltiptext-delete {
+    visibility: hidden; 
+    background-color: rgb(244, 67, 54); 
+    width: 130px; 
+    color: #fff;
+    text-align: center;
+    border-radius:25px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left:30%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+ 
+.added-input .tooltiptext-delete::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 75%;
+    margin-left: -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: rgb(244, 67, 54) transparent transparent transparent;
+}
+.added-input .tooltiptext-delete::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 75%;
+    margin-left: -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: rgb(244, 67, 54) transparent transparent transparent;
+}
+
+.added-input:hover .tooltiptext-delete {
+    visibility: visible;
+    opacity: 1;
+}
+/* for textarea*/
+.added-input .tooltiptext-delete-txtarea {
+    visibility: hidden; 
+    background-color: rgb(244, 67, 54); 
+    width: 130px; 
+    color: #fff;
+    text-align: center;
+    border-radius:25px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 109%;
+    left:30%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+ 
+.added-input .tooltiptext-delete-txtarea::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 75%;
+    margin-left: -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: rgb(244, 67, 54) transparent transparent transparent;
+}
+.added-input .tooltiptext-delete-txtarea::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 75%;
+    margin-left: -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: rgb(244, 67, 54) transparent transparent transparent;
+}
+
+.added-input:hover .tooltiptext-delete-txtarea {
+    visibility: visible;
+    opacity: 1;
+}
+.cf-input-dynamic-left:hover{
+   border-style: dashed;
+  border-width: 1px;
+  border-color: gray;
+}
+.cf-publish
+{
+    border-radius: 4px;
+    background-color: rgb(9, 137, 231); 
+    width: 202px;
+    height: 38px;
+    color: white;
+    text-align: center;
+    line-height: 37px;
+    font-size: 20px;
+    font-weight: 500;
+    border: 0;
+	margin:2px;
+} 
+.cf-view
+{
+    border-radius: 4px;
+    background-color: rgb(238, 70, 2); 
+    width: 202px;
+    height: 38px;
+    color: white;
+    text-align: center;
+    line-height: 37px;
+    font-size: 20px;
+    font-weight: 500;
+    border: 0;
+	margin:2px;
+}
