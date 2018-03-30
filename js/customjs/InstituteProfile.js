@@ -19,7 +19,7 @@ var l_input_map = {};
 	l_input_map.specialization = $(".c_specialization").val();
 	l_input_map.numberOfStudent = $(".c_numberOfStudent").val();
 	l_input_map.description = $(".c_desc").val();
-
+	$(".loading").show();
 	$.ajax({
 		url : "/institute/save-institute-general-info",
 		data : JSON.stringify(l_input_map),
@@ -40,10 +40,12 @@ var l_input_map = {};
     	    $('.c_e_desc').html($(".c_desc").val());
 			$('#myModalgeneral').modal('hide');
 		    $('.c_instituteGeneralInfoError').html('');
+		    $(".loading").hide();
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			$('.c_instituteGeneralInfoError').html(errorThrown);
-			alert("error:" + textStatus + " exception:" + errorThrown);
+			$(".loading").hide();
+			$('.c_instituteGeneralInfoError').html("we don't find proper input.please try again.");
+			//alert("error:" + textStatus + " exception:" + errorThrown);
 		}
 	});
 	}else
@@ -56,12 +58,12 @@ var l_input_map = {};
 function editInstituteGeneralInfo(p_formId,p_errorClass){
 		/*$(".loading").show();
 		$(".c_buttonView").prop("disabled", true);*/
-		
+	$(".loading").show();
 		$.ajax({
 			url : "institute/get-edit-institute-general",
 			type : 'GET',
 			success : function(data) {
-	        
+	             
 			 	if(!(data.instituteId == 'none')){
 		    	    $('.c_displayName').val(data.displayName);
 		    	    $('.c_url').val(data.websiteURL);
@@ -72,11 +74,15 @@ function editInstituteGeneralInfo(p_formId,p_errorClass){
 		    	    $('.c_desc').val(data.instituteShortDescription);
 		    	    
 		    	    $('#myModalgeneral').modal('show');
+			 	}else{
+			 		toaster.error("we don't find proper input . try again.");
 			 	}
-			
+			 	$(".loading").hide();
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				alert("error:" + textStatus + " exception:" + errorThrown);
+				$(".loading").hide();
+				//alert("error:" + textStatus + " exception:" + errorThrown);
+				toaster.error("we don't find proper input . try again.");
 			}
 		});
 }
@@ -96,7 +102,7 @@ var l_input_map = {};
 	l_input_map.district = $(".studentDistrict").val();
 	l_input_map.city = $(".studentCity").val();
 	l_input_map.zip = $(".c_zip").val();
-
+	$(".loading").show();
 	$.ajax({
 
 				type : 'POST',
@@ -125,10 +131,12 @@ var l_input_map = {};
 						 $('.b_pin').html($(".c_zip").val());
 						 $('#myModalcontact').modal('hide');
 					 }
+					 $(".loading").hide();
 		
 		},
 
 		error : function(jqXHR, textStatus, errorThrown) {
+			$(".loading").hide();
 			alert("error:" + textStatus + " exception:" + errorThrown);
 		}
 
@@ -141,38 +149,65 @@ var l_input_map = {};
 }
 
 
-function addTutors() {
+function addTutors() {debugger;
 
 $('.c_e_addTutorError').html('');
 	var l_input_map = {};
-	
+	if($(".c_tutorName").val()==''){
+		$('.c_e_addTutorError').html('Enter tutor name.');
+		return false;
+	}
+	if($(".c_tutorEmail").val()==''){
+		$('.c_e_addTutorError').html('Enter tutor email.');
+		return false;
+	}
+	if(!isValidEmail($(".c_tutorEmail").val())){
+		$('.c_e_addTutorError').html('please enter valid email.');
+		return false;
+	}
+	if($(".c_tutorMobile").val()==''){
+		$('.c_e_addTutorError').html('Enter tutor mobile.');
+		return false;
+	}
+	if(($(".c_tutorMobile").val().length)!=10){
+		$('.c_e_addTutorError').html('please enter valid mobile.');
+		return false;
+	}
     l_input_map.tutorName = $(".c_tutorName").val();
 	l_input_map.tutorEmail = $(".c_tutorEmail").val();
 	l_input_map.tutorMobile = $(".c_tutorMobile").val();
-	
-	$.ajax({type : 'POST',cache : false,async : true,contentType : "application/json; charset=UTF-8",
-	    url : "/institute/add-tutor-info",
-		data : JSON.stringify(l_input_map),
-		datatype : "json",
-		success : function(response) {
-       var l_data = JSON.parse(response);
+	$(".loading").show();
+	$.ajax({
+		     type : 'POST',
+			 cache : false,
+			 async : true,
+			 contentType : "application/json; charset=UTF-8",
+	         url : "/institute/add-tutor-info",
+		     data : JSON.stringify(l_input_map),
+		     datatype : "json",
+		success : function(response) {debugger;
+      // var l_data = JSON.parse(response);
        //l_data = JSON.stringify(data);
       // alert(l_data);
       // alert(l_data.status);
-       if(l_data.status == 'success'){
+       if(response.status == 'SUCCESS'){
     	   var data ="<div class='photo-album-item' data-mh='album-item' style='height: 342px;'><div class='photo-item'><img src='resources/img/profile-img/photo-item2.jpg'alt='no image'><div class='overlay overlay-dark'></div></div>"
-                       +"<span class='sub-title'>Name:"+l_data.tutorName+"</span><span class='sub-title'>Specialization:</span><span class='sub-title'>Experience:</span></div>";
+                       +"<span class='sub-title'>Name:"+$(".c_tutorName").val()+"</span><span class='sub-title'>Specialization:</span><span class='sub-title'>Experience:</span></div>";
 		  $('.c_appendTutors').append(data);
+		  $(".loading").hide();
+		  $('.c_e_addTutorError').html('<span style="color:green">'+response.message+'</span>');
+		  $('#addTutor').modal('hide');	
+		  toastr.success(response.message);
        }
-       if(l_data.status == 'exist'){
-    	   $('.c_e_addTutorError').html(l_data.message);
+       if(response.status == 'ERROR'){
+    	   $('.c_e_addTutorError').html(response.message);
+    	   $(".loading").hide();
        }
-       if(l_data.status == 'error'){
-    	   $('.c_e_addTutorError').html(l_data.message);
-       }
-		},
+	},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert("error:" + textStatus + " exception:" + errorThrown);
+			$(".loading").hide();
+		    	   $('.c_e_addTutorError').html('we do not find proper input. please try again.');
+			//alert("error:" + textStatus + " exception:" + errorThrown);
 		}
 	});
 
@@ -217,45 +252,69 @@ function loadStateDistrictCity(tokenName) {
 function instituteSocial(){
 	/*$('#i_addInstituteSocial').serializeArray()*/
 	$('.c_e_addSocialError').html('');
- var l_map_data = {};
+	if($('.c_socialName').val() == ''){
+		$('.c_e_addSocialError').html('Please select social.');
+		return false;
+	}
+	if($('.c_socialLink').val() == ''){
+		$('.c_e_addSocialError').html('Enter social link.');
+		return false;
+	}
+	if($('.c_socialRemarks').val() == ''){
+		$('.c_e_addSocialError').html('Enter social Remarks.');
+		return false;
+	}
+     var l_map_data = {};
      l_map_data.socialId = $('.c_socialId').val();
      l_map_data.iconId = $('.c_socialName').val();
      l_map_data.soacialName = $( ".c_socialName option:selected" ).text();
      l_map_data.soacialLink = $('.c_socialLink').val();
      l_map_data.soacialRemarks = $('.c_socialRemarks').val();
-	$.ajax({
+     $(".loading").show();
+	 $.ajax({
+		 
 		url : "institute/social-information",
 		cache : false,async : true,contentType : "application/json; charset=UTF-8",
 		type : 'POST',
 		datatype : "json",
 		data : JSON.stringify(l_map_data),
-		success : function(data) {
+		success : function(data) {debugger;
 			$('.c_hide_link').show();
-		alert(data.socialMediaId);
-			if(!(data.socialMediaId == 'none')){debugger;
-			if($('.c_socialId').val() == 'none'){
+		//alert(data.socialMediaId);
+			//if(!(data.socialMediaId == 'none')){debugger;
+			//if($('.c_socialId').val() == 'none'){
+			if(data.status=='SUCCESS'){
 			var icon = "";
 				 icon += "<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3' style='text-align:center;'>" ;
 				 icon += "<ul class='widget w-personal-info item-block' style='margin-top:-15px;'>";
 				 icon += "<li>'<span class='title'>" ;
 				 icon += "<a href='#' class='btn btn-control' data-toggle='modal' data-target='' " ;
-				 icon += "onclick=\"editInstituteSocial('"+data.socialMediaId+"')\">" ;
-				 icon += "<img src="+data.iconId+" width='40'>" ;
+				 icon += "onclick=\"editInstituteSocial('"+data.object+"')\">" ;
+				 icon += "<img src="+data.other+" width='40'>" ;
 				 icon += "</a></span></li> </ul>";
-				 $('.c_socialIcon').append(icon);   
-				 
-			}		
-			$('#addSocialLink').modal('hide');	
-			$("#i_addInstituteSocial").trigger("reset");
-		   }else
-			   $('.c_e_addSocialError').html('could not saved social information!');
+				 $('.c_socialIcon').append(icon); 
+				 $(".loading").hide();
+				 $('#addSocialLink').modal('hide');	
+				 $("#i_addInstituteSocial").trigger("reset");
+				 toaster.success(data.message);
+			}
+			if(data.status=='ERROR'){
+				$(".loading").hide();
+				$('.c_e_addSocialError').html(data.message);
+			}
+			//}		
+		
+		 //  }
+			   
 			
              
 		
 		
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert("error:" + textStatus + " exception:" + errorThrown);
+			//alert("error:" + textStatus + " exception:" + errorThrown);
+			$(".loading").hide();
+			$('.c_e_addSocialError').html("we don't  find proper input . please try again.");
 		}
 	});
 	
@@ -264,13 +323,13 @@ function instituteSocial(){
 
 function editInstituteSocial(socialId){debugger;
 	/*$('#i_addInstituteSocial').serializeArray()*/
-
+    $(".loading").show();
 	$.ajax({
 		url : "/institute/get-social-information",
 		type : 'GET',
 		data : {socialMediaId:socialId},
 		success : function(data) {debugger;
-		alert(data.socialMediaId);
+		//alert(data.socialMediaId);
 			if(!(data.socialMediaId == 'none')){
 		        
 				 $('.c_socialId').val(data.socialMediaId);
@@ -279,10 +338,11 @@ function editInstituteSocial(socialId){debugger;
 			     $('.c_socialRemarks').val(data.remarks);
 				 $('#addSocialLink').modal('show');
 			}
-		
+			$(".loading").hide();
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert("error:" + textStatus + " exception:" + errorThrown);
+			//alert("error:" + textStatus + " exception:" + errorThrown);
+			toaster.error("we don't  find proper input . please try again.");
 		}
 	});
 	
