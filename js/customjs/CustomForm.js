@@ -218,7 +218,7 @@ $.ajax({    url : '/common/load-exist-custom-form-content',
 	});
 }
 
-// Form creation js
+//Form creation js
 
 $(document).ready(function()
 		{

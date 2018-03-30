@@ -184,7 +184,6 @@ $(".loading").show();
 }
 
 }
-<<<<<<< HEAD
 
 
 function removeCartItem(cartId,cartItemId){
@@ -225,6 +224,3 @@ function removeCartItem(cartId,cartItemId){
 	}
 
 
-=======
-
->>>>>>> f1f4d0e53c3fac3960296139ef16e977a1a980d3
