@@ -288,7 +288,7 @@ function exportExcel(tableId, fileName) {
 }
 
 // this method restrict current date subtract five to future date
-function checkValidDate(p_date,p_errorClass){debugger;
+function checkValidDate(p_date,p_errorClass){
 var l_restrict_year ;
 var l_input_year ;
 var l_input_month ;
@@ -324,7 +324,7 @@ if(l_input_year>l_restrict_year ){
 return true;
 }
 
-function setDateFormat(p_date){debugger;	
+function setDateFormat(p_date){	
 var parts =p_date.split('/');
 var final_date = new Date(parts[2]+'-'+parts[1]+'-'+parts[0]);
 return final_date;	

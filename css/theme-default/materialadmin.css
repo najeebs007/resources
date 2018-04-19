@@ -11080,7 +11080,7 @@ xcustom form elements
     padding: 5px 0;
     position: absolute;
     z-index: 1;
-    bottom: 125%;
+    bottom:75%;
     left:30%;
     margin-left: -60px;
     opacity: 0;
@@ -11123,7 +11123,7 @@ xcustom form elements
     padding: 5px 0;
     position: absolute;
     z-index: 1;
-    bottom: 109%;
+    bottom:75%;
     left:30%;
     margin-left: -60px;
     opacity: 0;

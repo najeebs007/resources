@@ -644,13 +644,22 @@ function candidateActions(packageId, examId, candidateId, count, actionType,
 			success : function(data) {
 				debugger;
 				$(".loading").hide();
-				if (data.status = 'SUCCESS') {
+				if(data !=null){
+				if (data.status == 'SUCCESS') {
 					// $('.c_generate_pin'+count).html(data.object);
 					toastr.success(actionType + " updated success.");
 					location.reload();
 				}
 				if (data.status == 'ERROR') {
 					toastr.error(data.message);
+					if(actionType=='status'){
+						location.reload();
+					}
+                   
+					
+				}
+				}else{
+					toastr.error('Not a valid input. Try again later!');
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -1643,7 +1652,7 @@ if(!(navigator.onLine)){
 	var l_map = {};
 	var l_final_map = {};
 	if (indexes_checked.length == 0) {
-		toastr.error('There is no record to action.');
+		toastr.error('There is no record select to action.');
 		return false;
 	}
 	if (confirm("Are you sure for this action ?")) {

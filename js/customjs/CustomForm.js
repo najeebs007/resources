@@ -192,12 +192,12 @@ $.ajax({    url : '/common/load-exist-custom-form-content',
 					$('.c_form_logo_link').val(l_content_data.logoLink);
 					$('.dynamicInput').html('');
 					for(var i=0;i<l_keys.length;i++){
-					l_html+="<div class='col-md-4'>";
+					l_html+="<div class='col-md-4' id='r"+i+"'>";
 					l_html+="<h5 class='title'>"+l_keys[i]+"</h5>";
 					l_html+="<div class='added-input'>";
 					l_html+="<input type='"+l_parsed[l_keys[i]]+"' name='"+l_keys[i]+"' id='email' tabindex='1' class='form-control cf-input-dynamic-left'>";
 					l_html+="<span class='tooltiptext-delete'>Remove This Field</span>";
-					l_html+="<span class='cf-cross-button-left'> <i class='fa fa-times' style='font-size:20px;'></i></span>";
+					l_html+="<span class='cf-cross-button-left' onclick='removeAddedinput(\"r"+i+"\")'> <i class='fa fa-times' style='font-size:20px;'></i></span>";
 					l_html+="</div>";
 					l_html+="</div>";
 					$('.dynamicInput').append(l_html);
@@ -218,16 +218,32 @@ $.ajax({    url : '/common/load-exist-custom-form-content',
 	});
 }
 
+function removeAddedinput(p_id)
+{
+	 if(p_id==""){
+		 
+		 return;
+		 
+	  }
+	 else
+	  {
+	     $("#"+p_id).remove();  
+	  }	
+}
 //Form creation js
-
+ 
 $(document).ready(function()
 		{
+	
+	     $(".previewArea").hide();
 		 $("#passwordR").hide();
 		 $("#confirmpasswordR").hide(); 
 		 $("#alternatephoneR").hide();
 		 $("#genderR").hide();
 		 $("#dobR").hide();
 		 $("#addressR").hide();
+		 $("#homeaddressR").hide();
+		 $("#officeaddressR").hide();
 		 $("#cityR").hide();
 		 $("#stateR").hide();
 		 $("#countryR").hide();
@@ -235,19 +251,51 @@ $(document).ready(function()
 		 $("#submitR").hide();
 		 $("#zipR").hide(); 
 	   });
-function addInput(p_input)
+function preview(){
+	
+	var l_parsed = {};
+	var l_html = "";
+	l_parsed = readCustomForm('i_other_fields');
+	$('.c_preview_title').html($('.c_form_title').val());
+	$('.c_preview_instruction').html($('.c_form_instruction').val());
+	$('.c_preview_logo').html('<img src="'+$('.c_form_logo_link').val()+'" alt="no image" style="float:right">');
+	var l_keys = Object.keys(l_parsed);
+	
+	$('.dynamicInputPreview').html('');
+	for(var i=0;i<l_keys.length;i++){
+	l_html+="<div class='col-md-4' id='r"+i+"'>";
+	l_html+="<h5 class='title'>"+l_keys[i]+"</h5>";
+	l_html+="<div class='added-input'>";
+	l_html+="<input type='"+l_parsed[l_keys[i]]+"' name='"+l_keys[i]+"' id='email' tabindex='1' class='form-control cf-input-dynamic-left'>";
+	l_html+="</div>";
+	l_html+="</div>";
+	
+	}
+	$('.dynamicInputPreview').append(l_html);
+	$(".previewArea").show();
+	$(".inputArea").hide();
+	$(".exist_form_list").hide();
+}
+function back()
+{
+	$(".previewArea").hide();
+	$(".inputArea").show();
+	$(".exist_form_list").show();
+}
+function addInput(p_input) 
 		 { 
-		  if(p_input=="password")
+	            //alert(p_input);
+	 	  if(p_input=="password")
 		  {
-		   
+			 
 			  $("#passwordR").clone().appendTo(".dynamicInput"); 
 			  $("#passwordR").show() 
 		  }
-		 else if(p_input=="confirmpassword")
+		 /*else if(p_input=="confirmpassword")
 		  { 
 			  $("#confirmpasswordR").clone().appendTo(".dynamicInput");
 			  $("#confirmpasswordR").show()
-		  }
+		  }*/
 		  else if(p_input=="gender")
 		  {
 		      
@@ -272,6 +320,18 @@ function addInput(p_input)
 		      
 			  $("#addressR").clone().appendTo(".dynamicInput");
 			  $("#addressR").show()
+		  }
+		  else if(p_input=="homeaddress")
+		  {
+		      
+			  $("#homeaddressR").clone().appendTo(".dynamicInput");
+			  $("#homeaddressR").show()
+		  }
+		  else if(p_input=="officeaddress")
+		  {
+		      
+			  $("#officeaddressR").clone().appendTo(".dynamicInput");
+			  $("#officeaddressR").show()
 		  }
 		  else if(p_input=="city")
 		  {
@@ -305,7 +365,6 @@ function addInput(p_input)
 		  }
 		   else if(p_input=="submit")
 		  {
-		      alert(p_input);
 			  $("#submitR").clone().appendTo(".dynamicInput");
 			  $("#submitR").show()
 		  }
@@ -337,6 +396,14 @@ function addInput(p_input)
 		  else if(p_input=="address")
 		  {
 		       $("#addressR").remove(); 
+		  }
+		  else if(p_input=="homeaddress")
+		  {
+		       $("#homeaddressR").remove(); 
+		  }
+		  else if(p_input=="officeaddress")
+		  {
+		       $("#officeaddressR").remove(); 
 		  }
 		  else if(p_input=="city")
 		  {
