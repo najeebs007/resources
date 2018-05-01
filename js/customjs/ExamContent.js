@@ -1127,8 +1127,7 @@ var l_passing_rule_list = [];
 var l_passing_rule_map = {};
 var l_instruction = {};
 var l_final_map = {};
-function saveExamDetail() {
-	debugger;
+function saveExamDetail() {debugger;
 	// loadExamPublishDetail($(".c_exam_id").val());
 	$(".c_nbrSection").val(g_section_list.length);
 	
@@ -1173,8 +1172,11 @@ function saveExamDetail() {
 	l_final_map.instructions = l_instruction;
 	l_final_map.bankId = $("#i_bank_name").val();
 	l_final_map.ownerLogoURL = $(".c_logo_url").val();
+	l_final_map.packageId = $('.c_current_package_id').val();
+	l_final_map.examId = $('.c_current_exam_id').val();
 	// alert(JSON.stringify(l_final_map));
 	if (confirm("would you like to save any changes of exam.")) {
+		$(".loading").show();
 		$.ajax({
 			url : '/corporate/save-exams-detail',
 			data : JSON.stringify(l_final_map),
@@ -1853,7 +1855,8 @@ function publishExam(examId) {
 	debugger;
 	var l_map = {};
 	l_map.examId = examId;
-
+	l_map.packageId = $('.c_current_package_id').val();
+	$(".loading").show();
 	$.ajax({
 		url : '/corporate/publish-exam',
 		data : JSON.stringify(l_map),

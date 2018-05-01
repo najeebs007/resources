@@ -13,6 +13,12 @@ function checkName(evt) {
 	}
 	return false;
 }
+// this method will not allow special character
+function blockSpecialChar(e){
+    var k;
+    document.all ? k = e.keyCode : k = e.which;
+    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+  }
 
 // 10 digit mobile and only for numeric allow
 function isMobile(evt) {
@@ -72,6 +78,14 @@ function isValidPin(pin) {
 	return false;
 }
 
+function isValidUrl(url){
+    //var myVariable = url;
+	    if(/^(http|https|ftp):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test(url)) {
+	      return true;
+	    } else {
+	      return false;
+	    }   
+	}
 function isBlank(p_input) {
 
 	if (p_input == null || p_input == undefined || p_input == "") {
@@ -84,7 +98,7 @@ function isBlank(p_input) {
 // blank not allow use null="false" in field
 function checkValidate(p_formId, p_errorClass, isToaster, eachFieldError) {
 	debugger;
-
+   var count = 0;
 	try {
 		$("form#" + p_formId + " :input")
 				.each(
@@ -283,15 +297,28 @@ function getDateFormat(p_date){
 	
 }
 
-function readForm(p_formId) {
+
+
+function readCustomForm(p_formId) {
 	debugger;
 	var l_data = {};
 	$("form#" + p_formId + " :input").each(function() {
 		debugger;
 		var input = $(this); // This is the jquery object of the input
 
+		l_data[input.attr('name')] = input.attr('type');
+		
+	});
+	return l_data;
+}
+
+
+function readForm(p_formId) {
+	var l_data = {};
+	$("form#" + p_formId + " :input").each(function() {
+		var input = $(this); // This is the jquery object of the input
+
 		if (input.attr('type') == 'checkbox') {
-			debugger;
 			if ($("." + input.attr('class')).prop('checked') == true) {
 				l_data[input.attr('name')] = true;
 			} else {

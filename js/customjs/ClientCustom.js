@@ -96,21 +96,21 @@ function ajaxPostCall(p_url, p_data, p_success_callback, p_error_callback) {debu
 		data : l_content_data,
 		cache : false,
 		async : true,
-		contentType :"application/json; charset=UTF-8",
+		contentType : "application/json; charset=UTF-8",
 		dataType : 'json',
-		success : function(resultData) {debugger;
+		success : function(resultData) {
+			debugger;
 			try {
 				eval(p_success_callback + '(' + resultData + ')');
 			} catch (e) {
-				
+				alert("Error in Response.");
 			}
 		},
 		error : function(errorData) {
 			eval(p_error_callback + '(' + errorData + ')');
 		}
 	});
-	
-	
+
 }
 
 function handleDefaultSuccess(p_data) {
@@ -120,7 +120,6 @@ function handleDefaultSuccess(p_data) {
 function handleDefaultError(p_data) {
 	alert("Error in Submission");
 }
-
 
 //show Loader 
 function showLoader() {
@@ -178,6 +177,15 @@ function exportExcel(tableId, fileName) {
 		filename : fileName,
 		fileext : ".xls"
 	});
+}
+
+function copyText(p_id) {
+	debugger;
+	var l_Text = document.getElementById(p_id);
+	l_Text.select();
+	document.execCommand("Copy");
+	// alert("Copied the text: " + l_Text.value);
+	toastr.success('Text Copied.');
 }
 
 function floats() {
@@ -277,4 +285,47 @@ function exportExcel(tableId, fileName) {
 		filename : fileName,
 		fileext : ".xls"
 	});
+}
+
+// this method restrict current date subtract five to future date
+function checkValidDate(p_date,p_errorClass){
+var l_restrict_year ;
+var l_input_year ;
+var l_input_month ;
+var l_input_day ;
+var l_current_year;
+var l_current_month;
+var l_current_day;
+var l_input_date;
+var l_current_date = new Date();
+l_restrict_year = l_current_date.getFullYear() - 5;
+if (p_date == null || p_date == undefined || p_date == "") {
+	return false;
+}
+// from input
+l_input_date = setDateFormat(p_date);
+l_input_year = l_input_date.getFullYear();
+l_input_month = l_input_date.getMonth()+1;
+l_input_day = l_input_date.getDate();
+// current
+l_current_year = l_current_date.getFullYear();
+l_current_month = l_current_date.getMonth()+1;
+l_current_day = l_current_date.getDate();
+
+if(l_input_year>l_current_year || l_input_year == l_current_year){
+	$('.'+p_errorClass).html("Please make sure that you use your real date of birth.");
+	return false;
+}
+if(l_input_year>l_restrict_year ){
+	$('.'+p_errorClass).html("Please make sure that you use your real date of birth.");
+	return false;
+}
+
+return true;
+}
+
+function setDateFormat(p_date){	
+var parts =p_date.split('/');
+var final_date = new Date(parts[2]+'-'+parts[1]+'-'+parts[0]);
+return final_date;	
 }
