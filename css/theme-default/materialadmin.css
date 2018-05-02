@@ -11191,3 +11191,214 @@ xcustom form elements
     border: 0;
 	margin:2px;
 }
+/***** Batch Management styles ******/
+ 
+
+.batch-section-padding{padding:0px;}
+.batch-section-body{margin-top:0px !important;}
+.batch-bg
+{
+	width: 100%; 
+    height: 320px;
+    background-image: url(../../img/bg-blurr-m.png);
+    background-size: cover;
+	background-color: rgb(0, 0, 0); 
+} 
+.batch-profileDetails{
+  border-radius: 6px;
+ background-image: url(../../img/bg-blurr.png);
+ background-size: cover;
+  width:380px;
+  height: 260px;
+  z-index: 52;
+  margin-top: 50px;
+  margin-left: 100px;
+}
+.batch-profileImg
+{
+	left: 9% !important;
+    top: 46% !important;
+}
+.batch-proImg{
+    border-radius: 100% !important;
+    border: 1px solid #bbb !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+    width: 115px !important;
+    height: 115px !important;
+    background-color: #FDFBEE;
+}
+.batch-proHeading{
+  font-size:22px; 
+  color: rgb(255, 255, 255); 
+}
+.batch-innerPadding{padding-left:80px;padding-top:10px;}
+.intro{
+     background-color: rgb(7, 140, 230);
+    display: block;
+    width: 50px;
+    height: 25px;
+    text-align: center;
+    border-left-style: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 5px;
+    color: white;
+}
+.batch-protext{
+  font-size:14px; 
+  color: rgb(255, 255, 255); 
+}
+.social-icon {
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    margin-right:10px;
+    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.05);
+    width: 32px;
+    height: 32px;
+    text-align: center;
+	padding: 5px 0px;
+}
+.b-pencil{float: right;
+    display: block;
+    height:40px;
+    width: 40px;
+    background: #078ce6;
+    color: white;
+    text-align: center;
+    padding: 10px 0px;
+    border-radius: 25px;
+	margin-top: -20px;
+    margin-right: -10px;
+}
+.b-pencilHover{float: right;
+    display: block;
+    height:40px;
+    width: 40px;
+    background: white;
+    color: #078ce6;
+    text-align: center;
+    padding: 10px 0px;
+    border-radius: 25px;
+	margin-top: -57px;
+    margin-right: -102px;
+}
+.b-pencilHover2{float: right;
+    display: block;
+    height:40px;
+    width: 40px;
+    background: white;
+    color: #078ce6;
+    text-align: center;
+    padding: 10px 0px;
+    border-radius: 25px;
+	margin-top: -110px;
+    margin-right: -60px;
+}
+.b-plus{ 
+    display: block;
+    height:50px;
+    width: 50px;
+    background: #078ce6;
+    color: white !important;
+    text-align: center;
+    padding: 10px 0px;
+    border-radius: 25px;
+	margin-left:auto;
+	margin-right:auto;
+	cursor:pointer;
+}
+.batch-card-padding{padding:0px 360px;}
+.batch-card{
+  border-width: 1px;
+  border-color: rgb(193, 193, 193);
+  border-style: dashed;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  opacity: 0.8;
+  box-shadow: 0px 0px 90px 0px rgba(87, 87, 87, 0.1); 
+  width: 500px;
+  height: 180px;
+  padding-top:65px;
+}
+.m-t-30{margin-top:30px;}
+.m-b-30{margin-bottom:30px;}
+.batch-overlay
+{
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+	padding: 42px 94px;
+	  opacity:0; text-align: center;
+}
+.card-over:hover{background-color:black;}
+.card-over:hover .batch-overlay {
+    visibility: visible;
+    opacity: 1;
+}
+.batch-overlay2
+{
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+	padding: 42px 48px;
+	  opacity:0;  text-align: center;
+}
+.card-over:hover{background-color:black;}
+.card-over:hover .batch-overlay2 {
+    visibility: visible;
+    opacity: 1;
+}
+.c-cursor{cursor:pointer;}
+@media screen and (max-width: 767px) {
+	html,
+body {
+    width: 100%;
+    height: 100%;
+	overflow-x: hidden;
+}
+.batch-card-padding{padding:0px 110px;}
+.batch-profileImg {
+    left: 14% !important;
+    top: 35% !important;
+}  
+.b-pencilHover2 {  
+    margin-top: -60px;
+    margin-right: -60px;
+}
+}
+/*media 767 End Here ****/
+/*media for ipad only****/
+@media only screen and (min-device-width:768px) and (max-device-width:1023px) {
+	html,
+body {
+    width: 100%;
+    height: 100%;
+	overflow-x: hidden;
+}
+.batch-card-padding{padding:0px 120px;}
+.batch-profileImg {
+    left: 14% !important;
+    top: 35% !important;
+}  
+.b-pencilHover2 {  
+    margin-top: -60px;
+    margin-right: -60px;
+} 
+}
+/*media for ipad Pro only****/
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1200px) {
+ .batch-card-padding{padding:0px 210px;}
+.batch-profileImg {
+    left: 11% !important;
+    top: 45% !important;
+}  
+.b-pencilHover2 {  
+    margin-top: -60px;
+    margin-right: -60px;
+}
+}

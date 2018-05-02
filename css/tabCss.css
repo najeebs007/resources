@@ -1,0 +1,15 @@
+.nav-tabs.tabs-center>li {
+    float: none;
+    display: inline-block; 
+    background: white;
+    border-radius: 5px;
+}
+.nav-tabs.tabs-center {
+    text-align: center;
+}
+.nav-tabs {
+    border-bottom:0 !important;
+	margin-bottom:50px;
+}
+.nav-tabs>li a{color: !important; opacity:1 !important;}
+ 
