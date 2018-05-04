@@ -329,3 +329,15 @@ var parts =p_date.split('/');
 var final_date = new Date(parts[2]+'-'+parts[1]+'-'+parts[0]);
 return final_date;	
 }
+
+
+function uploadContent(p_image_type){
+    // window.open("/uploadPhoto", 'window', 'width=250,height=250');
+	
+     var left = (screen.width - 500) / 2;
+     var top = (screen.height - 500) / 4;  // for 25% - devide by 4  |  for 33% - devide by 3
+     var targetWin = window.open('/uploadContent?imageType='+p_image_type, "scholarsmerit.com", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + 500 + ', height=' + 500 + ', top=' + top + ', left=' + left);
+ 
+}
+
+
