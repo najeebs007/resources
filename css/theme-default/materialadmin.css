@@ -9021,16 +9021,62 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 	line-height: 40px;
 	margin-bottom: 40px;
 }
-
-@media only screen and (max-width: 768px) {
+.hide-onMobile{display:block;}
+.hide-largDevice{display:none;}
+.package-heading
+{
+ margin-bottom:5px! important;font-weight:600! important;font-size:15px! important;
+}
+.analysisBtn
+{
+    float: left;
+    margin: 18px 0px 0 0px;
+    border-radius: 25px;
+    border-color: #2d55f2;
+    padding: 1.5px 6px !important;
+}
+.analysisimg{
+    margin-right: 5px;
+    width: 15px;
+    margin-top: -5px;
+}
+.analysis-content
+{margin: 50px 0 0 0px; padding: 10px 10px 10px 10px;color: #000;font-size: 12px;width: 190px;border-radius: 8px;line-height: 32px;background:#fff;}
+@media only screen and (max-width: 767px) {
 	.schoolheading {
 		width: 100%;
 	}
 	.hide-onMobile{display:none ! important;}
 	.responsive-accordian{padding:0px 5px ! important;}
+	.hide-largDevice{display:block;}
 	.btn-margin{margin-top:0px !important;}
+	.package-heading
+	{
+	  margin-bottom:0px! important;font-weight:600! important;font-size:12px! important;
+	}
+	.package-row-padding{padding-left:2px !important;padding-right:5px !important;}
+	.tools-style {
+    float: right;
+    margin-top: 7px;
+    margin-right: -15px;
+    }
+	.analysisBtn
+   {  
+    margin: 12px 0px 0 0px; 
+   }
+   .analysis-content
+   {margin: 50px 0 0 -35px; padding: 10px 10px 10px 10px;}
 }
-
+@media only screen and  (device-width: 768px) and (device-height: 1024px) {
+	.hide-onMobile{display:none ! important;}
+	.responsive-accordian{padding:0px 5px ! important;}
+	.hide-largDevice{display:block;}
+	.btn-margin{margin-top:0px !important;}
+	.package-heading
+	{
+	  margin-bottom:5px! important;font-weight:600! important;font-size:12px! important;
+	} 
+}
 .imgdb {
 	height: 600px;
 	width: 100%;
@@ -10707,11 +10753,6 @@ xcustom form elements
     left: 0;
     opacity: 0.5;
 }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> ac4cee55274c156b0b358139634c5c28375234c5
 .cf-no-div
 {
 	width: 75%;
@@ -10755,7 +10796,7 @@ xcustom form elements
 {
    
   background-color: rgb(111, 218, 68); 
-  width: 248px;
+  width: 160px;
   height: 38px;
       color: white;
     text-align: center;
@@ -10890,6 +10931,7 @@ xcustom form elements
   border-width: 1px;
   border-color: gray;
 }
+
 .cf-checkbox:hover{ border-style: dashed;
   border-width: 1px;
   border-color: gray;}
@@ -11035,6 +11077,22 @@ xcustom form elements
   cursor:pointer;
   z-index:9999;
 }
+.cf-cross-button-left-condition
+{
+   visibility: hidden;
+  border-radius: 50%;
+  background-color: rgb(244, 67, 54); 
+  width: 30px;
+  height: 30px;
+  display:block;
+  float: right;
+  margin-top: -28px;
+  margin-right: -15px;
+  color: white;
+  padding: 5px 7px;
+  cursor:pointer;
+  z-index:9999;
+}
 .cf-cross-button-left-textarea
 {
   visibility: hidden;
@@ -11051,6 +11109,10 @@ xcustom form elements
   cursor:pointer;
 }
 .added-input:hover .cf-cross-button-left {
+    visibility: visible;
+    opacity: 1;
+}
+.added-input:hover .cf-cross-button-left-condition {
     visibility: visible;
     opacity: 1;
 }
@@ -11162,6 +11224,13 @@ xcustom form elements
    border-style: dashed;
   border-width: 1px;
   border-color: gray;
+}
+.cf-ck-inline
+{
+	display:-webkit-box;
+	display:-moz-box;
+	display:-ms-box;
+	display:-o-box; 
 }
 .cf-publish
 {
@@ -11354,6 +11423,7 @@ xcustom form elements
     opacity: 1;
 }
 .c-cursor{cursor:pointer;}
+.main-card{height:245px;}
 @media screen and (max-width: 767px) {
 	html,
 body {
@@ -11369,6 +11439,16 @@ body {
 .b-pencilHover2 {  
     margin-top: -60px;
     margin-right: -60px;
+}
+.tools-style {
+    float: right;
+    margin-top: 7px;
+    margin-right: -15px;
+}
+.tools-style-unpaid {
+        float: right !important;
+    margin-top: 15px !important;
+    margin-right: -22px !important;
 }
 }
 /*media 767 End Here ****/
@@ -11388,7 +11468,19 @@ body {
 .b-pencilHover2 {  
     margin-top: -60px;
     margin-right: -60px;
+}
+.analysisBtn {
+    float: left;
+    margin: 12px 0px 0 0px;
+    border-radius: 25px;
+    border-color: #2d55f2;
+    padding: 1.5px 6px !important;
 } 
+.tools-style {
+    float: right;
+    margin-top: 10px;
+    margin-right: -15px;
+}
 }
 /*media for ipad Pro only****/
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1200px) {
@@ -11400,5 +11492,13 @@ body {
 .b-pencilHover2 {  
     margin-top: -60px;
     margin-right: -60px;
+}
+.analysisBtn {
+   
+    margin: 15px 0px 0 0px; 
+    padding: 1.5px 6px !important;
+}
+.tools-style { 
+    margin-top: 12px; 
 }
 }
