@@ -2,10 +2,13 @@
  * 
  * tutor modal forms validation JS
  * @author Mayank Gupta
- * 
+ * updated 24-04-2018 by Rajesh Rawat
  **********************************/
 
 function validateTutorInfo(){
+	
+	$(".general_info_message").html("");
+	
 	var dob 			= $("#dateOfBirth").val();
 	var mothertng 		= $("#motherTongue").val();
 	var totalExp 		= $("#totalExperience").val();
@@ -48,7 +51,7 @@ function validateTutorInfo(){
 		return false;
 	}
 	
-	if(!allnumeric(totalExp)){ 
+	if(isNaN(totalExp)){ 
 		$(".general_info_message").html("Please Enter Numeric value  for total Experience");
 		return false;
 	}
@@ -74,6 +77,7 @@ function validateTutorInfo(){
 
 
 function validateTutorEducationForm(){
+	$(".education_message").html("");
 	var universityname 		= $("#universityBoardName").val();
 	var instituteName 		= $("#instituteName").val();
 	var rollNumber 			= $("#rollNumber").val();
@@ -82,8 +86,8 @@ function validateTutorEducationForm(){
 	var year 				= $("#year").val();
 	var startDate 			= $("#startDate").val();
 	var endDate 			= $("#endDate").val();
-	var grade 				= $("#grade").val();
-	var percent 			= $("#percent").val();
+	var grade 				= $("#i_grade").val();
+	var percent 			= $("#i_percent").val();
 	
 	if(universityname.length == 0){
 		$(".education_message").html("Please Select your University or Board");
@@ -117,9 +121,17 @@ function validateTutorEducationForm(){
 		$(".education_message").html("Please Select Session End Date");
 		return false;
 	}
-	if(grade.length == 0 || percent.length == 0){
-		$(".education_message").html("Please Select Grade or Percentage and enter grade or percentage");
-		return false;
+	if(grade.length == 0){
+		if(percent.length == 0){
+		  $(".education_message").html("Please Select Grade or Percentage and enter grade or percentage");
+		  return false;
+		}
+	}
+	if(percent.length == 0){
+		if(grade.length == 0){
+		  $(".education_message").html("Please Select Grade or Percentage and enter grade or percentage");
+		  return false;
+		}
 	}
 	
 	if(!alphanumeric(rollNumber)){
@@ -134,6 +146,8 @@ function validateTutorEducationForm(){
 
 
 function validateTutorCertificate(){
+	
+	$(".certificate_message").html("");
 	var certificationName 			= $("#certificationName").val();
 	var certificationAuthority		= $("#certificationAuthority").val();
 	var certificationNumber			= $("#certificationNumber").val();
@@ -160,21 +174,22 @@ function validateTutorCertificate(){
 		return false;
 	}
 	
-	if(certificationExpiryDate.length == 0){
+/*	if(certificationExpiryDate.length == 0){
 		$(".certificate_message").html("Please Select Your Certificate Expiry Date");
 		return false;
-	}
+	}*/
 	
 	return true;
 }
 
 function validateTutorProfessional(){
+	$(".professional_message").html("");
 	var occupation 		= $("#occupation").val();
 	var jobTitle		= $("#jobTitle").val();
 	var organization	= $("#organization").val();
 	var location		= $("#location").val();
-	var startDate		= $("#startDate").val();
-	var endDate			= $("#endDate").val();
+	var startDate		= $("#p_startDate").val();
+	var endDate			= $("#p_endDate").val();
 	var remarks			= $("#remarks").val();
 	
 	if(occupation.length == 0){
@@ -201,15 +216,18 @@ function validateTutorProfessional(){
 		$(".professional_message").html("Please select job ending date");
 		return false;
 	}
-	if(remarks.length == 0){
+/*	if(remarks.length == 0){
 		$(".professional_message").html("Please Enter your Job Profile Description");
 		return false;
-	}
+	}*/
 	
 	return true;
 }
 
 function validateTutorEvent(){
+	
+	$(".event_message").html("");
+	
 	var eventName 			= $("#eventName").val();
 	var eventTitle			= $("#eventTitle").val();
 	var eventType			= $("#eventType").val();
@@ -268,6 +286,7 @@ function validateTutorEvent(){
 
 function validateTutorSpeciality(){ debugger;
 	
+    $(".spcl_message").html("");
 	var boardId 	= $("#boardId").val();
 	var classId		= $("#classId").val();
 	var subjectName = $("#subjectName").val();

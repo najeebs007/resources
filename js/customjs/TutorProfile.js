@@ -5,6 +5,9 @@
  * 
  **********************************/	
 
+
+
+
 $(document).ready(function(){ 
 	$(".gradeClass").hide();
 	$(".percentClass").hide();
@@ -50,6 +53,10 @@ $(document).ready(function(){
 			$(".addContactimage").hide();
 			setContactDetails(l_contact_map_obj);
 		}
+		var l_profile =l_images_map_obj['profile_image'];
+		var l_cover =l_images_map_obj['profile_cover'];
+		document.getElementById('coverImg').src = l_cover;
+		document.getElementById('profileImg').src = l_profile;
 		
 	});
 
@@ -87,20 +94,25 @@ $(document).ready(function(){
 	 
 	function successGeneralInfo(p_data){
 		$(".loading").hide();
-		var l_status = p_data.status;
+		$('#myModalGeneralInformation').modal('hide');
+		if(p_data.status=='SUCCESS'){
 		var	l_general_info = p_data.generalInfo; 
-		alert(l_status);
-		
 		if(l_general_info != null || l_general_info.length > 0 || l_general_info != 'undefined'){
 			$("#a_general_info").hide();
 			setGeneralInfo(l_general_info);
+		}
+		toastr.success(p_data.message);
+		}
+		if(p_data.status=='ERROR'){
+			$(".general_info_message").html(p_data.message);
 		}
 	}
 	
 	function errorGeneralInfo(p_data){
 		$(".loading").hide();
-		var l_status = p_data.status;
-		alert(l_status);
+		$(".general_info_message").html("there is some problem. please try again.");
+		//var l_status = p_data.status;
+		//alert(l_status);
 	}
 	
 	function setGeneralInfo(p_general_info){ 
@@ -189,23 +201,30 @@ $(document).ready(function(){
 	}
 	
 	function successEducationInfo(p_data){ 
+		$('#myModaleduction').modal('hide');
 		$(".loading").hide();
-		var l_status = p_data.status;
-		var l_edu_info = p_data.educationInfo;
-		alert(l_status);
-		var l_edu_id= l_edu_info.educationId;
-		
-		if(l_edu_id != null || l_edu_id.length > 0 || l_edu_id != 'undefined'){
-			var l_html = setEducationInfo(l_edu_info);
-			$("#"+l_edu_id+"").hide();
-			$("#educationDetailsDiv").append(l_html); 
+		if(p_data.status=='SUCCESS'){
+			var l_edu_info = p_data.educationInfo;
+			var l_edu_id= l_edu_info.educationId;
+			if(l_edu_id != null || l_edu_id.length > 0 || l_edu_id != 'undefined'){
+				var l_html = setEducationInfo(l_edu_info);
+				$("#"+l_edu_id+"").hide();
+				$("#educationDetailsDiv").append(l_html); 
+			}
+			toastr.success(p_data.message);
 		}
+		if(p_data.status=='ERROR'){
+			$(".education_message").html("There is some problem. please try again.");
+		}
+		
+		
 	}
 	
 	function errorEducationInfo(p_data){
 		$(".loading").hide();
-		var l_status = p_data.status;
-		alert(l_status); 
+		$(".education_message").html("there is some technical problem. please try again.");
+		/*var l_status = p_data.status;
+		alert(l_status);*/ 
 	}
 	
 	function editEducationInfomation(p_education_id){
@@ -346,23 +365,28 @@ function addTutorCertificate(){
 	}
 	
 	function successCertificateInfo(p_data){ 
+		$('#myModalcertificates').modal('hide');
 		$(".loading").hide();
-		var l_status = p_data.status;
-		var l_certificate_map = p_data.certificateData;
-		alert(l_status); 
-		
+		if(p_data.status=='SUCCESS'){
+		var l_certificate_map = p_data.certificateData; 
 		if(l_certificate_map.userCertificationsId != null || l_certificate_map.userCertificationsId != 'undefined'){
 			
 			var l_html = setCertificateInfo(l_certificate_map);
 			$("#"+l_certificate_map.userCertificationsId+"").hide();
 			$("#certificateDiv").append(l_html);
 		}
+		}
+		if(p_data.status=='ERROR'){
+			
+			$(".certificate_message").html(p_data.message);
+		}
 	}
 	
 	function errorCertificateInfo(p_data){
 		$(".loading").hide();
-		var l_status = p_data.status;
-		alert(l_status);
+		//var l_status = p_data.status;
+		$(".certificate_message").html("there is some problem . try again.");
+		//alert(l_status);
 	}
 	
 	function setCertificateInfo(p_certificate_map){//debugger;
@@ -467,21 +491,28 @@ function addProfessionalDetails(){
 	function successProfessionalInfo(p_data){
 		//alert(JSON.stringify(p_data));
 		$(".loading").hide();
-		var l_status = p_data.status;
-		var l_professinal_map = p_data.professinalData;
-		alert(l_status); 
-		
-		if(l_professinal_map.userProfessionalDetailId != null || l_professinal_map.userProfessionalDetailId != 'undefined'){
-			var l_html = setProfessinalInfo(l_professinal_map);
-			$("#"+l_professinal_map.userProfessionalDetailId+"").hide();
-			$("#professinalDiv").append(l_html);
+		if(p_data.status=='SUCCESS'){
+			$('#myModalprofessional').modal('hide');
+			var l_professinal_map = p_data.professinalData;
+			if(l_professinal_map.userProfessionalDetailId != null || l_professinal_map.userProfessionalDetailId != 'undefined'){
+				var l_html = setProfessinalInfo(l_professinal_map);
+				$("#"+l_professinal_map.userProfessionalDetailId+"").hide();
+				$("#professinalDiv").append(l_html);
+			}
+			toastr.success(p_data.message);
 		}
+		if(p_data.status=='ERROR'){
+			$(".professional_message").html(p_data.message);
+		}
+		
+
 	}
 	
 	function errorProfessionalInfo(p_data){
 		$(".loading").hide();
-		var l_status = p_data.status;
-		alert(l_status); 
+		$(".professional_message").html("there is some problem . please try again.");
+		/*var l_status = p_data.status;
+		alert(l_status); */
 	}
 	
 	function setProfessinalInfo(p_professinal_map){
@@ -508,6 +539,7 @@ function addProfessionalDetails(){
 		var l_professinal_map = l_professinal_data[0];
 		
 		var professional = l_professinal_map[l_professional_id];
+		
 		
 		var l_professional_id = professional.userProfessionalDetailId;
 		
@@ -586,23 +618,31 @@ function addTutorEvents(){
 	
 	function successEventCall(p_data){
 		$(".loading").hide();
-		var l_status = p_data.status;
-		l_event_map = p_data.eventData; 
-		alert(l_status);
-		
-		var l_event_id = l_event_map.eventId;
-		 
-		if(l_event_id != null || l_event_id.length > 0 || l_event_id != 'undefined'){
-			var html = setEventInfo(l_event_map);
-			$("#"+l_event_id+"").hide();
-			$("#eventDetailsli").append(html); 
+		if(p_data.status=='SUCCESS'){
+			$('#myModalEvents').modal('hide');
+			l_event_map = p_data.eventData; 
+			var l_event_id = l_event_map.eventId;
+			if(l_event_id != null || l_event_id.length > 0 || l_event_id != 'undefined'){
+				var html = setEventInfo(l_event_map);
+				$("#"+l_event_id+"").hide();
+				$("#eventDetailsli").append(html); 
+			}
+			 toastr.success(p_data.message);
 		}
+		if(p_data.status=='ERROR'){
+			
+			$(".event_message").html(p_data.message);
+		}
+	
+		
+
 	}
 	
 	function errorEventCall(p_data){
 		$(".loading").hide();
-		var l_status = p_data.status;
-		alert(l_status);
+		//var l_status = p_data.status;
+		
+		$(".event_message").html("there is some problem . try again");
 	}
 	
 	function setEventInfo(p_event_map){ 
@@ -691,26 +731,38 @@ function addTutorSpeciality(){debugger;
 		});
 		
 		l_speciality_map.userName = l_user_name;
-		
+		$(".loading").show();
 		ajaxCall('save-speciality-info', JSON.stringify(l_speciality_map), 'successSpecialityInfo', 'errorSpecialityInfo');
 		
 	}	
 	
 	function successSpecialityInfo(p_data){
-		var l_status = p_data.status;
-		l_speciality_map = p_data.specialityMap; 
-		alert(l_status);
-		var l_speciality_id = l_speciality_map.specialityId;
-		if(l_speciality_id != null || l_speciality_id.length > 0 || l_speciality_id != 'undefined'){
-			var html = setSpecialityInfo(l_speciality_map);
-			$("#"+l_speciality_id+"").hide();
-			$("#special_div").append(html); 
+		
+		$(".loading").hide();
+		if(p_data.status=='SUCCESS'){
+			l_speciality_map = p_data.specialityMap;
+			var l_speciality_id = l_speciality_map.specialityId;
+			if(l_speciality_id != null || l_speciality_id.length > 0 || l_speciality_id != 'undefined'){
+				var html = setSpecialityInfo(l_speciality_map);
+				$("#"+l_speciality_id+"").hide();
+				$("#special_div").append(html); 
+			}
+			
 		}
+		if(p_data.status=='ERROR'){
+			 $(".spcl_message").html(p_data.message);
+			
+		}
+		 
+		
+
 	}
 	
 	function errorSpecialityInfo(p_data){
-		var l_status = p_data.status;
-		alert(l_status);
+		$(".loading").hide();
+		$(".spcl_message").html("there is some problem . try again");
+		//var l_status = p_data.status;
+		//alert(l_status);
 	}
 	
 	function setSpecialityInfo(p_speciality_map){
