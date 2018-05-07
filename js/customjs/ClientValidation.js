@@ -30,6 +30,21 @@ function isMobile(evt) {
 	return true;
 }
 
+
+function onlyNumber(evt) {
+	evt = (evt) ? evt : window.event;
+	var charCode = (evt.which) ? evt.which : evt.keyCode;
+	if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+		return false;
+	}
+	return true;
+}
+
+$('.only_float').keypress(function(event) {
+	  if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+	    event.preventDefault();
+	  }
+});
 function isValidEmail(email) {
 
 	if (!isBlank(email)) {

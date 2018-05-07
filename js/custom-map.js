@@ -105,7 +105,97 @@ function createHomepageGoogleMap(_latitude,_longitude){
     }
 }
 
+var locations = [
+	['<div class="card"> <img src="rs.jpg" alt="Rajesh" style="width:50%"><h2>Rajesh Rawat</h2><p class="title">Java Developer</p><p>Scholarsmerit.com</p><div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div> <p><a target="_blank" href="http://scholarsmerit.com/tutor-profile"><button>View More...</button></a></p></div><style>.card {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);max-width:200px;margin: auto;text-align: center;font-family: arial;}.title {color: grey;font-size: 13px;}button{border: none;outline: 0;display: inline-block;padding: 4px;color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 13px;}a {text-decoration: none;font-size: 15px;color: blue;}button:hover, a:hover {opacity: 0.7;}</style>', 28.609883, 77.388498],
+    ['<div class="card"> <img src="rs.jpg" alt="Rajesh" style="width:50%"><h2>Rajesh Rawat</h2><p class="title">Java Developer</p><p>Scholarsmerit.com</p><div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div> <p><a target="_blank" href="http://scholarsmerit.com/tutor-profile"><button>View More...</button></a></p></div><style>.card {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);max-width:200px;margin: auto;text-align: center;font-family: arial;}.title {color: grey;font-size: 13px;}button{border: none;outline: 0;display: inline-block;padding: 4px;color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 13px;}a {text-decoration: none;font-size: 15px;color: blue;}button:hover, a:hover {opacity: 0.7;}</style>', 28.589809, 77.362590],
+    ['<h4>Cronulla Beach</h4>', 28.609838, 77.102591],
+    ['<h4>Manly Beach</h4>', 28.609835, 77.310692],
+    ['<h4>Maroubra Beach</h4>', 28.609834, 77.361093]
+  ];
+function initializeNearestLocations(p_locations){
+	
+}
+function initializeCustomGoogleMap(){
+	
 
+
+	    // Setup the different icons and shadows
+	    var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';
+
+	    var icons = [
+	      iconURLPrefix + 'red-dot.png',
+	      iconURLPrefix + 'green-dot.png',
+	      iconURLPrefix + 'blue-dot.png',
+	      iconURLPrefix + 'orange-dot.png',
+	      iconURLPrefix + 'purple-dot.png',
+	      iconURLPrefix + 'pink-dot.png',      
+	      iconURLPrefix + 'yellow-dot.png'
+	    ]
+	    var iconsLength = icons.length;
+
+	    var map = new google.maps.Map(document.getElementById('map'), {
+	      zoom: 10,
+	      center: new google.maps.LatLng(28.609834, 77.362591),
+	      mapTypeId: google.maps.MapTypeId.ROADMAP,
+	      mapTypeControl: false,
+	      streetViewControl: false,
+	      panControl: false,
+	      zoomControlOptions: {
+	         position: google.maps.ControlPosition.LEFT_BOTTOM
+	      }
+	    });
+
+	    var infowindow = new google.maps.InfoWindow({
+	      maxWidth: 160
+	    });
+
+	    var markers = new Array();
+
+	    var iconCounter = 0;
+
+	    // Add the markers and infowindows to the map
+	    for (var i = 0; i < locations.length; i++) {  
+	      var marker = new google.maps.Marker({
+	        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+	        map: map,
+	        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+			animation: google.maps.Animation.BOUNCE
+	      });
+
+	      markers.push(marker);
+
+		  
+	      google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+	        return function() {
+	          infowindow.setContent(locations[i][0]);
+	          infowindow.open(map, marker);
+	        }
+	      })(marker, i));
+		  // google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
+	       // return function() {
+	        // infowindow.close();
+	       // }
+	      //})(marker, i));
+
+	      iconCounter++;
+	      // We only have a limited number of possible icon colors, so we may have to restart the counter
+	      if(iconCounter >= iconsLength) {
+	        iconCounter = 0;
+	      }
+	    }
+
+	    function autoCenter() {
+	      //  Create a new viewpoint bound
+	      var bounds = new google.maps.LatLngBounds();
+	      //  Go through each...
+	      for (var i = 0; i < markers.length; i++) {  
+	                bounds.extend(markers[i].position);
+	      }
+	      //  Fit these bounds to the map
+	      map.fitBounds(bounds);
+	    }
+	    autoCenter();
+}
 
 
 
