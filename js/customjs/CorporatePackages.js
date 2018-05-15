@@ -52,7 +52,7 @@ function addToPackage() {
             count +
             '"><h5 class="card-title">' +
             $('.c_examName').val() +
-            '</h5><h6><span>Total Student:<input type="text" class="c_totalStudent' +
+            '</h5><h6><span>Total Exam:<input type="text" class="c_totalStudent' +
             count +
             '" style="border:none" readonly value="' +
             numberOfStudent +
@@ -303,13 +303,14 @@ $(".c_searchExams")
                     async: true,
                     contentType: "application/json; charset=UTF-8",
                     dataType: 'json',
-                    success: function(p_data) {
+                    success: function(p_data) {debugger;
 
                         var counter = parseInt(p_data.counter);
                         var response = p_data.examList;
                         // this is global variable define in
                         // createPackage.jsp page
                         searchFilters = p_data.searchFilters;
+                       var roleName = p_data.roleName;
 
                         var l_map = {};
 
@@ -320,7 +321,7 @@ $(".c_searchExams")
                             var exams = "";
                             exams += '<div class="col-md-4">';
                             exams += '<div class="card card-type-pricing">';
-                            exams += '<div class="card-body text-center style-skyblue"  style="padding:10px;">'
+                            exams += '<div class="card-body text-center style-skyblue"  style="padding:10px;">';
                             exams += '<input value="' +
                                 l_map.examName +
                                 '" type="hidden" class="c_name' +
@@ -350,11 +351,14 @@ $(".c_searchExams")
                                 '" class="c_price' + i + '">';
                             exams += '<li>Price : <i class="fa fa-inr"></i>' +
                                 l_map.price +
-                                ' per candidate <br><i>(All Inclusive)</i></li>'
+                                ' per candidate <br><i>(All Inclusive)</i></li>';
                             exams += '</ul></div>';
-                            exams += '<div class="card-body butalign"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="" onclick="addNumberOfStudent(' +
-                                i +
-                                ')">Add To Package</button> </div>';
+                             if(roleName=='ROLE_CORPORATE' || roleName =='ROLE_INSTITUTE'){
+                            	 exams += '<div class="card-body butalign"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="" onclick="addNumberOfStudent(\''+i+'\',true)">Add To Package</button> </div>';
+                        }
+                             if(roleName=='ROLE_STUDENT'){
+                            exams += '<div class="card-body butalign"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="" onclick="addNumberOfStudent(\''+i+'\',false)">Add To Package</button> </div>';
+                             }
                             exams += '</div></div>';
                             $('.c_examsListTab').append(exams);
                         }
@@ -441,7 +445,7 @@ function searchByPagination(selectedPage) {
                 var response = p_data.examList;
                 // this is global variable define in createPackage.jsp page
                 searchFilters = p_data.searchFilters;
-
+                var roleName  = p_data.roleName;
                 $('.c_examsListTab').html('');
                 for (var i = 0; i < response.length; i++) {
                     l_map = response[i];
@@ -474,8 +478,13 @@ function searchByPagination(selectedPage) {
                         l_map.price +
                         ' per candidate <br><i>(All Inclusive)</i></li>'
                     exams += '</ul></div>';
-                    exams += '<div class="card-body butalign"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="" onclick="addNumberOfStudent(' +
-                        i + ')">Add To Package</button> </div>';
+                    if(roleName=='ROLE_CORPORATE' || roleName =='ROLE_INSTITUTE'){
+                   	 exams += '<div class="card-body butalign"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="" onclick="addNumberOfStudent(\''+i+'\',true)">Add To Package</button> </div>';
+               }
+                    if(roleName=='ROLE_STUDENT'){
+                   exams += '<div class="card-body butalign"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="" onclick="addNumberOfStudent(\''+i+'\',false)">Add To Package</button> </div>';
+                    }
+                     
                     exams += '</div></div>';
                     $('.c_examsListTab').append(exams);
                 }
