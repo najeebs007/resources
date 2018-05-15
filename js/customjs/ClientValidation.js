@@ -30,6 +30,29 @@ function isMobile(evt) {
 	return true;
 }
 
+function isAlphanumeric(evt) {
+	 
+    var keycode = (evt.which) ? evt.which : evt.keyCode;
+ 
+    if ((keycode >= 65 && keycode <= 90) || (keycode >= 97 && keycode <= 122) || (keycode >= 48 && keycode <= 57)) 
+      return true; 
+    else 
+      return false;
+ 
+  }
+
+//check :allow for number and .(dot)
+function isFloatValue(evt) {
+	evt = (evt) ? evt : window.event;
+	var charCode = (evt.which) ? evt.which : evt.keyCode;
+	if (charCode > 31 && (charCode < 46 || charCode > 57) &&  charCode!=47) {
+		return false;
+	}
+	if(charCode==46){
+		return true;
+	}
+	return true;
+}
 
 function onlyNumber(evt) {
 	evt = (evt) ? evt : window.event;
@@ -128,8 +151,8 @@ function checkValidate(p_formId, p_errorClass, isToaster, eachFieldError) {
 										|| input.val() == undefined) {
 
 									if (isToaster) {
-										toastr
-												.error("required fields are mandatory!");
+										var l_name=	input.attr('name');
+										toastr.error(l_name+" can not be blank!");
 										throw false;
 									}
 									if (eachFieldError) {
