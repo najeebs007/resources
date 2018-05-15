@@ -649,7 +649,6 @@ function candidateActions(packageId, examId, candidateId, count, actionType,stat
             dataType: 'json',
             type: 'POST',
             success: function(data) {
-                debugger;
                 $(".loading").hide();
                 if (data != null) {
                     if (data.status == 'SUCCESS') {

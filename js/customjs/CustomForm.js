@@ -85,6 +85,11 @@ function publishCustomform(p_form_id) {debugger;
 }
 
 function addCandidate(p_form_id) {debugger;
+if(!(navigator.onLine)){
+    toastr.error('You are offline. please check internet connection.');
+	return;
+}
+
     $('.c_customize_registration_error').html('');
 	var l_map = {};
 	if(!($('.c_terms_accept').is(":checked"))){
