@@ -2238,6 +2238,14 @@ figure {
 .wide-2 .btn {
   margin: 81px auto 30px auto;
 }
+.normal-p {
+    margin: -5px 0 0px 15px !important;
+}
+.padding-price{padding: 6px 0px;}
+.tutor-value{
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
 /* line 1624, ../scss/helpers/_classes.scss */
 .wide-2 .ffs-bs {
   position: relative;
@@ -2248,6 +2256,11 @@ figure {
 .wide-2 .btn-small {
   padding: 10px 0;
   width: 150px;
+  height: 40px;
+}
+.btn-small-2 {
+  padding:8px 0;
+  width: 120px;
   height: 40px;
 }
 /* line 1634, ../scss/helpers/_classes.scss */
@@ -2976,9 +2989,9 @@ figure {
   font-size: 16px;
   text-transform: capitalize;
   margin: 0;
-  padding: 13px 0;
-  width: 100%;
-  height: 50px;
+  padding:5px 0;
+  width: 80%;
+  height:40px;
 }
 
 /* line 2222, ../scss/helpers/_classes.scss */
@@ -4549,13 +4562,13 @@ figure {
 }
 /* line 3545, ../scss/helpers/_classes.scss */
 #page-content-search .container .wide_container_2 .tabs .tab-links a {
-  padding: 24px 0px 0 0;
+  padding:5px 0px 0 0;
   width: 100%;
   height: 100%;
 }
 /* line 3550, ../scss/helpers/_classes.scss */
 #page-content-search .container .wide_container_2 .tabs .tab-links li {
-  height: 70px;
+  height: 40px;
 }
 /* line 3553, ../scss/helpers/_classes.scss */
 #page-content-search .container .wide_container_2 .tabs .tab-links .bdr-rgh {
