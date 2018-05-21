@@ -341,7 +341,7 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi) {
 	var iconsLength = icons.length;
 
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom : 10,
+		zoom : 8,
 		center : new google.maps.LatLng(28.609834, 77.362591),
 		mapTypeId : google.maps.MapTypeId.ROADMAP,
 		mapTypeControl : false,

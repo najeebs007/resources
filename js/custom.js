@@ -221,7 +221,7 @@ $(document).ready(function($) {
     }
 
     //  Smooth Navigation Scrolling
-    $('a[href^="#"].roll').live('click',function (e) {
+    /*$('a[href^="#"].roll').live('click',function (e) {
         e.preventDefault();
         var target = this.hash,
         $target = $(target);
@@ -234,7 +234,7 @@ $(document).ready(function($) {
                 'scrollTop': $target.offset().top
             }, 2000)
         }
-    }); 
+    }); */
 
     // Menu Button
     $('.navbar a.drop-left, .navbar a.drop-close').live('click', function (e) {
