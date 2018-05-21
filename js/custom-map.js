@@ -312,17 +312,17 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi) {
 	var locations = [ ];
 	for (var i = 0; i < p_locations.length; i++) {
 		var l_map = p_locations[i];
-	 var a=['<div class="card"> <img src="rs.jpg" alt="no image" style="border-radius: 100%;border: 5px solid rgba(255,255,255,0.5);"><h2>'
+	 var a=['<div class="card"> <img src="https://s19.postimg.cc/lbz034vw3/pro.png" alt="no image" style="border-radius: 100%;border: 5px solid rgba(255,255,255,0.5);"><h2>'
 			+ l_map.displayName
-			+ '</h2><p class="title"><strong>Experiance:</strong><span>'
+			+ '</h2><p class="title"><strong style="color:black;">Experiance:</strong><span>'
 			+ l_map.totalExperience
-			+ '</span></p><p class="title"><strong>Batch : </strong><span>'
+			+ '</span></p><p class="title"><strong style="color:black;">Batch : </strong><span>'
 			+ l_map.batchName
 			//+ '</span></p><p class="title"><strong>Subject/Course : </strong><span>'
 			//+ l_map.subjectName
-			+ '</span></p><p class="title"><strong>Fee : </strong><span>'
+			+ '</span></p><p class="title"><strong style="color:black;">Fee : </strong><span>'
 			+ l_map.feeAmount
-			+ '</span></p><p class="title"><strong title="this distance from current location">distance : </strong><span>'
+			+ '</span></p><p class="title"><strong title="this distance from current location" style="color:black;">distance : </strong><span>'
 			+ l_map.distance
 			+ '</span></p><div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div> <p><a target="_blank" href="http://scholarsmerit.com/batch-detail?batchId='
 			+ l_map.batchId
