@@ -9933,7 +9933,7 @@ xfilter
 -------------------------------- */
 .cd-filter {
   position: fixed;
-  top: 88px;
+  top: 136px;
   left: 64px;
   width: 240px;
   height: 100%;
@@ -9999,6 +9999,7 @@ xfilter
   -o-transform: translateX(0);
   transform: translateX(0);
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
+  height: 400px;
 }
 .cd-filter.filter-is-visible .cd-close {
   opacity: 1;
@@ -10008,16 +10009,16 @@ xfilter
     width: 20%;
   }
   .cd-filter form {
-    padding: 70px 10%;
+    padding: 70px 10% 30px 10%;
   }
 }
 
 .cd-filter-trigger {
   position: fixed;
-  top: 95px;
+  top:145px;
   left: 0;
   height: 50px;
-  line-height: 42px;
+  line-height:32px;
   width: 60px;
   /* image replacement */
   overflow: hidden;
@@ -10033,7 +10034,7 @@ xfilter
 @media only screen and (min-width: 1170px) {
   .cd-filter-trigger {
    width: 90px;
-    height: 40px;
+    height:30px;
     background: #1d92e8;
     left: 6%;
     text-indent: 0;
@@ -10121,7 +10122,7 @@ xcustom form elements
 .cd-filter-block input[type='text'],
 .cd-filter-block select {
   width: 100%;
-  padding: .8em;
+  padding: .2em;
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -10155,9 +10156,9 @@ xcustom form elements
   content: '';
   position: absolute;
   z-index: 1;
-  right: 14px;
-  top: 50%;
-  margin-top: 11%;
+     right: 10px;
+    /* top: 79%; */
+    margin-top: 18px;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
