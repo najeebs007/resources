@@ -191,8 +191,8 @@ $('.c_e_addTutorError').html('');
       // alert(l_data);
       // alert(l_data.status);
        if(response.status == 'SUCCESS'){
-    	   var data ="<div class='photo-album-item' data-mh='album-item' style='height: 342px;'><div class='photo-item'><img src='resources/img/profile-img/photo-item2.jpg'alt='no image'><div class='overlay overlay-dark'></div></div>"
-                       +"<span class='sub-title'>Name:"+$(".c_tutorName").val()+"</span><span class='sub-title'>Specialization:</span><span class='sub-title'>Experience:</span></div>";
+    	   var data ="<div class='photo-album-item' data-mh='album-item' style='height: 342px;'><div class='photo-item'><img src='resources/img/profile-img/tutor-img.jpg'alt='no image'><div class='overlay overlay-dark'></div></div>"
+                       +"<span class='sub-title margin-t' style='color:#888da8;margin-left:0px;'>Name: <strong style='color:#515365;font-weight:500;'>"+$(".c_tutorName").val()+"</strong></span><span class='sub-title margin-t' style='color:#888da8;margin-left:0px;'>Specialization: <strong style='color:#515365;font-weight:500;'></strong></span><span class='sub-title margin-t' style='color:#888da8;margin-left:0px;'>Experience: <strong style='color:#515365;font-weight:500;'></strong></span></div>";
 		  $('.c_appendTutors').append(data);
 		  $(".loading").hide();
 		  $('.c_e_addTutorError').html('<span style="color:green">'+response.message+'</span>');

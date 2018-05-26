@@ -30,6 +30,29 @@ function isMobile(evt) {
 	return true;
 }
 
+function isAlphanumeric(evt) {
+	 
+    var keycode = (evt.which) ? evt.which : evt.keyCode;
+ 
+    if ((keycode >= 65 && keycode <= 90) || (keycode >= 97 && keycode <= 122) || (keycode >= 48 && keycode <= 57)) 
+      return true; 
+    else 
+      return false;
+ 
+  }
+
+//check :allow for number and .(dot)
+function isFloatValue(evt) {
+	evt = (evt) ? evt : window.event;
+	var charCode = (evt.which) ? evt.which : evt.keyCode;
+	if (charCode > 31 && (charCode < 46 || charCode > 57) &&  charCode!=47) {
+		return false;
+	}
+	if(charCode==46){
+		return true;
+	}
+	return true;
+}
 
 function onlyNumber(evt) {
 	evt = (evt) ? evt : window.event;
@@ -112,24 +135,24 @@ function isBlank(p_input) {
 // validate all form field if field contain for="type like email,mobile" and
 // blank not allow use null="false" in field
 function checkValidate(p_formId, p_errorClass, isToaster, eachFieldError) {
-	debugger;
+	 
    var count = 0;
 	try {
 		$("form#" + p_formId + " :input")
 				.each(
 						function() {
-							debugger;
+							  
 							var input = $(this); // This is the jquery object
 													// of the input
 
 							if (input.attr('null') == 'false') {
-								debugger;
+								 
 								if (input.val() == '' || input.val() == null
 										|| input.val() == undefined) {
 
 									if (isToaster) {
-										toastr
-												.error("required fields are mandatory!");
+										var l_name=	input.attr('name');
+										toastr.error(l_name+" can not be blank!");
 										throw false;
 									}
 									if (eachFieldError) {
@@ -152,7 +175,7 @@ function checkValidate(p_formId, p_errorClass, isToaster, eachFieldError) {
 							}
 
 							if ((input.attr('for') == 'checkbox')) {
-								debugger;
+								 
 
 								if ((!$(
 										"input[name=" + input.attr('name')
@@ -177,7 +200,7 @@ function checkValidate(p_formId, p_errorClass, isToaster, eachFieldError) {
 							}
 
 							if ((input.attr('for') == 'radio')) {
-								debugger;
+								 
 
 								if ((!$(
 										"input[name=" + input.attr('name')

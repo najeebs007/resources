@@ -133,7 +133,7 @@ function hideLoader() {
 }
 
 function setOptions(p_dropdown_id, p_data_list, p_id_param, p_id_value,
-		p_zero_option) {
+		p_zero_option) {debugger;
 	if (p_dropdown_id == null || p_dropdown_id == undefined
 			|| p_dropdown_id == "") {
 		return;
@@ -171,7 +171,7 @@ function setOptions(p_dropdown_id, p_data_list, p_id_param, p_id_value,
 
 //export table to excel
 function exportExcel(tableId, fileName) {
-	debugger;
+	
 	$("#" + tableId).table2excel({
 		name : "Table2Excel",
 		filename : fileName,
@@ -180,7 +180,7 @@ function exportExcel(tableId, fileName) {
 }
 
 function copyText(p_id) {
-	debugger;
+	
 	var l_Text = document.getElementById(p_id);
 	l_Text.select();
 	document.execCommand("Copy");
@@ -324,6 +324,10 @@ if(l_input_year>l_restrict_year ){
 return true;
 }
 
+
+
+ 
+
 function setDateFormat(p_date){	
 var parts =p_date.split('/');
 var final_date = new Date(parts[2]+'-'+parts[1]+'-'+parts[0]);
@@ -340,4 +344,16 @@ function uploadContent(p_image_type){
  
 }
 
+//get parameter value from url
+function getUrlParameter(sParam) {
+	var sPageURL = decodeURIComponent(window.location.search.substring(1)), sURLVariables = sPageURL
+			.split('&'), sParameterName, i;
 
+	for (i = 0; i < sURLVariables.length; i++) {
+		sParameterName = sURLVariables[i].split('=');
+
+		if (sParameterName[0] === sParam) {
+			return sParameterName[1] === undefined ? true : sParameterName[1];
+		}
+	}
+}

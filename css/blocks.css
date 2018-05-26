@@ -3307,6 +3307,9 @@ ol ol li {
   .photo-album-item .sub-title {
     margin-bottom: 11px;
     display: block;margin-left: 15px; }
+	 .photo-album-item .sub-title .margin-t {
+    margin-bottom:6px !important;
+    }
   .photo-album-item .friends-harmonic {
     display: inline-block; }
   .photo-album-item.create-album {
