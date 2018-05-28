@@ -607,7 +607,7 @@ function addOneByOne() {
 
 }
 
-function candidateActions(packageId, examId, candidateId, count, actionType,status) {
+function candidateActions(packageId, examId, candidateId, count, actionType,status,p_pin,p_password,p_display_name,p_mobile) {debugger;
 
     if (!(navigator.onLine)) {
         toastr.error('You are offline. please check internet connection.');
@@ -619,6 +619,11 @@ function candidateActions(packageId, examId, candidateId, count, actionType,stat
     l_map.examId = examId;
     l_map.candidateId = candidateId;
     l_map.actionType = actionType;
+    l_map.pin = p_pin;
+    l_map.password = p_password;
+    l_map.displayName = p_display_name;
+    l_map.examName = $('#i_exam_name').val();
+    l_map.mobile = p_mobile;
     if (actionType == 'status') {
         if (status == 'ACTIVE')
             l_map.status = 'INACTIVE';
@@ -1685,6 +1690,7 @@ function bulkCandidateActions(p_action_type) {
         l_final_map.packageId = $('#i_g_package_id').val();
         l_final_map.examId = $('#i_g_exam_id').val();
         l_final_map.inputs = l_map;
+       // alert(JSON.stringify(l_final_map));
         $(".loading").show();
         $.ajax({
             url: '/common/bulk-actions',

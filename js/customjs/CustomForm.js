@@ -200,12 +200,23 @@ $.ajax({    url : '/common/load-exist-custom-form-content',
 					l_html+="<div class='col-md-4' id='r"+i+"'>";
 					l_html+="<h5 class='title'>"+l_keys[i]+"</h5>";
 					l_html+="<div class='added-input'>";
+					if(l_parsed[l_keys[i]] == 'select' && l_keys[i].toLowerCase() == 'gender'){
+						l_html+="<select type='select' name='gender' id='gender' tabindex='1' class='form-control cf-input-dynamic-left'>";
+						l_html+="<option value='select'>Select Gender</option>";
+						l_html+="<option value='male'>Male</option>";
+						l_html+="<option value='female'>Female</option>";
+						l_html+="</select>";
+					}else if(l_parsed[l_keys[i]].toLowerCase() == 'textarea'){
+						l_html+="<textarea type='textarea' name='"+l_keys[i]+"' id='Address' class='cf-input-dynamic-left form-control' rows='3' placeholder='"+l_keys[i]+"'></textarea>";
+					}else{
 					l_html+="<input type='"+l_parsed[l_keys[i]]+"' name='"+l_keys[i]+"' id='email' tabindex='1' class='form-control cf-input-dynamic-left'>";
+					}
 					l_html+="<span class='tooltiptext-delete'>Remove This Field</span>";
 					l_html+="<span class='cf-cross-button-left' onclick='removeAddedinput(\"r"+i+"\")'> <i class='fa fa-times' style='font-size:20px;'></i></span>";
 					l_html+="</div>";
 					l_html+="</div>";
 					$('.dynamicInput').append(l_html);
+					l_html ="";
 					}
 					
 					toastr.success(response.message);
