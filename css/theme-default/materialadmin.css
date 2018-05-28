@@ -1,4 +1,5 @@
 @import url("checkbox.css");
+@import url("newMaster.css");
 -webkit-keyframes fadeIn {from { opacity:0;
 	
 }
@@ -144,7 +145,7 @@ to {
 
 }
 @
--webkit-keyframes zoom-up {from { -webkit-transform-origin:bottom;
+-webkit-keyframes zoom-up {from {-webkit-transform-origin:bottom;
 	-moz-transform-origin: bottom;
 	-ms-transform-origin: bottom;
 	transform-origin: bottom;
@@ -3078,7 +3079,6 @@ label {
 	top: auto;
 	bottom: 0;
 }
-
 .form-control {
 	padding: 0;
 	height: 37px;
@@ -3088,7 +3088,7 @@ label {
 	border-bottom-color: rgba(12, 12, 12, 0.12);
 	background: transparent;
 	color: #0c0c0c;
-	font-size: 16px;
+	font-size:14px;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
@@ -9587,19 +9587,19 @@ color: inherit;
 
 #style-8::-webkit-scrollbar-track
 {
-	border: 1px solid #c0c0c0;
-	background-color: #ffffff;
+	    border: 1px solid #c5bbbb03;
+    background-color: #e4e0e0;
 }
 
 #style-8::-webkit-scrollbar
 {
-	width: 10px;
+	width:5px;
 	background-color: #0080ff;
 }
 
 #style-8::-webkit-scrollbar-thumb
 {
-	background-color: #c0c0c0;	
+	background-color: #9c9595b5;
 }
 .professionalPadding{padding-left:14px;}
 .btnaddInsti{    background-color: #d3d3db;
@@ -11423,6 +11423,10 @@ xcustom form elements
     visibility: visible;
     opacity: 1;
 }
+.pro-height{height:495px;}
+.pro-height-s{height:200px;}
+.pro-height-sm{height:260px;}
+.pro-height-sm2{height:325px;}
 .p-none{padding-left:0px;padding-right:0px;}
 .c-cursor{cursor:pointer;}
 .buy-icond{display:flex;}
