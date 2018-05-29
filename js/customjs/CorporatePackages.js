@@ -654,6 +654,7 @@ function candidateActions(packageId, examId, candidateId, count, actionType,stat
     }
 
     if (l_confirm) {
+    	$(".loading").show();
         $.ajax({
             url: '/corporate/candidate-actions',
             data: JSON.stringify(l_map),
@@ -666,8 +667,16 @@ function candidateActions(packageId, examId, candidateId, count, actionType,stat
                 $(".loading").hide();
                 if (data != null) {
                     if (data.status == 'SUCCESS') {
-                        // $('.c_generate_pin'+count).html(data.object);
-                        toastr.success(actionType + " updated success.");
+                    	if (actionType == 'EMAIL') {
+                    		toastr.success("Email sent successfully.");
+                        }
+                    	else if (actionType == 'SMS') {
+                    		toastr.success("SMS sent successfully.");
+                        }
+                    	else{
+                    		toastr.success(actionType + " updated success.");
+                    	}
+                        
                         location.reload();
                     }
                     if (data.status == 'ERROR') {
@@ -679,6 +688,7 @@ function candidateActions(packageId, examId, candidateId, count, actionType,stat
 
                     }
                 } else {
+                	
                     toastr.error('Not a valid input. Try again later!');
                 }
             },
@@ -1683,14 +1693,29 @@ function bulkCandidateActions(p_action_type) {
     if (confirm("Are you sure for this action ?")) {
         for (var i = 0; i < indexes_checked.length; i++) {
             var element = indexes_checked[i];
-            l_map['key' + i] = $('#candidate' + element).val();
+            if(p_action_type == 'EMAIL' || p_action_type == 'SMS'){
+            var l_map_row = {};
+            
+            l_map_row.candidateId=$('#candidate_id' + element).val();
+            l_map_row.name=$('#candidate_name' + element).val();
+            l_map_row.mobile=$('#candidate_mobile' + element).val();
+            l_map_row.pin=$('#candidate_pin' + element).val();
+            l_map_row.password=$('#candidate_password' + element).val();
+            l_map['key'+i] = l_map_row;
+            l_map_row = {};
+            }else{
+            
+            l_map['key' + i] = $('#candidate_id' + element).val();
+            }
         }
 
         l_final_map.actionType = p_action_type;
         l_final_map.packageId = $('#i_g_package_id').val();
         l_final_map.examId = $('#i_g_exam_id').val();
+        l_final_map.examName = $('#i_exam_name').val();
         l_final_map.inputs = l_map;
-       // alert(JSON.stringify(l_final_map));
+        
+        alert(JSON.stringify(l_final_map));
         $(".loading").show();
         $.ajax({
             url: '/common/bulk-actions',
