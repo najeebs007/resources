@@ -5565,16 +5565,14 @@ li.dropdown-progress .progress {
 	padding: 11px 24px;
 	vertical-align: middle;
 	line-height: 17px;
-	font-size: 20px;
-}
-
+	font-size:17px;
+} 
 .card-head header>h1, .card-head header>h2, .card-head header>h3,
 	.card-head header>h4, .card-head header>h5, .card-head header>h6 {
 	vertical-align: middle;
 	margin: 0;
 	line-height: 1;
-}
-
+} 
 .card-head header small {
 	color: inherit;
 	opacity: 0.6;
