@@ -1870,7 +1870,19 @@ body:not (.menubar-first ) .menubar-fixed-panel {
 	min-width: 64px;
 	z-index: 1;
 }
-
+.gui-controls>li>form {
+	position: relative;
+	display: block;
+	text-decoration: none;
+	padding: 12px 0px;
+	font-size: 15px;
+	line-height: normal;
+	border-radius: 0;
+	padding-left: 0;
+	min-height: 40px;
+	min-width: 64px;
+	z-index: 1;
+}
 .gui-controls>li>a.btn-flat {
 	padding: 12px 0px;
 }
@@ -2412,7 +2424,9 @@ keyframes blink { 50% {
 	background-color: rgba(255, 255, 255, 0.12);
 	color: #ffffff;
 }
-
+.gui-controls>li>button .title {
+    margin-left: 57px;
+}
 .menubar-inverse .gui-controls a.expanded .gui-icon, .menubar-inverse .gui-controls li.active .gui-icon,
 	.menubar-inverse .gui-controls li.active .gui-icon:hover {
 	background-color: #ffffff;
