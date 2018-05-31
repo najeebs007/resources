@@ -1,23 +1,69 @@
 .profileImg-r
 {
-  height:348px; 
+  height:320px; 
 }
+.profileImg-r-black-img
+{
+  height:230px; 
+}
+.profileImg-r-blank {
+    height: 262px;
+    padding: 15px;
+}
+.blank-section
+{
+	padding:25px 65px;
+    background-color: rgb(245, 244, 244);
+}
+.capcture{
+  border-width: 0.597px;
+  border-color: rgb(215, 215, 215);
+  border-style: solid;
+  border-radius: 2px;
+  background-color: rgb(255, 255, 255); 
+  display:block;
+  width: 30px;
+  height: 30px; 
+  position: absolute;
+  margin-top: -18px;
+  margin-left: 55px;
+  padding: 3px 8px;
+}
+.capcture-b{
+  border-width: 0.597px;
+  border-color: rgb(215, 215, 215);
+  border-style: solid;
+  border-radius: 2px;
+  background-color: rgb(255, 255, 255); 
+  display:block;
+  width: 30px;
+  height: 30px;  
+  padding: 3px 8px;
+}
+.change_photo{
+  font-size:16px; 
+  color: rgb(77, 77, 77); 
+  text-align: left;
+  margin-top: 18px;
+  margin-left: 20px;  
+}
+
 .pro-left-padding-right{padding-right:0 !important;}
 .pro-right-padding-left{padding-left:0 !important;}
 .top-header-author {
     position: absolute;
-    left:24% !important; 
+    left: 20% !important;
     text-align: left !important;
-	color:white;
-	top: 45%;
+    color: white;
+    top: 25%;
 }
 .profilr-text-large
 {
-	font-size:22px;
+	font-size:20px;
 }
 .profilr-text-small
 {
-	font-size:20px;
+	font-size:16px;
 }
 .profilr-text-v-small
 {
@@ -29,7 +75,7 @@
 .m-left-30{margin-left:30px;}
 .social-icon-section {
     display: inline-flex;
-	margin-top:25px;
+	margin-top:9px;
 }
 .social-icon { 
 	padding: 4px 0px !important;
@@ -109,6 +155,7 @@
  
 .tool-plus-m-r{margin-right: -4px;}
 .icon {color:white;font-size:12px !important;}
+.icon-r {color:#f05510;font-size:12px !important;}
 .pro-heading{
   font-size: 14px; 
   color: rgb(153, 153, 173);  
@@ -200,7 +247,33 @@ padding: 0px 10px !important;}
   color: rgb(240, 85, 16); 
   text-align: center; 
 }
-
+.blank-hieght{height:220px;}
+.body-blank{
+  background-color: rgb(245, 244, 244);
+  padding:70px; 
+  text-align: center;  
+}
+.blank-icon
+{
+    font-weight: 700;
+    background-color: WHITE;
+    box-shadow:0px 2px 16px 0px #ecc1c1;
+    color: #fff;
+    height: 30px;
+    line-height: 1;
+    width: 30px;
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;  
+	border: 0;
+	margin-left: auto;
+    margin-right: auto;
+}
+.blank-text{
+  font-size: 16px; 
+  color: rgb(132, 132, 132); 
+}
 
  @media screen and (max-width: 767px) { 
 }
