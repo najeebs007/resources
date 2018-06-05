@@ -1715,7 +1715,7 @@ function bulkCandidateActions(p_action_type) {
         l_final_map.examName = $('#i_exam_name').val();
         l_final_map.inputs = l_map;
         
-        alert(JSON.stringify(l_final_map));
+        //alert(JSON.stringify(l_final_map));
         $(".loading").show();
         $.ajax({
             url: '/common/bulk-actions',
