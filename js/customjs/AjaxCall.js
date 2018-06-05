@@ -65,6 +65,7 @@ function ajaxWithJSON(p_url, p_data, p_method_type, callback) {
 			callback(response);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
+			console.log("jqXHR = "+jqXHR+" , textStatus = "+textStatus+" , errorThrown = "+errorThrown);
 			var response = {};
 			response.status = "ERROR";
 			response.message = "there is some thechnical problem. Try again.";
@@ -112,6 +113,7 @@ function ajaxWithSerialize(p_url,p_form_id,p_method_type,callback){
 			callback(response);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
+			console.log("jqXHR = "+jqXHR+" , textStatus = "+textStatus+" , errorThrown = "+errorThrown);
 			var respons = {};
 			respons.status = "ERROR";
 			respons.message = "there is some thechnical problem. Try again.";
