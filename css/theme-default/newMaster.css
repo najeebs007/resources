@@ -67,7 +67,7 @@
 }
 .profilr-text-v-small
 {
-	font-size:15px;
+	font-size:13px;
 }
 .m-left-15{margin-left:15px;}
 .m-left-20{margin-left:20px;}
@@ -78,7 +78,9 @@
 	margin-top:9px;
 }
 .social-icon { 
-	padding: 4px 0px !important;
+	padding:1px 0px !important;
+	height:24px !important;
+	width:24px !important;
 }
 .card-head-pro
 { 
@@ -156,16 +158,26 @@
 .tool-plus-m-r{margin-right: -4px;}
 .icon {color:white;font-size:12px !important;}
 .icon-r {color:#f05510;font-size:12px !important;}
+.card-body-batches
+{
+	padding: 10px 12px 0px 12px !important;
+}
+.card-body-batches-b
+{
+	padding: 0px 12px 10px 12px !important;
+}
 .pro-heading{
-  font-size: 14px; 
+  font-size: 12px; 
   color: rgb(153, 153, 173);  
   text-align: left; 
 }
 .pro-text{
-  font-size:14px;  
+  font-size:13px;  
   color: rgb(68, 68, 73); 
-  text-align: left; 
+  text-align: left;
+  font-weight: 500;
 }
+.m-t-minus-5{margin-top:-5px;}
 .m-t-2{margin-top:2px;}
 .certificate-icon{
   border-radius: 5px;
@@ -222,6 +234,7 @@ padding: 0px 10px !important;}
     text-align: left;
 }
 .hr-profile{margin-top:10px !important;margin-bottom:10px !important;}
+.hr-dashboard{margin-top:4px !important;margin-bottom:4px !important;}
 .red{
 	  
 	 background-image: -moz-linear-gradient( 43deg, rgb(240,85,16) 0%, rgb(226,39,107) 100%);
@@ -243,7 +256,7 @@ padding: 0px 10px !important;}
   background-color: rgb(17, 144, 232)!important; 
 }
 .number-of-bathces{
-  font-size:41px; 
+  font-size:25px; 
   color: rgb(240, 85, 16); 
   text-align: center; 
 }
@@ -326,10 +339,20 @@ padding: 0px 10px !important;}
     height: 30px;
 }
 /* button css*/
+.span-pointer
+{
+	display: block;
+    height: 23px;
+    width: 40px;
+    background: #7f7fff;
+    color: white;
+    border-radius: 3px;
+}
 .btn {
     
     margin-bottom: 0px !important;
 	margin:0px 5px;
+	padding: 2.5px 10px !important;
  
 }
 .btn-green { 
@@ -374,14 +397,15 @@ padding: 0px 10px !important;}
 .btn-yellow.active,
 .open > .dropdown-toggle.btn-yellow {
   color:white;
-  background-color: #fae176;
-  border-color: #fae176;
+  background-color: #f3d556;
+  border-color: #f3d556;
 } 
 .td-dashboard{
     font-size: 15px;
     color: rgb(64, 68, 71);
     font-weight: 500;
     letter-spacing: 0.4px;
+	padding: 2px 8px !important;
 }
  .viewall
  {
@@ -391,56 +415,70 @@ padding: 0px 10px !important;}
     margin-right: 15px;
     font-style: italic;
  }
+ .middle-height{height: 230px;}
+ .right-height{height:102px;}
+ 
  .left-bg
  {
 	 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 100%;
-    height: 328px;
+    height: 230px;
+    border-radius: 0px !important;
  }
  .left-img
  {
 	  
-    width:105px;
+   width:85px;
     border-radius: 50%;
-    height:105px;
-	margin-left: 16px;
+    height:85px;
+    margin-left: 16px;
  
  }
  .left-margin
  {
  
-    margin-top:30px;
+    margin-top:15px;
  }
  .profile-text-l{
-  font-size:22px; 
+  font-size:15px; 
   color: rgb(255, 255, 255);
  margin-left:20px;
 }
 .profile-text-s{
-  font-size:18px; 
+  font-size:14px; 
   color: rgb(255, 255, 255);
  margin-left:20px;
 }
 .m-t-25{margin-top:25px;}
 .m-t-10{margin-top:10px;}
+ 
 .left-rec{
   background-color: rgb(255, 45, 45);
       display: block;
-    width: 138px;
-    height: 30px;
+    width: 105px;
+    height: 22px;
     margin-left: 20px;
     margin-top: 10px;
     color: white;
     text-align: center;
-	font-size: 14px;
-	line-height:30px;
+    font-size: 12px;
+    line-height: 23px;
+}
+.card-body-padding-cal{padding:0px 12px 0px 12px !important;}
+.fc-toolbar {
+    text-align: center;
+    margin-bottom: 5px !important;
+}
+.fc-toolbar .fc-right {
+    float: right;
+    margin-top: 8px !important;
 }
 	.fc-view, .fc-view>table {
     position: relative;
     z-index: 1;
-    height: 270px !important;
+    height:184px !important;
     bottom: 0;
     overflow-y: auto;
 }
