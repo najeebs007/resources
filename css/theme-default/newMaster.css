@@ -14,6 +14,7 @@
 {
 	padding:25px 65px;
     background-color: rgb(245, 244, 244);
+	
 }
 .capcture{
   border-width: 0.597px;
@@ -178,7 +179,10 @@
   font-weight: 500;
 }
 .m-t-minus-5{margin-top:-5px;}
-.m-t-2{margin-top:2px;}
+.m-t-minus-8{margin-top:-8px;}
+.m-t-minus-10{margin-top:-10px;}
+.m-t-minus-24{margin-top:-24px;}
+.geneder-margin{margin-top: -24px;}
 .certificate-icon{
   border-radius: 5px;
   background-color: rgb(26, 164, 15);
@@ -212,9 +216,11 @@
 .extended{border: 1px solid #8080804d !important;
 padding: 0px 10px !important;}
 .label-extended{
-	top: -5px !important;
+	top: -24px !important;
     left: 0px;
-	font-size:14px !important;
+    font-size: 13px !important;
+    color: black;
+    opacity: 0.9 !important;
 }
 .icon-calender{
     float: right;
@@ -251,6 +257,7 @@ padding: 0px 10px !important;}
 .p-r-icon-3{padding-right:20px !important;}
 .p-r-icon-4{padding-right:20px !important;}
 .form-group{padding-top:0px !important;}
+.newForm{margin-bottom:10px !important;}
 .p-inputtext{padding: 5px 12px;}
 .second{ 
   background-color: rgb(17, 144, 232)!important; 
@@ -399,7 +406,6 @@ padding: 0px 10px !important;}
   color:white;
   background-color: #f3d556;
   border-color: #f3d556;
-  
 } 
 .td-dashboard{
     font-size: 15px;
@@ -421,7 +427,7 @@ padding: 0px 10px !important;}
  
  .left-bg
  {
-	 background-image: url(../../img/left.png);
+	 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 100%;
@@ -453,6 +459,8 @@ padding: 0px 10px !important;}
  margin-left:20px;
 }
 .m-t-25{margin-top:25px;}
+.m-t-20{margin-top:20px;}
+.m-t-15{margin-top:15px;}
 .m-t-10{margin-top:10px;}
  
 .left-rec{
