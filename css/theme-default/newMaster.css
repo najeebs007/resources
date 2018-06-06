@@ -14,7 +14,6 @@
 {
 	padding:25px 65px;
     background-color: rgb(245, 244, 244);
-	
 }
 .capcture{
   border-width: 0.597px;
@@ -213,7 +212,7 @@
 .extended{border: 1px solid #8080804d !important;
 padding: 0px 10px !important;}
 .label-extended{
-	top: -22px !important;
+	top: -5px !important;
     left: 0px;
 	font-size:14px !important;
 }
@@ -400,6 +399,7 @@ padding: 0px 10px !important;}
   color:white;
   background-color: #f3d556;
   border-color: #f3d556;
+  
 } 
 .td-dashboard{
     font-size: 15px;
@@ -421,7 +421,7 @@ padding: 0px 10px !important;}
  
  .left-bg
  {
-	 
+	 background-image: url(../../img/left.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 100%;
