@@ -236,8 +236,8 @@ function forgetPassword(){
 	  l_html += '<label id="binderror" style="font-size: 12px;color: red;margin-top: 15px;margin-left: 22px;"></label>';	
 	  l_html += '<div class="center-on-page" id="email-mobile-div">';
       l_html += '<h2 style="font-size: 15px;color: #949494;font-weight: 500;">Where would you like to send OTP</h2>';
-	  /*l_html += '<input type="radio" name="rb" onclick="return openOTPEmailBox(event)" id="resendEmail" />';
-	  l_html += '<label for="resendEmail">Email</label>';*/
+	  l_html += '<input type="radio" name="rb" onclick="return openOTPEmailBox(event)" id="resendEmail" />';
+	  l_html += '<label for="resendEmail">Email</label>';
 	  l_html += '<input type="radio" name="rb" onclick="return openOTPMobileBox(event)" id="resendMobile" />';
 	  l_html += '<label for="resendMobile">Mobile</label>';
 	  l_html += '<div class="boxforinput"></div>';

@@ -1,14 +1,781 @@
 /**********************************
  * 
  * tutor profile JS
- * @author Mayank Gupta
+ * @author Rajesh Rawat
  * 
  **********************************/	
 
 
+$(document).ready(function(){debugger;
+	
+	loadProfileData();
+	loadSocialData();
+	loadIntroData();
+	loadContactData();
+	loadQualificationData();
+	loadProfessionalData();
+	loadCertificationData();
+	loadBatchData();
+	/*loadSpecializationData();*/
+	
+	
+});
 
+function loadProfileData(){
+	var l_map = g_data;
+	ajaxWithJSON("/tutor-personal", l_map, 'POST', function(response) {
+		var l_data = response.object; 
+		//alert(JSON.stringify(response));
+		if(response.status=='SUCCESS'){debugger;
+			if(!(l_data==null || l_data == undefined)){
+			if('profile_image' in l_data){
+				var img = l_data.profile_image;
+				if(!(img == null || img==undefined)){
+		          $('img#profileImg').attr('src', img);
+				}
+			}
+			if('profile_cover' in l_data){
+				var img = l_data.profile_cover;
+				if(!(img == null || img==undefined)){
+		          $('img#coverImg').attr('src', img);
+				}
+			}
+			if('userName' in l_data){
+				var userName = l_data.userName;
+				if(!(userName == null || userName==undefined)){
+		          $('.c_user__name').text(userName);
+				}
+			}
+			//alert(JSON.stringify(l_data.user));
+			if('user' in l_data){
+				var user_data = l_data.user;
+				//alert(user_data);
+				$('.c_display_name').text(user_data[0]);
+				$('.c_phone').text(user_data[1]);
+				
+				
+			}
+		}
+		}
+		if(response.status=='ERROR'){
+			console.log(response.message);
+		}
+	});
+}
+function loadSocialData() {
+	var l_map = g_data;
+	ajaxWithJSON("/tutor-social", l_map, 'POST', function(response) {
+		var l_data = response.object;
+		alert(JSON.stringify(response));
+		if (response.status == 'SUCCESS') {
+           alert(JSON.stringify(l_data));
+		}
+		if (response.status == 'ERROR') {
+			console.log(response.message);
+		}
+	});
+}
+function addIntro(){
+	var l_html = "";
+	l_html+='<div class="card-body card-body-padding-pro pro-height " id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
+	l_html+='<div class="row">';
+	l_html+='<div class="col-lg-12" id=" " style="margin-top:30px;">';
+	l_html+='<form class="form" role="form" id="i_intro_form">';
+	l_html+='<div class="row">';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading"> Date of Birth <span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+	l_html+='<div class="form-group"> ';
+	l_html+='<input name="dateOfBirth" value="" type="text" class="form-control date-picker extended date" placeholder=" " id="dob">';
+	l_html+='<i class="fa fa-calendar icon-calender"></i>'; 
+	l_html+='</div>';
+	l_html+='</div>	';											   
+				  
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading"> Mother Tongue <span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
+	l_html+='<div class="form-group">';  
+	l_html+='<input type="text" name="dateOfBirth" id="email1" class="form-control extended" placeholder=" ">'; 										
+	l_html+='</div>';
+	l_html+='</div>'; 
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Total Experience <span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
+	l_html+='<div class="form-group">';  
+	l_html+='<input type="text" name="totalExperience" id="email1" class="form-control extended" placeholder=" ">'; 										
+	l_html+='</div>';
+	l_html+='</div>	';
+                  													
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Have Digital Pen <span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
+	l_html+='<div class="form-group">';  
+	l_html+='<input type="checkbox" name="haveDigitalPen" id="email1" class="form-control extended" placeholder=" ">'; 										
+	l_html+='</div>';
+	l_html+='</div>';	
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Has Head Phone<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
+	l_html+='<div class="form-group"> '; 
+	l_html+='<input type="checkbox" name="hasHeadPhone" id="email1" class="form-control extended" placeholder=" ">'; 										
+	l_html+='</div>';
+	l_html+='</div>'; 
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Type Of Internet<span style="color:black;float:right;font-weight: bold;">:</span> </span>'
+	l_html+='</div>';
+	l_html+=' <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
+	l_html+='<div class="form-group">';  
+	l_html+='<select name="typeOfInternet" id="email1" class="form-control extended" placeholder=" ">'; 
+	l_html+='<option value="broadband">broadband</option>';
+	l_html+='<option value="wireless">3G/4G</option>';
+	l_html+='</select>'; 
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Association With Us<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
+	l_html+='<div class="form-group">';  
+	l_html+='<input type="checkbox" name="associationWithUs" id="email1" class="form-control extended" placeholder=" ">'; 										
+	l_html+='</div>';
+	l_html+='</div>';	
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Demo Class Available<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
+	l_html+='<div class="form-group">';  
+	l_html+='<input type="checkbox" name="demoClassAvailable" id="email1" class="form-control extended" placeholder=" ">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Own Vehicle<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
+	l_html+='<div class="form-group">';  
+	l_html+='<input type="checkbox" name="ownVehicle" id="email1" class="form-control extended" placeholder=" ">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">System Available<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
+	l_html+='<div class="form-group">';  
+	l_html+='<input type="checkbox" name="systemAvailable" id="email1" class="form-control extended" placeholder=" ">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Specialities<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
+	l_html+='<div class="form-group">';  
+	l_html+='<input type="text" name="specialities" id="email1" class="form-control extended" placeholder=" ">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">MS Office Knowlege<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
+	l_html+='<div class="form-group">';  
+	l_html+='<input type="checkbox" name="msOfficeKnowlege" id="email1" class="form-control extended" placeholder=" ">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Typing Speed<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+	l_html+='</div>';
+	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
+	l_html+='<div class="form-group">';  
+	l_html+='<input type="text" name="typingSpeed" id="email1" class="form-control extended" placeholder=" ">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-lg-12">';
+	l_html+='<button type="button" class="btn bnt-primary-gradient" style="float:right;" onclick="saveIntro(\'i_intro_form\')">Save</button>';
+	/*l_html+='<button type="button" class="btn btn-cancel" style="float:right;margin-right:15px;">Cancel</button>';*/
+				    
+	l_html+='</div>';
+	l_html+='</div>';  
+	l_html+='</form>';
+	l_html+='</div>'; 
+	l_html+='</div>';
+	l_html+='</div>';
+	$("#i_intro_data").replaceWith(l_html);
+}
 
-$(document).ready(function(){ 
+function saveIntro(p_form_id){
+	var l_map = {};
+	l_map = readForm(p_form_id);
+	alert(JSON.stringify(l_map));
+	ajaxWithJSON("/tutor-general-info", l_map, 'POST', function(response) {
+		
+		
+		
+	});
+}
+function loadIntroData(){
+	//alert("/tutor-general-info");
+	var l_map = g_data;
+	ajaxWithJSON("/tutor-general-info", l_map, 'POST', function(response) {
+		var l_data = response.object; 
+		//alert(JSON.stringify(response));
+		if(response.status=='SUCCESS'){
+			if('tutorGeneral' in l_data){
+				var l_map = l_data.tutorGeneral;
+				var l_html = "";
+				l_html+="<div class='card-body card-body-padding-pro pro-height' id='style-8' style='overflow-y:auto;margin-bottom:15px;' id='i_intro_data'>";
+				l_html+="<div class='row'>";
+				l_html+="<div id='intoArea'>";
+				l_html+="<div class='col-lg-12'>";
+				l_html+="<div class='row'>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'> Date of Birth <span style='color:black;float:right;font-weight: bold;'>:</span> </span></div>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'>";
+				if(l_map.dateOfBirth == null ||l_map.dateOfBirth==undefined || l_map.dateOfBirth == '')
+				     l_html+="<span class='pro-text'>No Information</span>";
+				else
+				     l_html+="<span class='pro-text'>"+getDateFormat(l_map.dateOfBirth)+"</span>";
+				l_html+="</div></div>";
+				l_html+="</div>";       
+				l_html+="<div class='col-lg-12'>";
+				l_html+="<div class='row'>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'> Mother Tongue <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+				l_html+="</div>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'> <span class='pro-text'>"+l_map.motherTongue+"</span></div>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="<div class='col-lg-12'>";
+				l_html+="<div class='row'>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'> Total Experience <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+				l_html+="</div>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'>";
+				if(l_map.totalExperience == null ||l_map.totalExperience==undefined || l_map.totalExperience == '')
+				     l_html+="<span class='pro-text'>No Information</span>";
+				else
+				     l_html+="<span class='pro-text'>"+l_map.totalExperience+"</span>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="<div class='col-lg-12'>";
+				l_html+="<div class='row'>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'> MS Office Knowledge <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+				l_html+="</div>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'>";
+				if(l_map.msOfficeKnowlege == null ||l_map.msOfficeKnowlege==undefined )
+				     l_html+="<span class='pro-text'>No Information</span>";
+				if(l_map.msOfficeKnowlege == true)
+				     l_html+="<span class='pro-text'>Yes</span>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="<div class='col-lg-12'>";
+				l_html+="<div class='row'>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'>Specialities <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+				l_html+="</div>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'> ";
+				if(l_map.specialities == null ||l_map.specialities==undefined || l_map.specialities == '')
+				     l_html+="<span class='pro-text'>No Information</span>";
+				else
+				     l_html+="<span class='pro-text'></span>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="<div class='col-lg-12'>";
+				l_html+="<div class='row'>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'> Demo Class Available <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+				l_html+="</div>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'>";
+				if(l_map.demoClassAvailable == null ||l_map.demoClassAvailable==undefined || l_map.demoClassAvailable == '')
+				     l_html+="<span class='pro-text'>No Information</span>";
+				if(l_map.demoClassAvailable == true)
+				     l_html+="<span class='pro-text'>Yes</span>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="<div class='col-lg-1'>";
+				l_html+="<div class='row'>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'>Have Digital Pen<span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+				l_html+="</div>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'>";
+				if(l_map.haveDigitalPen == null ||l_map.haveDigitalPen==undefined || l_map.haveDigitalPen == '')
+				     l_html+="<span class='pro-text'>No Information</span>";
+				if(l_map.haveDigitalPen == true)
+				     l_html+="<span class='pro-text'>Yes</span>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="<div class='col-lg-12'>";
+				l_html+="<div class='row'>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'> Status <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+				l_html+="</div>";
+				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'>";
+				if(l_map.status == null ||l_map.status==undefined || l_map.status == '')
+				     l_html+="<span class='pro-text'>No Information</span>";
+				else
+				     l_html+="<span class='pro-text'>Active</span>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="</div>";
+				l_html+="</div>";
+				$("#i_intro_data").replaceWith(l_html);
+				
+			}
+			//alert(JSON.stringify(l_data));
+		}
+		if(response.status=='ERROR'){
+			console.log(response.message);
+		}
+	});
+}
+function addContact(){
+	var l_html = "";
+	
+	l_html+='<div class="card-body card-body-padding-pro pro-height" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
+	l_html+='<div class="row">';
+	l_html+='<div class="col-lg-12"  style="margin-top:30px;">';
+	l_html+='<form class="form" id="i_contact_form" >'; 
+	l_html+='<div class="row">';  
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Address</label>'; 
+	l_html+='<input name="addressLine1" type="text" class="form-control" id="addressLine1">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Address Type</label>'; 
+	l_html+='<select name="addressType" class="form-control">'; 
+	l_html+='<option value="HOME">OFFICE</option>';  
+	l_html+='<option value="HOME">HOME</option>'; 
+	l_html+='</select">'; 
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Address Title</label>'; 
+	l_html+='<input name="addressTitle" type="text" class="form-control" id="addressLine1">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-lg-12 ">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Address Contact Number</label>'; 
+	l_html+='<input type="text" name="addressPhoneNumber" id="email1" class="form-control extended">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Contact Email</label>'; 
+	l_html+='<input type="text" name="contactEmailId"  class="form-control extended" >'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Select Country</label>'; 
+	l_html+='<select class="form-control" name="countryId" id="countryId" onchange="getState();">';
+	l_html+='</select>'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Select State</label>'; 
+	l_html+='<select class="form-control" name="countryId" id="countryId" onchange="getState();">';
+	l_html+='</select>'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Select District</label>'; 
+	l_html+='<select class="form-control" name="countryId" id="countryId" onchange="getState();">';
+	l_html+='</select>'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Select City</label>'; 
+	l_html+='<select class="form-control" name="countryId" id="countryId" onchange="getState();">';
+	l_html+='</select>'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Pin Code</label>'; 
+	l_html+='<select type="text" class="form-control" name="pinCode" id="countryId" >';
+	l_html+='</select>'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	
+	l_html+='<div class="col-lg-12">';
+	l_html+='<button class="btn btn-primary" style="float:right;" onclick="saveContact(\'i_contact_form\')">Save</button>';
+	l_html+='</div>';
+	l_html+='</div>';  
+	l_html+='</form>';
+	l_html+='</div> ';     
+	l_html+='</div>';
+	l_html+='</div>';
+	$("#i_contact").replaceWith(l_html);
+}
+
+function saveContact(p_form_id){
+	var l_form_data = {};
+	l_form_data = readForm(p_form_id);
+	alert(JSON.stringify(l_form_data));
+}
+function loadContactData(){debugger;
+	//alert("/tutor-contact-data");
+	var l_map = g_data;
+	ajaxWithJSON("/tutor-contact-data", l_map, 'POST', function(response) {
+		var l_data = response.object; 
+		//alert(JSON.stringify(response));
+		if(response.status=='SUCCESS'){
+			var html = "";
+			var l_html = "";
+			html+="<div class='card-body card-body-padding-pro pro-height' id='i_contact' style='overflow-y:auto;margin-bottom:15px;'>";
+			html+="<div class='row'>";
+			for(var i=0;i<l_data.length;i++){
+				var l_map_outer = l_data[i];
+				var l_map_inner = l_map_outer.address_entity;
+				l_html+="<div class='col-lg-12'>";
+				l_html+="<div class='row'>";
+				l_html+="<div class='col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2'>";
+				if(l_map_inner.addressType=='HOME')
+				   l_html+="<img src='resources/img/ico/ico3.png' alt='no image'>"; 
+				if(l_map_inner.addressType=='OFFICE')
+					   l_html+="<img src='resources/img/ico/ico4.png' alt='no image'>"; 
+				l_html+="</div>"
+				l_html+="<div class='col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 m-t-2 onhover'>";
+				l_html+="<div class='row'>";
+				l_html+="<div class='col-lg-12'> <span class='pro-text' style='font-weight:600;'>"+l_map_inner.addressTitle+"</span>";
+				l_html+="<button type='button'  class='tool-edit'> <i class='fa fa-pencil icon'></i></button></div>";
+				l_html+="<div class='col-lg-12'>";
+				if(l_map_inner.addressPhoneNumber==null || l_map_inner.addressPhoneNumber==undefined || l_map_inner.addressPhoneNumber =='')
+					l_html+="<span class='pro-small-text'>No contact number</span>"; 
+				else
+				l_html+="<span class='pro-small-text'>"+l_map_inner.addressPhoneNumber+"</span>";      
+				l_html+="</div>"
+				l_html+="<div class='col-lg-12'>";
+				l_html+="<div class='row'>";
+				l_html+="<div class='col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10'>";
+				l_html+="<span class='pro-small-text-g'>";
+				l_html+=l_map_inner.addressLine1 +","+ l_map_outer.city +", ("+l_map_inner.pinCode+") ,"+ l_map_outer.state +","+l_map_outer.country;
+				l_html+="</span>"; 
+				l_html+="</div>";
+				l_html+="<div class='col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2'>";
+				l_html+="<button type='button'  class='tool-edit red'> <i class='fa fa-trash icon '></i></button>";
+				l_html+=" </div>";
+				l_html+="</div> ";     
+				l_html+="</div>";
+                l_html+="</div>";
+                l_html+="</div>";
+                l_html+="<div class='col-lg-12'><hr class='hr-profile'></div>";
+				l_html+="</div>";
+                l_html+="</div> "; 	 
+                
+                alert(l_html);
+				
+			} 
+			html+l_html;
+			html+="</div> ";
+			html+="</div> ";
+			$("#i_contact").replaceWith(l_html);
+			//alert(JSON.stringify(l_data));
+		}
+		if(response.status=='ERROR'){
+			console.log(response.message);
+		}
+	});
+}
+
+function addQualification(){
+	var l_html = "";
+	
+	l_html+='<div class="card-body card-body-padding-pro pro-height-s" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
+	l_html+='<div class="row">';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="col-lg-12"  style="margin-top:30px;">';
+	l_html+='<form class="form" id="i_qualification_form">'; 
+	l_html+='<div class="row">';  
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Education</label>'; 
+	l_html+='<select name="education" id="email1" class="form-control extended">'; 	
+	l_html+='<option value="">Select Your Qualification</option>';
+	l_html+='<option value="Doctorate/PHD">Doctorate/PHD</option>';
+	l_html+='<option value="Masters/Post-Graduation">Masters/Post-Graduation</option>';
+	l_html+='<option value="Graduation/Diploma">Graduation/Diploma</option>';
+	l_html+='<option value="12th">12th</option>';
+	l_html+='<option value="10th">10th</option>';
+	l_html+='<option value="Below 10th">Below 10th</option>';
+	l_html+='</select>';
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Course</label>'; 
+	l_html+='<select name="education" id="email1" class="form-control extended">'; 	
+	l_html+='<option value="">Select Your Qualification</option>';
+	l_html+='<option value="Doctorate/PHD">Doctorate/PHD</option>';
+	l_html+='<option value="Masters/Post-Graduation">Masters/Post-Graduation</option>';
+	l_html+='<option value="Graduation/Diploma">Graduation/Diploma</option>';
+	l_html+='<option value="12th">12th</option>';
+	l_html+='<option value="10th">10th</option>';
+	l_html+='<option value="Below 10th">Below 10th</option>';
+	l_html+='</select>';
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Specialization</label>'; 
+	l_html+='<select name="education" id="email1" class="form-control extended">'; 	
+	l_html+='<option value="">Select Your Qualification</option>';
+	l_html+='<option value="Doctorate/PHD">Doctorate/PHD</option>';
+	l_html+='<option value="Masters/Post-Graduation">Masters/Post-Graduation</option>';
+	l_html+='<option value="Graduation/Diploma">Graduation/Diploma</option>';
+	l_html+='<option value="12th">12th</option>';
+	l_html+='<option value="10th">10th</option>';
+	l_html+='<option value="Below 10th">Below 10th</option>';
+	l_html+='</select>';
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">University/College Name</label>'; 
+	l_html+='<input type="text" name="University/College" class="form-control extended">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Course Type</label>'; 
+	l_html+='<select name="courseType" id="email1" class="form-control extended">'; 	
+	l_html+='<option value="">Select Course Type</option>';
+	l_html+='<option value="FULLTIME">Full Time</option>';
+	l_html+='<option value="PARTTIME">Part Time</option>';
+	l_html+='<option value="CORRESPONDENCE">Correspondence</option>';
+	l_html+='</select>';										
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Passout Year</label>'; 
+	l_html+='<select name="passoutYear" id="email1" class="form-control extended">'; 	
+	l_html+='<option value="">Select Course Type</option>';
+	l_html+='<option value="FULLTIME">2010</option>';
+	l_html+='<option value="PARTTIME">2011</option>';
+	l_html+='<option value="CORRESPONDENCE">2012</option>';
+	l_html+='</select>';										
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Skills(Expertise/Specialization)</label>'; 
+	l_html+='<input type="text" name="skills" class="form-control extended">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<button type="button" class="btn btn-primary" style="float:right;" onclick="saveQualification(\'i_qualification_form\')">Save</button>';
+	l_html+='</div>';
+	l_html+='</div>';  
+	l_html+='</form>';
+	l_html+='</div>';          
+	l_html+='</div>';    
+	l_html+='</div>';
+	l_html+='</div>';
+	$("#i_qualification").replaceWith(l_html);
+}
+
+function saveQualification(p_form_id){
+	var l_form_data = {};
+	l_form_data = readForm(p_form_id);
+	alert(JSON.stringify(l_form_data));
+	
+	
+}
+function loadQualificationData(){
+	alert("/tutor-qualifications");
+	var l_map = g_data;
+	ajaxWithJSON("/tutor-qualifications", l_map, 'POST', function(response) {
+		var l_data = response.object; 
+		alert(JSON.stringify(response));
+		if(response.status=='SUCCESS'){
+			
+			alert(JSON.stringify(l_data));
+		}
+		if(response.status=='ERROR'){
+			console.log(response.message);
+		}
+	});
+}
+
+function addCertificate(){
+	var l_html = "";
+	
+	l_html+='<div class="card-body card-body-padding-pro pro-height-s" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
+	l_html+='<div class="row">';
+	l_html+='<div class="col-lg-12"  style="margin-top:30px;">';
+	l_html+='<form class="form" id="i_certificate_form">'; 
+	l_html+='<div class="row">';  
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Certificate Name</label>'; 
+	l_html+='<input type="text" name="certificateName" id="email1" class="form-control extended" placeholder="Enter Institute Name">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Certificate Authority</label>'; 													   
+	l_html+='<input name="certificationAuthority" value="" type="text" class="form-control date-picker extended date" placeholder=" " id="dob">';
+	l_html+='<i class="fa fa-calendar icon-calender"></i>'; 
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Certificate Date</label> ';													   
+	l_html+='<input name="certificationDate"  type="text" class="form-control date-picker extended date" placeholder=" " id="dob">';
+	l_html+='<i class="fa fa-calendar icon-calender"></i>'; 
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Certificate Number</label> ';
+	l_html+='<input type="text" name="certificationNumber" id="email1" class="form-control extended" placeholder="Enter Institute Name">'; 										
+	l_html+='</div>';
+	l_html+='</div>';													 
+	l_html+='<div class="col-lg-12">';
+	l_html+='<button type="button" class="btn btn-primary" style="float:right;" onclick=saveCertificate(\'i_certificate_form\')>Save</button>';
+	l_html+='</div>';
+	l_html+='</div>';  
+	l_html+='</form>';
+	l_html+='</div>';    
+	l_html+='</div>';
+	l_html+='</div>';
+	$("#i_certificate").replaceWith(l_html);
+}
+function saveCertificate(p_form_id){
+	var l_form_data = {};
+	l_form_data = readForm(p_form_id);
+	alert(JSON.stringify(l_form_data));
+	
+	
+}
+function loadCertificationData(){
+	alert("/tutor-certification");
+	var l_map = g_data;
+	ajaxWithJSON("/tutor-certification", l_map, 'POST', function(response) {
+		var l_data = response.object; 
+		alert(JSON.stringify(response));
+		if(response.status=='SUCCESS'){
+			
+			alert(JSON.stringify(l_data));
+		}
+		if(response.status=='ERROR'){
+			console.log(response.message);
+		}
+	});
+}
+
+function addProfessional(){
+	var l_html = "";
+	
+	l_html+='<div class="card-body card-body-padding-pro pro-height-s" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
+	l_html+='<div class="row">';
+	l_html+='<div class="col-lg-12"  style="margin-top:30px;">';
+	l_html+='<form class="form" id="i_professional_form">'; 
+	l_html+='<div class="row">'; 
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Job Title</label>'; 
+	l_html+='<input type="text" name="occupation" class="form-control extended">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Occupation</label>'; 
+	l_html+='<input type="text" name="occupation" class="form-control extended">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Organization</label>'; 
+	l_html+='<input type="text" name="organization" class="form-control extended">'; 										
+	l_html+='</div>';
+	l_html+='</div>'; 
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">Start Date</label>'; 
+	l_html+='<input type="text" name="startDate" class="form-control extended">'; 										
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<div class="form-group form-expanded">';
+	l_html+='<label class="control-label label-extended">End Date</label>'; 
+	l_html+='<input type="text" name="endDate" class="form-control extended">'; 
+	l_html+='Is Current <input type="checkbox" name="endDate" class="form-control extended">'; 
+	l_html+='</div>';
+	l_html+='</div>';
+	l_html+='<div class="col-lg-12">';
+	l_html+='<button type="button" class="btn btn-primary" style="float:right;" onclick=saveProfessional(\'i_professional_form\')>Save</button>';
+	l_html+='</div>';
+	l_html+='</div>';  
+	l_html+='</form>';
+	l_html+='</div>';    
+	l_html+='</div>';
+	l_html+='</div>';
+	$("#i_professional").replaceWith(l_html);
+}
+
+function saveProfessional(p_form_id){
+	var l_form_data = {};
+	l_form_data = readForm(p_form_id);
+	alert(JSON.stringify(l_form_data));
+	
+}
+function loadProfessionalData(){
+	alert("/tutor-professional");
+	var l_map = g_data;
+	ajaxWithJSON("/tutor-professional", l_map, 'POST', function(response) {
+		var l_data = response.object; 
+		alert(JSON.stringify(response));
+		if(response.status=='SUCCESS'){
+			
+			alert(JSON.stringify(l_data));
+		}
+		if(response.status=='ERROR'){
+			console.log(response.message);
+		}
+	});
+}
+
+function loadBatchData(){
+	
+	var l_map = g_data;
+	ajaxWithJSON("/tutor-batches", l_map, 'POST', function(response) {
+		var l_data = response.object; 
+		alert(JSON.stringify(response));
+		if(response.status=='SUCCESS'){
+			
+			alert(JSON.stringify(l_data));
+		}
+		if(response.status=='ERROR'){
+			console.log(response.message);
+		}
+	});
+}
+function loadSpecializationData(){
+	alert("/tutor-specialization");
+	var l_map = g_data;
+	ajaxWithJSON("/tutor-specialization", l_map, 'POST', function(response) {
+		var l_data = response.object; 
+		alert(JSON.stringify(response));
+		if(response.status=='SUCCESS'){
+			
+			alert(JSON.stringify(l_data));
+		}
+		if(response.status=='ERROR'){
+			console.log(response.message);
+		}
+	});
+}
+/*$(document).ready(function(){ 
 	$(".gradeClass").hide();
 	$(".percentClass").hide();
 	$(".loading").hide(); 
@@ -60,11 +827,11 @@ $(document).ready(function(){
 		
 	});
 
-/********************************
+*//********************************
  * 
  * Tutor  General Information JS
  * 
- ********************************/
+ ********************************//*
 
 
 	function saveGeneralInformation(){ 
@@ -177,11 +944,11 @@ $(document).ready(function(){
 		floats();
 	}
 	
-	/************************
+	*//************************
 	 * 
 	 * Tutor Education JS
 	 * 
-	 * **********************/
+	 * **********************//*
 	function addTutorEducation(){
 		
 		if(!validateTutorEducationForm()){
@@ -223,8 +990,8 @@ $(document).ready(function(){
 	function errorEducationInfo(p_data){
 		$(".loading").hide();
 		$(".education_message").html("there is some technical problem. please try again.");
-		/*var l_status = p_data.status;
-		alert(l_status);*/ 
+		var l_status = p_data.status;
+		alert(l_status); 
 	}
 	
 	function editEducationInfomation(p_education_id){
@@ -340,11 +1107,11 @@ $(document).ready(function(){
 	}
 	
 	
-	/****************************
+	*//****************************
 	 * 
 	 * Tutor Certifications JS
 	 * 
-	 ****************************/
+	 ****************************//*
 	
 function addTutorCertificate(){
 		
@@ -466,11 +1233,11 @@ function addTutorCertificate(){
 	}	
 	
 
-	/****************************
+	*//****************************
 	 * 
 	 * Tutor  Professional JS
 	 * 
-	 ****************************/
+	 ****************************//*
 	
 function addProfessionalDetails(){
 	
@@ -511,8 +1278,8 @@ function addProfessionalDetails(){
 	function errorProfessionalInfo(p_data){
 		$(".loading").hide();
 		$(".professional_message").html("there is some problem . please try again.");
-		/*var l_status = p_data.status;
-		alert(l_status); */
+		var l_status = p_data.status;
+		alert(l_status); 
 	}
 	
 	function setProfessinalInfo(p_professinal_map){
@@ -592,11 +1359,11 @@ function addProfessionalDetails(){
 	
 	
 	
-	/*********************
+	*//*********************
 	 * 
 	 * Tutor  Event JS
 	 * 
-	 *********************/
+	 *********************//*
 	
 function addTutorEvents(){
 	
@@ -710,11 +1477,11 @@ function addTutorEvents(){
 		
 	}	
 	
-	/*********************
+	*//*********************
 	 * 
 	 * Tutor  speciality JS
 	 * 
-	 *********************/	
+	 *********************//*	
 
 
 	
@@ -818,11 +1585,11 @@ function addTutorSpeciality(){debugger;
 		$("#special_div").html("").append(html);
 	}
 	
-	/****************************
+	*//****************************
 	 * 
 	 * Tutor  Contact Details JS
 	 * 
-	 *****************************/	
+	 *****************************//*	
 	
 	function getDistrict(){
 		
@@ -882,4 +1649,4 @@ function addTutorSpeciality(){debugger;
 	function changeLabel(labelClass,labelMessage){
 		$("."+labelClass).text(labelMessage);
 	}
-	
+	*/
