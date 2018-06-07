@@ -588,7 +588,7 @@
   line-height: 22px;
   color: #0c0c0c;
   vertical-align: middle;
-  border-bottom: 1px solid rgba(12, 12, 12, 0.12);
+  /* border-bottom: 1px solid rgba(12, 12, 12, 0.12); */
   border-radius: 2px;
   cursor: text;
 }
@@ -608,11 +608,25 @@
 }
 .bootstrap-tagsinput .tag {
   margin-right: 2px;
-  color: white;
+  color:black;
+      padding:0.4em  0.5em .4em;
+  border-radius: 25px;
+  background: #d6cccc;
+    font-size: 12px;
+    text-transform: capitalize;
 }
 .bootstrap-tagsinput .tag [data-role="remove"] {
-  margin-left: 8px;
-  cursor: pointer;
+      margin-right: 8px;
+    cursor: pointer;
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    background: #575757;
+    border-radius: 25px;
+    padding: 2px 0px;
+    color: #d6cccc;
+    font-size: 8px;
+    margin-top: -2px;
 }
 .bootstrap-tagsinput .tag [data-role="remove"]:after {
   content: "x";
