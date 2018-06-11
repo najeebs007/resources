@@ -107,7 +107,31 @@
   height: 30px;
   z-index: 77;
 }
-
+.tool-edit-main
+{
+	font-size: 0.875rem;
+    font-weight: 700;
+     background-image: -moz-linear-gradient( 43deg, rgb(90,210,242) 0%, rgb(86,98,255) 100%);
+   background-image: -webkit-linear-gradient( 43deg, rgb(90,210,242) 0%, rgb(86,98,255) 100%);
+   background-image: -ms-linear-gradient( 43deg, rgb(90,210,242) 0%, rgb(86,98,255) 100%);
+   box-shadow: 0px 2px 16px 0px rgba(73, 86, 239, 0.25);
+    color: #fff;
+    height: 24px;
+    line-height: 1;
+    min-width: 24px;
+    border-radius: 84%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+	margin:0px 2px;
+	position: absolute;
+    right: 12px;
+    top: 0px;
+	cursor:pointer;
+	border: 0;
+ 
+} 
 .tool-edit
 {
 	font-size: 0.875rem;
@@ -430,6 +454,7 @@ padding: 0px 10px !important;}
 	 
     background-repeat: no-repeat;
     background-size: cover;
+    background:url("../../img/left.png");
     background-position: 100%;
     height: 230px;
     border-radius: 0px !important;
