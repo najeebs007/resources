@@ -8,16 +8,16 @@
  */
 
 // call ajaxWithJSON method like this
-ajaxWithJSON(url, data, method_type, function(callback) {
+//ajaxWithJSON(url, data, method_type, function(callback) {
 			// use response object it will be map type	
 
-});
+//});
 
 //call ajaxWithSerialize method like this
-ajaxWithSerialize(url, form_id, method_type, function(callback) {
+//ajaxWithSerialize(url, form_id, method_type, function(callback) {
 			// use response object it will be map type	
 
-});
+//});
 
 	/**
 	 * Method call to ajax for json data with post/get. 

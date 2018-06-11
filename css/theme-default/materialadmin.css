@@ -1870,19 +1870,7 @@ body:not (.menubar-first ) .menubar-fixed-panel {
 	min-width: 64px;
 	z-index: 1;
 }
-.gui-controls>li>form {
-	position: relative;
-	display: block;
-	text-decoration: none;
-	padding: 12px 0px;
-	font-size: 15px;
-	line-height: normal;
-	border-radius: 0;
-	padding-left: 0;
-	min-height: 40px;
-	min-width: 64px;
-	z-index: 1;
-}
+
 .gui-controls>li>a.btn-flat {
 	padding: 12px 0px;
 }
@@ -2424,9 +2412,7 @@ keyframes blink { 50% {
 	background-color: rgba(255, 255, 255, 0.12);
 	color: #ffffff;
 }
-.gui-controls>li>button .title {
-    margin-left: 57px;
-}
+
 .menubar-inverse .gui-controls a.expanded .gui-icon, .menubar-inverse .gui-controls li.active .gui-icon,
 	.menubar-inverse .gui-controls li.active .gui-icon:hover {
 	background-color: #ffffff;
@@ -2850,7 +2836,14 @@ to {
 .table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
 	background-color: rgba(229, 230, 230, 0.25);
 }
-
+.table-hover-c>tbody>tr>td, .table-hover-c>tbody>tr:hover>th{
+	background-color: rgba(229, 230, 230, 0.25);
+	opacity:0.8;
+}
+.table-hover-c>tbody>tr:hover>td, .table-hover-c>tbody>tr>th{
+	background-color:white;
+	opacity:1;
+}
 .input-group-lg>.input-group-content>.form-control, .input-group-lg>.input-group-addon
 	{
 	height: 45px;
@@ -9903,6 +9896,10 @@ xgallery
 .cd-gallery .cd-fail-message {
   display: none;
   text-align: center;
+}
+.form-extended
+{
+	margin-bottom:30px !important;
 }
 @media only screen and (min-width: 768px) {
   .cd-gallery {

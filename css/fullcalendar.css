@@ -34,7 +34,7 @@ body .fc {
     color: #666
 }
 .fc-unthemed .fc-today {
-    background: #fcf8e3
+    background: #f9f9f9
 }
 .fc-highlight {
     background: #bce8f1;
@@ -512,12 +512,16 @@ a.fc-more:hover {
 .fc-view-container:before {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
-    box-sizing: content-box
+    box-sizing: content-box;
+	color: black; 	
 }
 .fc-view,
 .fc-view>table {
     position: relative;
-    z-index: 1
+    z-index: 1;
+	height: 550px;  
+    bottom:0;
+    overflow-y: auto; 
 }
 .fc-basicDay-view .fc-content-skeleton,
 .fc-basicWeek-view .fc-content-skeleton {
@@ -576,11 +580,11 @@ a.fc-more:hover {
 }
 .fc .fc-axis {
     vertical-align: middle;
-    padding: 0 4px;
-    white-space: nowrap
+    padding: 10px 10px;
+    white-space: nowrap;
 }
 .fc-ltr .fc-axis {
-    text-align: right
+    text-align: center
 }
 .fc-rtl .fc-axis {
     text-align: left
