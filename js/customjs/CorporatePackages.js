@@ -14,10 +14,7 @@ function addNumberOfStudent(count, flag) {
 		$('.c_numberOfStudent').val("1");
 		
 		addToPackage();
-		
-
 	}
-
 }
 
 function addToPackage() {
@@ -1867,5 +1864,8 @@ function SameGeneratePinAndPassword(p_action_type) {
 				});
 	}
 }
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> 90c9d1aedad72d0dfe09e797dbcc181cf0b3b743
