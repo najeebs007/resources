@@ -11,11 +11,11 @@ $(document).ready(function(){debugger;
 	loadProfileData();
 	loadSocialData();
 	loadIntroData();
-	loadContactData();
-	loadQualificationData();
-	loadProfessionalData();
-	loadCertificationData();
-	loadBatchData();
+	//loadContactData();
+	//loadQualificationData();
+	//loadProfessionalData();
+	//loadCertificationData();
+	//loadBatchData();
 	/*loadSpecializationData();*/
 	
 	
@@ -62,7 +62,41 @@ function loadProfileData(){
 		}
 	});
 }
+
 function loadSocialData() {
+	var l_map = {};
+	l_map.login = true;
+	ajaxWithJSON(
+			"/tutor-social",l_map,'POST',
+			function(response) {
+				var l_data = response.object;
+				// alert(JSON.stringify(response));
+				if (response.status == 'SUCCESS') {
+					$('#i_social').html('');
+					var b_list = l_data.data;
+					for (var i = 0; i < b_list.length; i++) {
+						var b_map = b_list[i];
+						var b_html = "";
+						b_html += '<a href="' + b_map.link
+								+ '" target="_blank">';
+						b_html += '<div class="social-icon">';
+						if (b_map.socialName == 'facebook') {
+							b_html += '<i class="fa fa-facebook-f" style="color: #4867aa;"></i>';
+						}
+						if (b_map.socialName == 'twitter') {
+							b_html += '<i class="fa fa-twitter" style="color: #4867aa;"></i>';
+						}
+						b_html += '</div>';
+						b_html += '</a>';
+						$('#i_social').append(b_html);
+					}
+				}
+				if (response.status == 'ERROR') {
+					console.log(response.message);
+				}
+			});
+}
+/*function loadSocialData() {
 	var l_map = g_data;
 	ajaxWithJSON("/tutor-social", l_map, 'POST', function(response) {
 		var l_data = response.object;
@@ -74,139 +108,42 @@ function loadSocialData() {
 			console.log(response.message);
 		}
 	});
-}
-function addIntro(){
-	var l_html = "";
-	l_html+='<div class="card-body card-body-padding-pro pro-height " id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
-	l_html+='<div class="row">';
-	l_html+='<div class="col-lg-12" id=" " style="margin-top:30px;">';
-	l_html+='<form class="form" role="form" id="i_intro_form">';
-	l_html+='<div class="row">';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading"> Date of Birth <span style="color:black;float:right;font-weight: bold;">:</span> </span>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">';
-	l_html+='<div class="form-group"> ';
-	l_html+='<input name="dateOfBirth" value="" type="text" class="form-control date-picker extended date" placeholder=" " id="dob">';
-	l_html+='<i class="fa fa-calendar icon-calender"></i>'; 
-	l_html+='</div>';
-	l_html+='</div>	';											   
-				  
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading"> Mother Tongue <span style="color:black;float:right;font-weight: bold;">:</span> </span>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
-	l_html+='<div class="form-group">';  
-	l_html+='<input type="text" name="dateOfBirth" id="email1" class="form-control extended" placeholder=" ">'; 										
-	l_html+='</div>';
-	l_html+='</div>'; 
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Total Experience <span style="color:black;float:right;font-weight: bold;">:</span> </span>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
-	l_html+='<div class="form-group">';  
-	l_html+='<input type="text" name="totalExperience" id="email1" class="form-control extended" placeholder=" ">'; 										
-	l_html+='</div>';
-	l_html+='</div>	';
-                  													
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Have Digital Pen <span style="color:black;float:right;font-weight: bold;">:</span> </span>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
-	l_html+='<div class="form-group">';  
-	l_html+='<input type="checkbox" name="haveDigitalPen" id="email1" class="form-control extended" placeholder=" ">'; 										
-	l_html+='</div>';
-	l_html+='</div>';	
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Has Head Phone<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
-	l_html+='<div class="form-group"> '; 
-	l_html+='<input type="checkbox" name="hasHeadPhone" id="email1" class="form-control extended" placeholder=" ">'; 										
-	l_html+='</div>';
-	l_html+='</div>'; 
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Type Of Internet<span style="color:black;float:right;font-weight: bold;">:</span> </span>'
-	l_html+='</div>';
-	l_html+=' <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
-	l_html+='<div class="form-group">';  
-	l_html+='<select name="typeOfInternet" id="email1" class="form-control extended" placeholder=" ">'; 
-	l_html+='<option value="broadband">broadband</option>';
-	l_html+='<option value="wireless">3G/4G</option>';
-	l_html+='</select>'; 
-	l_html+='</div>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Association With Us<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
-	l_html+='<div class="form-group">';  
-	l_html+='<input type="checkbox" name="associationWithUs" id="email1" class="form-control extended" placeholder=" ">'; 										
-	l_html+='</div>';
-	l_html+='</div>';	
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Demo Class Available<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
-	l_html+='<div class="form-group">';  
-	l_html+='<input type="checkbox" name="demoClassAvailable" id="email1" class="form-control extended" placeholder=" ">'; 										
-	l_html+='</div>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Own Vehicle<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
-	l_html+='<div class="form-group">';  
-	l_html+='<input type="checkbox" name="ownVehicle" id="email1" class="form-control extended" placeholder=" ">'; 										
-	l_html+='</div>';
-	l_html+='</div>';
-	
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">System Available<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
-	l_html+='<div class="form-group">';  
-	l_html+='<input type="checkbox" name="systemAvailable" id="email1" class="form-control extended" placeholder=" ">'; 										
-	l_html+='</div>';
-	l_html+='</div>';
-	
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Specialities<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
-	l_html+='<div class="form-group">';  
-	l_html+='<input type="text" name="specialities" id="email1" class="form-control extended" placeholder=" ">'; 										
-	l_html+='</div>';
-	l_html+='</div>';
-	
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">MS Office Knowlege<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
-	l_html+='<div class="form-group">';  
-	l_html+='<input type="checkbox" name="msOfficeKnowlege" id="email1" class="form-control extended" placeholder=" ">'; 										
-	l_html+='</div>';
-	l_html+='</div>';
-	
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-inputtext"> <span class="pro-heading">Typing Speed<span style="color:black;float:right;font-weight: bold;">:</span> </span>';
-	l_html+='</div>';
-	l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"> ';
-	l_html+='<div class="form-group">';  
-	l_html+='<input type="text" name="typingSpeed" id="email1" class="form-control extended" placeholder=" ">'; 										
-	l_html+='</div>';
-	l_html+='</div>';
-	
-	l_html+='<div class="col-lg-12">';
-	l_html+='<button type="button" class="btn bnt-primary-gradient" style="float:right;" onclick="saveIntro(\'i_intro_form\')">Save</button>';
-	/*l_html+='<button type="button" class="btn btn-cancel" style="float:right;margin-right:15px;">Cancel</button>';*/
-				    
-	l_html+='</div>';
-	l_html+='</div>';  
-	l_html+='</form>';
-	l_html+='</div>'; 
-	l_html+='</div>';
-	l_html+='</div>';
-	$("#i_intro_data").replaceWith(l_html);
-}
+}*/
+
 
 function saveIntro(p_form_id){
+	
 	var l_map = {};
 	l_map = readForm(p_form_id);
-	alert(JSON.stringify(l_map));
+	//alert(JSON.stringify(l_map));
 	ajaxWithJSON("/tutor-general-info", l_map, 'POST', function(response) {
 		
 		
 		
 	});
 }
+function loadEditIntro(p_flage){
+	if(p_flage == 'NEW')
+	  $('#addIntro').modal('show');
+	if(p_flage == 'EDIT'){
+		alert(JSON.stringify(l_intro_data));
+		$('.c_intro_dob').val(l_intro_data.dateOfBirth);
+		$('.c_intro_mtongue').val(l_intro_data.motherTongue);
+		
+		$('.c_intro_experience').val(l_intro_data.totalExperience);
+		$('.c_intro_digital_pen').val(l_intro_data.haveDigitalPen);
+		
+		$('.c_intro_mtongue').val(l_intro_data.motherTongue);
+		$('.c_intro_mtongue').val(l_intro_data.motherTongue);
+		$('.c_intro_mtongue').val(l_intro_data.motherTongue);
+		$('.c_intro_mtongue').val(l_intro_data.motherTongue);
+		$('.c_intro_mtongue').val(l_intro_data.motherTongue);
+		$('.c_intro_mtongue').val(l_intro_data.motherTongue);
+		$('.c_intro_mtongue').val(l_intro_data.motherTongue);
+		$('.c_intro_mtongue').val(l_intro_data.motherTongue);
+	}
+}
+var l_intro_data ={}; 
 function loadIntroData(){
 	//alert("/tutor-general-info");
 	var l_map = g_data;
@@ -216,6 +153,8 @@ function loadIntroData(){
 		if(response.status=='SUCCESS'){
 			if('tutorGeneral' in l_data){
 				var l_map = l_data.tutorGeneral;
+				l_intro_data = l_map;
+				
 				var l_html = "";
 				l_html+="<div class='card-body card-body-padding-pro pro-height' id='style-8' style='overflow-y:auto;margin-bottom:15px;' id='i_intro_data'>";
 				l_html+="<div class='row'>";
@@ -268,8 +207,10 @@ function loadIntroData(){
 				l_html+="<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'> ";
 				if(l_map.specialities == null ||l_map.specialities==undefined || l_map.specialities == '')
 				     l_html+="<span class='pro-text'>No Information</span>";
-				else
-				     l_html+="<span class='pro-text'></span>";
+				else{
+				     l_html+="<span class='pro-text'>"+l_map.specialities+"</span>";
+				     $('.c_specialities').text(l_map.specialities);
+				}
 				l_html+="</div>";
 				l_html+="</div>";
 				l_html+="</div>";
@@ -313,6 +254,7 @@ function loadIntroData(){
 				l_html+="</div>";
 				$("#i_intro_data").replaceWith(l_html);
 				
+				$("#i_add_intro_click").replaceWith("<button id='i_edit_intro_click' type='button'  class='tool-edit-main m-l-25' data-toggle='modal' data-target='#addIntro' onclick='loadEditIntro(\"EDIT\")'> <i class='fa fa-pencil icon'></i></button>");
 			}
 			//alert(JSON.stringify(l_data));
 		}
@@ -748,6 +690,7 @@ function loadProfessionalData(){
 function loadBatchData(){
 	
 	var l_map = g_data;
+	l_map.top = true;
 	ajaxWithJSON("/tutor-batches", l_map, 'POST', function(response) {
 		var l_data = response.object; 
 		alert(JSON.stringify(response));
