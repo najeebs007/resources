@@ -14,10 +14,7 @@ function addNumberOfStudent(count, flag) {
 		$('.c_numberOfStudent').val("1");
 		
 		addToPackage();
-		
-
 	}
-
 }
 
 function addToPackage() {
@@ -1720,7 +1717,10 @@ function checkIndividual(p_id, p_index) {
 }
 
 function bulkCandidateActions(p_action_type) {
+<<<<<<< HEAD
  
+=======
+>>>>>>> 3e6180dec946f9b7f2769daffb17abe7e01da57b
 	debugger;
 
 	if (!(navigator.onLine)) {
@@ -1868,4 +1868,8 @@ function SameGeneratePinAndPassword(p_action_type) {
 				});
 	}
 }
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 3e6180dec946f9b7f2769daffb17abe7e01da57b

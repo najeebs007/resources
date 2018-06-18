@@ -56,3 +56,4 @@ function convertCurrentDateToMap() {
 	l_map.day = date.getDay(); // Get the weekday as a number (0-6)
 	return l_map;
 }
+
