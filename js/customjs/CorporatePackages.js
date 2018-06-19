@@ -1808,7 +1808,6 @@ function bulkCandidateActions(p_action_type) {
 	}
 }
 
-	
  
 function SameGeneratePinAndPassword(p_action_type) {
 	debugger;
