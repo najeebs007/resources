@@ -1716,11 +1716,7 @@ function checkIndividual(p_id, p_index) {
 
 }
 
-function bulkCandidateActions(p_action_type) {
-<<<<<<< HEAD
- 
-=======
->>>>>>> 3e6180dec946f9b7f2769daffb17abe7e01da57b
+function bulkCandidateActions(p_action_type) { 
 	debugger;
 
 	if (!(navigator.onLine)) {
@@ -1868,8 +1864,5 @@ function SameGeneratePinAndPassword(p_action_type) {
 				});
 	}
 }
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 3e6180dec946f9b7f2769daffb17abe7e01da57b
+ 
