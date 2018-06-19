@@ -54,6 +54,11 @@ function isFloatValue(evt) {
 	return true;
 }
 
+// add float class in text field it will allow only float value
+$('input.float').on('input', function() {
+	  this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+});
+
 function onlyNumber(evt) {
 	evt = (evt) ? evt : window.event;
 	var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -374,3 +379,28 @@ function readForm(p_formId) {
 	});
 	return l_data;
 }
+
+function readFormWithId(p_formId) {
+	var l_data = {};
+	$("form#" + p_formId + " :input").each(function() {
+		var input = $(this); // This is the jquery object of the input
+
+		if (input.attr('type') == 'checkbox') {
+			if ($("#" + input.attr('id')).prop('checked') == true) {
+				l_data[input.attr('name')] = true;
+			} else {
+				l_data[input.attr('name')] = false;
+			}
+
+		}
+		else if(input.attr('type') == 'date'){
+			l_data[input.attr('name')] = getDateFormat(input.val());
+		}
+		else {
+			l_data[input.attr('name')] = input.val();
+		}
+
+	});
+	return l_data;
+}
+
