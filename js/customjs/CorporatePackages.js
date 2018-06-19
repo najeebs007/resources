@@ -391,6 +391,7 @@ $(".c_searchExams")
 									$('#pagination').twbsPagination('destroy');
 									$('#pagination').twbsPagination({totalPages:p_no_of_pages});
 									// var totalPages = 5;
+//									var pages = "";
 //									pages += '<div class="row"><div class="col-md-12" style="text-align:center;">';
 //									pages += '<ul class="pagination">'
 //									for (var i = 1; i <= totalPages; i++) {
