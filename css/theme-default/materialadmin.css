@@ -11023,6 +11023,23 @@ xcustom form elements
     visibility: visible;
     opacity: 1;
 }
+
+.cf-input-area .tooltiptext-00div {
+    visibility: hidden; 
+    background-color: #6495ED; 
+    width: 130px; 
+    color: #fff;
+    text-align: center;
+    border-radius:25px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 63%;
+    left:30%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}  
 .cf-input-area .tooltiptext-button {
     visibility: hidden; 
     background-color: #6495ED; 
@@ -11230,6 +11247,11 @@ xcustom form elements
     visibility: visible;
     opacity: 1;
 }
+.added-input:hover .tooltiptext-delete-div {
+ bottom: 104%;
+    left: 7%;
+}
+
 .cf-input-dynamic-left:hover{
    border-style: dashed;
   border-width: 1px;
@@ -11523,3 +11545,35 @@ body {
 	
 }
 }
+
+.field-section-form{
+        border: solid 1px #d9d9d9;
+    padding: 10px 10px 10px 10px;
+    background: #ebebeb;
+    }
+.field-section-input{
+  border-width: 1px;
+    border-color: rgb(244, 245, 245);
+    border-style: solid;
+    background-color: rgb(255, 255, 255);
+    height: 38px;
+    font-size: 11px;
+    font-family: "Roboto";
+    color: rgb(161, 161, 161);
+    line-height: 35px;
+    padding: 0 0px 0px 10px;
+    width: 50%;
+    float: left;
+    margin:10px 0 0px 0px;
+}
+.field-section-input-width{width: 100%;}
+.input-section-heading {
+  font-size: 12px;    font-weight: bold;
+  font-family: "Roboto";
+  color: rgb(0, 0, 0);
+  line-height:2;
+
+}
+    .cf-cross-button-left-00{margin: -33% -3% 0% 0%;}
+ 
+ 
