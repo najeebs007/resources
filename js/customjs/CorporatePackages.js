@@ -315,9 +315,11 @@ $(".c_searchExams")
 
 									var counter = parseInt(p_data.counter);
 									var response = p_data.examList;
+									p_no_of_pages = p_data.numberOfPages;
 									if(response == ''){
 										toastr.error('No Records found. ');
 									}
+									l_exam_list =response;
 									// this is global variable define in
 									// createPackage.jsp page
 									searchFilters = p_data.searchFilters;
@@ -385,29 +387,31 @@ $(".c_searchExams")
 									if (l_extra_pages != 0) {
 										totalPages = totalPages + 1;
 									}
+									
+									$('#pagination').twbsPagination('destroy');
+									$('#pagination').twbsPagination({totalPages:p_no_of_pages});
 									// var totalPages = 5;
-									var pages = "";
-									pages += '<div class="row"><div class="col-md-12" style="text-align:center;">';
-									pages += '<ul class="pagination">'
-									for (var i = 1; i <= totalPages; i++) {
-										if (i == 1) {
-											pages += '<li class="active"><a href="#" onclick="searchByPagination('
-													+ i
-													+ ')">'
-													+ i
-													+ '</a></li>';
-										} else {
-											pages += '<li><a href="#" onclick="searchByPagination('
-													+ i
-													+ ')">'
-													+ i
-													+ '</a></li>';
-										}
-
-									}
-									pages += '<li id="i_nid" class="c_nclass"><a href="#" onclick="searchByPagination(2)">Next</a></li></ul>';
-									pages += '</div></div>';
-									$('.c_pages').html(pages);
+//									pages += '<div class="row"><div class="col-md-12" style="text-align:center;">';
+//									pages += '<ul class="pagination">'
+//									for (var i = 1; i <= totalPages; i++) {
+//										if (i == 1) {
+//											pages += '<li class="active"><a href="#" onclick="searchByPagination('
+//													+ i
+//													+ ')">'
+//													+ i
+//													+ '</a></li>';
+//										} else {
+//											pages += '<li><a href="#" onclick="searchByPagination('
+//													+ i
+//													+ ')">'
+//													+ i
+//													+ '</a></li>';
+//										}
+//
+//									}
+//									pages += '<li id="i_nid" class="c_nclass"><a href="#" onclick="searchByPagination(2)">Next</a></li></ul>';
+//									pages += '</div></div>';
+//									$('.c_pages').html(pages);
 									$(".loading").hide();
 								},
 								error : function(jqXHR, textStatus, errorThrown) {
@@ -419,7 +423,11 @@ $(".c_searchExams")
 
 				});
 
+
+
 function searchByPagination(selectedPage) {
+	debugger;
+	
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
 		return;
@@ -439,6 +447,11 @@ function searchByPagination(selectedPage) {
 	 * if (!($(".c_subjects").val() == '')) { l_map.subject =
 	 * $(".c_subjects").val(); }
 	 */
+	
+	
+	
+	
+	
 	var resultsPerPage = 10;
 	var start = parseInt((selectedPage - 1)) * resultsPerPage;
 	l_map.offSet = start;
@@ -456,10 +469,11 @@ function searchByPagination(selectedPage) {
 				contentType : "application/json; charset=UTF-8",
 				dataType : 'json',
 				success : function(p_data) {
+					debugger;
 					var l_map = {};
 					var counter = parseInt(p_data.counter);
 					var response = p_data.examList;
-					
+				        p_no_of_pages = p_data.numberOfPages;
 					// this is global variable define in createPackage.jsp page
 					searchFilters = p_data.searchFilters;
 					var roleName = p_data.roleName;
@@ -511,17 +525,21 @@ function searchByPagination(selectedPage) {
 						$('.c_examsListTab').append(exams);
 					}
 
-					var totalPages = $('.c_pages ul li').length;
+					var totalPages = $('.c_pages ul ').length;
 					if ($("#i_pid").hasClass("c_pclass")) {
 						totalPages = totalPages - 1;
 					}
 					if ($("#i_nid").hasClass("c_nclass")) {
 						totalPages = totalPages - 1;
 					}
-					var pages = "";
-					$('.c_pages').html('');
-					pages += '<div class="row"><div class="col-md-12" style="text-align:center;">';
-					pages += '<ul class="pagination">'
+//					var pages = "";
+//					$('.c_pages').html('');
+					debugger;
+//					alert("totalPages "+totalPages+" p_no_of_pages "+p_no_of_pages);
+//					callPagination(l_noOfPages);
+//					pages += '<div class="row"><div class="col-md-12" style="text-align:center;">';
+//					pages += '<ul class="pagination" id="pagination" ></ul>';
+					/*pages += '<ul class="pagination">'
 					if (parseInt(selectedPage) > 1) {
 						var previous = parseInt(selectedPage) - 1;
 						pages += '<li id="i_pid" class="c_pclass"><a href="#" onclick="searchByPagination('
@@ -544,8 +562,10 @@ function searchByPagination(selectedPage) {
 						pages += '<li id="i_nid" class="c_nclass"><a href="#" onclick="searchByPagination('
 								+ next + ')">Next</a></li></ul>';
 						pages += '</div></div>';
-					}
-					$('.c_pages').html(pages);
+					}*/
+//					
+//					pages += '</div></div>';
+//					$('.c_pages').html(pages);
 
 					$(".loading").hide();
 				},
@@ -1715,6 +1735,7 @@ function checkIndividual(p_id, p_index) {
 	}
 
 }
+<<<<<<< HEAD
 
 function bulkCandidateActions(p_action_type) { 
 	debugger;
@@ -1786,6 +1807,9 @@ function bulkCandidateActions(p_action_type) {
 	}
 }
 
+=======
+	
+>>>>>>> 2c99c4a8475c96dbcb200865df92020bf24c6dd4
 function SameGeneratePinAndPassword(p_action_type) {
 	debugger;
 
@@ -1864,5 +1888,23 @@ function SameGeneratePinAndPassword(p_action_type) {
 				});
 	}
 }
+<<<<<<< HEAD
  
  
+=======
+/*function callPagination(p_no_of_pages) {
+	debugger;
+    window.pagObj = $('#pagination').twbsPagination({
+        totalPages: p_no_of_pages,
+        visiblePages: 10,
+        onPageClick: function (event, page) {
+            console.info(page + ' (from options)');
+           
+        }
+    }).on('page', function (event, page) {
+        console.info(page + ' (from event listening)');
+        searchByPagination(page);
+  
+});
+}*/
+>>>>>>> 2c99c4a8475c96dbcb200865df92020bf24c6dd4
