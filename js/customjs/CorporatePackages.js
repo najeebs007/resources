@@ -1889,7 +1889,6 @@ function SameGeneratePinAndPassword(p_action_type) {
 				});
 	}
 }
-<<<<<<< HEAD
  
  
 =======
@@ -1908,4 +1907,4 @@ function SameGeneratePinAndPassword(p_action_type) {
   
 });
 }*/
->>>>>>> 2c99c4a8475c96dbcb200865df92020bf24c6dd4
+ 
