@@ -4321,7 +4321,7 @@ fieldset[disabled] .btn-link:focus {
 .btn-modal
 {
 	background: transparent;
-    border: 1px solid #f16e6e;
+    border: 1px solid rgb(240, 85, 16);
     border-radius: 2px;
     padding: 4.5px 15px;
     width: 70px;
