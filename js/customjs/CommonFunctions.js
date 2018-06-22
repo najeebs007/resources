@@ -57,7 +57,7 @@ function convertCurrentDateToMap() {
 	return l_map;
 }
 
-function loadCountries(p_flag){debugger;
+function loadCountries(p_flag){ 
 	var l_map = {};
 	l_map.get = 'COUNTRIES';
 	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
@@ -79,7 +79,7 @@ function loadCountries(p_flag){debugger;
 
 	});
 }
-function loadStates(p_countryId){debugger;
+function loadStates(p_countryId){ 
 	var l_map = {};
 	l_map.get = 'STATES';
 	l_map.countryId =p_countryId;
@@ -117,7 +117,7 @@ function loadDistricts(p_stateId){
 
 	});
 }
-function loadCities(p_districtId){debugger;
+function loadCities(p_districtId){  
 	var l_map = {};
 	l_map.get = 'CITIES';
 	l_map.districtId = p_districtId;
@@ -137,5 +137,27 @@ function loadCities(p_districtId){debugger;
 	});
 }
 
+<<<<<<< HEAD
+=======
+function selectUniversityBoard(p_educationLevel){  
+	var l_map = {};
+	
+	l_map.educationLevel = p_educationLevel;
+	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
+		//alert(JSON.stringify(response));
+		if(response.status == 'SUCCESS'){
+			var data = response.object;
+			for(var i=0;i<data.length;i++){
+				var b_map = data[i];
+				$('.c_cityId').append('<option value='+b_map.cityId+'>'+b_map.cityName+'</option>');
+			}
+		}
+		if(response.status == 'ERROR'){
+			toastr.error(response.message);
+		}
+
+	});
+}
+>>>>>>> 08205a11a2ac095c70a74f83c129d497a233c5f7
 
 
