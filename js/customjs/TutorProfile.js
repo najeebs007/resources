@@ -882,32 +882,36 @@ function loadQualificationData() {
 function loadEditCertificate(p_flage,p_certificate_id){
 	
 	if (p_flage == 'NEW'){
-		$('##addprofessional').modal('show');
+		$('#addcertificates').modal('show');
 	}
 	if (p_flage == 'EDIT') {
 		for(var i=0;i<g_certificate_data.length;i++){
 			var b_map = g_certificate_data[i];
 			if(p_certificate_id==b_map.userCertificationsId){
-				$('.c_certification_id').val(p_professional_id);
+				$('.c_certification_id').val(p_certificate_id);
 				$('.c_certificationName').val(b_map.certificationName);
 				$('.certificationAuthority').val(b_map.certificationAuthority);
 				$('.c_certificationNumber').val(b_map.certificationNumber );
 			}
 	}
+		$('#addcertificates').modal('show');
 }
 }
 
 function saveCertificate(p_form_id) {
 	var l_form_data = {};
 	l_form_data = readFormWithId(p_form_id);
-	alert(JSON.stringify(l_form_data));
+	//alert(JSON.stringify(l_form_data));
 	ajaxWithJSON("/common/save-certificate-detail", l_form_data, 'POST', function(response) {
 		if (response.status == 'SUCCESS') {
+			$('#addcertificates').modal('hide');
 			toastr.success(response.message);
 			
 
 		}
 		if (response.status == 'ERROR') {
+			$('.c_certificate_error').html(response.message);
+			setTimeout(function(){ $('.c_certificate_error').html(''); }, 3000);
 			toastr.error(response.message);
 
 		}
@@ -917,11 +921,11 @@ function saveCertificate(p_form_id) {
 }
 var g_certificate_data = [];
 function loadCertificationData() {
-	alert("/tutor-certification");
+	//alert("/tutor-certification");
 	var l_map = g_data;
 	ajaxWithJSON("/common/load-user-certifications", l_map, 'POST', function(response) {
 		var l_data = response.object;
-		alert(JSON.stringify(response));
+		//alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
 			g_certificate_data = l_data;
             var l_html = '';
@@ -988,19 +992,23 @@ function loadEditProfessional(p_flage,p_professional_id){
 				   $('#i_currently').prop('checked', true);
 			}
 	}
+		$('#addprofessional').modal('show');
 }
 }
 function saveProfessional(p_form_id) {
 	var l_form_data = {};
 	l_form_data = readFormWithId(p_form_id);
-	alert(JSON.stringify(l_form_data));
+	//alert(JSON.stringify(l_form_data));
 	ajaxWithJSON("/common/save-professional-detail", l_form_data, 'POST', function(response) {
 		if (response.status == 'SUCCESS') {
+			$('#addprofessional').modal('hide');
 			toastr.success(response.message);
 			
 
 		}
 		if (response.status == 'ERROR') {
+			$('.c_professional_error').html(response.message);
+			setTimeout(function(){ $('.c_professional_error').html(''); }, 3000);
 			toastr.error(response.message);
 
 		}
@@ -1009,11 +1017,11 @@ function saveProfessional(p_form_id) {
 }
 var g_professional_data = [];
 function loadProfessionalData() {
-	alert("/tutor-professional");
+	//alert("/tutor-professional");
 	var l_map = g_data;
 	ajaxWithJSON("/common/load-user-professional-detail", l_map, 'POST', function(response) {
 		var l_data = response.object;
-		alert(JSON.stringify(response));
+		//alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
 			g_professional_data = l_data;
             var l_html = '';
@@ -1069,8 +1077,34 @@ function loadBatchData() {
 		var l_data = response.object;
 		alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
-
-			alert(JSON.stringify(l_data));
+            var l_html = '';
+            l_html+='<div class="card-body card-body-padding-pro pro-height-sm" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
+            l_html+='<div class="row">';
+            for(var i=0;i<l_data.length;i++){
+            	var b_map = l_data[i];
+            l_html+='<div class="col-lg-12">';
+            l_html+='<div class="row">';
+            l_html+='<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1"> ';
+            l_html+='<img src="resources/img/ico/ico2.png" alt="batches-icon">';
+            l_html+='</div>';
+            l_html+='<div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-xs-11 m-t-2">';
+            l_html+='<div class="row">';
+            l_html+='<div class="col-lg-12"> <span class="pro-text">'+b_map.batchName+'</span></div>'; 
+            l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-2">'; 
+            l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Batch Mode : '+b_map.batchMode+'</span>';
+            l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Fees : &#x20B9;  '+b_map.feeAmount+'</span>';
+            l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Status : '+b_map.status+'</span>';
+            l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Timing : '+ b_map.batchStartTime + b_map.batchStartTimeAMPM+ '-' + b_map.batchEndTime+ b_map.batchEndTimeAMPM+'</span>'; 
+            l_html+='</div>';    
+            l_html+='</div>';
+            l_html+='</div>';
+            l_html+='<div class="col-lg-12"><hr class="hr-profile"></div>';
+            l_html+='</div>';
+            l_html+='</div>';
+            }
+            l_html+='</div>';
+            l_html+='</div>';
+            $('#i_batches').replaceWith(l_html);
 		}
 		if (response.status == 'ERROR') {
 			console.log(response.message);
@@ -2130,7 +2164,7 @@ function selectEducation(){
 		}
 		var g_mediums = [];
 		function loadMediums(){
-			if(g_boards.length==0){
+			if(g_mediums.length==0){
 			ajaxWithJSON("/load-mediums", null, 'GET',function(response) {
 				var l_data = response.object;
 				var l_html = '';

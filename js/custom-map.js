@@ -369,7 +369,7 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi) {
 							locations[i][2]),
 					map : map,
 					icon : 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-					animation : google.maps.Animation.BOUNCE
+					animation : google.maps.Animation.DROP
 				});
 
 		markers.push(marker);

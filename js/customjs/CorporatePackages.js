@@ -1736,7 +1736,6 @@ function checkIndividual(p_id, p_index) {
 	}
 
 }
-<<<<<<< HEAD
 
 function bulkCandidateActions(p_action_type) { 
 	debugger;
@@ -1808,9 +1807,6 @@ function bulkCandidateActions(p_action_type) {
 	}
 }
 
-=======
-	
->>>>>>> 2c99c4a8475c96dbcb200865df92020bf24c6dd4
 function SameGeneratePinAndPassword(p_action_type) {
 	debugger;
 
@@ -1889,10 +1885,7 @@ function SameGeneratePinAndPassword(p_action_type) {
 				});
 	}
 }
-<<<<<<< HEAD
- 
- 
-=======
+
 /*function callPagination(p_no_of_pages) {
 	debugger;
     window.pagObj = $('#pagination').twbsPagination({
@@ -1908,4 +1901,4 @@ function SameGeneratePinAndPassword(p_action_type) {
   
 });
 }*/
->>>>>>> 2c99c4a8475c96dbcb200865df92020bf24c6dd4
+
