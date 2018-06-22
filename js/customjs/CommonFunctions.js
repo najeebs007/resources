@@ -56,3 +56,108 @@ function convertCurrentDateToMap() {
 	l_map.day = date.getDay(); // Get the weekday as a number (0-6)
 	return l_map;
 }
+
+function loadCountries(p_flag){ 
+	var l_map = {};
+	l_map.get = 'COUNTRIES';
+	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
+		//alert(JSON.stringify(response));
+				if(response.status == 'SUCCESS'){
+					var data = response.object;
+					for(var i=0;i<data.length;i++){
+						var b_map = data[i];
+						 
+						if(p_flag=='NEW'){
+							$('.c_countryId').append('<option value='+b_map.countryId+'>'+b_map.countryName+'</option>');
+						}
+					}
+					
+				}
+				if(response.status == 'ERROR'){
+					toastr.error(response.message);
+				}
+
+	});
+}
+function loadStates(p_countryId){ 
+	var l_map = {};
+	l_map.get = 'STATES';
+	l_map.countryId =p_countryId;
+	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
+		//alert(JSON.stringify(response));
+		if(response.status == 'SUCCESS'){
+			var data = response.object;
+			for(var i=0;i<data.length;i++){
+				var b_map = data[i];
+				$('.c_stateId').append('<option value='+b_map.stateId+'>'+b_map.stateName+'</option>');
+			}
+		}
+		if(response.status == 'ERROR'){
+			toastr.error(response.message);
+		}
+
+	});
+}
+function loadDistricts(p_stateId){
+	var l_map = {};
+	l_map.stateId = p_stateId;
+	l_map.get = 'DISTRICTS';
+	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
+		//alert(JSON.stringify(response));
+		if(response.status == 'SUCCESS'){
+			var data = response.object;
+			for(var i=0;i<data.length;i++){
+				var b_map = data[i];
+				$('.c_districtId').append('<option value='+b_map.districtId+'>'+b_map.districtName+'</option>');
+			}
+		}
+		if(response.status == 'ERROR'){
+			toastr.error(response.message);
+		}
+
+	});
+}
+function loadCities(p_districtId){  
+	var l_map = {};
+	l_map.get = 'CITIES';
+	l_map.districtId = p_districtId;
+	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
+		//alert(JSON.stringify(response));
+		if(response.status == 'SUCCESS'){
+			var data = response.object;
+			for(var i=0;i<data.length;i++){
+				var b_map = data[i];
+				$('.c_cityId').append('<option value='+b_map.cityId+'>'+b_map.cityName+'</option>');
+			}
+		}
+		if(response.status == 'ERROR'){
+			toastr.error(response.message);
+		}
+
+	});
+}
+
+<<<<<<< HEAD
+=======
+function selectUniversityBoard(p_educationLevel){  
+	var l_map = {};
+	
+	l_map.educationLevel = p_educationLevel;
+	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
+		//alert(JSON.stringify(response));
+		if(response.status == 'SUCCESS'){
+			var data = response.object;
+			for(var i=0;i<data.length;i++){
+				var b_map = data[i];
+				$('.c_cityId').append('<option value='+b_map.cityId+'>'+b_map.cityName+'</option>');
+			}
+		}
+		if(response.status == 'ERROR'){
+			toastr.error(response.message);
+		}
+
+	});
+}
+>>>>>>> 08205a11a2ac095c70a74f83c129d497a233c5f7
+
+

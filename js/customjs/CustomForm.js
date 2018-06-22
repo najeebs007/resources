@@ -266,6 +266,10 @@ $(document).ready(function()
 		 $("#conditionR").hide();
 		 $("#submitR").hide();
 		 $("#zipR").hide(); 
+		 $("#educationR").hide();
+		 $("#professionalR").hide();
+		 $("#certificationR").hide();
+		 $("#fullAddressR").hide();
 	   });
 function preview(){
 	
@@ -384,6 +388,31 @@ function addInput(p_input)
 			  $("#submitR").clone().appendTo(".dynamicInput");
 			  $("#submitR").show()
 		  }
+		   else if(p_input=="education"){
+			   $("#educationR").clone().appendTo(".dynamicInput");
+			  $("#educationR").show()
+			  
+			  
+		  }
+		   else if(p_input=="professional"){
+			   $("#professionalR").clone().appendTo(".dynamicInput");
+			  $("#professionalR").show()
+			  
+			  
+		  }
+		   else if(p_input=="certification"){
+			   $("#certificationR").clone().appendTo(".dynamicInput");
+			  $("#certificationR").show()
+			  
+			  
+		  }
+		   else if(p_input=="fullAddress"){
+			   $("#fullAddressR").clone().appendTo(".dynamicInput");
+			  $("#fullAddressR").show()
+			  
+			  
+		  }
+	 	  
 		  
 		 }
 		
@@ -445,5 +474,22 @@ function addInput(p_input)
 		  {
 		       $("#submitR").remove();
 		  } 
+		   else if(p_input=="education"){
+				  $("#educationR").remove();
+				  
+			  }
+			  else if(p_input=="professional"){
+				  $("#professionalR").remove();
+				  
+			  }
+			  else if(p_input=="certification"){
+				  $("#certificationR").remove();
+				  
+			  }
+			  else if(p_input=="fullAddress"){
+				  $("#fullAddressR").remove();
+				  
+			  }
+		 
 		 
 		 }

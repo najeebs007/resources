@@ -170,12 +170,13 @@ function setOptions(p_dropdown_id, p_data_list, p_id_param, p_id_value,
 }
 
 //export table to excel
-function exportExcel(tableId, fileName) {
+function exportExcel(tableId, fileName) {debugger;
 	
-	$("#" + tableId).table2excel({
+	$("#"+tableId).table2excel({
+		exclude: ".noExl", 
 		name : "Table2Excel",
-		filename : fileName,
-		fileext : ".xls"
+		filename : fileName+".xlsx",
+		//fileext : ".xlsx"
 	});
 }
 
@@ -279,11 +280,11 @@ function resetForm(p_form_id) {
 }
 
 //export excel file of nominate students
-function exportExcel(tableId, fileName) {
+function exportExcel(tableId, fileName) {debugger;
 	$("#" + tableId).table2excel({
 		name : "Table2Excel",
-		filename : fileName,
-		fileext : ".xls"
+		filename : fileName+".xls",
+		//fileext : ".xlsx"
 	});
 }
 
