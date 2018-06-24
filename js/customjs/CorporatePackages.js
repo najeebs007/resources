@@ -1736,12 +1736,7 @@ function checkIndividual(p_id, p_index) {
 	}
 
 }
-<<<<<<< HEAD
-=======
- 
->>>>>>> 08205a11a2ac095c70a74f83c129d497a233c5f7
-
-function bulkCandidateActions(p_action_type) { 
+function bulkCandidateActions(p_action_type){ 
 	debugger;
 
 	if (!(navigator.onLine)) {
@@ -1810,11 +1805,6 @@ function bulkCandidateActions(p_action_type) {
 				});
 	}
 }
-
-<<<<<<< HEAD
-=======
- 
->>>>>>> 08205a11a2ac095c70a74f83c129d497a233c5f7
 function SameGeneratePinAndPassword(p_action_type) {
 	debugger;
 
@@ -1875,29 +1865,24 @@ function SameGeneratePinAndPassword(p_action_type) {
 					type : 'POST',
 					success : function(response) {
 						debugger;
-						if (response.status == "SUCCESS") {
+						if (response.status == "SUCCESS"){
 							toastr.success(response.message);
 							location.reload();
 							$(".loading").hide();
 						}
-						if (response.status == "ERROR") {
+						if (response.status == "ERROR"){
 							$(".loading").hide();
 							toastr.error(response.message);
 						}
 					},
-					error : function(err) {
+					error : function(err){
 						$(".loading").hide();
 						toastr
-								.error("we did not find proper input . Try again later!");
+						.error("we did not find proper input . Try again later!");
 					}
 				});
 	}
 }
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> 08205a11a2ac095c70a74f83c129d497a233c5f7
 /*function callPagination(p_no_of_pages) {
 	debugger;
     window.pagObj = $('#pagination').twbsPagination({
@@ -1913,8 +1898,4 @@ function SameGeneratePinAndPassword(p_action_type) {
   
 });
 }*/
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 08205a11a2ac095c70a74f83c129d497a233c5f7
