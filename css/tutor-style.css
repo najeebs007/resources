@@ -2236,7 +2236,7 @@ figure {
 }
 /* line 1621, ../scss/helpers/_classes.scss */
 .wide-2 .btn {
-  margin: 81px auto 30px auto;
+  margin:55px auto 55px auto !important;
 }
 .normal-p {
     margin: -5px 0 0px 15px !important;
@@ -2254,9 +2254,9 @@ figure {
 }
 /* line 1629, ../scss/helpers/_classes.scss */
 .wide-2 .btn-small {
-  padding: 10px 0;
-  width: 150px;
-  height: 40px;
+  padding:5px 0 !important;
+  width: 120px;
+  height: 30px;
 }
 .btn-small-2 {
   padding:8px 0;

@@ -3049,8 +3049,9 @@ figure {
 }
 /* line 2275, ../scss/helpers/_classes.scss */
 .search-box .form-map .btn {
-  width: 245px;
-  margin-bottom: 10px;
+    width: 160px;
+    margin-bottom: 10px !important;
+    height: 26px;
 }
 /* line 2279, ../scss/helpers/_classes.scss */
 .search-box .form-map input[type="text"], .search-box .form-map select {

@@ -1736,10 +1736,7 @@ function checkIndividual(p_id, p_index) {
 	}
 
 }
-<<<<<<< HEAD
-=======
- 
->>>>>>> 08205a11a2ac095c70a74f83c129d497a233c5f7
+
 
 function bulkCandidateActions(p_action_type) { 
 	debugger;
@@ -1811,10 +1808,6 @@ function bulkCandidateActions(p_action_type) {
 	}
 }
 
-<<<<<<< HEAD
-=======
- 
->>>>>>> 08205a11a2ac095c70a74f83c129d497a233c5f7
 function SameGeneratePinAndPassword(p_action_type) {
 	debugger;
 
@@ -1893,11 +1886,7 @@ function SameGeneratePinAndPassword(p_action_type) {
 				});
 	}
 }
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> 08205a11a2ac095c70a74f83c129d497a233c5f7
 /*function callPagination(p_no_of_pages) {
 	debugger;
     window.pagObj = $('#pagination').twbsPagination({
@@ -1913,8 +1902,4 @@ function SameGeneratePinAndPassword(p_action_type) {
   
 });
 }*/
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> 08205a11a2ac095c70a74f83c129d497a233c5f7
+c

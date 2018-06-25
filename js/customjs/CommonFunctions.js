@@ -136,9 +136,7 @@ function loadCities(p_districtId){
 
 	});
 }
-
-<<<<<<< HEAD
-=======
+ 
 function selectUniversityBoard(p_educationLevel){  
 	var l_map = {};
 	
@@ -158,6 +156,5 @@ function selectUniversityBoard(p_educationLevel){
 
 	});
 }
->>>>>>> 08205a11a2ac095c70a74f83c129d497a233c5f7
-
+ 
 
