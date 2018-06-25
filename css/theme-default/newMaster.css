@@ -271,6 +271,11 @@ padding: 0px 10px !important;}
   padding:70px; 
   text-align: center;  
 }
+.body-blank-large{
+  background-color:rgb(245, 244, 244);
+  padding:207px 10px; 
+  text-align: center;   
+}
 .blank-icon
 {
     font-weight: 700;
