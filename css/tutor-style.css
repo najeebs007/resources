@@ -2254,9 +2254,15 @@ figure {
 }
 /* line 1629, ../scss/helpers/_classes.scss */
 .wide-2 .btn-small {
+<<<<<<< HEAD
   padding:5px 0 !important;
   width: 120px;
   height: 30px;
+=======
+  padding: 5px 0 !important;
+    width: 100px;
+    height: 30px;
+>>>>>>> 697a040921b58ca7eb7ba49225e71bd6b25ac628
 }
 .btn-small-2 {
   padding:8px 0;
