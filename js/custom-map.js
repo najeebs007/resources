@@ -325,7 +325,7 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi) {
 			+ '"><button>View Profile</button></a></p>'
 			+'<div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div>'
 				+ l_map.userName
-				+ '"<button onclick="return requestForTuition(\''+l_map.userName+'\')">Request For Tuition</button></div>'
+				+ '"<button onclick="return requestForTuition(\''+l_map.userName+'\',\''+l_map.displayName+'\')">Request For Tuition</button></div>'
 			+'</div><style>.card {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);max-width:200px;margin: auto;text-align: center;font-family: arial;}.title {color: grey;font-size: 13px;}button{border: none;outline: 0;display: inline-block;padding: 4px;color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 13px;}a {text-decoration: none;font-size: 15px;color: blue;}button:hover, a:hover {opacity: 0.7;}</style>', l_map.latitude, l_map.longitude];
 	   locations.push(a);
 	}
