@@ -147,7 +147,7 @@ function selectUniversityBoard(p_educationLevel){
 			var data = response.object;
 			for(var i=0;i<data.length;i++){
 				var b_map = data[i];
-				$('.c_cityId').append('<option value='+b_map.cityId+'>'+b_map.cityName+'</option>');
+				$('.c_universityEducation').append('<option value='+b_map.cityId+'>'+b_map.cityName+'</option>');
 			}
 		}
 		if(response.status == 'ERROR'){
@@ -156,5 +156,149 @@ function selectUniversityBoard(p_educationLevel){
 
 	});
 }
+
+
+var g_education_types = [];
+function loadEducationTypes(){
+	if(g_education_types.length==0){
+		var l_map = {};
+		    l_map.level = $('.c_education').val();
+		    l_map.all = false;
+		    
+	ajaxWithJSON("/common/load-education-type", l_map, 'POST',function(response) {
+		var l_data = response.object;
+		var l_html = '';
+       // alert(JSON.stringify(response));
+		if(response.status == 'SUCCESS'){
+			g_education_types = l_data;
+			for(var i=0;i<l_data.length;i++){
+				var l_map = l_data[i];
+				l_html+='<option value="'+l_map.educationShortName+'">';
+			}
+			l_html+='<option value="Other">';
+			$('#i_education_type').html('');
+			$('#i_education_type').html(l_html);
+		}
+		if(response.status == 'ERROR'){
+			console.log(response.message);
+			
+		}
+      });
+	}else{
+		for(var i=0;i<g_education_types.length;i++){
+			var l_map = g_education_types[i];
+			l_html+='<option value="'+l_map.educationShortName+'">';
+		}
+		l_html+='<option value="Other">';
+		$('#i_education_type').html('');
+		$('#i_education_type').html(l_html);
+	}
+}
+
+
+function loadEducationBranches(){debugger;
+var l_map = {};
+    l_map.list = false;
+for(var i=0;i<g_education_types.length;i++){
+		var b_map = g_education_types[i];
+		if(b_map.educationShortName == ($('.c_education_type').val()).trim()){
+			l_map.educationTypeId = b_map.educationTypeId;
+		}
+}
+
+ajaxWithJSON("/common/load-education-type-branch", l_map, 'POST',function(response) {
+  //alert(JSON.stringify(response));
+  var l_data = response.object;
+	var l_html = '';
+ // alert(JSON.stringify(response));
+	if(response.status == 'SUCCESS'){
+		for(var i=0;i<l_data.length;i++){
+			var l_map = l_data[i];
+			l_html+='<option value="'+l_map.educationBranchShortName+'">';
+		}
+		l_html+='<option value="Other">';
+		$('#i_education_branch').html('');
+		$('#i_education_branch').html(l_html);
+	}
+	if(response.status == 'ERROR'){
+		console.log(response.message);
+		
+	}
+});
+}
+
+
+var g_institutes = [];
+function loadInstitutes(){
+	
+		if(g_institutes.length==0){
+		ajaxWithJSON("/load-institutes", null, 'GET',function(response) {
+			var l_data = response.object;
+			var l_html = '';
+	        //alert(JSON.stringify(response));
+			if(response.status == 'SUCCESS'){
+				g_institutes = l_data;
+				for(var i=0;i<l_data.length;i++){
+					var l_map = l_data[i];
+					l_html+='<option value="'+l_map.instituteName+'">';
+				}
+				l_html+='<option value="Other">';
+				$('#i_institute').html('');
+				$('#i_institute').html(l_html);
+			}
+			if(response.status == 'ERROR'){
+				console.log(response.message);
+				
+			}
+           });
+		}else{
+			var l_html = '';
+			for(var i=0;i<g_institutes.length;i++){
+				var l_map = g_institutes[i];
+				l_html+='<option value="'+l_map.instituteName+'">';
+			}
+			l_html+='<option value="Other">';
+			$('#i_institute').html(l_html);
+		}
+		
+	
+	
+}
+
+var g_boards = [];
+function loadBoards(){
+	if(g_boards.length==0){
+	ajaxWithJSON("/load-boards", null, 'GET',function(response) {
+		var l_data = response.object;
+		var l_html = '';
+        //alert(JSON.stringify(response));
+		if(response.status == 'SUCCESS'){
+			g_boards = l_data;
+			for(var i=0;i<l_data.length;i++){
+				var l_map = l_data[i];
+				l_html+='<option value="'+l_map.boardShortName+'">';
+			}
+			l_html+='<option value="Other">';
+			$('.i_board').html('');
+			$('#i_board').html(l_html);
+		}
+		if(response.status == 'ERROR'){
+			console.log(response.message);
+			
+		}
+       });
+	}else{
+		var l_html = '';
+		for(var i=0;i<g_boards.length;i++){
+			var l_map = g_boards[i];
+			l_html+='<option value="'+l_map.boardShortName+'">';
+		}
+		l_html+='<option value="Other">';
+		$('#i_board').html('');
+		$('#i_board').html(l_html);
+	}
+	
+}
+
 
 
