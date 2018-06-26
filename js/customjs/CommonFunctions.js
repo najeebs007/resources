@@ -121,7 +121,7 @@ function loadCities(p_districtId){
 	var l_map = {};
 	l_map.get = 'CITIES';
 	l_map.districtId = p_districtId;
-	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
+	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response){
 		//alert(JSON.stringify(response));
 		if(response.status == 'SUCCESS'){
 			var data = response.object;
@@ -132,14 +132,12 @@ function loadCities(p_districtId){
 		}
 		if(response.status == 'ERROR'){
 			toastr.error(response.message);
-		}
-
+		} 
 	});
 }
 
 function selectUniversityBoard(p_educationLevel){  
-	var l_map = {};
-	
+	var l_map = {}; 
 	l_map.educationLevel = p_educationLevel;
 	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
 		//alert(JSON.stringify(response));
@@ -152,10 +150,12 @@ function selectUniversityBoard(p_educationLevel){
 		}
 		if(response.status == 'ERROR'){
 			toastr.error(response.message);
-		}
-
+		} 
 	});
+
 }
+ 
+
 
 
 var g_education_types = [];
@@ -299,6 +299,8 @@ function loadBoards(){
 	}
 	
 }
+
+
 
 
 

@@ -7599,7 +7599,20 @@ sub.badge {
 	background:#5f72e7;
 	color:white;
 }
- 
+.panel-group .manage-request-accordian.expanded{border:1px solid #80808075;}
+.panel-group .card.expanded>div.m-r-a-head:before{
+	position: absolute;
+    display: inline-block;
+    content: '';
+	width:0;
+    top: 100px;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    border-top: 12px solid white;
+    right: 25px; 
+    left: 20px;
+    z-index: 1050;
+}
 .panel-group .card.expanded:first-child {
 	margin-top: 0;
 }
@@ -7608,17 +7621,17 @@ sub.badge {
 	position: relative;
 	list-style: none;
 	padding: 20px 0 0 0;
-	left: 50%;
+	left:0%;
 }
 
 .timeline:before {
-	top: 0;
-	bottom: 0;
+	top:60px;
+	bottom:60px;
 	position: absolute;
 	content: " ";
 	width: 4px;
-	background-color: #0c0c0c;
-	opacity: 0.15;
+	background-color:#2196f3;
+	opacity:1;
 	left: 0;
 	margin-left: -2px;
 }
@@ -7631,19 +7644,29 @@ sub.badge {
 .timeline li {
 	position: relative;
 	display: block;
-	width: 50%;
-	left: -50%;
+	width: 100%;
+	left: -100%;
 	white-space: nowrap;
 	min-height: 30px;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
+.timeline-date
+{
+	position: absolute;
+    top:30px;
+    left: 100%; 
+    margin-left: 15px;
+    text-align: center; 
+    color: #2196f3;
+    font-size: 15px;
+    font-weight: 500;
+}
 .timeline-entry {
 	position: relative;
 	display: inline-block;
-	width: 100%;
+	width:92%;
 	padding: 0;
 	vertical-align: top;
 	margin: 0 -3px 0 0;
@@ -7661,7 +7684,7 @@ sub.badge {
 }
 
 .timeline-inverted .timeline-entry {
-	left: 100%;
+	left: 108%;
 }
 
 .timeline-inverted .timeline-entry .card {
@@ -7671,15 +7694,15 @@ sub.badge {
 }
 
 .timeline-entry .card:after {
-	content: "";
-	position: absolute;
-	top: 16px;
-	right: -9px;
-	width: 0px;
-	height: 0px;
-	border-style: solid;
-	border-width: 9px 0 9px 9px;
-	border-color: transparent transparent transparent #ffffff;
+	/* content: ""; */
+	/* position: absolute; */
+	/* top: 16px; */
+	/* right: -9px; */
+	/* width: 0px; */
+	/* height: 0px; */
+	/* border-style: solid; */
+	/* border-width: 9px 0 9px 9px; */
+	/* border-color: transparent transparent transparent #ffffff; */
 }
 
 .timeline-inverted .timeline-entry .card:after {
@@ -7757,23 +7780,35 @@ sub.badge {
 
 .timeline-circ {
 	position: absolute;
-	top: 15px;
-	left: 100%;
-	width: 20px;
-	height: 20px;
-	line-height: 20px;
-	margin-left: -10px;
-	text-align: center;
-	background: #2196f3;
-	color: #ffffff;
-	border-width: 3px;
-	border-style: solid;
-	border-color: #fff !important;
-	border-radius: 50%;
+    top: 35px;
+    left: 100%;
+    width: 15px;
+    height: 15px;
+    line-height: 20px;
+    margin-left: -7px;
+    text-align: center;
+    background: white;
+    color: #ffffff;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #2196f3 !important;
+    border-radius: 50%;
 	-webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
 }
-
+.timeline-circ:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-left: 6px solid #2196f3;
+    border-bottom: 5px solid #f4a24c00;
+    margin: auto 0;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    bottom: 0px;
+}
 .timeline-circ .glyphicon, .timeline-circ .fa, .timeline-circ .md {
 	top: 0;
 	margin: 0;
@@ -7889,8 +7924,19 @@ sub.badge {
 		width: 100%;
 	}
 	.timeline.collapse-md .timeline-entry {
-		left: 0 !important;
+		left: 65px !important;
 	}
+	.timeline-date {
+     
+    left:12px;
+    margin-left: 15px;
+     
+   }
+   .timeline:before {
+    top: 60px;
+    bottom: 84px;
+    
+     }
 	.timeline.collapse-md .timeline-entry .card {
 		margin-left: 40px !important;
 		margin-right: 0;
@@ -11575,5 +11621,27 @@ body {
 
 }
     .cf-cross-button-left-00{margin: -33% -3% 0% 0%;}
- 
+  .section-head {
+ margin-bottom:30px;
+}
+text-center
+.section-head.no-margin {
+ margin-bottom:0;
+}
+.text-uppercase {
+ text-transform: uppercase
+}
+.wt-separator-outer {
+ overflow:hidden;
+ margin:-10px 0px;
+}
+.wt-separator {
+ display:inline-block;
+ height:3px;
+ width:50px;
+ position:relative;
+}
+.acc-bg-primary a {
+ background-color:#d21e2b;
+}
  

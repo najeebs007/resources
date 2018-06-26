@@ -3705,9 +3705,8 @@ fieldset[disabled] .btn {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.btn-default {
-  color: #969c9c;
-  color: #313534;
+.btn-default { 
+  color: #ffffff;
   background-color: #889a9a;
   border-color: #e5e6e6;
 }
@@ -4321,7 +4320,7 @@ fieldset[disabled] .btn-link:focus {
 .btn-modal
 {
 	background: transparent;
-    border: 1px solid #f16e6e;
+    border: 1px solid rgb(240, 85, 16);
     border-radius: 2px;
     padding: 4.5px 15px;
     width: 70px;
@@ -6819,6 +6818,7 @@ button.close {
 .modal-backdrop.in {
   opacity: 0.5;
   filter: alpha(opacity=50);
+  height: 100%;
 }
 .modal-header { 
   padding: 10px 15px;
@@ -6830,7 +6830,7 @@ button.close {
     border-top-right-radius: 10px;
 }
 .modal-header .close {
-  margin-top: -2px;
+  margin-top: -22px;
 }
 .modal-title {
   margin: 0;
