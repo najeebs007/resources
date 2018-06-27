@@ -196,6 +196,7 @@
 			return;
 		}
 		 format: 'dd/mm/yyyy';
+		$('#dob').datepicker({autoclose: true, todayHighlight: true,format: "dd/mm/yyyy"});
 		$('#demo-date1').datepicker({autoclose: true, todayHighlight: true,format: "dd/mm/yyyy"});
 		$('.date_pick').datepicker({autoclose: true, todayHighlight: true,format: "dd/mm/yyyy"});
 		$('#demo-date2').datepicker({ autoclose: true, todayHighlight: true,format: "dd/mm/yyyy"});
