@@ -13,10 +13,10 @@ $(document).ready(function() {
 	loadSocialData();
 	loadIntroData();
     loadContactData();
-	//loadQualificationData();
-	// loadProfessionalData();
-	// loadCertificationData();
-	// loadBatchData();
+	loadQualificationData();
+	loadProfessionalData();
+	loadCertificationData();
+	loadBatchData();
 	/* loadSpecializationData(); */
 
 });
@@ -539,39 +539,339 @@ function loadContactData() { debugger;
 			});
 }
 
-function loadEditQualification(p_flag){
-	
-	if(p_flag=='NEW'){
-		$('#addqualification').modal('show');
+function loadEditQualification(p_flage,p_education_id) {debugger;
+if (p_flage == 'NEW'){
+	$('#addqualification').modal('show');
+}
+if (p_flage == 'EDIT') {
+	for(var i=0;i<g_qualifications.length;i++){
+		var b_map = g_qualifications[i];
+		if(p_education_id==b_map.educationId){
+			
+			var l_html = '';
+			if(b_map.level=='10th' || b_map.level=='12th'){
+			    
+				l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+				l_html+='<div class="form-group newForm">'; 
+				l_html+='<label class="control-label label-extended">Education</label>';      
+				l_html+='<select name="education" class="c_education form-control extended" onchange="selectEducation()">';
+				l_html+='<option value="Doctorate/PHD">Doctorate/PHD</option>';
+				l_html+='<option value="Master/Post-Graduation">Master/Post-Graduation</option>';
+				l_html+='<option value="Graduation">Graduation</option>';
+				l_html+='<option value="Diploma">Diploma</option>';
+				if(b_map.level=='12th'){
+				    l_html+='<option value="12th" selected >12th</option>';
+				    l_html+='<option value="10th" >10th</option>';
+				}
+				if(b_map.level=='10th'){
+					l_html+='<option value="12th">12th</option>';
+				    l_html+='<option value="10th" selected >10th</option>';
+				}
+				l_html+='</select>';
+				l_html+='</div>';
+				l_html+='</div>';
+				l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+				l_html+='<div class="form-group newForm">'; 
+				l_html+='<label class="control-label label-extended">Board</label>';
+				l_html+='<input name="board" value="'+b_map.universityBoard+'" class="c_board form-control extended" list="i_board" onfocusout="selectBoard()" placeholder="Select Board">';
+				l_html+='<span id="i_no_board"></span>';
+				l_html+='<datalist id="i_board">';
+				l_html+='</datalist>';
+				l_html+='</div>';
+				l_html+='</div>';
+				l_html+='<div class="c_other_board col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>';
+				l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+				l_html+='<div class="form-group newForm">'; 
+				l_html+='<label class="control-label label-extended">Pass Out Year</label>';
+				l_html+='<select name="passOutYear" class="c_passoutyear form-control extended">';
+				var today = new Date();
+			    var year = today.getFullYear();
+			    for(var i=year;i>=(year-50);i--){
+			    	if(parseInt(b_map.passOutYear)==i){
+			    		l_html+='<option selected value="'+i+'">'+i+'</option>';
+			    	}else{
+			    	     l_html+='<option value="'+i+'">'+i+'</option>';
+			    	}
+			    }
+			    l_html+='</select>';
+			    l_html+='</div>';
+			    l_html+='</div>';
+			    l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+			    l_html+='<div class="form-group newForm">';
+			    l_html+='<label class="control-label label-extended">Medium</label>';
+				l_html+='<input name="mediumId" value="'+b_map.medium+'" class="c_medium form-control extended" list="i_medium" onfocusout="selectMedium()" placeholder="Select Medium">';
+				l_html+='<span id="i_no_medium"></span>';
+				l_html+='<datalist id="i_medium">';
+				l_html+='</datalist>';
+				l_html+='</div>';
+				l_html+='</div>';
+				l_html+='</div>';
+				l_html+='</div>';
+
+				
+			}
+				if(b_map.level=='Master/Post-Graduation' || b_map.level=='Graduation' || b_map.level=='Doctorate/PHD' || b_map.level=='Diploma'){
+					
+					l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+					l_html+='<div class="form-group newForm">'; 
+					l_html+='<label class="control-label label-extended">Education</label>';      
+					l_html+='<select name="education" class="c_education form-control extended" onchange="selectEducation()">';
+					
+					if(b_map.level=='Doctorate/PHD'){
+						l_html+='<option value="Doctorate/PHD" selected >Doctorate/PHD</option>';
+						l_html+='<option value="Master/Post-Graduation">Master/Post-Graduation</option>';
+						l_html+='<option value="Graduation">Graduation</option>';
+						l_html+='<option value="Diploma">Diploma</option>';
+					}
+					if(b_map.level=='Master/Post-Graduation'){
+						l_html+='<option value="Doctorate/PHD"  >Doctorate/PHD</option>';
+						l_html+='<option value="Master/Post-Graduation" selected >Master/Post-Graduation</option>';
+						l_html+='<option value="Graduation">Graduation</option>';
+						l_html+='<option value="Diploma">Diploma</option>';
+					}
+					
+					if(b_map.level=='Graduation'){
+						l_html+='<option value="Doctorate/PHD"  >Doctorate/PHD</option>';
+						l_html+='<option value="Master/Post-Graduation" >Master/Post-Graduation</option>';
+						l_html+='<option value="Graduation" selected >Graduation</option>';
+						l_html+='<option value="Diploma">Diploma</option>';
+					}
+					if(b_map.level=='Diploma'){
+						l_html+='<option value="Doctorate/PHD"  >Doctorate/PHD</option>';
+						l_html+='<option value="Master/Post-Graduation" >Master/Post-Graduation</option>';
+						l_html+='<option value="Graduation">Graduation</option>';
+						l_html+='<option value="Diploma" selected >Diploma</option>';
+					}
+				    l_html+='<option value="12th" >12th</option>';
+				    l_html+='<option value="10th" >10th</option>';
+					l_html+='</select>';
+					l_html+='</div>';
+					l_html+='</div>';
+					
+				
+					l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+					l_html+='<div class="form-group newForm">'; 
+					l_html+='<label class="control-label label-extended">Course</label>'; 
+					l_html+='<input name="educationType" valu="'+b_map.educationTypeId+'" class="c_education_type form-control extended" list="i_education_type" onfocusout="selectEducationType()" placeholder="Select Course">';
+					l_html+='<span id="i_no_education_type"></span>';
+					l_html+='<datalist id="i_education_type">';
+					l_html+='</datalist>';
+					l_html+='</div>';
+					l_html+='</div>';
+					l_html+='<div class="c_other_education_type col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>';
+					l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+					l_html+='<div class="form-group newForm">'; 
+					l_html+='<label class="control-label label-extended">Specialization/Branch</label>'; 
+					l_html+='<input name="educationBranch" value="'+b_map.branch+'" class="c_education_branch form-control extended" list="i_education_branch" onfocusout="selectEducationBranches()" placeholder="Select Specialization/Branch">';
+					l_html+='<span id="i_no_education_branch"></span>';
+					l_html+='<datalist id="i_education_branch" >';
+					l_html+='</datalist>';
+					l_html+='</div>';
+					l_html+='</div>';
+					l_html+='<div class="c_other_education_branch col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>';;
+					l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+					l_html+='<div class="form-group newForm">'; 
+					l_html+='<label class="control-label label-extended">University/Institute</label>'; 
+					l_html+='<input name="institute" value="'+b_map.instituteId+'" class="c_institute form-control extended" list="i_institute" onfocusout="selectInstitute()" placeholder="Select University/Institute">';
+					l_html+='<span id="i_no_institute"></span>';
+					l_html+='<datalist id="i_institute">';
+					l_html+='<option value="other">';
+					l_html+='</datalist>';
+					l_html+='</div>';
+					l_html+='</div>';
+					l_html+='<div class="c_other_institute col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>';
+					l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+					l_html+='<div class="form-group newForm">'; 
+					l_html+='<label class="control-label label-extended">Course Type</label>'; 
+					l_html+='<select name="courseType" class="c_courseType form-control extended">';
+					if(b_map.courseType=='Full Time')
+					l_html+='<option selected value="Full Time" >Full Time</option>';
+					else
+						l_html+='<option value="Full Time" >Full Time</option>';
+					if(b_map.courseType=='Part Time')
+						l_html+='<option selected value="Part Time">Part Time</option>';
+					else
+						l_html+='<option value="Part Time">Part Time</option>';
+					if(b_map.courseType=='Correspondence/Distance')
+					  l_html+='<option selected value="Correspondence/Distance">Correspondence/Distance</option>';
+					else
+						l_html+='<option value="Correspondence/Distance">Correspondence/Distance</option>';
+						
+					l_html+='</select>';
+					l_html+='</div>';
+					l_html+='</div>';
+					
+					l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+					l_html+='<div class="form-group newForm">'; 
+					l_html+='<label class="control-label label-extended">Pass Out Year</label>'; 
+					l_html+='<select name="passOutYear" class="c_passoutyear form-control extended">';
+					var today = new Date();
+				    var year = today.getFullYear();
+				    for(var i=year;i>=(year-50);i--){
+				    	if(parseInt(b_map.passOutYear)==i){
+				    		l_html+='<option selected value="'+i+'">'+i+'</option>';
+				    	}else{
+				    	     l_html+='<option value="'+i+'">'+i+'</option>';
+				    	}
+				    }
+				    l_html+='</select>';
+				    l_html+='</div>';
+				    l_html+='</div>';
+				    
+				 
+					l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+					l_html+='<div class="form-group newForm">'; 
+					l_html+='<label class="control-label label-extended">Start Date</label>'; 
+					l_html+='<input name="startDate" value="'+b_map.startDate+'" type="date" class="c_startDate form-control extended" placeholder="Enter Start Date">';
+					l_html+='</div>';
+					l_html+='</div>';
+					l_html+='</div>';
+					
+					l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+					l_html+='<div class="form-group newForm">'; 
+					l_html+='<label class="control-label label-extended">End Date</label>'; 
+					l_html+='<input name="endDate" value="'+b_map.endDate+'" type="date" class="c_endDate form-control extended" placeholder="Enter End Date">';
+					l_html+='</div>';
+					l_html+='</div>';
+					l_html+='</div>';
+				
+				}
+
+				    l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+					l_html+='<div class="form-group newForm">'; 
+					l_html+='<label class="control-label label-extended">Marks System</label>'; 
+					l_html+='<select name="marksSystem" class="c_marksSystem form-control extended" onchange="markSystem()">';
+                    if(b_map.isGradeOrPercentage=='PERCENTAGE')
+					l_html+='<option selected value="PERCENTAGE">Percentage(0 to 100)%</option>';
+                    else
+                    	l_html+='<option value="PERCENTAGE">Percentage(0 to 100)%</option>';
+                    if(b_map.isGradeOrPercentage=='SCALE10')
+					l_html+='<option selected value="SCALE10" >Scale 10 Grading(0.1 to 10)</option>';
+                    else
+                    	l_html+='<option value="SCALE10" >Scale 10 Grading(0.1 to 10)</option>';
+                    if(b_map.isGradeOrPercentage=='SCALE4')
+					l_html+='<option selected value="SCALE4">Scale 4 Grading(0.1 to 4</option>';
+                    else
+                    	l_html+='<option value="SCALE4">Scale 4 Grading(0.1 to 4</option>';
+                    if(b_map.isGradeOrPercentage=='SCALE4')
+					l_html+='<option selected value="PASS">Require Passing</option>';
+                    else
+                    	l_html+='<option value="PASS">Require Passing</option>';
+                    
+					l_html+='</select>';
+					l_html+='</div>';
+					l_html+='</div>';
+					l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
+					l_html+='<div class="c_marks form-group newForm">'; 
+					if(b_map.isGradeOrPercentage=='PERCENTAGE'){
+						l_html+='<input type="text" name="marks" value="'+b_map.gradePercentage+'" placeholder="Enter Percentage(0 to 100)%">';
+			    	   }
+			    	   if(b_map.isGradeOrPercentage=='SCALE10'){
+			    		   l_html+='<input type="text" name="marks" value="'+b_map.gradePercentage+'" placeholder="Enter Scale(0.1 to 10)">';
+			    	   }
+			    	   if(b_map.isGradeOrPercentage=='SCALE4'){
+			    		   l_html+='<input type="text" name="marks" value="'+b_map.gradePercentage+'" placeholder="Enter Scale(0.1 to 4)">';
+			    	   }
+			    	   if(b_map.isGradeOrPercentage =='PASS'){
+			    		   l_html+='<input type="text" name="marks" value="'+b_map.gradePercentage+'" placeholder="Enter Pass/Fail">';
+			    	   }
+					l_html+='</div>';
+					l_html+='</div>';
+				
+		        $('.c_form_area').html(l_html);
+		        $('#addqualification').modal('show');
+		        $('.c_education_id').val(p_education_id);
+		        if($('.c_education').val()=='10th' || $('.c_education').val()=='12th'){
+		        	loadBoards();
+		        	loadMediums();
+		        }
+		        if($('.c_education').val()=='Master/Post-Graduation' || $('.c_education').val()=='Graduation' || $('.c_education').val()=='Doctorate/PHD' || $('.c_education').val()=='Diploma'){
+		        	 loadEducationTypes();
+		        	 loadInstitutes();
+		        }
+		    	
+		}
 	}
+	
 }
 
-function saveQualification(p_form_id) {
+
+}
+
+function saveQualification(p_form_id) {debugger;
 	var l_form_data = {};
 	l_form_data = readForm(p_form_id);
-	alert(JSON.stringify(l_form_data));
-/*	ajaxWithJSON("/common/save-qualification-detail", l_map, 'POST', function(response) {
+	//alert(JSON.stringify(l_form_data));
+	ajaxWithJSON("/common/save-qualification-detail", l_form_data, 'POST', function(response) {
 		var l_data = response.object;
-		alert(JSON.stringify(response));
+		//alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
-
-			alert(JSON.stringify(l_data));
+			$('#addqualification').modal('hide');
+			toastr.success(response.message);
+			
 		}
 		if (response.status == 'ERROR') {
-			console.log(response.message);
+			$('.c_add_qualification_error').html(response.message);
+			setTimeout(function(){ $('.c_add_qualification_error').html(''); }, 3000);
+			
 		}
-	});*/
+	});
 
 }
+var g_qualifications = [];
 function loadQualificationData() {
-	alert("/tutor-qualifications");
+	//alert("/tutor-qualifications");
 	var l_map = g_data;
-	ajaxWithJSON("/tutor-qualifications", l_map, 'POST', function(response) {
+	ajaxWithJSON("/common/load-user-qualifications", l_map, 'POST', function(response) {
 		var l_data = response.object;
-		alert(JSON.stringify(response));
+		
+		//alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
-
-			alert(JSON.stringify(l_data));
+			g_qualifications = l_data;
+             var l_html = "";
+             l_html+='<div class="card-body card-body-padding-pro pro-height-s" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
+             l_html+='<div class="row">'; 
+             for(var i=0;i<l_data.length;i++){
+            	 var b_map = l_data[i];
+             l_html+='<div class="col-lg-12">';
+             l_html+='<div class="row">';
+             l_html+='<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2"> <span class="certificate-icon"><span style="font-size:15px;font-weight: 600;">'+b_map.level+'</span></span>';
+             l_html+=' </div>';
+             l_html+='<div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 m-t-2 onhover">';
+             l_html+='<div class="row">';
+             l_html+='<div class="col-lg-12 p-l-0">';
+             l_html+='<div class="row">';
+             l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 p-l-r-0">';
+             if(b_map.level=='10th' || b_map.level=='12th')
+                 l_html+='<span class="pro-text" style="font-weight:600;">'+b_map.level+'</span>';
+             else{
+            	 l_html+='<span class="pro-text" style="font-weight:600;">'+b_map.educationTypeId+'</span>';
+             }
+             l_html+='</div>'; 
+             l_html+='<button type="button"  class="tool-edit" onclick="loadEditQualification(\'EDIT\',\''+b_map.educationId+'\')"> <i class="fa fa-pencil icon"></i></button>'; 
+             l_html+='<div class="col-lg-12 p-l-r-0">';
+             l_html+='<span class="pro-small-text "> '+b_map.passOutYear+' </span>';      
+             l_html+='</div>';
+             l_html+='<div class="col-lg-12 p-l-r-0">';
+             if(b_map.level=='10th' || b_map.level=='12th')
+                l_html+='<span class="pro-small-text "> '+b_map.universityBoard+' </span> ';
+             else
+            	 l_html+='<span class="pro-small-text "> '+b_map.instituteId+' </span> ';
+             
+                  
+             l_html+='</div>';
+             l_html+='</div>';
+             l_html+='</div> ';  
+             l_html+='</div> ';      
+             l_html+='</div>';
+             l_html+='<div class="col-lg-12"><hr class="hr-profile"></div>';
+             l_html+='</div>';
+             l_html+='</div>';
+             }	
+					
+             l_html+='</div>';
+             l_html+='</div>';
+			$('#i_qualification').replaceWith(l_html);
 		}
 		if (response.status == 'ERROR') {
 			console.log(response.message);
@@ -579,65 +879,92 @@ function loadQualificationData() {
 	});
 }
 
-function addCertificate() {
-	var l_html = "";
-
-	l_html += '<div class="card-body card-body-padding-pro pro-height-s" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
-	l_html += '<div class="row">';
-	l_html += '<div class="col-lg-12"  style="margin-top:30px;">';
-	l_html += '<form class="form" id="i_certificate_form">';
-	l_html += '<div class="row">';
-	l_html += '<div class="col-lg-12">';
-	l_html += '<div class="form-group form-expanded">';
-	l_html += '<label class="control-label label-extended">Certificate Name</label>';
-	l_html += '<input type="text" name="certificateName" id="email1" class="form-control extended" placeholder="Enter Institute Name">';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '<div class="col-lg-12">';
-	l_html += '<div class="form-group form-expanded">';
-	l_html += '<label class="control-label label-extended">Certificate Authority</label>';
-	l_html += '<input name="certificationAuthority" value="" type="text" class="form-control date-picker extended date" placeholder=" " id="dob">';
-	l_html += '<i class="fa fa-calendar icon-calender"></i>';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '<div class="col-lg-12">';
-	l_html += '<div class="form-group form-expanded">';
-	l_html += '<label class="control-label label-extended">Certificate Date</label> ';
-	l_html += '<input name="certificationDate"  type="text" class="form-control date-picker extended date" placeholder=" " id="dob">';
-	l_html += '<i class="fa fa-calendar icon-calender"></i>';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '<div class="col-lg-12">';
-	l_html += '<div class="form-group form-expanded">';
-	l_html += '<label class="control-label label-extended">Certificate Number</label> ';
-	l_html += '<input type="text" name="certificationNumber" id="email1" class="form-control extended" placeholder="Enter Institute Name">';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '<div class="col-lg-12">';
-	l_html += '<button type="button" class="btn btn-primary" style="float:right;" onclick=saveCertificate(\'i_certificate_form\')>Save</button>';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '</form>';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '</div>';
-	$("#i_certificate").replaceWith(l_html);
+function loadEditCertificate(p_flage,p_certificate_id){
+	
+	if (p_flage == 'NEW'){
+		$('#addcertificates').modal('show');
+	}
+	if (p_flage == 'EDIT') {
+		for(var i=0;i<g_certificate_data.length;i++){
+			var b_map = g_certificate_data[i];
+			if(p_certificate_id==b_map.userCertificationsId){
+				$('.c_certification_id').val(p_certificate_id);
+				$('.c_certificationName').val(b_map.certificationName);
+				$('.certificationAuthority').val(b_map.certificationAuthority);
+				$('.c_certificationNumber').val(b_map.certificationNumber );
+			}
+	}
+		$('#addcertificates').modal('show');
 }
+}
+
 function saveCertificate(p_form_id) {
 	var l_form_data = {};
-	l_form_data = readForm(p_form_id);
-	alert(JSON.stringify(l_form_data));
+	l_form_data = readFormWithId(p_form_id);
+	//alert(JSON.stringify(l_form_data));
+	ajaxWithJSON("/common/save-certificate-detail", l_form_data, 'POST', function(response) {
+		if (response.status == 'SUCCESS') {
+			$('#addcertificates').modal('hide');
+			toastr.success(response.message);
+			
+
+		}
+		if (response.status == 'ERROR') {
+			$('.c_certificate_error').html(response.message);
+			setTimeout(function(){ $('.c_certificate_error').html(''); }, 3000);
+			toastr.error(response.message);
+
+		}
+
+	});
 
 }
+var g_certificate_data = [];
 function loadCertificationData() {
-	alert("/tutor-certification");
+	//alert("/tutor-certification");
 	var l_map = g_data;
-	ajaxWithJSON("/tutor-certification", l_map, 'POST', function(response) {
+	ajaxWithJSON("/common/load-user-certifications", l_map, 'POST', function(response) {
 		var l_data = response.object;
-		alert(JSON.stringify(response));
+		//alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
-
-			alert(JSON.stringify(l_data));
+			g_certificate_data = l_data;
+            var l_html = '';
+            l_html+='<div class="card-body card-body-padding-pro pro-height-sm2" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
+            l_html+='<div class="row">';
+            for(var i=0;i<l_data.length;i++){
+            	var b_map = l_data[i];
+            	l_html+='<div class="col-lg-12">';
+            	l_html+='<div class="row">';
+            	l_html+='<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">';
+            	l_html+='<img src="resources/img/ico/ico1.png" alt="certificate-icon">'; 
+            	l_html+='</div>';
+            	l_html+='<div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 m-t-2 onhover">';
+            	l_html+='<div class="row">';
+            	l_html+='<div class="col-lg-12">'; 
+            	l_html+='<span class="pro-text">'+b_map.certificationName+'</span><button type="button"  class="tool-edit" onclick="loadEditCertificate(\'EDIT\',\''+b_map.userCertificationsId+'\')"> <i class="fa fa-pencil icon"></i></button></div>';
+            	l_html+='<div class="col-lg-12">';
+            	l_html+='<div class="row">';
+            	l_html+='<div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5"> <span class="pro-heading"> Authority <span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+            	l_html+='</div>';
+            	l_html+='<div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-7 m-t-2"> <span class="pro-heading"> '+b_map.certificationAuthority+'</span></div>';
+            	l_html+='</div>';
+            	l_html+='</div>';
+            	l_html+='<div class="col-lg-12">';
+            	l_html+='<div class="row">';
+            	l_html+='<div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5"> <span class="pro-heading"> Certification Number/ID <span style="color:black;float:right;font-weight: bold;">:</span> </span>';
+            	l_html+='</div>';
+            	l_html+='<div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-7 m-t-2"> <span class="pro-heading">'+b_map.certificationNumber+'</span></div>';
+            	l_html+='</div>';
+                l_html+='</div>';
+                l_html+='</div>';
+                l_html+='</div>';
+                l_html+='<div class="col-lg-12"><hr class="hr-profile"></div>';
+			    l_html+='</div>';
+                l_html+='</div>';
+            }
+            l_html+='</div>';
+            l_html+='</div>'; 
+            $('#i_certificate').replaceWith(l_html);
 		}
 		if (response.status == 'ERROR') {
 			console.log(response.message);
@@ -645,71 +972,96 @@ function loadCertificationData() {
 	});
 }
 
-function addProfessional() {
-	var l_html = "";
 
-	l_html += '<div class="card-body card-body-padding-pro pro-height-s" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
-	l_html += '<div class="row">';
-	l_html += '<div class="col-lg-12"  style="margin-top:30px;">';
-	l_html += '<form class="form" id="i_professional_form">';
-	l_html += '<div class="row">';
-	l_html += '<div class="col-lg-12">';
-	l_html += '<div class="form-group form-expanded">';
-	l_html += '<label class="control-label label-extended">Job Title</label>';
-	l_html += '<input type="text" name="occupation" class="form-control extended">';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '<div class="col-lg-12">';
-	l_html += '<div class="form-group form-expanded">';
-	l_html += '<label class="control-label label-extended">Occupation</label>';
-	l_html += '<input type="text" name="occupation" class="form-control extended">';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '<div class="col-lg-12">';
-	l_html += '<div class="form-group form-expanded">';
-	l_html += '<label class="control-label label-extended">Organization</label>';
-	l_html += '<input type="text" name="organization" class="form-control extended">';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '<div class="col-lg-12">';
-	l_html += '<div class="form-group form-expanded">';
-	l_html += '<label class="control-label label-extended">Start Date</label>';
-	l_html += '<input type="text" name="startDate" class="form-control extended">';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '<div class="col-lg-12">';
-	l_html += '<div class="form-group form-expanded">';
-	l_html += '<label class="control-label label-extended">End Date</label>';
-	l_html += '<input type="text" name="endDate" class="form-control extended">';
-	l_html += 'Is Current <input type="checkbox" name="endDate" class="form-control extended">';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '<div class="col-lg-12">';
-	l_html += '<button type="button" class="btn btn-primary" style="float:right;" onclick=saveProfessional(\'i_professional_form\')>Save</button>';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '</form>';
-	l_html += '</div>';
-	l_html += '</div>';
-	l_html += '</div>';
-	$("#i_professional").replaceWith(l_html);
+function loadEditProfessional(p_flage,p_professional_id){
+	
+	if (p_flage == 'NEW'){
+		$('#addprofessional').modal('show');
+	}
+	if (p_flage == 'EDIT') {
+		for(var i=0;i<g_professional_data.length;i++){
+			var b_map = g_professional_data[i];
+			if(p_professional_id==b_map.userProfessionalDetailId){
+				$('.c_professional_id').val(p_professional_id);
+				$('.c_jobTitle').val(b_map.jobTitle);
+				$('.c_occupation').val(b_map.occupation);
+				$('.c_organization').val(b_map.organization );
+				$('.c_startDate').val(b_map.startDate);
+				$('.c_endDate').val(b_map.endDate);
+				if(b_map.currentWorking)
+				   $('#i_currently').prop('checked', true);
+			}
+	}
+		$('#addprofessional').modal('show');
 }
-
+}
 function saveProfessional(p_form_id) {
 	var l_form_data = {};
-	l_form_data = readForm(p_form_id);
-	alert(JSON.stringify(l_form_data));
-
-}
-function loadProfessionalData() {
-	alert("/tutor-professional");
-	var l_map = g_data;
-	ajaxWithJSON("/tutor-professional", l_map, 'POST', function(response) {
-		var l_data = response.object;
-		alert(JSON.stringify(response));
+	l_form_data = readFormWithId(p_form_id);
+	//alert(JSON.stringify(l_form_data));
+	ajaxWithJSON("/common/save-professional-detail", l_form_data, 'POST', function(response) {
 		if (response.status == 'SUCCESS') {
+			$('#addprofessional').modal('hide');
+			toastr.success(response.message);
+			
 
-			alert(JSON.stringify(l_data));
+		}
+		if (response.status == 'ERROR') {
+			$('.c_professional_error').html(response.message);
+			setTimeout(function(){ $('.c_professional_error').html(''); }, 3000);
+			toastr.error(response.message);
+
+		}
+
+	});
+}
+var g_professional_data = [];
+function loadProfessionalData() {
+	//alert("/tutor-professional");
+	var l_map = g_data;
+	ajaxWithJSON("/common/load-user-professional-detail", l_map, 'POST', function(response) {
+		var l_data = response.object;
+		//alert(JSON.stringify(response));
+		if (response.status == 'SUCCESS') {
+			g_professional_data = l_data;
+            var l_html = '';
+            l_html+='<div class="card-body card-body-padding-pro pro-height-s" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
+            l_html+='<div class="row">';
+            for(var i=0;i<l_data.length;i++){
+            	var b_map = l_data[i];
+            
+            l_html+='<div class="col-lg-12">';
+            l_html+='<div class="row">';
+            l_html+='<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2"> <span class="certificate-icon"><span style="font-size:15px;font-weight: 600;">'+b_map.jobTitle+'</span></span>';
+            l_html+='</div>';
+            l_html+='<div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 m-t-2 onhover">';
+            l_html+='<div class="row">';
+            l_html+='<div class="col-lg-12 p-l-0">';
+            l_html+='<div class="row">';
+            l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 p-l-r-0">';
+            l_html+='<span class="pro-text" style="font-weight:600;">'+b_map.occupation+'</span>';
+            l_html+='</div>';
+								  
+            l_html+='<button type="button"  class="tool-edit" onclick="loadEditProfessional(\'EDIT\',\''+b_map.userProfessionalDetailId+'\')"> <i class="fa fa-pencil icon"></i></button>';
+								 
+            l_html+='<div class="col-lg-12 p-l-r-0">';
+            l_html+='<span class="pro-small-text ">Session:  '+b_map.startDate+'- '+b_map.endDate+' </span> ';     
+            l_html+='</div>';
+            l_html+='<div class="col-lg-12 p-l-r-0">';
+            l_html+='<span class="pro-small-text ">Organization: '+b_map.organization+'</span>';      
+            l_html+='</div>';
+            l_html+='</div>';
+            l_html+='</div>';   
+            l_html+='</div> ';      
+            l_html+='</div>';
+            l_html+='<div class="col-lg-12"><hr class="hr-profile"></div>';
+            l_html+='</div>';
+            l_html+='</div>';  
+            }		 
+					 
+            l_html+='</div>';
+            l_html+='</div>';
+            $('#i_professional').replaceWith(l_html);
 		}
 		if (response.status == 'ERROR') {
 			console.log(response.message);
@@ -725,29 +1077,41 @@ function loadBatchData() {
 		var l_data = response.object;
 		alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
-
-			alert(JSON.stringify(l_data));
+            var l_html = '';
+            l_html+='<div class="card-body card-body-padding-pro pro-height-sm" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
+            l_html+='<div class="row">';
+            for(var i=0;i<l_data.length;i++){
+            	var b_map = l_data[i];
+            l_html+='<div class="col-lg-12">';
+            l_html+='<div class="row">';
+            l_html+='<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1"> ';
+            l_html+='<img src="resources/img/ico/ico2.png" alt="batches-icon">';
+            l_html+='</div>';
+            l_html+='<div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-xs-11 m-t-2">';
+            l_html+='<div class="row">';
+            l_html+='<div class="col-lg-12"> <span class="pro-text">'+b_map.batchName+'</span></div>'; 
+            l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-2">'; 
+            l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Batch Mode : '+b_map.batchMode+'</span>';
+            l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Fees : &#x20B9;  '+b_map.feeAmount+'</span>';
+            l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Status : '+b_map.status+'</span>';
+            l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Timing : '+ b_map.batchStartTime + b_map.batchStartTimeAMPM+ '-' + b_map.batchEndTime+ b_map.batchEndTimeAMPM+'</span>'; 
+            l_html+='</div>';    
+            l_html+='</div>';
+            l_html+='</div>';
+            l_html+='<div class="col-lg-12"><hr class="hr-profile"></div>';
+            l_html+='</div>';
+            l_html+='</div>';
+            }
+            l_html+='</div>';
+            l_html+='</div>';
+            $('#i_batches').replaceWith(l_html);
 		}
 		if (response.status == 'ERROR') {
 			console.log(response.message);
 		}
 	});
 }
-function loadSpecializationData() {
-	alert("/tutor-specialization");
-	var l_map = g_data;
-	ajaxWithJSON("/tutor-specialization", l_map, 'POST', function(response) {
-		var l_data = response.object;
-		alert(JSON.stringify(response));
-		if (response.status == 'SUCCESS') {
 
-			alert(JSON.stringify(l_data));
-		}
-		if (response.status == 'ERROR') {
-			console.log(response.message);
-		}
-	});
-}
 /*
  * $(document).ready(function(){ $(".gradeClass").hide();
  * $(".percentClass").hide(); $(".loading").hide();
@@ -1559,12 +1923,7 @@ function selectEducation(){
 		l_html+='</div>';
 		l_html+='</div>';
 		l_html+='</div>';
-/*		l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
-		l_html+='<div class="form-group newForm">'; 
-		l_html+='<label class="control-label label-extended">Percentage</label>';
-		l_html+='<input type="text" name="percentage"  class="c_percentage float form-control extended" placeholder="ex. 90" maxlength="5" onkeypress="return isFloatValue(event)">';
-		l_html+='</div>';
-		l_html+='</div>';*/
+
 		
 	}
 		if($('.c_education').val()=='Master/Post-Graduation' || $('.c_education').val()=='Graduation' || $('.c_education').val()=='Doctorate/PHD' || $('.c_education').val()=='Diploma'){
@@ -1683,7 +2042,7 @@ function selectEducation(){
 		    l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
 			l_html+='<div class="form-group newForm">'; 
 			l_html+='<label class="control-label label-extended">Marks System</label>'; 
-			l_html+='<select name="marksSystem" class="c_marksSystem form-control extended" onchange="marksSystem()">';
+			l_html+='<select name="marksSystem" class="c_marksSystem form-control extended" onchange="markSystem()">';
 			l_html+='<option value="">Select Marks</option>';
 			l_html+='<option value="PERCENTAGE">Percentage(0 to 100)%</option>';
 			l_html+='<option value="SCALE10" >Scale 10 Grading(0.1 to 10)</option>';
@@ -1709,17 +2068,9 @@ function selectEducation(){
     	
         
 	}
-/*		function selectCourse(){
-			if($('.c_course').val()=='other'){
-				$('.c_other_course').html('<input type="text" name="otherCourse" placeholder="Enter Course">');
-			}else{
-			$('.c_other_course').html('');
-			}
-			$('.c_other_course').html('<input type="text" name="otherCourse" placeholder="Enter Course">');
-		}
-		*/
 
-       function marksSystem(){debugger;
+       function markSystem(){debugger;
+       
     	   if($('.c_marksSystem').val()=='PERCENTAGE'){
     		   $('.c_marks').html('<input type="text" name="marks" placeholder="Enter Percentage(0 to 100)%">');
     	   }
@@ -1781,8 +2132,9 @@ function selectEducation(){
 				}
                });
 			}else{
+				var l_html = '';
 				for(var i=0;i<g_boards.length;i++){
-					var l_map = l_data[i];
+					var l_map = g_boards[i];
 					l_html+='<option value="'+l_map.boardShortName+'">';
 				}
 				l_html+='<option value="Other">';
@@ -1812,7 +2164,7 @@ function selectEducation(){
 		}
 		var g_mediums = [];
 		function loadMediums(){
-			if(g_boards.length==0){
+			if(g_mediums.length==0){
 			ajaxWithJSON("/load-mediums", null, 'GET',function(response) {
 				var l_data = response.object;
 				var l_html = '';
@@ -1832,8 +2184,9 @@ function selectEducation(){
 				}
                });
 			}else{
+				var l_html = '';
 				for(var i=0;i<g_mediums.length;i++){
-					var l_map = l_data[i];
+					var l_map = g_mediums[i];
 					l_html+='<option value="'+l_map.mediumName+'">';
 				}
 				l_html+='<option value="Other">';
@@ -1874,7 +2227,11 @@ function selectEducation(){
 		var g_education_types = [];
 		function loadEducationTypes(){
 			if(g_education_types.length==0){
-			ajaxWithJSON("/load-education-type", null, 'GET',function(response) {
+				var l_map = {};
+				    l_map.level = $('.c_education').val();
+				    l_map.all = false;
+				    
+			ajaxWithJSON("/common/load-education-type", l_map, 'POST',function(response) {
 				var l_data = response.object;
 				var l_html = '';
 		       // alert(JSON.stringify(response));
@@ -1895,7 +2252,7 @@ function selectEducation(){
               });
 			}else{
 				for(var i=0;i<g_education_types.length;i++){
-					var l_map = l_data[i];
+					var l_map = g_education_types[i];
 					l_html+='<option value="'+l_map.educationShortName+'">';
 				}
 				l_html+='<option value="Other">';
@@ -1914,7 +2271,7 @@ function selectEducation(){
 			 }
 			  
 			ajaxWithJSON("/common/load-education-type-branch", l_map, 'POST',function(response) {
-		        alert(JSON.stringify(response));
+		        //alert(JSON.stringify(response));
 		        var l_data = response.object;
 				var l_html = '';
 		       // alert(JSON.stringify(response));
@@ -2009,18 +2366,19 @@ function selectEducation(){
 					}
 	               });
 				}else{
+					var l_html = '';
 					for(var i=0;i<g_institutes.length;i++){
 						var l_map = g_institutes[i];
 						l_html+='<option value="'+l_map.instituteName+'">';
 					}
 					l_html+='<option value="Other">';
-					$('#i_institute').html('');
 					$('#i_institute').html(l_html);
 				}
 				
 			
 			
 		}
+
 /*	    $( ".tags" ).autocomplete({
 	        source: branchList,
 	        select: function (event, ui) {

@@ -68,7 +68,7 @@ function ajaxWithJSON(p_url, p_data, p_method_type, callback) {
 			console.log("jqXHR = "+JSON.stringify(jqXHR)+" , textStatus = "+textStatus+" , errorThrown = "+errorThrown);
 			var response = {};
 			response.status = "ERROR";
-			response.message = "there is some thechnical problem. Try again.";
+			response.message = "there is some technical problem. Try again.";
 			callback(response);
 
 		}

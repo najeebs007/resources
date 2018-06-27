@@ -1736,7 +1736,78 @@ function checkIndividual(p_id, p_index) {
 	}
 
 }
-	
+ 
+function bulkCandidateActions(p_action_type) { 
+ 
+	debugger;
+
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
+	var l_map = {};
+	var l_final_map = {};
+	if (indexes_checked.length == 0) {
+		toastr.error('There is no record select to action.');
+		return false;
+	}
+	if (confirm("Are you sure for this action ?")) {
+		for (var i = 0; i < indexes_checked.length; i++) {
+			var element = indexes_checked[i];
+			if (p_action_type == 'EMAIL' || p_action_type == 'SMS') {
+				var l_map_row = {};
+
+				l_map_row.candidateId = $('#candidate_id' + element).val();
+				l_map_row.name = $('#candidate_name' + element).val();
+				l_map_row.mobile = $('#candidate_mobile' + element).val();
+				l_map_row.pin = $('#candidate_pin' + element).val();
+				l_map_row.password = $('#candidate_password' + element).val();
+				l_map['key' + i] = l_map_row;
+				l_map_row = {};
+			} else {
+
+				l_map['key' + i] = $('#candidate_id' + element).val();
+			}
+		}
+
+		l_final_map.actionType = p_action_type;
+		l_final_map.packageId = $('#i_g_package_id').val();
+		l_final_map.examId = $('#i_g_exam_id').val();
+		l_final_map.examName = $('#i_exam_name').val();
+		l_final_map.inputs = l_map;
+
+		alert(JSON.stringify(l_final_map));
+		$(".loading").show();
+		$
+				.ajax({
+					url : '/common/bulk-actions',
+					cache : false,
+					async : true,
+					contentType : "application/json; charset=UTF-8",
+					dataType : 'json',
+					data : JSON.stringify(l_final_map),
+					type : 'POST',
+					success : function(response) {
+						debugger;
+						if (response.status == "SUCCESS") {
+							toastr.success(response.message);
+							location.reload();
+							$(".loading").hide();
+						}
+						if (response.status == "ERROR") {
+							$(".loading").hide();
+							toastr.error(response.message);
+						}
+					},
+					error : function(err) {
+						$(".loading").hide();
+						toastr
+								.error("we did not find proper input . Try again later!");
+					}
+				});
+	}
+}
+ 
 function SameGeneratePinAndPassword(p_action_type) {
 	debugger;
 
@@ -1797,24 +1868,25 @@ function SameGeneratePinAndPassword(p_action_type) {
 					type : 'POST',
 					success : function(response) {
 						debugger;
-						if (response.status == "SUCCESS") {
+						if (response.status == "SUCCESS"){
 							toastr.success(response.message);
 							location.reload();
 							$(".loading").hide();
 						}
-						if (response.status == "ERROR") {
+						if (response.status == "ERROR"){
 							$(".loading").hide();
 							toastr.error(response.message);
 						}
 					},
-					error : function(err) {
+					error : function(err){
 						$(".loading").hide();
 						toastr
-								.error("we did not find proper input . Try again later!");
+						.error("we did not find proper input . Try again later!");
 					}
 				});
 	}
 }
+ 
 /*function callPagination(p_no_of_pages) {
 	debugger;
     window.pagObj = $('#pagination').twbsPagination({
@@ -1830,3 +1902,4 @@ function SameGeneratePinAndPassword(p_action_type) {
   
 });
 }*/
+ 

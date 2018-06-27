@@ -29,7 +29,7 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
 function initializeLatLong(){debugger;
-
+    
     geocoder = new google.maps.Geocoder();
     var address = document.getElementById("address-map").value;
     geocoder.geocode( { 'address': address}, function(results, status) {
@@ -37,10 +37,12 @@ function initializeLatLong(){debugger;
     	  latitude = results[0].geometry.location.lat();
     	  longitude = results[0].geometry.location.lng();
     	  //alert(latitude+"------"+longitude);
+    	  return true;
      }
       else {
        // alert("Geocode was not successful for the following reason: " + status);
         toastr.error("Geocode was not successful for the following reason: " + status);
+        return false;
       }
     });
 }
