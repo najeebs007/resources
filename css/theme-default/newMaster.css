@@ -132,6 +132,28 @@
 	border: 0;
 	visibility:hidden;
 } 
+.tool-edit-main
+{
+	font-size: 0.875rem;
+    font-weight: 700;
+     background-image: -moz-linear-gradient( 43deg, rgb(90,210,242) 0%, rgb(86,98,255) 100%);
+   background-image: -webkit-linear-gradient( 43deg, rgb(90,210,242) 0%, rgb(86,98,255) 100%);
+   background-image: -ms-linear-gradient( 43deg, rgb(90,210,242) 0%, rgb(86,98,255) 100%);
+   box-shadow: 0px 2px 16px 0px rgba(73, 86, 239, 0.25);
+    color: #fff;
+    height: 24px;
+    line-height: 1;
+    min-width: 24px;
+    border-radius: 84%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+	margin:0px 2px;
+	 float:right;
+	cursor:pointer;
+	border: 0;
+} 
 .tool-plus {
 	font-size: 0.875rem;
     font-weight: 700;
@@ -179,6 +201,7 @@
 }
 .m-t-minus-5{margin-top:-5px;}
 .m-t-minus-8{margin-top:-8px;}
+.m-t-minus-5{margin-top:-5px;}
 .m-t-minus-10{margin-top:-10px;}
 .m-t-minus-24{margin-top:-24px;}
 .geneder-margin{margin-top: -24px;}
@@ -468,7 +491,11 @@ padding: 0px 10px !important;}
 }
 .m-t-25{margin-top:25px;}
 .m-t-10{margin-top:10px;}
- 
+.m-t-15{margin-top:15px;}
+.m-t-20{margin-top:20px;}
+.m-t-30{margin-top:30px;}
+.m-t-40{margin-top:40px;}
+.m-t-50{margin-top:50px;} 
 .left-rec{
   background-color: rgb(255, 45, 45);
       display: block;
@@ -606,7 +633,7 @@ margin-left:10px;
 .list-text
 {
 	color:#848484;
-	font-size:12px;
+	font-size:11px;
 	margin-left:15px;
 }
 .bold{font-size:12px;color:black;font-weight:normal !important;}
@@ -773,7 +800,48 @@ margin-left:10px;
 .reject{color:#ed1c24;font-size: 15px;    margin: 0; margin-top: 5px;}
 .accept{color:#3cb878;font-size: 15px;    margin: 0; margin-top: 5px;}
 .suggest{color:#4c84ff;font-size: 15px;    margin: 0; margin-top: 5px;}
- @media screen and (max-width: 767px){ 
+
+/***** Reviews and rating *****/
+.rating-pic-small
+{
+	width:50px;
+	height:50px;
+}
+.rating-text-normal
+{
+	font-size:15px;
+    font-weight:500;
+}
+.rating-text
+{
+	font-size:13px;
+    color:gray;
+}
+.card-body-padding-rating{padding:15px 20px !important;}
+.ratingHr
+{
+	margin-top: 12px;
+    margin-bottom: 8px;
+    margin-left: -12px;
+    margin-right: -12px;
+}
+.margin-rating-bar{margin-top:105px;}
+.rating-top{top: 44% !important;}
+.rating-row-customize{width: 6%;
+    padding-right: 0px;}
+ @media screen and (max-width: 767px){
+	 .top-header-author {
+    position: absolute;
+    left: 40% !important;
+    text-align: left !important;
+    color: white !important;
+    top:30% !important;
+}
+.pro-left-padding-right{padding-right:12px !important;}
+.pro-right-padding-left{padding-left:12px !important;}
+.margin-rating-bar{margin-top:15px;}
+.rating-row-customize{width:unset;
+    padding-right:unset;}
 }
 /*media 767 End Here ****/
 /*media for ipad only****/
@@ -788,6 +856,17 @@ margin-left:10px;
     background: #f4f5f5;
     text-align: center;
 }
+.top-header-author {
+    position: absolute;
+    left: 38% !important;
+    text-align: left !important;
+    color: white !important;
+    top: 30% !important;
+}
+.body-b .onmobile{padding: 55px !important;}
+.rating-row-customize{width:unset;
+    padding-right:unset;}
+}
 }
 /*media for ipad Pro only****/
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1200px) {
@@ -801,6 +880,54 @@ margin-left:10px;
     background: #f4f5f5;
     text-align: center;
 }
- 	
+.body-blank {
+    background-color: rgb(245, 244, 244);
+    padding: 70px 10px;
+    text-align: center;
 }
+ .rating-row-customize{width:unset;
+    padding-right:unset;}	
+}
+/**** Rating bars css*/
+/* Three column layout */
+.side {
+    float: left;
+    width: 15%;
+    margin-top:10px;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+.middle {
+    margin-top:18px;
+    float: left;
+    width: 70%;
+	margin-bottom: 10px;
+}
+
+/* Place text to the right */
+.right {
+    text-align: right;
+}
+
+/* Clear floats after the columns */
  
+/* The bar container */
+.bar-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+}
+
+/* Individual bars */
+.bar {height: 8px; background-color: #ffb400;} 
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+    .side, .middle {
+        width: 100%;
+    }
+    .right {
+        display: none;
+    }
+}

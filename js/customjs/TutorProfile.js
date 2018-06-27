@@ -206,13 +206,13 @@ function loadIntroData() {
 						l_intro_data = l_map;
 
 						var l_html = "";
-						l_html += "<div class='card-body card-body-padding-pro pro-height' id='style-8' style='overflow-y:auto;margin-bottom:15px;' id='i_intro_data'>";
+						l_html += "<div class='card-body card-body-padding-pro pro-height' id='style-8' style='overflow-y:auto;margin-bottom:10px;' id='i_intro_data'>";
 						l_html += "<div class='row'>";
 						l_html += "<div id='intoArea'>";
-						l_html += "<div class='col-lg-12'>";
+						l_html += "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>";
 						l_html += "<div class='row'>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'> Date of Birth <span style='color:black;float:right;font-weight: bold;'>:</span> </span></div>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'> Date of Birth <span style='color:black;float:right;font-weight: bold;'>:</span> </span></div>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
 						if (l_map.dateOfBirth == null
 								|| l_map.dateOfBirth == undefined
 								|| l_map.dateOfBirth == '') {
@@ -224,19 +224,19 @@ function loadIntroData() {
 						}
 						l_html += "</div></div>";
 						l_html += "</div>";
-						l_html += "<div class='col-lg-12'>";
+						l_html += "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>";
 						l_html += "<div class='row'>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'> Mother Tongue <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'> Mother Tongue <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'> <span class='pro-text'>"
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'> <span class='pro-text'>"
 								+ l_map.motherTongue + "</span></div>";
 						l_html += "</div>";
 						l_html += "</div>";
-						l_html += "<div class='col-lg-12'>";
+						l_html += "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>";
 						l_html += "<div class='row'>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'> Total Experience <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'> Total Experience <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
 						if (l_map.totalExperience == null
 								|| l_map.totalExperience == undefined
 								|| l_map.totalExperience == '')
@@ -247,11 +247,11 @@ function loadIntroData() {
 						l_html += "</div>";
 						l_html += "</div>";
 						l_html += "</div>";
-						l_html += "<div class='col-lg-12'>";
+						l_html += "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>";
 						l_html += "<div class='row'>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'> MS Office Knowledge <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'> MS Office Knowledge <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
 						if (l_map.msOfficeKnowlege == null
 								|| l_map.msOfficeKnowlege == undefined)
 							l_html += "<span class='pro-text'></span>";
@@ -260,11 +260,11 @@ function loadIntroData() {
 						l_html += "</div>";
 						l_html += "</div>";
 						l_html += "</div>";
-						l_html += "<div class='col-lg-12'>";
+						l_html += "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>";
 						l_html += "<div class='row'>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'>Specialities <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'>Specialities <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'> ";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'> ";
 						if (l_map.specialities == null
 								|| l_map.specialities == undefined
 								|| l_map.specialities == '')
@@ -277,11 +277,11 @@ function loadIntroData() {
 						l_html += "</div>";
 						l_html += "</div>";
 						l_html += "</div>";
-						l_html += "<div class='col-lg-12'>";
+						l_html += "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>";
 						l_html += "<div class='row'>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'> Demo Class Available <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'> Demo Class Available <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
 						if (l_map.demoClassAvailable == null
 								|| l_map.demoClassAvailable == undefined
 								|| l_map.demoClassAvailable == '')
@@ -291,11 +291,11 @@ function loadIntroData() {
 						l_html += "</div>";
 						l_html += "</div>";
 						l_html += "</div>";
-						l_html += "<div class='col-lg-1'>";
+						l_html += "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>";
 						l_html += "<div class='row'>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'>Have Digital Pen<span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'>Have Digital Pen<span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
 						if (l_map.haveDigitalPen == null
 								|| l_map.haveDigitalPen == undefined
 								|| l_map.haveDigitalPen == '')
@@ -303,12 +303,12 @@ function loadIntroData() {
 						if (l_map.haveDigitalPen == true)
 							l_html += "<span class='pro-text'>Yes</span>";
 						l_html += "</div>";
-						l_html += "</div>";
-						l_html += "<div class='col-lg-12'>";
+						l_html += "</div></div>";
+						l_html += "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>";
 						l_html += "<div class='row'>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6'> <span class='pro-heading'> Status <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'> Status <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
-						l_html += "<div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 m-t-2'>";
+						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
 						if (l_map.status == null || l_map.status == undefined
 								|| l_map.status == '')
 							l_html += "<span class='pro-text'></span>";
@@ -324,7 +324,7 @@ function loadIntroData() {
 
 						$("#i_add_intro_click")
 								.replaceWith(
-										"<button id='i_edit_intro_click' type='button'  class='tool-edit-main m-l-25' data-toggle='modal' data-target='#addIntro' onclick='loadEditIntro(\"EDIT\")'> <i class='fa fa-pencil icon'></i></button>");
+										"<button id='i_edit_intro_click' type='button'  class='tool-edit-main' data-toggle='modal' data-target='#addIntro' onclick='loadEditIntro(\"EDIT\")'> <i class='fa fa-pencil icon'></i></button>");
 					}
 					// alert(JSON.stringify(l_data));
 				}
@@ -475,11 +475,11 @@ function loadContactData() { debugger;
 					g_contact_data = l_data;
 					var html = "";
 					var l_html = "";
-					html += "<div class='card-body card-body-padding-pro pro-height' id='i_contact' style='overflow-y:auto;margin-bottom:15px;'>";
-					html += "<div class='row'>";
+					l_html += "<div class='card-body card-body-padding-pro pro-height' id='i_contact' style='overflow-y:auto;margin-bottom:10px;'>";
+					l_html += "<div class='row'>";
 					for (var i = 0; i < l_data.length; i++) {
 						var l_map_outer = l_data[i];
-						var l_map_inner = l_map_outer.address_entity;
+						var l_map_inner = l_map_outer.address_entity; 
 						l_html += "<div class='col-lg-12'>";
 						l_html += "<div class='row'>";
 						l_html += "<div class='col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2'>";
@@ -530,6 +530,7 @@ function loadContactData() { debugger;
 					html = html +l_html;
 					html += "</div> ";
 					html += "</div> ";
+					//alert(l_html);
 					$("#i_contact").replaceWith(l_html);
 					// alert(JSON.stringify(l_data));
 				}

@@ -134,6 +134,7 @@ function loadCities(p_districtId){
 			toastr.error(response.message);
 		} 
 	});
+ 
 }
 
 function selectUniversityBoard(p_educationLevel){  
@@ -152,10 +153,58 @@ function selectUniversityBoard(p_educationLevel){
 			toastr.error(response.message);
 		} 
 	});
-
+ 
+} 
+ var g_subjects = [];
+function loadTutorSubjects() {
+	
+	if(g_subjects.length==0){
+	ajaxWithJSON("/load-subjects", null, 'GET',function(response) {
+		var l_data = response.object;
+		g_subjects = l_data;
+        //alert(JSON.stringify(response));
+		if(response.status == 'SUCCESS'){
+			var l_html = '';
+			for(var i=0;i<l_data.length;i++){
+				var l_map = l_data[i];
+				l_html+='<option data-value="'+l_map.subjectId+'">'+l_map.subjectName+'</option>';
+			}
+			$('#subjectList').html(l_html);
+		}
+		if(response.status == 'ERROR'){
+			console.log(response.message);
+			
+		}
+       });
+	}else{
+		var l_html = '';
+		for(var i=0;i<g_subjects.length;i++){
+			var l_map = g_subjects[i];
+			l_html+='<option data-value="'+l_map.subjectId+'">'+l_map.subjectName+'</option>';
+		}
+		$('#subjectList').html(l_html);
+	}
 }
  
+// this function will work for auto complete
+document.getElementById('subjectId').addEventListener('input', function(e) {
+    var input = e.target,
+        list = input.getAttribute('list'),
+        options = document.querySelectorAll('#' + list + ' option'),
+        hiddenInput = document.getElementById(input.id + '-hidden'),
+        inputValue = input.value;
 
+    hiddenInput.value = inputValue;
+
+    for(var i = 0; i < options.length; i++) {
+        var option = options[i];
+
+        if(option.innerText === inputValue) {
+            hiddenInput.value = option.getAttribute('data-value');
+            break;
+        }
+    }
+});
 
 
 var g_education_types = [];
@@ -196,7 +245,7 @@ function loadEducationTypes(){
 }
 
 
-function loadEducationBranches(){debugger;
+function loadEducationBranches(){
 var l_map = {};
     l_map.list = false;
 for(var i=0;i<g_education_types.length;i++){
@@ -299,8 +348,6 @@ function loadBoards(){
 	}
 	
 }
-
-
 
 
 

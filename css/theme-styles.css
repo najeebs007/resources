@@ -531,7 +531,7 @@
   .container {
     min-width: 700px; }
   body {
-    min-width: 750px; }
+    min-width: 100%; }
   .fixed-sidebar.right {
     display: none; }
   .top-header-author {

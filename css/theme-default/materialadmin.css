@@ -10056,7 +10056,7 @@ xfilter
   -o-transform: translateX(0);
   transform: translateX(0);
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
-  height: 400px;
+  height:260px;
 }
 .cd-filter.filter-is-visible .cd-close {
   opacity: 1;
@@ -10210,11 +10210,11 @@ xcustom form elements
 }
 .cd-filter-block .cd-select::after {
   /* switcher arrow for select element */
-  content: '';
+  /* content: '';
   position: absolute;
   z-index: 1;
      right: 10px;
-    /* top: 79%; */
+    top: 79%;
     margin-top: 18px;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
@@ -10225,7 +10225,7 @@ xcustom form elements
   width: 16px;
   height: 16px;
   background: url("../../img/cd-icon-arrow.svg") no-repeat center center;
-  pointer-events: none;
+  pointer-events: none; */
 }
 .cd-filter-block select {
   cursor: pointer;
@@ -11625,6 +11625,8 @@ body {
     .cf-cross-button-left-00{margin: -33% -3% 0% 0%;}
   .section-head {
  margin-bottom:30px;
+ text-align: center;
+    height: 35px;
 }
 text-center
 .section-head.no-margin {
