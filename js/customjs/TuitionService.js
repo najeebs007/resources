@@ -34,7 +34,6 @@ function gridViewTab(tutorList){debugger;
     			html += "<div class=\"item-title btm-part\">";
     			html += "<div class=\"row\">";
     			html += "<div class=\"col-md-4 col-sm-4 col-xs-4\">";
-    			html += "<p class='padding-price'><i class='fa fa-inr'></i> </p>";
     			html += "</div>";
     			html += "<div class=\"col-md-8 col-sm-8 col-xs-8 favorite\">";  
     			html += "<a href=\"#\" onclick=\"return requestForTuition('"+tutorMap.userName+"','"+tutorMap.displayName+"')\" class=\"btn btn-default btn-small-2 normal-p\" style='padding: 7.5px 19px;margin:0px !important;'>Request For Tuition<i class=\"fa fa-caret-right\"></i></a></div></div></div></div></div>";
@@ -238,7 +237,7 @@ if(l_location.length==0){
 		var l_html = '';
 		for(var i=0;i<g_subjects.length;i++){
 			var l_map = g_subjects[i];
-			l_html+='<option data-value="'+l_map.subjectId+'">'+l_map.subjectName+'</option>';
+			l_html+='<option data-value="'+l_map.subjectId+'" value="'+l_map.subjectName+'"></option>';
 		}
 		$('#subjectListmodal').html(l_html);
 		//loadTutorSubjects(p_user_name);
@@ -271,6 +270,7 @@ if(l_location.length==0){
 					var l_data = response.object;
 					//alert(JSON.stringify(response));
 					if (response.status == 'SUCCESS') {
+						$('#tuition_request').modal('hide');
 						toastr.success(response.message);
 					}
 					if (response.status == 'ERROR') {
@@ -392,4 +392,5 @@ if(l_location.length==0){
 		loadTutorSubjects();
 	}
 }
-	  
+	
+

@@ -272,42 +272,7 @@ function createHomepageGoogleMap(_latitude, _longitude) {
 
 
 
-/*
- * l_record.put("displayName", object[0]); l_record.put("batchName", object[1]);
- * l_record.put("batchId", object[2]); l_record.put("feeAmount", object[3]);
- * l_record.put("totalExperience", object[4]); l_record.put("subjectName",
- * object[5]); l_record.put("distance", object[6]); l_record.put("latitude",
- * object[7]); l_record.put("longitude", object[8]);
- */
 
-/*function initializeNearestLocations(p_locations) {
-	var locations = [];
-	var l_tutor = [];
-	//alert(JSON.stringify(locations));
-	for (var i = 0; i < p_locations.length; i++) {
-		var l_map = p_locations[i];
-		l_tutor.push('<div class="card"> <img src="rs.jpg" alt="no image" style="border-radius: 100%;border: 5px solid rgba(255,255,255,0.5);"><h2>'
-						+ l_map.displayName
-						+ '</h2><p class="title"><strong>Experiance:</strong><span>'
-						+ l_map.totalExperience
-						+ '</span></p><p class="title"><strong>Batch : </strong><span>'
-						+ l_map.batchName
-						//+ '</span></p><p class="title"><strong>Subject/Course : </strong><span>'
-						//+ l_map.subjectName
-						+ '</span></p><p class="title"><strong>Fee : </strong><span>'
-						+ l_map.feeAmount
-						+ '</span></p><p class="title"><strong title="this distance from current location">distance : </strong><span>'
-						+ l_map.distance
-						+ '</span></p><div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div> <p><a target="_blank" href="http://scholarsmerit.com/batch-detail?batchId='
-						+ l_map.batchId
-						+ '"><button>View More...</button></a></p></div><style>.card {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);max-width:200px;margin: auto;text-align: center;font-family: arial;}.title {color: grey;font-size: 13px;}button{border: none;outline: 0;display: inline-block;padding: 4px;color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 13px;}a {text-decoration: none;font-size: 15px;color: blue;}button:hover, a:hover {opacity: 0.7;}</style>');
-		l_tutor.push(l_map.latitude);
-		l_tutor.push(l_map.longitude);
-		locations.push(l_tutor);
-		//alert(locations.length);
-	}
-	return locations;
-}*/
 function initializeCustomGoogleMap(p_locations, p_lati, p_longi) {
 	var locations = [ ];
 	for (var i = 0; i < p_locations.length; i++) {
@@ -324,14 +289,11 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi) {
 			+ l_map.userName
 			+ '"><button>View Profile</button></a></p>'
 			+'<div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div>'
-				+ l_map.userName
 				+ '"<button onclick="return requestForTuition(\''+l_map.userName+'\',\''+l_map.displayName+'\')">Request For Tuition</button></div>'
 			+'</div><style>.card {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);max-width:200px;margin: auto;text-align: center;font-family: arial;}.title {color: grey;font-size: 13px;}button{border: none;outline: 0;display: inline-block;padding: 4px;color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 13px;}a {text-decoration: none;font-size: 15px;color: blue;}button:hover, a:hover {opacity: 0.7;}</style>', l_map.latitude, l_map.longitude];
 	   locations.push(a);
 	}
-	//var locations = initializeNearestLocations(p_locations);
-   
-	// Setup the different icons and shadows
+
 	var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';
 
 	var icons = [ iconURLPrefix + 'red-dot.png',
