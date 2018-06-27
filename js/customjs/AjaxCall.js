@@ -123,3 +123,40 @@ function ajaxWithSerialize(p_url,p_form_id,p_method_type,callback){
 	});
 	
 }
+
+
+
+function getLocationCoordinate(address) {
+	 
+    var position = {};
+    $.ajax({
+        url : 'http://maps.google.com/maps/api/geocode/json',
+        type : 'GET',
+        data : {
+            address : address,
+            sensor : false
+        },
+        async : false,
+        success : function(result) {
+ 
+            try {
+                position.lat = result.results[0].geometry.location.lat;
+                position.lng = result.results[0].geometry.location.lng;
+            } catch(err) {
+                position = null;
+            }
+ 
+        }
+    });
+    return position;
+}
+
+
+$.ajax({ url:'http://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&sensor=true',
+    success: function(data){
+        //alert(data.results[0].formatted_address);
+    	//callback(data.results[0].formatted_address);
+        /*or you could iterate the components for only the city and state*/
+    }
+
+});

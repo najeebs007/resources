@@ -773,6 +773,12 @@ margin-left:10px;
     margin-right: -10px !important;
     margin-top:30px !important;
 }
+.m-r-a-btn
+{
+	border-radius: 5px;
+    border-color: #a8b4ec;
+    border-width: 1px;
+}
 .m-r-c-border{border:1px solid #ada4a4ad;}
 .btn-icon-toggle{height:36px;}
  
@@ -800,7 +806,57 @@ margin-left:10px;
 .reject{color:#ed1c24;font-size: 15px;    margin: 0; margin-top: 5px;}
 .accept{color:#3cb878;font-size: 15px;    margin: 0; margin-top: 5px;}
 .suggest{color:#4c84ff;font-size: 15px;    margin: 0; margin-top: 5px;}
-
+.select-n-pay{
+    display: inline-block;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius:5px;
+	border-bottom-left-radius:5px;
+    border-color: rgb(206, 255, 141); 
+    background-color: rgb(238, 255, 214);
+    width: 195px;
+    height: 30px;
+	text-align: center;
+    font-weight: 500;	
+       
+}
+.select-n-pay:hover,
+.select-n-pay:focus,
+.select-n-pay.focus,
+.select-n-pay:active,
+.select-n-pay.active,
+.open > .dropdown-toggle.select-n-pay{ border-color: rgb(206, 255, 141) !important; 
+    background-color: rgb(238, 255, 214) !important;
+	color:black !important;
+	}
+.select-n-pay-dropi
+{
+	left: 6px;
+	width: 193px;
+	margin-top: -4px !important;
+	border-width: 1px;
+    border-color: rgb(206, 255, 141) !important;
+    border-style: solid;
+    background-color: rgb(238, 255, 214);
+}
+.btn-pay{
+  border-width: 1px;
+  border-color: rgb(255, 255, 255);
+  border-style: solid;
+  background-color: rgb(255, 255, 255);
+  width: 45px;
+  height: 26px; 
+}
+.hvr:hover{background:#fff987;}
+.select-n-pay-header{width: 160px;border-bottom: 1px solid rgb(206, 255, 141);}
+.anchor{padding: 5px 10px !important;}
+.t-name
+{
+	margin: 0px 6px; 
+    color: #aba1a1;
+	font-weight: 400;
+    font-size: 13px;
+}
 /***** Reviews and rating *****/
 .rating-pic-small
 {
@@ -829,6 +885,7 @@ margin-left:10px;
 .rating-top{top: 44% !important;}
 .rating-row-customize{width: 6%;
     padding-right: 0px;}
+ 
  @media screen and (max-width: 767px){
 	 .top-header-author {
     position: absolute;
@@ -918,8 +975,7 @@ margin-left:10px;
     background-color: #f1f1f1;
     text-align: center;
     color: white;
-}
-
+} 
 /* Individual bars */
 .bar {height: 8px; background-color: #ffb400;} 
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */

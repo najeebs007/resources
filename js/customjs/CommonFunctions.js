@@ -156,6 +156,7 @@ function selectUniversityBoard(p_educationLevel){
  
 } 
  var g_subjects = [];
+
 function loadTutorSubjects() {
 	
 	if(g_subjects.length==0){
@@ -186,25 +187,7 @@ function loadTutorSubjects() {
 	}
 }
  
-// this function will work for auto complete
-document.getElementById('subjectId').addEventListener('input', function(e) {
-    var input = e.target,
-        list = input.getAttribute('list'),
-        options = document.querySelectorAll('#' + list + ' option'),
-        hiddenInput = document.getElementById(input.id + '-hidden'),
-        inputValue = input.value;
 
-    hiddenInput.value = inputValue;
-
-    for(var i = 0; i < options.length; i++) {
-        var option = options[i];
-
-        if(option.innerText === inputValue) {
-            hiddenInput.value = option.getAttribute('data-value');
-            break;
-        }
-    }
-});
 
 
 var g_education_types = [];
