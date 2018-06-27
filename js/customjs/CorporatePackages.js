@@ -1736,7 +1736,9 @@ function checkIndividual(p_id, p_index) {
 	}
 
 }
-function bulkCandidateActions(p_action_type){ 
+ 
+function bulkCandidateActions(p_action_type) { 
+ 
 	debugger;
 
 	if (!(navigator.onLine)) {
@@ -1805,6 +1807,7 @@ function bulkCandidateActions(p_action_type){
 				});
 	}
 }
+ 
 function SameGeneratePinAndPassword(p_action_type) {
 	debugger;
 
@@ -1852,7 +1855,7 @@ function SameGeneratePinAndPassword(p_action_type) {
 		l_final_map.examName = $('#i_exam_name').val();
 		l_final_map.inputs = l_map;
 
-		alert(JSON.stringify(l_final_map));
+	
 		$(".loading").show();
 		$
 				.ajax({
@@ -1883,6 +1886,7 @@ function SameGeneratePinAndPassword(p_action_type) {
 				});
 	}
 }
+ 
 /*function callPagination(p_no_of_pages) {
 	debugger;
     window.pagObj = $('#pagination').twbsPagination({

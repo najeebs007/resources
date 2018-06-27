@@ -4323,7 +4323,7 @@ fieldset[disabled] .btn-link:focus {
     border: 1px solid rgb(240, 85, 16);
     border-radius: 2px;
     padding: 4.5px 15px;
-    width: 70px;
+    /* width: 70px; */
     color: #de5c5c !important;
 }
 .btn-modal:hover,
@@ -6727,6 +6727,7 @@ a.list-group-item-danger.active:focus {
 }
 .close {
   float: right;
+  width:10px;
   font-size: 19.5px;
   font-weight: bold;
   line-height: 1;

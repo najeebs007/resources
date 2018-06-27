@@ -53,6 +53,7 @@ function loadTutorGeneral() {
 		var l_general = l_data.tutorGeneral;
 		// alert(JSON.stringify(l_general));
 		if (response.status == 'SUCCESS') {
+			if(!(l_general.specialities == null || l_general.specialities== undefined ))
 			$('.c_specialty').text(l_general.specialities);
 		}
 		if (response.status == 'ERROR') {
