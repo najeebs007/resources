@@ -1737,11 +1737,6 @@ function checkIndividual(p_id, p_index) {
 
 }
  
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e8d6a2e27c6cabea8b3f9c566b00584f92786461
 function bulkCandidateActions(p_action_type) { 
  
 	debugger;
