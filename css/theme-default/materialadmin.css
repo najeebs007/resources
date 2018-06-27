@@ -7671,6 +7671,8 @@ sub.badge {
 	vertical-align: top;
 	margin: 0 -3px 0 0;
 	white-space: normal;
+	left: 100%;
+    margin-left: 140px;
 }
 
 .timeline-entry .card {

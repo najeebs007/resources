@@ -27,7 +27,7 @@
 	 * 
 	 * @return {@ callback} it return the response map object to the caller  
 	 */
-function ajaxWithJSON(p_url, p_data, p_method_type, callback) {
+function ajaxWithJSON(p_url, p_data, p_method_type, callback) {debugger;
 
 	var l_respons = {};
 
@@ -58,7 +58,7 @@ function ajaxWithJSON(p_url, p_data, p_method_type, callback) {
 		url : p_url,
 		data : JSON.stringify(p_data),
 		cache : false,
-		async : true,
+		async : false,
 		contentType : "application/json; charset=UTF-8",
 		dataType : 'json',
 		success : function(response) {
