@@ -134,12 +134,9 @@ function loadCities(p_districtId){
 			toastr.error(response.message);
 		} 
 	});
-<<<<<<< HEAD
-} 
-=======
+ 
 }
 
->>>>>>> e8d6a2e27c6cabea8b3f9c566b00584f92786461
 function selectUniversityBoard(p_educationLevel){  
 	var l_map = {}; 
 	l_map.educationLevel = p_educationLevel;
@@ -156,7 +153,6 @@ function selectUniversityBoard(p_educationLevel){
 			toastr.error(response.message);
 		} 
 	});
-<<<<<<< HEAD
  
 } 
  var g_subjects = [];
@@ -188,9 +184,6 @@ function loadTutorSubjects() {
 		}
 		$('#subjectList').html(l_html);
 	}
-=======
-
->>>>>>> e8d6a2e27c6cabea8b3f9c566b00584f92786461
 }
  
 // this function will work for auto complete
@@ -212,9 +205,6 @@ document.getElementById('subjectId').addEventListener('input', function(e) {
         }
     }
 });
-
-<<<<<<< HEAD
-=======
 
 
 var g_education_types = [];
@@ -255,7 +245,7 @@ function loadEducationTypes(){
 }
 
 
-function loadEducationBranches(){debugger;
+function loadEducationBranches(){
 var l_map = {};
     l_map.list = false;
 for(var i=0;i<g_education_types.length;i++){
@@ -361,6 +351,3 @@ function loadBoards(){
 
 
 
-
-
->>>>>>> e8d6a2e27c6cabea8b3f9c566b00584f92786461
