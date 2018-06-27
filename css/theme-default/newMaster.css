@@ -921,7 +921,7 @@ margin-left:10px;
 }
 
 /* Individual bars */
-.bar {height: 8px; background-color: #e8e20c;} 
+.bar {height: 8px; background-color: #ffb400;} 
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 400px) {
     .side, .middle {
