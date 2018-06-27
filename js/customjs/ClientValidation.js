@@ -341,6 +341,17 @@ function getDateFormat(p_date){
 }
 
 
+function getDateTime(p_date){
+	
+	  var l_date = new Date(p_date);
+	  var final_date_time = l_date.getDate() + '/' +  (l_date.getMonth() + 1)+ '/' +  l_date.getFullYear()+" "+l_date.getHours()+":"+l_date.getMinutes();
+	  return final_date_time;
+	
+}
+
+
+
+
 
 function readCustomForm(p_formId) {
 	debugger;
