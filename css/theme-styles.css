@@ -527,9 +527,9 @@
 
 @media (max-width: 768px) {
   .header {
-    min-width: 700px; }
+    min-width: 100%; }
   .container {
-    min-width: 700px; }
+    min-width: 100%; }
   body {
     min-width: 100%; }
   .fixed-sidebar.right {
