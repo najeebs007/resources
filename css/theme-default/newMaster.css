@@ -847,7 +847,9 @@ margin-left:10px;
   border-style: solid;
   background-color: rgb(255, 255, 255);
   width: 45px;
-  height: 26px; 
+  height: 26px;
+     float: right;
+    margin-top: 6px;  
 }
 .hvr:hover{background:#fff987;}
 .select-n-pay-header{width: 160px;border-bottom: 1px solid rgb(206, 255, 141);}
@@ -897,14 +899,14 @@ margin-left:10px;
 }
 .s-profile-content
 {
-	padding: 50px 0px;
+	padding: 70px 0px;
 }
 .s-profile-left-img
 {
 	height:195px;
 	width: 100%;
 }
-.s-height{height: 295px;}
+.s-height{height:325px;}
 .s-profile-pic-card{
   border-width: 2px;
   border-color: rgb(255, 255, 255);
@@ -1119,7 +1121,14 @@ margin-left:10px;
     text-align: center;
 }
  .rating-row-customize{width:unset;
-    padding-right:unset;}	
+    padding-right:unset;}
+.s-profile-padding-l-0 {
+    padding-left: 12px;
+    margin-bottom: 22px;
+}
+.s-profile-padding-r-0 {
+    padding-right: 12px;
+}	
 }
 /**** Rating bars css*/
 /* Three column layout */
