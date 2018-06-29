@@ -80,7 +80,7 @@ function getAddress(p_latitude,p_longitude) {debugger;
              
             }
         }
-        alert(locality.short_name +" ,"+city.short_name);
+     //   alert(locality.short_name +" ,"+city.short_name);
         l_address  = locality.short_name +" ,"+city.short_name;
     });
     return l_address;
