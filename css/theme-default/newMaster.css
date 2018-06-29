@@ -203,6 +203,8 @@
 .m-t-minus-8{margin-top:-8px;}
 .m-t-minus-5{margin-top:-5px;}
 .m-t-minus-10{margin-top:-10px;}
+.m-t-minus-15{margin-top:-15px;}
+.m-t-minus-20{margin-top:-20px;}
 .m-t-minus-24{margin-top:-24px;}
 .geneder-margin{margin-top: -24px;}
 .m-t-2{margin-top:2px;}
@@ -773,6 +775,12 @@ margin-left:10px;
     margin-right: -10px !important;
     margin-top:30px !important;
 }
+.m-r-a-btn
+{
+	border-radius: 5px;
+    border-color: #a8b4ec;
+    border-width: 1px;
+}
 .m-r-c-border{border:1px solid #ada4a4ad;}
 .btn-icon-toggle{height:36px;}
  
@@ -800,7 +808,59 @@ margin-left:10px;
 .reject{color:#ed1c24;font-size: 15px;    margin: 0; margin-top: 5px;}
 .accept{color:#3cb878;font-size: 15px;    margin: 0; margin-top: 5px;}
 .suggest{color:#4c84ff;font-size: 15px;    margin: 0; margin-top: 5px;}
-
+.select-n-pay{
+    display: inline-block;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius:5px;
+	border-bottom-left-radius:5px;
+    border-color: rgb(206, 255, 141); 
+    background-color: rgb(238, 255, 214);
+    width: 195px;
+    height: 30px;
+	text-align: center;
+    font-weight: 500;	
+       
+}
+.select-n-pay:hover,
+.select-n-pay:focus,
+.select-n-pay.focus,
+.select-n-pay:active,
+.select-n-pay.active,
+.open > .dropdown-toggle.select-n-pay{ border-color: rgb(206, 255, 141) !important; 
+    background-color: rgb(238, 255, 214) !important;
+	color:black !important;
+	}
+.select-n-pay-dropi
+{
+	left: 6px;
+	width: 193px;
+	margin-top: -4px !important;
+	border-width: 1px;
+    border-color: rgb(206, 255, 141) !important;
+    border-style: solid;
+    background-color: rgb(238, 255, 214);
+}
+.btn-pay{
+  border-width: 1px;
+  border-color: rgb(255, 255, 255);
+  border-style: solid;
+  background-color: rgb(255, 255, 255);
+  width: 45px;
+  height: 26px;
+     float: right;
+    margin-top: 6px;  
+}
+.hvr:hover{background:#fff987;}
+.select-n-pay-header{width: 160px;border-bottom: 1px solid rgb(206, 255, 141);}
+.anchor{padding: 5px 10px !important;}
+.t-name
+{
+	margin: 0px 6px; 
+    color: #aba1a1;
+	font-weight: 400;
+    font-size: 13px;
+}
 /***** Reviews and rating *****/
 .rating-pic-small
 {
@@ -829,6 +889,137 @@ margin-left:10px;
 .rating-top{top: 44% !important;}
 .rating-row-customize{width: 6%;
     padding-right: 0px;}
+	
+/************* student profile css ******************/
+/*s= is used for Student*/
+.s-profile-header
+{
+	color: #8995a5 !important;
+    font-size: 16px !important;
+}
+.s-profile-content
+{
+	padding: 70px 0px;
+}
+.s-profile-left-img
+{
+	height:195px;
+	width: 100%;
+}
+.s-height{height:325px;}
+.s-profile-pic-card{
+  border-width: 2px;
+  border-color: rgb(255, 255, 255);
+  border-style: solid;
+  border-radius: 50%;
+  background-color: rgb(229, 233, 242); 
+  box-shadow: 0px 0px 40px 0px rgba(182, 203, 255, 0.3);
+  display:inline-block; 
+  width: 110px;
+    height: 110px;
+  
+}
+.s-profile-center{text-align:center}
+.s-profile-card-shadow{box-shadow:unset !important;}
+.s-profile-name
+{ 
+  font-size: 20px;
+  font-family: "Open Sans";
+  color: rgb(0, 0, 0);
+  font-weight: 600;    
+}
+.s-profile-name-small
+{ 
+  font-size: 16px;
+  font-family: "Open Sans";
+  color: rgb(0, 0, 0);
+  font-weight: 600;    
+}
+.s-profile-specialization
+{ 
+  font-size:15px;
+  font-family: "Open Sans";
+  color: rgb(0, 0, 0);
+  font-weight: 600;    
+}
+.s-profile-contact
+{ 
+  font-size:13px;
+  font-family: "Open Sans";
+  color: rgb(0, 0, 0);     
+}
+.s-profile-other
+{
+  font-size:13px;
+  font-family: "Open Sans";
+  color: rgb(0, 0, 0);
+  font-weight: 600; 	
+}
+.s-profile-text-gray{
+  font-size: 14px;
+  font-family: "Open Sans";
+  color: rgb(153, 153, 173); 
+  text-align: left; 
+}
+.s-black{color:black;}
+.s-bold{font-weight:600;}
+.s-profile-padding-r-0{padding-right:1px;}
+.s-profile-padding-l-0{padding-left:0px;}
+.s-profile-cover-img
+{ 
+    height: 100%;
+    width: 100%;
+     
+}
+.s-profile-edite-m
+{
+	margin-right: -18px;
+    margin-top: -4px;
+}
+.s-profile-hr
+{
+	margin-top: 12px !important; 
+    margin-left: -10px !important;
+    margin-right: -10px !important;
+}
+.s-icon-section
+{
+	width: 72px;
+    height: 72px;
+    background: white;
+    border: 1px solid #8080805e;
+    border-radius: 10px;
+}
+.s-p-2{padding:2px;}
+.s-icon
+{
+	width: 100%;
+    border-radius: 5px;
+    height: 100%;
+}
+.s-profile-text{
+  font-size: 14px;
+  font-family: "Open Sans";
+  color: rgb(68, 68, 73);
+  font-weight: 600;   
+}
+.s-font{font-family:"Open Sans";}
+.s-gray
+{
+	color:#9999ad;
+}
+.s-viewmore{background:#f05510}
+.s-v-more-icon
+{
+	display: inline-block;
+    height: 16px;
+    width: 16px;
+    line-height: 17px !important;
+    background: #c7460d;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: 5px;
+}
  @media screen and (max-width: 767px){
 	 .top-header-author {
     position: absolute;
@@ -839,9 +1030,41 @@ margin-left:10px;
 }
 .pro-left-padding-right{padding-right:12px !important;}
 .pro-right-padding-left{padding-left:12px !important;}
+.s-profile-padding-r-0{padding-right:12px;}
+.s-profile-padding-l-0{padding-left:12px;margin-bottom: 14px;}
 .margin-rating-bar{margin-top:15px;}
 .rating-row-customize{width:unset;
     padding-right:unset;}
+.s-profile-text {
+    font-size: 12px;      
+}
+..pro-small-text-g {
+    font-size: 12px; 
+}
+.s-icon-section {
+    width: 60px;
+    height: 60px; 
+}
+.s-profile-name
+{ 
+  font-size: 18px;     
+}
+.s-profile-name-small
+{ 
+  font-size: 15px;   
+}
+.s-profile-specialization
+{ 
+  font-size:13px;   
+}
+.s-profile-contact
+{ 
+  font-size:12px;    
+}
+.s-profile-other
+{
+  font-size:12px; 	
+}	
 }
 /*media 767 End Here ****/
 /*media for ipad only****/
@@ -866,7 +1089,19 @@ margin-left:10px;
 .body-b .onmobile{padding: 55px !important;}
 .rating-row-customize{width:unset;
     padding-right:unset;}
+ 
+.s-profile-padding-r-0{padding-right:12px;}
+.s-profile-padding-l-0{padding-left:12px;margin-bottom: 14px;}
+.s-profile-content {
+    padding: 0px 0px;
 }
+.s-height {
+    height: 180px;
+}
+.s-profile-content {
+    padding: 0px 0px;
+}
+
 }
 /*media for ipad Pro only****/
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1200px) {
@@ -886,7 +1121,14 @@ margin-left:10px;
     text-align: center;
 }
  .rating-row-customize{width:unset;
-    padding-right:unset;}	
+    padding-right:unset;}
+.s-profile-padding-l-0 {
+    padding-left: 12px;
+    margin-bottom: 22px;
+}
+.s-profile-padding-r-0 {
+    padding-right: 12px;
+}	
 }
 /**** Rating bars css*/
 /* Three column layout */
@@ -918,8 +1160,7 @@ margin-left:10px;
     background-color: #f1f1f1;
     text-align: center;
     color: white;
-}
-
+} 
 /* Individual bars */
 .bar {height: 8px; background-color: #ffb400;} 
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
