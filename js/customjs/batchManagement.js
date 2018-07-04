@@ -40,7 +40,7 @@ function  setBatchData(l_data){debugger;
 		
 	
 		
-		b_html += ' <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6 parent"><div class="card border-img-top card-shadow">';
+	   	b_html += ' <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6 parent"><div class="card border-img-top card-shadow">';
 		   b_html += '   <div class="card-body batch-img-padding">';
 	       b_html += '   <img src="resources/img/batch-img.png" class="b-img">';
 		   b_html += ' </div>';

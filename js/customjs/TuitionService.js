@@ -141,7 +141,7 @@ function gridViewTab(tutorList){debugger;
 					l_search_map[l_search_array[index]] = $(item)
 							.val();
 				});
-
+		l_search_map.requestId= null;
 		l_search_map.latitude = lati;
 		l_search_map.longitude = longi;
 		l_search_map.offset = "0";
