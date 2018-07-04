@@ -273,10 +273,23 @@ function createHomepageGoogleMap(_latitude, _longitude) {
 
 
 
-function initializeCustomGoogleMap(p_locations, p_lati, p_longi) {
+function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 	var locations = [ ];
 	for (var i = 0; i < p_locations.length; i++) {
 		var l_map = p_locations[i];
+		var l_text = '';
+
+		if(!(p_referesh==null)){
+			if(l_map.userName==p_referesh.tutorId)
+				l_text=p_referesh.text;
+		}else{
+			if(l_map.SEARCH=='REQUESTED')
+				l_text+='return removeTutorToRequest(\''+l_map.userName+'\',\''+l_map.requestId+'\',\''+i+'\')';
+			else
+				l_text+='return addTutorToRequest(\''+l_map.userName+'\',\''+l_map.displayName+'\',\''+i+'\')';
+		   l_text=l_text+'<button onclick="'+l_text+'">Request For Tuition</button>';
+		}
+			
 	 var a=['<div class="card"> <img src="https://s19.postimg.cc/lbz034vw3/pro.png" alt="no image" style="border-radius: 100%;border: 5px solid rgba(255,255,255,0.5);"><h2>'
 			+ l_map.displayName
 			+ '</h2><p class="title"><strong style="color:black;">Experiance:</strong><span>'
@@ -285,11 +298,11 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi) {
 			+ l_map.specialities
 			+ '<p class="title"><strong title="this distance from current location" style="color:black;">distance : </strong><span>'
 			+ Math.round(parseFloat(l_map.distance))
-			+ ' km</span></p><div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div> <p><a target="_blank" href="http://scholarsmerit.com/tutor-profile?login=false&user='
+			+ ' km</span></p><div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div> <p><a target="_blank" href="../../tutor-profile?login=false&user='
 			+ l_map.userName
 			+ '"><button>View Profile</button></a></p>'
 			+'<div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div>'
-				+ '"<button onclick="return requestForTuition(\''+l_map.userName+'\',\''+l_map.displayName+'\')">Request For Tuition</button></div>'
+				+ '"<div class="c_change"'+i+'" >'+l_text+'</div>'
 			+'</div><style>.card {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);max-width:200px;margin: auto;text-align: center;font-family: arial;}.title {color: grey;font-size: 13px;}button{border: none;outline: 0;display: inline-block;padding: 4px;color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 13px;}a {text-decoration: none;font-size: 15px;color: blue;}button:hover, a:hover {opacity: 0.7;}</style>', l_map.latitude, l_map.longitude];
 	   locations.push(a);
 	}
