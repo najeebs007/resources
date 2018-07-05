@@ -146,6 +146,7 @@ function gridViewTab(tutorList){debugger;
 		l_search_map.longitude = longi;
 		l_search_map.offset = "0";
 		l_search_map.records = "10";
+		l_search_map.location = document.getElementById("address-map").value;
 		$('.loading').show();
 		ajaxWithJSON("/common/search-tutor-data", l_search_map, 'POST', function(response) {
 			//alert(JSON.stringify(response));
