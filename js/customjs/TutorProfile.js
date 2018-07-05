@@ -2166,7 +2166,7 @@ function selectEducation(){
 		var g_mediums = [];
 		function loadMediums(){
 			if(g_mediums.length==0){
-			ajaxWithJSON("/load-mediums", null, 'GET',function(response) {
+			 ("/load-mediums", null, 'GET',function(response) {
 				var l_data = response.object;
 				var l_html = '';
 		        //alert(JSON.stringify(response));

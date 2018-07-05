@@ -48,7 +48,7 @@ function initializeLatLong(){debugger;
 }
 
 
-function getAddress(p_latitude,p_longitude) {debugger;
+function getAddress(p_latitude,p_longitude,p_address_postfix) {debugger;
     var lat = parseFloat(p_latitude);
     var lng = parseFloat(p_longitude);
     var latlng = new google.maps.LatLng(lat, lng);
@@ -77,13 +77,14 @@ function getAddress(p_latitude,p_longitude) {debugger;
                 }
                 
                 
-             
+            	l_address  = locality.short_name +" ,"+city.short_name;
+            	$('#address'+p_address_postfix).html(l_address);
             }
         }
-        alert(locality.short_name +" ,"+city.short_name);
-        l_address  = locality.short_name +" ,"+city.short_name;
+     //   alert(locality.short_name +" ,"+city.short_name);
+        
     });
-    return l_address;
+   // return l_address;
 }
 
 
