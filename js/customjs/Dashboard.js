@@ -300,7 +300,7 @@ function loadCalendar() {
 
 }
 
-function loadRequestsData() {
+function loadRequestsData() {debugger;
 
 	var l_map = {};
 	l_map.login = true;
@@ -317,7 +317,10 @@ function loadRequestsData() {
 					
 					for (var i = 0; i < l_data.length; i++) {
 						var b_map = l_data[i];
+						alert(b_map);
 						var b_request = b_map.request;
+						alert(b_request);
+						alert(b_map.displayName);
 						var l_html = "";
 						l_html += '<tr>';
 						l_html += '<td><img src="resources/img/profile-img/pro.jpg" alt="nature" class="proImg-tbl"></td>';
