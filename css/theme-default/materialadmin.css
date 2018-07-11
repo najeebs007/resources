@@ -7666,7 +7666,7 @@ sub.badge {
 .timeline-entry {
 	position: relative;
 	display: inline-block;
-	width:92%;
+	width:66%;
 	padding: 0;
 	vertical-align: top;
 	margin: 0 -3px 0 0;
@@ -7686,7 +7686,7 @@ sub.badge {
 }
 
 .timeline-inverted .timeline-entry {
-	left: 108%;
+	left: 122%;
 }
 
 .timeline-inverted .timeline-entry .card {
