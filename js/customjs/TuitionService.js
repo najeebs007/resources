@@ -20,32 +20,32 @@ function gridViewTab(tutorList){debugger;
     		for(var i=0;i<tutorList.length;i++){
     			var tutorMap = tutorList[i];
     			
-    			html += "<div class=\"col-md-3 col-sm-3 col-xs-6 prop\">";
+    			html += "<div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-6 prop jQueryEqualHeightD\">";
     			html += "<div class=\"wht-cont\">";
-    			html += "<div class=\"exp-img-2\" style=\"background:url(http://placehold.it/255x200) center;background-size: cover;\"><span class=\"filter\"></span>";
-    			html += "<span class=\"ffs-bs\"><a for=\"op\" class=\"btn btn-small btn-primary\" href='../../tutor-profile?login=false&user="+tutorMap.userName+"'>View Profile</a></span>";
-    			html += "<div class=\"overlay\"><div class=\"img-counter\">SMOPL</div></div></div>";
+    			html += "<div class=\"img-section\"><div class=\"exp-img-2\" style=\"background:url(http://placehold.it/255x200) center;background-size: cover;-webkit-filter: blur(2px);-moz-filter: blur(2px);-o-filter: blur(2px);-ms-filter: blur(2px);filter: blur(2px);\"></div>"; 
+    			html += "<div class=\"img-small\"><img src=\"http://placehold.it/255x200\" class=\"cercular-img\" alt=\"profile pic small\"></div></div>";
     			html += "<div class=\"item-title\">";
-    			html += "<h4 class='tutor-value'><strong>Name:</strong>"+tutorMap.displayName+"</h4>";
-    			html += "<h4 class='tutor-value' style=\"font-size:15px;\"><strong>Experience :</strong>"+tutorMap.totalExperience+"</h4>"; 
-    			html += "<h4 class='tutor-value' style=\"font-size:15px;\"><strong>Expertise :"+tutorMap.specialities+"</strong></h4>"; 
-    			html += "<h4 class='tutor-value' style=\"font-size:15px;\"><strong>Distance :"+Math.round(parseFloat(tutorMap.distance))+" km</strong></h4>"; 
-    		    html += "</div><hr>"; 
+    			html += "<h4 class='tutor-value'>"+tutorMap.displayName+"</h4>";
+    			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Experience :</strong><span class=\"tutor-val-text\">"+tutorMap.totalExperience+"</span></span><br/>"; 
+    			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Expertise :</strong><span class=\"tutor-val-text\">"+tutorMap.specialities+"</span></span><br/>"; 
+    			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Distance :</strong><span class=\"tutor-val-text\">"+Math.round(parseFloat(tutorMap.distance))+" km </span></span><br/>"; 
+    		    html += "<span class=\"profileSpan\" style=\"font-size: 16px;font-weight:500; font-family:open sans;\"> <span class=\"rating-text tutor-val-text\">12,335</span><span class=\"fa fa-star checked\"></span><span class=\"fa fa-star checked\"></span><span class=\"fa fa-star checked\"></span> <span class=\"fa fa-star checked\"></span><span class=\"fa fa-star\"></span></span></div>";
     			html += "<div class=\"item-title btm-part\">";
     			html += "<div class=\"row\">";
-    			html += "<div class=\"col-md-4 col-sm-4 col-xs-4\">";
+    			html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\" style='text-align:center;'>";
+				html += "<a href='../../tutor-profile?login=false&user="+tutorMap.userName+"' class=\"btn btn-primary\">View Profile</a>";
     			html += "</div>";
     			 
     			if(tutorMap.SEARCH=='REQUESTED'){
-    				html += "<div class=\"col-md-8 col-sm-8 col-xs-8 favorite c_remove1"+i+"\">";
-    				html += "<a href=\"#\" onclick=\"return removeTutorToRequest('"+tutorMap.userName+"','"+tutorMap.requestId+"','"+i+"')\" class=\"btn btn-default btn-small-2 normal-p\" style='padding: 7.5px 19px;margin:0px !important;'>Select Tutor<i class=\"fa fa-caret-right\"></i></a></div></div></div></div></div>";
+    				html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 c_remove1"+i+"\" style='text-align:center;'>";
+    				html += "<a href=\"#\" onclick=\"return removeTutorToRequest('"+tutorMap.userName+"','"+tutorMap.requestId+"','"+i+"')\" class=\"btn btn-danger\">Select Tutor</a></div></div></div></div></div>";
     			   
     			}else{
-    				html += "<div class=\"col-md-8 col-sm-8 col-xs-8 favorite c_add1"+i+"\">";
-    			    html += "<a href=\"#\" onclick=\"return addTutorToRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\" class=\"btn btn-default btn-small-2 normal-p\" style='padding: 7.5px 19px;margin:0px !important;'>Select Tutor<i class=\"fa fa-caret-right\"></i></a></div></div></div></div></div>";
+    				html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 c_add1"+i+"\" style='text-align:center;'>";
+    			    html += "<a href=\"#\" onclick=\"return addTutorToRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\" class=\"btn btn-danger\">Select Tutor</a></div></div></div></div></div>";
     			    
     			}
-    			    //html += "<a href=\"#\" onclick=\"return requestForTuition('"+tutorMap.userName+"','"+tutorMap.displayName+"')\" class=\"btn btn-default btn-small-2 normal-p\" style='padding: 7.5px 19px;margin:0px !important;'>Request For Tuition<i class=\"fa fa-caret-right\"></i></a></div></div></div></div></div>";
+    			    //html += "<a href=\"#\" onclick=\"return requestForTuition('"+tutorMap.userName+"','"+tutorMap.displayName+"')\" class=\"btn btn-danger\">Request For Tuition</a></div></div></div></div></div>";
     		}
     		
     		return html;
@@ -58,42 +58,32 @@ function gridViewTab(tutorList){debugger;
     			var tutorMap = tutorList[i];
 			
     			html += "<div class=\"row white\" >";
-    			html += "<div class=\"col-md-3 col-sm-3 prp-img\">";
-    			html += "<div class=\"exp-img-2\" style=\"background:url(http://placehold.it/285x200) center;background-size: cover;\"><span class=\"filter\"></span>";
-    			html += "<span class=\"ffs-bs\"><a for=\"op\" class=\"btn btn-small btn-primary\" href='../../tutor-profile?login=false&user="+tutorMap.userName+"'>View Profile</a></span>";
-    			html += "<div class=\"overlay\">";
-    			html += "<div class=\"img-counter\">SMOPL</div>";
-    			html += "</div></div></div>";
-    			html += "<div class=\"item-info col-lg-6 col-md-6 col-sm-6\">";
-    			html += "<h4><a href=\"#\">"+tutorMap.displayName+"</a></h4>";
-    			html += "<p class=\"team-color\">"+tutorMap.totalExperience+"</p>"; 
-    			html += "<div class=\"block\">";
-    			html += "<div class=\"col-md-3 col-sm-2 col-xs-2 cat-img\">";
-    			html += "<p class=\"info-line\">"+tutorMap.specialities+"</p>";
-    			html += "</div>";
-    			html += "<div class=\"col-md-5 col-sm-4 col-xs-4 cat-img\">";
-    			html += "<p class=\"info-line\">"+Math.round(parseFloat(tutorMap.distance))+" km</p>";
-    			html += "</div>";
-    			html += "<div class=\"col-md-2 col-sm-2 col-xs-2 cat-img\">";
-    			/* html += "<p class=\"info-line\">"+tutorMap.subjectName+"</p>"; */
-    			html += "</div>";
-    			html += "<div class=\"col-md-2 col-sm-2 col-xs-2 cat-img\">";
-    			/* html += "<p class=\"info-line\">"+tutorMap.className+"</p>"; */
-    			html += "</div></div>";
-    			html += "<div class=\"col-md-3 col-sm-2 col-xs-2 line\"></div>";
-    			html += "<div class=\"col-md-5 col-sm-4 col-xs-4 line\"></div>";
-    			html += "<div class=\"col-md-2 col-sm-2 col-xs-2 line\"></div>";
-    			html += "<div class=\"col-md-2 col-sm-2 col-xs-2 line\"></div>";
-    			html += "<hr></div>";
-    			html += "<div class=\"item-price col-lg-3 col-md-3 col-sm-3 col-xs-12\">";
+    			html += "<div class=\"col-lg-3 col-md-4 col-sm-4 col-xs-12 prp-img\">";
+    			html += "<div class=\"img-section\"><div class=\"exp-img-2\" style=\"background:url(http://placehold.it/255x200) center;background-size: cover;-webkit-filter: blur(2px);-moz-filter: blur(2px);-o-filter: blur(2px);-ms-filter: blur(2px);filter: blur(2px);\"></div>"; 
+    			html += "<div class=\"img-small listview\"><img src=\"http://placehold.it/255x200\" class=\"cercular-img\" alt=\"profile pic small\"></div></div></div>";
+    			html += "<div class=\"item-info-map col-lg-6 col-md-5 col-sm-5 col-xs-6\">";
+				html += "<div class=\"row\">";
+				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">";
+				html += "<h4 class='tutor-value'>"+tutorMap.displayName+"</h4></div>";
+				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-10\">";
+				html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Experience :</strong><span class=\"tutor-val-text\">"+tutorMap.totalExperience+"</span></span></div>";
+                html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">";				
+    			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Expertise :</strong><span class=\"tutor-val-text\">"+tutorMap.specialities+"</span></span></div>";
+				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">";
+    			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Distance :</strong><span class=\"tutor-val-text\">"+Math.round(parseFloat(tutorMap.distance))+" km </span></span></div>";
+				html += "</div>"; 
+    			html += " </div>";
+    			html += "<div class=\"item-price col-lg-3 col-md-3 col-sm-3 col-xs-6\"><div class=\"row\">";
+				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\" style='text-align:center;'><span class=\"profileSpan\" style=\"font-size: 16px;font-weight:500; font-family:open sans;\"> <span class=\"rating-text tutor-val-text\">12,335</span><span class=\"fa fa-star checked\"></span><span class=\"fa fa-star checked\"></span><span class=\"fa fa-star checked\"></span> <span class=\"fa fa-star checked\"></span><span class=\"fa fa-star\"></span></span></div>";
+				html += "<div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12 m-t-30\" style='text-align:center;'><a href='../../tutor-profile?login=false&user="+tutorMap.userName+"' onclick=\"return removeTutorToRequest('"+tutorMap.userName+"','"+tutorMap.requestId+"','"+i+"')\" class=\"btn btn-primary\">View Profile</a></div>";
     			if(tutorMap.SEARCH=='REQUESTED')
-    			      html += "<div class=\"ffs-bs col-xs-12 btn-half-wth\ c_remove2"+i+"\" style='text-align:center;'><a href=\"#\" onclick=\"return removeTutorToRequest('"+tutorMap.userName+"','"+tutorMap.requestId+"','"+i+"')\" class=\"btn btn-default btn-small\">Select Tutor<i class=\"fa fa-caret-right\"></i></a></div>";
+				
+    			 html += "<div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12 m-t-30\ c_remove2"+i+"\" style='text-align:center;'><a href=\"#\" onclick=\"return removeTutorToRequest('"+tutorMap.userName+"','"+tutorMap.requestId+"','"+i+"')\" class=\"btn btn-success\">Select Tutor</a></div>";
     			else
-    			  html += "<div class=\"ffs-bs col-xs-12 btn-half-wth\ c_add2"+i+"\" style='text-align:center;'><a href=\"#\" onclick=\"return addTutorToRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\" class=\"btn btn-default btn-small\">Select Tutor<i class=\"fa fa-caret-right\"></i></a></div>";
+    			  html += "<div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12 m-t-30\ c_add2"+i+"\" style='text-align:center;'><a href=\"#\" onclick=\"return addTutorToRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\" class=\"btn btn-success\">Select Tutor</a></div>";
     			//html += "<div class=\"ffs-bs col-xs-12 btn-half-wth\" style='text-align:center;'><a href=\"#\" onclick=\"return requestForTuition('"+tutorMap.userName+"','"+tutorMap.displayName+"')\" class=\"btn btn-default btn-small\">Request For Tuition<i class=\"fa fa-caret-right\"></i></a></div>";
-    			html += "<div class=\"sum favorite col-sm-12 col-xs-6\">"; 
-    			//html += "<p class=\"col-xs-3\">Cart</p>";
-    			html += "</div></div></div>";
+    			 
+    			html += " </div></div></div>";
 			}
 			
 			return html;
