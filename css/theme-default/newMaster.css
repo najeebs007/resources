@@ -1020,9 +1020,43 @@ margin-left:10px;
     text-align: center;
     margin-left: 5px;
 }
+<<<<<<< HEAD
 /* .r_rating{width: 50%;} */
 .rating-height{height: 480px;}
 .institute-rating{width:auto !important;}
+=======
+/*** Tution As a service css ***/
+.g-mapcard-black
+{
+	width: 240px !important;
+}
+.gm-style-iw
+{
+	left:16px !important;
+	/* width:294px !important; */
+}
+.g-mapcard-left-img
+{
+	height:165px;
+	width: 100%;
+}
+.g-mapcard-name-small {
+    font-size: 16px;
+    font-family: "Open Sans";
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+}
+.g-mapcard-text-gray {
+    font-size: 14px;
+    font-family: "Open Sans";
+    color: rgb(153, 153, 173);
+    text-align: left;
+}
+.g-mapcard-black{color:black;}
+.g-mapcard-bold{font-weight:600;}
+
+
+>>>>>>> 0242cfe6f9fe7e7be76c21f09ed4a0b5b5e504c9
  @media screen and (max-width: 767px){
 	 .top-header-author {
     position: absolute;
