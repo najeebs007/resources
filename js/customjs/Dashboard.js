@@ -308,19 +308,16 @@ function loadRequestsData() {debugger;
 			"/tutor-dashboard-requests",
 			l_map,
 			'POST',
-			function(response) {
+			function(response) {debugger;
 				var l_data = response.object;
                 var l_other = response.other;
-				//alert(JSON.stringify(response));
+				alert(JSON.stringify(response));
 				if (response.status == 'SUCCESS') {
 					$('.c_count_request').text("Tuition Request("+l_other+")");
 					
 					for (var i = 0; i < l_data.length; i++) {
 						var b_map = l_data[i];
-						alert(b_map);
 						var b_request = b_map.request;
-						alert(b_request);
-						alert(b_map.displayName);
 						var l_html = "";
 						l_html += '<tr>';
 						l_html += '<td><img src="resources/img/profile-img/pro.jpg" alt="nature" class="proImg-tbl"></td>';
@@ -329,10 +326,10 @@ function loadRequestsData() {debugger;
 						l_html += '<td class="td-dashboard">Request for : '
 								+ b_map.batch + '</td>';
 						
-							    if(b_request.remarks == null){
+							    if(b_request.comment == null){
 							    	l_html += '<td class="td-dashboard">No Information</td>';
 							    }else
-							    	l_html += '<td class="td-dashboard">'+ b_request.remarks + '</td>';
+							    	l_html += '<td class="td-dashboard">'+ b_request.comment + '</td>';
 						l_html += '<td class="td-dashboard">'
 								+ b_map.date + '</td>';
 						l_html += '<td>';
