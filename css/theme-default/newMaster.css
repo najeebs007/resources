@@ -1078,6 +1078,11 @@ margin-left:10px;
 .txt-bold{font-weight:600;}
 .s-profile-text-color{color:#9999ad !important;}
 .s-edit-ico-r{right:8px !important;}
+ 
+/* .r_rating{width: 50%;} */
+.rating-height{height: 480px;}
+.institute-rating{width:auto !important;}
+ 
 /*** Tution As a service css ***/
 .g-mapcard-black
 {
@@ -1107,8 +1112,7 @@ margin-left:10px;
 }
 .g-mapcard-black{color:black;}
 .g-mapcard-bold{font-weight:600;}
-
-
+ 
  @media screen and (max-width: 767px){
 	 .top-header-author {
     position: absolute;

@@ -17,13 +17,14 @@ $(document).ready(function() {
 	loadProfessionalData();
 	loadCertificationData();
 	loadBatchData();
-	ratingStarCount();
+	ratingStarCountProfile();
 	/* loadSpecializationData(); */
 
 });
 
 function loadProfileData() {
-	var l_map = g_data;
+	//var l_map = g_data;
+	var l_map = {};
 	ajaxWithJSON("/tutor-personal", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		// alert(JSON.stringify(response));
@@ -193,7 +194,8 @@ function loadEditIntro(p_flage) {
 var l_intro_data = {};
 function loadIntroData() {
 	// alert("/tutor-general-info");
-	var l_map = g_data;
+	//var l_map = g_data;
+	var l_map = {};
 	ajaxWithJSON(
 			"/tutor-general-info",
 			l_map,
@@ -464,7 +466,8 @@ function saveContact(p_form_id) {debugger;
 var g_contact_data = {};
 function loadContactData() { debugger;
 	// alert("/tutor-contact-data");
-	var l_map = g_data;
+	//var l_map = g_data;
+var l_map = {};
 	ajaxWithJSON(
 			"/tutor-contact-data",
 			l_map,
@@ -823,7 +826,8 @@ function saveQualification(p_form_id) {debugger;
 var g_qualifications = [];
 function loadQualificationData() {
 	//alert("/tutor-qualifications");
-	var l_map = g_data;
+	//var l_map = g_data;
+	var l_map = {};
 	ajaxWithJSON("/common/load-user-qualifications", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		
@@ -924,7 +928,8 @@ function saveCertificate(p_form_id) {
 var g_certificate_data = [];
 function loadCertificationData() {
 	//alert("/tutor-certification");
-	var l_map = g_data;
+	//var l_map = g_data;
+	var l_map = {};
 	ajaxWithJSON("/common/load-user-certifications", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		//alert(JSON.stringify(response));
@@ -1020,7 +1025,8 @@ function saveProfessional(p_form_id) {
 var g_professional_data = [];
 function loadProfessionalData() {
 	//alert("/tutor-professional");
-	var l_map = g_data;
+	//var l_map = g_data;
+	var l_map = {};
 	ajaxWithJSON("/common/load-user-professional-detail", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		//alert(JSON.stringify(response));
@@ -1073,7 +1079,8 @@ function loadProfessionalData() {
 
 function loadBatchData() {
 
-	var l_map = g_data;
+	//var l_map = g_data;
+	var l_map = {};
 	l_map.top = true;
 	ajaxWithJSON("/tutor-batches", l_map, 'POST', function(response) {
 		var l_data = response.object;
@@ -2394,9 +2401,9 @@ function selectEducation(){
 	
 
 
-		function ratingStarCount() {debugger;
-			var c_html = "";
-			$('.c_rating').html("");
+		function ratingStarCountProfile() {debugger;
+			var p_html = "";
+			$('.p_rating').html("");
 			ajaxWithJSON("/load-star-count", null, 'GET', function(response) {debugger;
 						var l_data = response.object;
 						var dataLength =l_data.length;
@@ -2404,50 +2411,50 @@ function selectEducation(){
 						var averageRating = averageRating1.toString();
 							/*dynamic html code  */ 
 							 
-						c_html += '<span class="rating-text" style="color: white; font-weight: 500;margin-right: 5px;">'+averageRating+'</span>';
+						p_html += '<span class="rating-text" style="color: white; font-weight: 500;margin-right: 5px;" >'+averageRating+'</span>';
 						switch (averageRating) { 
 						case "1":
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star "></span>';
-							c_html += '<span class="fa fa-star "></span>';
-							c_html += '<span class="fa fa-star "></span>';
-							c_html += '<span class="fa fa-star "></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star "></span>';
+							p_html += '<span class="fa fa-star "></span>';
+							p_html += '<span class="fa fa-star "></span>';
+							p_html += '<span class="fa fa-star "></span>';
 							break;
 
 						case "2":
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star "></span></span>';
-							c_html += '<span class="fa fa-star "></span></span>';
-							c_html += '<span class="fa fa-star "></span></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star "></span></span>';
+							p_html += '<span class="fa fa-star "></span></span>';
+							p_html += '<span class="fa fa-star "></span></span>';
 							break;
 							
 						case "3":
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star "></span></span>';
-							c_html += '<span class="fa fa-star "></span></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star "></span></span>';
+							p_html += '<span class="fa fa-star "></span></span>';
 							break;
 							
 						case "4":
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star "></span></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star "></span></span>';
 							break;
 
 						case "5":
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star checked"></span>';
-							c_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star checked"></span>';
 						}
 
 
 						
-						$('.c_rating').html(c_html);
+						$('.p_rating').html(p_html);
 					});
 		}

@@ -1,7 +1,12 @@
 /**
  * 
  */
+$(document).ready(function() {
+	debugger;
+	ratingStarCount1();
+	/* loadSpecializationData(); */
 
+});
 
 function saveInstituteGeneralInfo(p_formId,p_errorClass) {
 
@@ -493,3 +498,61 @@ $(function() {
   });
 });
 
+
+function ratingStarCount1() {debugger;
+	var k_html = "";
+	$('.k_rating').html("");
+	ajaxWithJSON("/load-star-count", null, 'GET', function(response) {debugger;
+				var l_data = response.object;
+				var dataLength =l_data.length;
+				var averageRating1=l_data.averageRating;
+				var averageRating = averageRating1.toString();
+					/*dynamic html code  */ 
+					 
+				k_html += '<span class="rating-text" style="color: white; font-weight: 500;margin-right: 5px;" >'+averageRating+'</span>';
+				switch (averageRating) { 
+				case "1":
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star "></span>';
+					k_html += '<span class="fa fa-star "></span>';
+					k_html += '<span class="fa fa-star "></span>';
+					k_html += '<span class="fa fa-star "></span>';
+					break;
+
+				case "2":
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star "></span></span>';
+					k_html += '<span class="fa fa-star "></span></span>';
+					k_html += '<span class="fa fa-star "></span></span>';
+					break;
+					
+				case "3":
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star "></span></span>';
+					k_html += '<span class="fa fa-star "></span></span>';
+					break;
+					
+				case "4":
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star "></span></span>';
+					break;
+
+				case "5":
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star checked"></span>';
+					k_html += '<span class="fa fa-star checked"></span>';
+				}
+
+
+				
+				$('.k_rating').html(k_html);
+			});
+}
