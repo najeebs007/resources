@@ -892,11 +892,18 @@ margin-left:10px;
 	
 /************* student profile css ******************/
 /*s= is used for Student*/
+.card-body-padding-student{padding:10px 10px !important;}
 .s-profile-header
 {
 	color: #8995a5 !important;
     font-size: 16px !important;
 }
+.s-profile-header-skyblue
+{
+	color: #007aff !important;
+    font-size: 16px !important;
+}
+.s-profile-img-left{height:325px;}
 .s-profile-content
 {
 	padding: 70px 0px;
@@ -1020,6 +1027,57 @@ margin-left:10px;
     text-align: center;
     margin-left: 5px;
 }
+.s-profile-icon-header
+{
+	width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-left: 10px;
+}
+.s-profile-icon-img
+{
+	width:100%;
+	height:100%;
+}
+.edu{width:35px !important;height:35px !important;}
+.profession {
+    width: 23px !important;
+    height: 26px !important;
+    margin-left: 16px;
+    margin-right: 4px;
+}
+.certi {
+    width: 22px !important;
+    height: 29px !important;
+    margin-left: 17px;
+    margin-right: 4px;
+}
+.con
+{
+	width: 35px !important;
+    height: 20px !important;
+}
+.s-icon-school{
+    width: 30px;
+    height: 30px;
+    background: #c1b7b738;
+    border: 1px solid #80808000;
+    border-radius: 50%;
+    text-align: center; 
+}
+.s-icon-padding
+{
+	 padding: 2px 0px !important;
+}
+.s-icon-school-img {
+    width: 20px; 
+    height: 20px;
+}
+.s-profile-data-padding{padding-left: 3px;}
+.txt-black{color:black !important;}
+.txt-bold{font-weight:600;}
+.s-profile-text-color{color:#9999ad !important;}
+.s-edit-ico-r{right:8px !important;}
 /*** Tution As a service css ***/
 .g-mapcard-black
 {

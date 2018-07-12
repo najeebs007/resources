@@ -234,7 +234,7 @@ function forgetPassword(){
 	var l_html = " ";
 	  //this div to ask choice from user Email/Mobile
 	  l_html += '<label id="binderror" style="font-size: 12px;color: red;margin-top: 15px;margin-left: 22px;"></label>';	
-	  l_html += '<div class="center-on-page" id="email-mobile-div">';
+	  l_html += '<div class="center-on-page forgetpassword-margin-top" id="email-mobile-div">';
       l_html += '<h2 style="font-size: 15px;color: #949494;font-weight: 500;">Where would you like to send OTP</h2>';
 	  l_html += '<input type="radio" name="rb" onclick="return openOTPEmailBox(event)" id="resendEmail" />';
 	  l_html += '<label for="resendEmail">Email</label>';
