@@ -1112,6 +1112,24 @@ margin-left:10px;
 }
 .g-mapcard-black{color:black;}
 .g-mapcard-bold{font-weight:600;}
+.dropi-menu{
+    margin-left: -95px !important;
+    border-radius: 2px !important;
+    margin-top: 10px !important;
+    box-shadow: 0px 0px 10px 3px #dccccc !important;
+}
+.dropi-menu:before {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    top: -17px;
+    border-right: 20px solid transparent;
+    border-left: 20px solid transparent;
+    border-bottom: 20px solid #fff;
+    right: 25px;
+    margin-right: -2px;
+    right: 8%;
+}
  
  @media screen and (max-width: 767px){
 	 .top-header-author {
@@ -1157,6 +1175,12 @@ margin-left:10px;
 .s-profile-other
 {
   font-size:12px; 	
+}
+.dropi-menu {
+    margin-left: 5px !important; 
+}
+.dropi-menu:before { 
+    right:64%;
 }	
 }
 /*media 767 End Here ****/
@@ -1194,7 +1218,12 @@ margin-left:10px;
 .s-profile-content {
     padding: 0px 0px;
 }
-
+.dropi-menu {
+    margin-left:-80px !important; 
+}
+.dropi-menu:before { 
+    right:15%;
+}
 }
 /*media for ipad Pro only****/
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1200px) {
