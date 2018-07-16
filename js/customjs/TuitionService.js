@@ -31,7 +31,7 @@ function gridViewTab(tutorList){debugger;
     			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>No of Active Batches :</strong><span class=\"tutor-val-text\">20</span></span><br/>";
     			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Price :</strong><span class=\"tutor-val-text\">&#8377; 2000</span></span><br/>";
     			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Distance :</strong><span class=\"tutor-val-text\">"+Math.round(parseFloat(tutorMap.distance))+" km </span></span><br/>"; 
-    		    html += "<span class=\"profileSpan\" style=\"font-size: 16px;font-weight:500; font-family:open sans;\"> <span class=\"rating-text tutor-val-text\">12,335</span><span class=\"fa fa-star checked\"></span><span class=\"fa fa-star checked\"></span><span class=\"fa fa-star checked\"></span> <span class=\"fa fa-star checked\"></span><span class=\"fa fa-star\"></span></span></div>";
+    		    html += "<span class=\"profileSpan\" style=\"font-size: 16px;font-weight:500; font-family:open sans;\"><span class=\"fa fa-star checked\"></span><span class=\"fa fa-star checked\"></span><span class=\"fa fa-star checked\"></span> <span class=\"fa fa-star checked\"></span><span class=\"fa fa-star\"></span></br><span class=\"rating-text tutor-val-text\" style='font-size:15px;'>12,335 total reviews</span></span></div>";
     			html += "<div class=\"item-title btm-part\">";
     			html += "<div class=\"row\">";
     			html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\" style='text-align:center;'>";
@@ -85,7 +85,7 @@ function listViewTab(tutorList){
      			html += "</div>";
      			html += "<div class=\"item-price col-lg-3 col-md-3 col-sm-3 col-xs-6\"><div class=\"row\">";
  				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\" style='text-align:center;'><span class=\"profileSpan\" style=\"font-size: 20px;font-weight:500; font-family:open sans;\"><span class=\"fa fa-star checked\"></span><span class=\"fa fa-star checked\"></span><span class=\"fa fa-star checked\"></span> <span class=\"fa fa-star checked\"></span><span class=\"fa fa-star\"></span></span></div>";
- 				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\" style='text-align:center;'><span class=\"profileSpan\" style=\"font-size: 16px;font-weight:500; font-family:open sans;\"> <span class=\"rating-text tutor-val-text\" style='font-size:16px;color:black;'>12,335 total views</span></span></div>";
+ 				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\" style='text-align:center;'><span class=\"profileSpan\" style=\"font-size: 16px;font-weight:500; font-family:open sans;\"> <span class=\"rating-text tutor-val-text\" style='font-size:16px;color:black;'>12,335 total reviews</span></span></div>";
  				html += "<div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12 m-t-30\" style='text-align:center;'><a href='../../tutor-profile?login=false&user="+tutorMap.userName+"'class=\"btn btn-primary\">View Profile</a></div>";
      			if(tutorMap.SEARCH=='REQUESTED')
  				
