@@ -144,21 +144,6 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 		        //l_text=l_text+'<button onclick="'+l_text+'">Request For Tuition</button>';
 		}
 			
-	 // var a=['<div class="card"> <img src="https://s19.postimg.cc/lbz034vw3/pro.png" alt="no image" style="border-radius: 100%;border: 5px solid rgba(255,255,255,0.5);"><h2>'
-			// + l_map.displayName
-			// + '</h2><p class="title"><strong style="color:black;">Experiance:</strong><span>'
-			// + l_map.totalExperience
-			// + '</span></p><p class="title"><strong style="color:black;">Teach : </strong><span>'
-			// + l_map.specialities
-			// + '<p class="title"><strong title="this distance from current location" style="color:black;">distance : </strong><span>'
-			// + Math.round(parseFloat(l_map.distance))
-			// + ' km</span></p><div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div> <p><a target="_blank" href="../../tutor-profile?login=false&user='
-			// + l_map.userName
-			// + '"><button>View Profile</button></a></p>'
-			// +'<div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div>'
-				// + '"<div class="c_change"'+i+'" >'+l_text+'</div>'
-			// +'</div><style>.card {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);max-width:280px;margin: auto;text-align: center;font-family: arial;}.title {color: grey;font-size: 13px;}button{border: none;outline: 0;display: inline-block;padding: 4px;color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 13px;}a {text-decoration: none;font-size: 15px;color: blue;}button:hover, a:hover {opacity: 0.7;}</style>', l_map.latitude, l_map.longitude];
-	   // locations.push(a);
 		 var a=['<div class="card card-customize"><div class="card-body"><div class="row">'
 			  + '<div class="g-mapcard-left-img"> <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
 			  + '<div class="s-profile-pic-card"> <img src="../resources/img/batch-list/zitu.png" alt="" style="width: 100%;border-radius: 50%;"> </div></div>'
