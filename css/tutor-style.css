@@ -2968,10 +2968,10 @@ figure {
     height:25px;
     font-size: 18px;
 }
-.wide-2 .item-info-map span {
+/* .wide-2 .item-info-map span {
     font-family: 'Open Sans'; 
     font-size: 15px;
-}
+} */
 /* line 2188, ../scss/helpers/_classes.scss */
 .wide-2 .item-info .item-title {
   height: 20px;
@@ -3003,7 +3003,7 @@ figure {
 }
 .item-price
 {
-	margin-top: 15px;
+	margin-top:0px;
     height: 145px;
     padding: 20px 15px;
 }

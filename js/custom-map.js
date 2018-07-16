@@ -159,38 +159,42 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 				// + '"<div class="c_change"'+i+'" >'+l_text+'</div>'
 			// +'</div><style>.card {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);max-width:280px;margin: auto;text-align: center;font-family: arial;}.title {color: grey;font-size: 13px;}button{border: none;outline: 0;display: inline-block;padding: 4px;color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 13px;}a {text-decoration: none;font-size: 15px;color: blue;}button:hover, a:hover {opacity: 0.7;}</style>', l_map.latitude, l_map.longitude];
 	   // locations.push(a);
-	   var a=['<div class="card card-customize"><div class="card-body"><div class="row">'
-	  + '<div class="g-mapcard-left-img"> <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
-	  + '<div class="s-profile-pic-card"> <img src="../resources/img/batch-list/zitu.png" alt="" style="width: 100%;border-radius: 50%;"> </div></div>'
-	  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-15"> <span class="g-mapcard-name-small">'
-	  + l_map.displayName
-	  + '</span></div></div>'
-	  + '<div class="s-profile-left-content">'
-	  + '<div class="col-xl-12 col-lg-12 col-md-`2 col-sm-12 col-xs- 12">' 
-	  + '<div class="row"><div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">'
-	  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Experience : <span style="color:#80808094;font-weight: 400;">'
-	  + l_map.totalExperience
-	  +'</span></span></div>'
-	  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
-	  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Teach : <span style="color:#80808094;font-weight: 400;">'
-	  + l_map.specialities
-	  +'</span></span></div>'
-	  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
-	  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Distance : <span style="color:#80808094;font-weight: 400;">'
-	  + Math.round(parseFloat(l_map.distance))
-	  +' KM</span></span></div>'
-	  + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
-	  + '<span class="profileSpan" style="font-size: 16px;font-weight:500; font-family:open sans; ">'
-	  + '<span class="rating-text" style="color:#f05827;font-weight:600;">12,335</span> <span class="fa fa-star checked"></span> '
-	  + '<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>' 
-	  + '<span class="fa fa-star "></span></span> </div></div></div>'
-	  + '<div class="col-xl-12 col-lg-12 col-md-`2 col-sm-12 col-xs-12" style="margin-top:10px;"> '
-	  + '<div class="row"> <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 ">' 
-	  + '<button type="button" class="btn btn-primary">View Profile</button></div>'
-	  + '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">' 
-	  + '<button type="button" class="btn btn-danger" onclick="'+l_text+'">Request For Tution</button>'
-	  + '</div></div></div></div></div></div></div>', l_map.latitude, l_map.longitude];
-	  locations.push(a);
+		 var a=['<div class="card card-customize"><div class="card-body"><div class="row">'
+			  + '<div class="g-mapcard-left-img"> <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
+			  + '<div class="s-profile-pic-card"> <img src="../resources/img/batch-list/zitu.png" alt="" style="width: 100%;border-radius: 50%;"> </div></div>'
+			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-15"> <span class="g-mapcard-name-small">'
+			  + l_map.displayName
+			  + '</span></div></div>'
+			  + '<div class="s-profile-left-content">'
+			  + '<div class="col-xl-12 col-lg-12 col-md-`2 col-sm-12 col-xs- 12">' 
+			  + '<div class="row"><div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">'
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Experience : <span style="color:#80808094;font-weight: 400;">'
+			  + l_map.totalExperience
+			  +'</span></span></div>'
+			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Expert In : <span style="color:#80808094;font-weight: 400;">'
+			  + l_map.specialities
+			  +'</span></span></div>'
+			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">No of Active Batches : <span style="color:#80808094;font-weight: 400;">20</span></span></div>'
+			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Distance : <span style="color:#80808094;font-weight: 400;">'
+			  + Math.round(parseFloat(l_map.distance))
+			  +' KM</span></span></div>'
+			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Price : <span style="color:#80808094;font-weight: 400;">&#8377; 2000</span></span></div>'
+			  + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
+			  + '<span class="profileSpan" style="font-size: 16px;font-weight:500; font-family:open sans; ">'
+			  + '<span class="rating-text" style="color:#f05827;font-weight:600;">12,335</span> <span class="fa fa-star checked"></span> '
+			  + '<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>' 
+			  + '<span class="fa fa-star "></span></span> </div></div></div>'
+			  + '<div class="col-xl-12 col-lg-12 col-md-`2 col-sm-12 col-xs-12" style="margin-top:10px;"> '
+			  + '<div class="row"> <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 ">' 
+			  + '<button type="button" class="btn btn-primary">View Profile</button></div>'
+			  + '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">' 
+			  + '<button type="button" class="btn btn-danger" onclick="'+l_text+'">Request For Tution</button>'
+			  + '</div></div></div></div></div></div></div>', l_map.latitude, l_map.longitude];
+			  locations.push(a);
 	}
 
 	var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';

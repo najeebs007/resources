@@ -23,8 +23,8 @@ $(document).ready(function() {
 });
 
 function loadProfileData() {
-	//var l_map = g_data;
-	var l_map = {};
+	var l_map = g_data;
+	//var l_map = {};
 	ajaxWithJSON("/tutor-personal", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		// alert(JSON.stringify(response));
@@ -66,8 +66,8 @@ function loadProfileData() {
 }
 
 function loadSocialData() {
-	var l_map = {};
-	l_map.login = true;
+	var l_map = g_data;
+	//l_map.login = true;
 	ajaxWithJSON(
 			"/tutor-social",
 			l_map,
@@ -194,8 +194,8 @@ function loadEditIntro(p_flage) {
 var l_intro_data = {};
 function loadIntroData() {
 	// alert("/tutor-general-info");
-	//var l_map = g_data;
-	var l_map = {};
+	var l_map = g_data;
+	//var l_map = {};
 	ajaxWithJSON(
 			"/tutor-general-info",
 			l_map,
@@ -466,8 +466,8 @@ function saveContact(p_form_id) {debugger;
 var g_contact_data = {};
 function loadContactData() { debugger;
 	// alert("/tutor-contact-data");
-	//var l_map = g_data;
-var l_map = {};
+	var l_map = g_data;
+//var l_map = {};
 	ajaxWithJSON(
 			"/tutor-contact-data",
 			l_map,
@@ -826,8 +826,8 @@ function saveQualification(p_form_id) {debugger;
 var g_qualifications = [];
 function loadQualificationData() {
 	//alert("/tutor-qualifications");
-	//var l_map = g_data;
-	var l_map = {};
+	var l_map = g_data;
+	//var l_map = {};
 	ajaxWithJSON("/common/load-user-qualifications", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		
@@ -928,8 +928,8 @@ function saveCertificate(p_form_id) {
 var g_certificate_data = [];
 function loadCertificationData() {
 	//alert("/tutor-certification");
-	//var l_map = g_data;
-	var l_map = {};
+	var l_map = g_data;
+	//var l_map = {};
 	ajaxWithJSON("/common/load-user-certifications", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		//alert(JSON.stringify(response));
@@ -1025,8 +1025,8 @@ function saveProfessional(p_form_id) {
 var g_professional_data = [];
 function loadProfessionalData() {
 	//alert("/tutor-professional");
-	//var l_map = g_data;
-	var l_map = {};
+	var l_map = g_data;
+	//var l_map = {};
 	ajaxWithJSON("/common/load-user-professional-detail", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		//alert(JSON.stringify(response));
@@ -1079,8 +1079,8 @@ function loadProfessionalData() {
 
 function loadBatchData() {
 
-	//var l_map = g_data;
-	var l_map = {};
+	var l_map = g_data;
+	//var l_map = {};
 	l_map.top = true;
 	ajaxWithJSON("/tutor-batches", l_map, 'POST', function(response) {
 		var l_data = response.object;
@@ -2403,8 +2403,9 @@ function selectEducation(){
 
 		function ratingStarCountProfile() {debugger;
 			var p_html = "";
+			var l_map = g_data;
 			$('.p_rating').html("");
-			ajaxWithJSON("/load-star-count", null, 'GET', function(response) {debugger;
+			ajaxWithJSON("/load-star-count", l_map, 'GET', function(response) {debugger;
 						var l_data = response.object;
 						var dataLength =l_data.length;
 						var averageRating1=l_data.averageRating;
