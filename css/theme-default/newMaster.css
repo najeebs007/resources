@@ -931,40 +931,40 @@ margin-left:10px;
 .s-profile-name
 { 
   font-size: 20px;
-  font-family: "Open Sans";
+  /* font-family: "Open Sans"; */
   color: rgb(0, 0, 0);
   font-weight: 600;    
 }
 .s-profile-name-small
 { 
   font-size: 16px;
-  font-family: "Open Sans";
+  /* font-family: "Open Sans"; */
   color: rgb(0, 0, 0);
   font-weight: 600;    
 }
 .s-profile-specialization
 { 
   font-size:15px;
-  font-family: "Open Sans";
+  /* font-family: "Open Sans"; */
   color: rgb(0, 0, 0);
   font-weight: 600;    
 }
 .s-profile-contact
 { 
   font-size:13px;
-  font-family: "Open Sans";
+  /* font-family: "Open Sans"; */
   color: rgb(0, 0, 0);     
 }
 .s-profile-other
 {
   font-size:13px;
-  font-family: "Open Sans";
+ /*  font-family: "Open Sans"; */
   color: rgb(0, 0, 0);
   font-weight: 600; 	
 }
 .s-profile-text-gray{
   font-size: 14px;
-  font-family: "Open Sans";
+  /* font-family: "Open Sans"; */
   color: rgb(153, 153, 173); 
   text-align: left; 
 }
@@ -1006,11 +1006,11 @@ margin-left:10px;
 }
 .s-profile-text{
   font-size: 14px;
-  font-family: "Open Sans";
+ /*  font-family: "Open Sans"; */
   color: rgb(68, 68, 73);
   font-weight: 600;   
 }
-.s-font{font-family:"Open Sans";}
+/* .s-font{font-family:"Open Sans";} */
 .s-gray
 {
 	color:#9999ad;
