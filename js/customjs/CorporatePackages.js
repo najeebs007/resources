@@ -743,39 +743,39 @@ function candidateActions(packageId, examId, candidateId, count, actionType,
 
 }
 
-function edit_row(no) {
-	document.getElementById("edit_button" + no).style.display = "none";
-	document.getElementById("save_button" + no).style.display = "block";
+// function edit_row(no) {
+	// document.getElementById("edit_button" + no).style.display = "none";
+	// document.getElementById("save_button" + no).style.display = "block";
 
-	var sr = document.getElementById("sr_row" + no);
-	var name = document.getElementById("name_row" + no);
-	var email = document.getElementById("email_row" + no);
-	var phone = document.getElementById("phone_row" + no);
-	// var pin = document.getElementById("pin_row" + no);
-	// var password = document.getElementById("password_row" + no);
+	// var sr = document.getElementById("sr_row" + no);
+	// var name = document.getElementById("name_row" + no);
+	// var email = document.getElementById("email_row" + no);
+	// var phone = document.getElementById("phone_row" + no);
+	// // var pin = document.getElementById("pin_row" + no);
+	// // var password = document.getElementById("password_row" + no);
 
-	var sr_data = sr.innerHTML;
-	var name_data = name.innerHTML;
-	var email_data = email.innerHTML;
-	var phone_data = phone.innerHTML;
-	// var pin_data = pin.innerHTML;
-	// var password_data = password.innerHTML;
+	// var sr_data = sr.innerHTML;
+	// var name_data = name.innerHTML;
+	// var email_data = email.innerHTML;
+	// var phone_data = phone.innerHTML;
+	// // var pin_data = pin.innerHTML;
+	// // var password_data = password.innerHTML;
 
-	sr.innerHTML = "<input readonly type='text' id='sr_text" + no + "' value='"
-			+ sr_data + "'>";
-	name.innerHTML = "<input type='text' id='name_text" + no + "' value='"
-			+ name_data + "'>";
-	email.innerHTML = "<input readonly type='text' id='email_text" + no
-			+ "' value='" + email_data + "'>";
-	phone.innerHTML = "<input type='text' id='phone_text" + no + "' value='"
-			+ phone_data
-			+ "' maxlength='10' onkeypress='return isMobile(event)'>";
-	// pin.innerHTML = "<input type='text' id='pin_text" + no + "' value='"
-	// + pin_data + "'maxlength='6' onkeypress='return isMobile(event)'>";
-	// password.innerHTML = "<input type='text' id='password_text" + no + "'
-	// value='"
-	// + password_data + "'>";
-}
+	// sr.innerHTML = "<input readonly type='text' id='sr_text" + no + "' value='"
+			// + sr_data + "'>";
+	// name.innerHTML = "<input type='text' id='name_text" + no + "' value='"
+			// + name_data + "'>";
+	// email.innerHTML = "<input readonly type='text' id='email_text" + no
+			// + "' value='" + email_data + "'>";
+	// phone.innerHTML = "<input type='text' id='phone_text" + no + "' value='"
+			// + phone_data
+			// + "' maxlength='10' onkeypress='return isMobile(event)'>";
+	// // pin.innerHTML = "<input type='text' id='pin_text" + no + "' value='"
+	// // + pin_data + "'maxlength='6' onkeypress='return isMobile(event)'>";
+	// // password.innerHTML = "<input type='text' id='password_text" + no + "'
+	// // value='"
+	// // + password_data + "'>";
+// }
 
 function selectNumberOfIds(packageId, examId) {
 	$('#i_errorGenerate').html("");
@@ -1186,20 +1186,19 @@ function edit_row(no) {
 	var phone = document.getElementById("phone_row" + no);
 	// var pin = document.getElementById("pin_row" + no);
 	// var password = document.getElementById("password_row" + no);
-
-	var sr_data = sr.innerHTML;
-	var name_data = name.innerHTML;
-	var email_data = email.innerHTML;
-	var phone_data = phone.innerHTML;
+  
+	var sr_data    = sr.innerHTML;
+	var name_data  = name.firstChild.data;;
+	var email_data = email.firstChild.data;;
+	var phone_data = phone.firstChild.data;;
 	// var pin_data = pin.innerHTML;
 	// var password_data = password.innerHTML;
 
-	sr.innerHTML = "<input readonly type='text' id='sr_text" + no + "' value='"
-			+ sr_data + "'>";
+	sr.innerHTML = "<input readonly type='text' id='sr_text" + no + "' value='" + sr_data + "'>";
 	name.innerHTML = "<input type='text' id='name_text" + no + "' value='"
 			+ name_data + "'>";
 	email.innerHTML = "<input readonly type='text' id='email_text" + no
-			+ "' value='" + email_data + "'>";
+			+ "' value='" + email_data + "' >";
 	phone.innerHTML = "<input type='text' id='phone_text" + no + "' value='"
 			+ phone_data
 			+ "' maxlength='10' onkeypress='return isMobile(event)'>";

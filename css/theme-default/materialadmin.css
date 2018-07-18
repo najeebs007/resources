@@ -7616,7 +7616,25 @@ sub.badge {
 .panel-group .card.expanded:first-child {
 	margin-top: 0;
 }
-
+.panel-group .card.expanded>div.m-r-a-head-dashboard:before{
+	position: absolute;
+    display: inline-block;
+    content: '';
+	width:0;
+    top: 97px;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    border-top: 12px solid white;
+    right: 25px; 
+    left: 20px;
+    z-index: 1050;
+}
+.m-r-a-dashboard{background:#f3ebeb;}
+.m-r-a-head-dashboard
+{
+	padding: 0px 12px !important;
+	border-bottom: 1px solid rgba(150, 156, 156, 0.14)  !important;
+}
 .timeline {
 	position: relative;
 	list-style: none;
@@ -7666,7 +7684,7 @@ sub.badge {
 .timeline-entry {
 	position: relative;
 	display: inline-block;
-	width:92%;
+	width:66%;
 	padding: 0;
 	vertical-align: top;
 	margin: 0 -3px 0 0;
@@ -7686,7 +7704,7 @@ sub.badge {
 }
 
 .timeline-inverted .timeline-entry {
-	left: 108%;
+	left: 122%;
 }
 
 .timeline-inverted .timeline-entry .card {
@@ -9119,6 +9137,8 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
    }
    .analysis-content
    {margin: 50px 0 0 -35px; padding: 10px 10px 10px 10px;}
+   
+   .panel-group .card.expanded>div.m-r-a-head-dashboard:before{margin-top:188px;}
 }
 @media only screen and  (device-width: 768px) and (device-height: 1024px) {
 	.hide-onMobile{display:none ! important;}
@@ -9129,6 +9149,7 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 	{
 	  margin-bottom:5px! important;font-weight:600! important;font-size:12px! important;
 	} 
+	.panel-group .card.expanded>div.m-r-a-head-dashboard:before{margin-top:137px;}
 }
 .imgdb {
 	height: 600px;
@@ -9916,73 +9937,7 @@ xtab-filter
     width: 80%;
   }
 }
-
-/* -------------------------------- 
-
-xgallery 
-
--------------------------------- */
-.cd-gallery {
-  padding: 26px 5%;
-  width: 100%;
-}
-.cd-gallery li {
-  margin-bottom: 1.6em;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  display: none;
-}
-.cd-gallery li.gap {
-  /* used in combination with text-align: justify to align gallery elements */
-  opacity: 0;
-  height: 0;
-  display: inline-block;
-}
-.cd-gallery img {
-  display: block;
-  width: 100%;
-}
-.cd-gallery .cd-fail-message {
-  display: none;
-  text-align: center;
-}
-.form-extended
-{
-	margin-bottom:30px !important;
-}
-@media only screen and (min-width: 768px) {
-  .cd-gallery {
-    padding: 40px 3%;
-  }
-  .cd-gallery ul {
-    text-align: justify;
-  }
-  .cd-gallery ul:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  .cd-gallery li {
-    width: 48%;
-    margin-bottom: 2em;
-  }
-}
-@media only screen and (min-width: 1170px) {
-  .cd-gallery {
-    padding: 50px 2%;
-    float: right;
-    -webkit-transition: width 0.3s;
-    -moz-transition: width 0.3s;
-    transition: width 0.3s;
-  }
-  .cd-gallery li {
-    width: 23%;
-  }
-  .cd-gallery.filter-is-visible {
-    /* reduce width when filter is visible */
-    width: 80%;
-  }
-}
-
+ 
 /* -------------------------------- 
 
 xfilter 
@@ -10114,7 +10069,143 @@ xfilter
     color: #ffffff;
   }
 }
-
+@media only screen and (max-width:414px) {
+  .cd-filter-trigger {
+   width: 90px;
+    height:30px;
+    background: #1d92e8;
+	top:208px;
+    left:2%;
+    text-indent: 0;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding-left: 19px;
+    background-position: left center;
+    -webkit-transition: color 0.3s;
+    -moz-transition: color 0.3s;
+    transition: color 0.3s;
+    border-radius: 4px;
+    box-shadow: 2px 1px 2px 1px #f04e09;
+  }
+  .no-touch .cd-filter-trigger:hover {
+    color: #41307c;
+  }
+  .cd-filter-trigger.filter-is-visible, .cd-filter-trigger.filter-is-visible:hover {
+    color: #ffffff;
+  }
+  .cd-filter{left:-2px;}
+  .cd-filter.filter-is-visible { 
+    left: 4px;
+    top: 200px;
+}
+.container-onMobile{padding-right: 0px !important;
+    padding-left: 0px !important;}
+}
+@media only screen and (max-width:767px) {
+  .cd-filter-trigger {
+   width: 90px;
+    height:30px;
+    background: #1d92e8;
+	top:208px;
+    left:2%;
+    text-indent: 0;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding-left: 19px;
+    background-position: left center;
+    -webkit-transition: color 0.3s;
+    -moz-transition: color 0.3s;
+    transition: color 0.3s;
+    border-radius: 4px;
+    box-shadow: 2px 1px 2px 1px #f04e09;
+  }
+  .no-touch .cd-filter-trigger:hover {
+    color: #41307c;
+  }
+  .cd-filter-trigger.filter-is-visible, .cd-filter-trigger.filter-is-visible:hover {
+    color: #ffffff;
+  }
+  .cd-filter{left:-2px;}
+  .cd-filter.filter-is-visible { 
+    left: 4px;
+    top: 200px;
+}
+.container-onMobile{padding-right: 0px !important;
+    padding-left: 0px !important;}
+}
+@media only screen and (min-device-width:768px) and (max-device-width:1023px) {
+  .cd-filter-trigger {
+   width: 90px;
+    height:30px;
+    background: #1d92e8;
+	top:208px;
+    left:2%;
+    text-indent: 0;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding-left: 19px;
+    background-position: left center;
+    -webkit-transition: color 0.3s;
+    -moz-transition: color 0.3s;
+    transition: color 0.3s;
+    border-radius: 4px;
+    box-shadow: 2px 1px 2px 1px #f04e09;
+  }
+  .no-touch .cd-filter-trigger:hover {
+    color: #41307c;
+  }
+  .cd-filter-trigger.filter-is-visible, .cd-filter-trigger.filter-is-visible:hover {
+    color: #ffffff;
+  }
+  .cd-filter{left:-2px;}
+  .cd-filter.filter-is-visible 
+  { 
+    left: 4px;
+    top: 200px;
+}
+ 
+.container-onMobile{padding-right: 0px !important;
+    padding-left: 0px !important;}
+}
+@media only screen and (min-device-width:1024px) and (max-device-width:1200px) {
+  .cd-filter-trigger {
+   width: 90px;
+    height:30px;
+    background: #1d92e8;
+	top:145px;
+    left:8%;
+    text-indent: 0;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding-left: 19px;
+    background-position: left center;
+    -webkit-transition: color 0.3s;
+    -moz-transition: color 0.3s;
+    transition: color 0.3s;
+    border-radius: 4px;
+    box-shadow: 2px 1px 2px 1px #f04e09;
+  }
+  .no-touch .cd-filter-trigger:hover {
+    color: #41307c;
+  }
+  .cd-filter-trigger.filter-is-visible, .cd-filter-trigger.filter-is-visible:hover {
+    color: #ffffff;
+  }
+  .cd-filter{left:-2px;}
+ .cd-filter.filter-is-visible 
+  { 
+    left: 75px;
+    top: 136px;
+}
+}
 /* -------------------------------- 
 
 xcustom form elements 

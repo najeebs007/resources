@@ -127,171 +127,61 @@ $.ajaxSetup({
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Google Map - Homepage http://localhost:8080/resources/assets/js/locations.js
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function createHomepageGoogleMap(_latitude, _longitude) {
-	if (document.getElementById('map') != null) {
-		$
-				.getScript(
-						"http://localhost:8080/resources/js/locations.js",
-						function() {
-							var map = new google.maps.Map(
-									document.getElementById('map'),
-									{
-										zoom : 15,
-										zoomControl : true,
-										streetViewControl : true,
-										zoomControlOptions : {
-											position : google.maps.ControlPosition.RIGHT_TOP
-										},
-										streetViewControlOptions : {
-											position : google.maps.ControlPosition.RIGHT_TOP
-										},
-										scrollwheel : false,
-										center : new google.maps.LatLng(
-												_latitude, _longitude)
-									});
-							var i;
-							var newMarkers = [];
-							for (i = 0; i < locations.length; i++) {
-								var pictureLabel = document
-										.createElement("img");
-								pictureLabel.src = locations[i][7];
-								var boxText = document.createElement("div");
-								infoboxOptions = {
-									content : boxText,
-									disableAutoPan : false,
-									pixelOffset : new google.maps.Size(-100, 0),
-									zIndex : null,
-									alignBottom : true,
-									boxClass : "infobox-wrapper",
-									enableEventPropagation : true,
-									closeBoxMargin : "0px 0px -8px 0px",
-									closeBoxURL : "assets/img/close-btn.png",
-									infoBoxClearance : new google.maps.Size(1,
-											1)
-								};
-								var marker = new MarkerWithLabel(
-										{
-											title : locations[i][0],
-											position : new google.maps.LatLng(
-													locations[i][3],
-													locations[i][4]),
-											map : map,
-											labelContent : '<div class="marker-loaded"><div class="map-marker"><img src="'
-													+ locations[i][7]
-													+ '" alt="" /></div></div>',
-											labelAnchor : new google.maps.Point(
-													50, 0),
-											labelClass : "marker-style"
-										});
-								newMarkers.push(marker);
-								boxText.innerHTML = '<div class="infobox-inner">'
-										+ '<a href="'
-										+ locations[i][5]
-										+ '">'
-										+ '<div class="infobox-image" style="position: relative">'
-										+ '<img src="'
-										+ locations[i][6]
-										+ '">'
-										+ '<div><span class="infobox-price">'
-										+ locations[i][2]
-										+ '</span></div>'
-										+ '</div>'
-										+ '</a>'
-										+ '<div class="infobox-description">'
-										+ '<div class="infobox-title"><a href="'
-										+ locations[i][5]
-										+ '">'
-										+ locations[i][0]
-										+ '</a></div>'
-										+ '<div class="infobox-location">'
-										+ locations[i][1]
-										+ '</div>'
-										+ '</div>'
-										+ '</div>';
-								// Define the infobox
-								newMarkers[i].infobox = new InfoBox(
-										infoboxOptions);
-								google.maps.event
-										.addListener(
-												marker,
-												'click',
-												(function(marker, i) {
-													return function() {
-														for (h = 0; h < newMarkers.length; h++) {
-															newMarkers[h].infobox
-																	.close();
-														}
-														newMarkers[i].infobox
-																.open(map, this);
-													}
-												})(marker, i));
-							}
-
-							// Autocomplete
-							if ($("#address-map").length) {
-								var input = (document
-										.getElementById('address-map'));
-								var autocomplete = new google.maps.places.Autocomplete(
-										input);
-								autocomplete.bindTo('bounds', map);
-								google.maps.event
-										.addListener(
-												autocomplete,
-												'place_changed',
-												function() {
-													var place = autocomplete
-															.getPlace();
-													if (!place.geometry) {
-														return;
-													}
-													if (place.geometry.viewport) {
-														map
-																.fitBounds(place.geometry.viewport);
-													} else {
-														map
-																.setCenter(place.geometry.location);
-														map.setZoom(15);
-													}
-													var address = '';
-													if (place.address_components) {
-														address = [
-																(place.address_components[0]
-																		&& place.address_components[0].short_name || ''),
-																(place.address_components[1]
-																		&& place.address_components[1].short_name || ''),
-																(place.address_components[2]
-																		&& place.address_components[2].short_name || '') ]
-																.join(' ');
-													}
-												});
-							}
-						});
-	}
-}
-
-
-
-
-function initializeCustomGoogleMap(p_locations, p_lati, p_longi) {
+function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 	var locations = [ ];
 	for (var i = 0; i < p_locations.length; i++) {
 		var l_map = p_locations[i];
-	 var a=['<div class="card"> <img src="https://s19.postimg.cc/lbz034vw3/pro.png" alt="no image" style="border-radius: 100%;border: 5px solid rgba(255,255,255,0.5);"><h2>'
-			+ l_map.displayName
-			+ '</h2><p class="title"><strong style="color:black;">Experiance:</strong><span>'
-			+ l_map.totalExperience
-			+ '</span></p><p class="title"><strong style="color:black;">Teach : </strong><span>'
-			+ l_map.specialities
-			+ '<p class="title"><strong title="this distance from current location" style="color:black;">distance : </strong><span>'
-			+ Math.round(parseFloat(l_map.distance))
-			+ ' km</span></p><div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div> <p><a target="_blank" href="http://scholarsmerit.com/tutor-profile?login=false&user='
-			+ l_map.userName
-			+ '"><button>View Profile</button></a></p>'
-			+'<div style="margin: 24px 0;"><a href="#"><i class="fa fa-dribbble"></i></a> </div>'
-				+ '"<button onclick="return requestForTuition(\''+l_map.userName+'\',\''+l_map.displayName+'\')">Request For Tuition</button></div>'
-			+'</div><style>.card {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);max-width:200px;margin: auto;text-align: center;font-family: arial;}.title {color: grey;font-size: 13px;}button{border: none;outline: 0;display: inline-block;padding: 4px;color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 13px;}a {text-decoration: none;font-size: 15px;color: blue;}button:hover, a:hover {opacity: 0.7;}</style>', l_map.latitude, l_map.longitude];
-	   locations.push(a);
+		var l_text = '';
+
+		if(!(p_referesh==null)){
+			if(l_map.userName==p_referesh.tutorId)
+				l_text=p_referesh.text;
+		}else{
+			if(l_map.SEARCH=='REQUESTED')
+				l_text+='return removeTutorToRequest(\''+l_map.userName+'\',\''+l_map.requestId+'\',\''+i+'\')';
+			else
+				l_text+='return addTutorToRequest(\''+l_map.userName+'\',\''+l_map.displayName+'\',\''+i+'\')';
+		        //l_text=l_text+'<button onclick="'+l_text+'">Request For Tuition</button>';
+		}
+			
+		 var a=['<div class="card card-customize"><div class="card-body"><div class="row">'
+			  + '<div class="g-mapcard-left-img"> <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
+			  + '<div class="s-profile-pic-card"> <img src="../resources/img/batch-list/zitu.png" alt="" style="width: 100%;border-radius: 50%;"> </div></div>'
+			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-15"> <span class="g-mapcard-name-small">'
+			  + l_map.displayName
+			  + '</span></div></div>'
+			  + '<div class="s-profile-left-content">'
+			  + '<div class="col-xl-12 col-lg-12 col-md-`2 col-sm-12 col-xs- 12">' 
+			  + '<div class="row"><div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">'
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Experience : <span style="color:#80808094;font-weight: 400;">'
+			  + l_map.totalExperience
+			  +'</span></span></div>'
+			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Expert In : <span style="color:#80808094;font-weight: 400;">'
+			  + l_map.specialities
+			  +'</span></span></div>'
+			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">No of Active Batches : <span style="color:#80808094;font-weight: 400;">20</span></span></div>'
+			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Distance : <span style="color:#80808094;font-weight: 400;">'
+			  + Math.round(parseFloat(l_map.distance))
+			  +' KM</span></span></div>'
+			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Price : <span style="color:#80808094;font-weight: 400;">&#8377; 2000</span></span></div>'
+			  + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
+			  + '<span class="profileSpan" style="font-size: 16px;font-weight:500; font-family:open sans; ">'
+			  + '<span class="rating-text" style="color:#f05827;font-weight:600;">12,335</span>'
+			  + '<span class="fa fa-star checked"></span> '
+			  + '<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>' 
+			  + '<span class="fa fa-star "></span></br>'
+			  + '<span class="rating-text" style="color:#f05827;font-weight:600;">12,335 total reviews</span></span> </div></div></div>'
+			  + '<div class="col-xl-12 col-lg-12 col-md-`2 col-sm-12 col-xs-12" style="margin-top:10px;"> '
+			  + '<div class="row"> <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 ">' 
+			  + '<button type="button" class="btn btn-primary">View Profile</button></div>'
+			  + '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">' 
+			  + '<button type="button" class="btn btn-danger" onclick="'+l_text+'">Request For Tution</button>'
+			  + '</div></div></div></div></div></div></div>', l_map.latitude, l_map.longitude];
+			  locations.push(a);
 	}
 
 	var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';
@@ -315,7 +205,9 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi) {
 	});
 
 	var infowindow = new google.maps.InfoWindow({
-		maxWidth : 160
+		//content: popupContent
+        maxWidth :310
+		 
 	});
 
 	var markers = new Array();

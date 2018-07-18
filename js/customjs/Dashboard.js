@@ -300,7 +300,7 @@ function loadCalendar() {
 
 }
 
-function loadRequestsData() {
+function loadRequestsData() {debugger;
 
 	var l_map = {};
 	l_map.login = true;
@@ -308,10 +308,10 @@ function loadRequestsData() {
 			"/tutor-dashboard-requests",
 			l_map,
 			'POST',
-			function(response) {
+			function(response) {debugger;
 				var l_data = response.object;
                 var l_other = response.other;
-				//alert(JSON.stringify(response));
+				alert(JSON.stringify(response));
 				if (response.status == 'SUCCESS') {
 					$('.c_count_request').text("Tuition Request("+l_other+")");
 					
@@ -326,10 +326,10 @@ function loadRequestsData() {
 						l_html += '<td class="td-dashboard">Request for : '
 								+ b_map.batch + '</td>';
 						
-							    if(b_request.remarks == null){
+							    if(b_request.comment == null){
 							    	l_html += '<td class="td-dashboard">No Information</td>';
 							    }else
-							    	l_html += '<td class="td-dashboard">'+ b_request.remarks + '</td>';
+							    	l_html += '<td class="td-dashboard">'+ b_request.comment + '</td>';
 						l_html += '<td class="td-dashboard">'
 								+ b_map.date + '</td>';
 						l_html += '<td>';
