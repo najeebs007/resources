@@ -1130,7 +1130,108 @@ margin-left:10px;
     margin-right: -2px;
     right: 8%;
 }
-
+/* Corporate profile style ****/
+.corpo-profile-text-xl
+{
+	font-size: 20px;
+    font-family: "Open Sans";
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+}
+.corpo-profile-text-l
+{
+	font-size: 18px;
+    font-family: "Open Sans";
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+}
+.corpo-profile-text-m
+{
+	font-size:16px;
+    font-family:"Open Sans";
+    color:rgb(0, 0, 0);
+    font-weight: 600;
+}
+.corpo-profile-text-sm
+{
+	font-size:15px;
+    font-family:"Open Sans";
+    color:rgb(0, 0, 0);
+    font-weight: 600;
+}
+.corpo-profile-text-s
+{
+    font-size: 14px;
+    font-family:"Open Sans";
+    color:rgb(0, 0, 0);
+}
+.corpo-profile-text-xs {
+    font-size: 13px;
+    font-family:"Open Sans";
+    color:rgb(0, 0, 0);
+}
+.corpo-logo-section
+{ 	
+    width: 145px;
+    height: 105px; 
+}
+.corpo-logo-img
+{ 	
+    width: 100%;
+    height: 100%; 
+}
+.corpo-card-height-1
+{
+  height:247px;
+}
+.corpo-card-height-2
+{
+  height:247px;
+}
+.corpo-card-height-3
+{
+  height:515px;
+}
+.corpo-card-height-4
+{
+  height:515px;
+}
+.corpo-card-height-5
+{
+  height:515px;
+}
+ 
+.corpo-profile-icon-header{margin-left:10px;}
+.corpo-profile-icon-img{width:28px;height:26px;}
+.editColor
+{
+	background-image: -moz-linear-gradient( 43deg, rgb(90,210,242) 0%, rgb(86,98,255) 100%);
+    background-image: -webkit-linear-gradient( 43deg, rgb(90,210,242) 0%, rgb(86,98,255) 100%);
+    background-image: -ms-linear-gradient( 43deg, rgb(90,210,242) 0%, rgb(86,98,255) 100%);
+    box-shadow: 0px 2px 16px 0px rgba(73, 86, 239, 0.25);
+    color: #fff;
+}
+/***** Institute Profile ****/
+ .institute-profile-pic
+ {   
+   width:100px;
+    border-radius: 50%;
+    height:100px;
+    margin-left: 16px; 
+ }
+.insti-cover-height{height:240px;} 
+.insti-card-height-1
+{
+  height:515px;
+}
+.insti-card-height-2
+{
+  height:515px;
+}
+.insti-card-height-3
+{
+  height:515px;
+}
  @media screen and (max-width: 767px){
 	 .top-header-author {
     position: absolute;
@@ -1185,8 +1286,10 @@ margin-left:10px;
 /* minus marg on mobile= (m-o-m)****/
 .m-o-m-t-10{margin-top:-10px;}
 .m-o-m-t-15{margin-top:-15px;}
-.m-o-m-t-20{margin-top:-20px;} 	
+.m-o-m-t-20{margin-top:-20px;} 
+ 
 }
+
 /*media 767 End Here ****/
 /*media for ipad only****/
 @media only screen and (min-device-width:768px) and (max-device-width:1023px) { 
@@ -1228,6 +1331,18 @@ margin-left:10px;
 .dropi-menu:before { 
     right:15%;
 }
+.corpo-card-height-5 {
+    height:310px;
+}
+.corpo-card-height-4 {
+  
+}
+.m-b-onsmall_device
+{
+	margin-bottom:15px;
+	height: 440px;
+	overflow-y:auto;
+}
 }
 /*media for ipad Pro only****/
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1200px) {
@@ -1254,23 +1369,26 @@ margin-left:10px;
 }
 .s-profile-padding-r-0 {
     padding-right: 12px;
-}	
+}
+.corpo-card-height-5 {
+    height: 320px;
+}
 }
 /**** Rating bars css*/
 /* Three column layout */
 .side {
     float: left;
     width: 15%;
-    margin-top:10px;
+    margin-top:2px;
 	font-weight: 600;
-	margin-bottom: 10px;
+	margin-bottom:2px;
 }
 
 .middle {
-    margin-top:18px;
+    margin-top:10px;
     float: left;
     width: 70%;
-	margin-bottom: 10px;
+	margin-bottom:0px;
 }
 
 /* Place text to the right */
@@ -1288,7 +1406,13 @@ margin-left:10px;
     color: white;
 } 
 /* Individual bars */
-.bar {height: 8px; background-color: #ffb400;} 
+.bar {height:15px; background-color: #ffb400;}
+.inset-shadow
+{ 
+    -moz-box-shadow: inset 400px 0px 500px #2b2929 !important;
+    -webkit-box-shadow: inset 400px 0px 500px #2b2929 !important;
+     box-shadow: inset 400px 0px 500px #2b2929 !important;
+}
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 400px) {
     .side, .middle {
