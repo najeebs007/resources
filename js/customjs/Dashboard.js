@@ -149,10 +149,10 @@ function loadBatchData() {
 								+ b_map.status + '</span>';
 						b_html += '<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Timing : '
 								+ b_map.batchStartTime
-								+ b_map.batchStartTimeAMPM
+								
 								+ '-'
 								+ b_map.batchEndTime
-								+ b_map.batchEndTimeAMPM
+								
 								+ '</span>';
 						b_html += '</div>';
 						b_html += '</div>';
