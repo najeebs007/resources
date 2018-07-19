@@ -143,10 +143,22 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 				l_text+='return addTutorToRequest(\''+l_map.userName+'\',\''+l_map.displayName+'\',\''+i+'\')';
 		        //l_text=l_text+'<button onclick="'+l_text+'">Request For Tuition</button>';
 		}
-			
+		var star = '';
+		for(var j=0;j<5;j++){
+				if(j<=parseInt(l_map.averageStar)) 
+					star += "<span class=\"fa fa-star checked\"></span>";
+				else 
+					star += "<span class=\"fa fa-star\"></span>"; 
+			}
+		 if(l_map.starCount==undefined || l_map.starCount==null)
+			l_map.starCount = 0;
+		 if(l_map.price == undefined || l_map.price==null){
+			 l_map.price = 'Available on request' ;
+		 }
+		 var id_map='i_tutor_map'+i;
 		 var a=['<div class="card card-customize"><div class="card-body"><div class="row">'
 			  + '<div class="g-mapcard-left-img"> <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
-			  + '<div class="s-profile-pic-card"> <img src="../resources/img/batch-list/zitu.png" alt="" style="width: 100%;border-radius: 50%;"> </div></div>'
+			  + '<div class="s-profile-pic-card"> <img src="../resources/img/batch-list/rs.png" alt="" style="width: 100%;border-radius: 50%;"> </div></div>'
 			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-15"> <span class="g-mapcard-name-small">'
 			  + l_map.displayName
 			  + '</span></div></div>'
@@ -155,31 +167,30 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 			  + '<div class="row"><div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">'
 			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Experience : <span style="color:#80808094;font-weight: 400;">'
 			  + l_map.totalExperience
-			  +'</span></span></div>'
+			  +' Years</span></span></div>'
 			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
 			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Expert In : <span style="color:#80808094;font-weight: 400;">'
 			  + l_map.specialities
 			  +'</span></span></div>'
 			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
-			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">No of Active Batches : <span style="color:#80808094;font-weight: 400;">20</span></span></div>'
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">No of Active Batches : <span style="color:#80808094;font-weight: 400;">'+l_map.noOfBatches+'</span></span></div>'
 			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
 			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Distance : <span style="color:#80808094;font-weight: 400;">'
 			  + Math.round(parseFloat(l_map.distance))
 			  +' KM</span></span></div>'
 			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
-			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Price : <span style="color:#80808094;font-weight: 400;">&#8377; 2000</span></span></div>'
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Average Price : <span style="color:#80808094;font-weight: 400;">&#8377; '+l_map.price+'</span></span></div>'
 			  + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
-			  + '<span class="profileSpan" style="font-size: 16px;font-weight:500; font-family:open sans; ">'
-			  + '<span class="rating-text" style="color:#f05827;font-weight:600;">12,335</span>'
-			  + '<span class="fa fa-star checked"></span> '
-			  + '<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>' 
-			  + '<span class="fa fa-star "></span></br>'
-			  + '<span class="rating-text" style="color:#f05827;font-weight:600;">12,335 total reviews</span></span> </div></div></div>'
+			  + '<span class="profileSpan" style="font-size: 16px;font-weight:500; font-family:open sans; ">' 
+			  + star+'</br>'
+			  + '<span class="rating-text" style="color:#f05827;font-weight:600;">'+l_map.starCount+' reviews</span></span> </div></div></div>'
 			  + '<div class="col-xl-12 col-lg-12 col-md-`2 col-sm-12 col-xs-12" style="margin-top:10px;"> '
 			  + '<div class="row"> <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 ">' 
 			  + '<button type="button" class="btn btn-primary">View Profile</button></div>'
-			  + '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">' 
-			  + '<button type="button" class="btn btn-danger" onclick="'+l_text+'">Request For Tution</button>'
+			  + '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'
+			  + '<label class=\"checkbox-inline checkbox-styled\"><input id="'+id_map+'" type=\"checkbox\" value=\"option1\" onclick="'+l_text+'"><span>Select Tutor</span>'
+			  + '</label>'
+			 /* + '<button type="button" class="btn btn-danger" onclick="'+l_text+'">Request For Tution</button>'*/
 			  + '</div></div></div></div></div></div></div>', l_map.latitude, l_map.longitude];
 			  locations.push(a);
 	}
