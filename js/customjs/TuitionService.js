@@ -456,16 +456,18 @@ function listViewTab(tutorList){
 				var l_html = '';
 				if (response.status == 'SUCCESS') {
 					$("#request_list_div").html('');
-			      // var b_data = l_data.data;
+			    
 			        for(var i=0;i<l_data_other.length;i++){
+			        	var l_accordian_map = {};
 			        	for(var j=0;j<l_data.length;j++){
 			        		var l_map = l_data[j];
+			        		
 			        		if(l_data_other[i]==l_map.requestId){
-                                   
+			        			l_accordian_map=l_map;
 				            	  l_html+='<li class="timeline-inverted">';
 					              l_html+='<div class="timeline-circ"></div>';
-					              var date1 = new Date(Number(l_map.createdAt)).toString();
-					              l_html+='<div class="timeline-date">'+date1+'</div>';
+					              var date1 = new Date(Number(l_map.createdAt));
+					              l_html+='<div class="timeline-date">'+date1.getDay()+'/'+date1.getMonth()+'/'+date1.getFullYear()+'</div>';
 					              l_html+='<div class="timeline-entry">';
 					              l_html+='<div class="card timeline-card">';
 					              l_html+='<div class="card-body timeline-padding">';
@@ -478,10 +480,10 @@ function listViewTab(tutorList){
 					              }
 					              
 					              if(l_map.requestStatus=='SUGGESTED'){
-					            	  if(l_map.reviewStatus=='STUDENT'){
+					            	  if(l_map.reviewStatus=='STUDENT' && l_map.status=='ACTIVE'){
 						              l_html+='<p class="reject">Tutor has been suggested.</p>';
 						              l_html+='<p class="reject">'+l_map.comment+'</p>';
-						              l_html+='<p class="reject"><button type="button" class="btn btn-green" style="float: right;" onclick="actionByStudent(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT_SUGGESTION\')">Accept Suggestion</button></p>';
+						              l_html+='<p class="reject"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT_SUGGESTION\',\'STUDENT\')">Accept Suggestion</button></p>';
 						              l_html+='<p class="reject"><button type="button" class="btn btn-green" style="float: right;" onclick="loadBatch(\''+l_map.suggestBatchId+'\',\''+l_map.tutorId+'\')">View Batch Detail</button></p>';
 					            	  }else{
 					            		  l_html+='<p class="reject">Tutor has been suggested.</p>';
@@ -492,11 +494,11 @@ function listViewTab(tutorList){
 						              l_html+='<p class="reject">The request has been rejected.</p>';
 						              l_html+='<p class="reject">'+l_map.comment+'</p>';
 						            }
-					              if(l_map.actionStatus=='ACCEPTED'){
-					            	  if(l_map.reviewStatus=='STUDENT'){
+					              if(l_map.requestStatus=='ACCEPTED'){
+					            	  if(l_map.reviewStatus=='STUDENT' && l_map.status=='ACTIVE'){
 					            	  l_html+='<p class="reject">The request has been accepted.</p>';
 					            	  l_html+='<p class="reject">'+l_map.comment+'</p>';
-						              l_html+='<p class="reject"><button type="button" class="btn btn-green" style="float: right;" onclick="actionByStudent(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'PAYMENT\')">PayNow</button></p>';
+						              l_html+='<p class="reject"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">PayNow</button></p>';
 					            	  }else{
 					            		  l_html+='<p class="reject">The request has been accepted.</p>';
 						            	  l_html+='<p class="reject">'+l_map.comment+'</p>';
@@ -505,12 +507,12 @@ function listViewTab(tutorList){
 					              }
 					              if($('#i_role').val()=='ROLE_TUTOR'){
 					            	  if(l_map.requestStatus=='REQUESTED'){
-					            		  if(l_map.reviewStatus=='TUTOR'){
+					            		  if(l_map.reviewStatus=='TUTOR' && l_map.status=='ACTIVE'){
 							              l_html+='<p class="reject">You got request.</p>';
 							              l_html+='<p class="reject">'+l_map.comment+'</p>';
-							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionByTutor(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT\')">ACCEPT</button></p>';
-							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionByTutor(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'SUGGEST\')">SUGGEST</button></p>';
-							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionByTutor(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\')">REJECT</button></p>';
+							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT\',\'TUTOR\')">ACCEPT</button></p>';
+							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'SUGGEST\',\'TUTOR\')">SUGGEST</button></p>';
+							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'TUTOR\')">REJECT</button></p>';
 					            		  
 					            		  }else{
 					            			  l_html+='<p class="reject">You got request.</p>';
@@ -519,7 +521,7 @@ function listViewTab(tutorList){
 					            	  }
 							              
 							              if(l_map.requestStatus=='ACCEPTED'){
-								              l_html+='<p class="reject">Tutor has been suggested.</p>';
+								              l_html+='<p class="reject">Your suggested batch has been accepted.</p>';
 								              l_html+='<p class="reject">'+l_map.comment+'</p>';
 								           }
 							      }
@@ -534,8 +536,8 @@ function listViewTab(tutorList){
 			        		}
 			        	}
 			        	// start accordian pre html
-			        	var b_request = l_data[i];
-			        	var pre_html=';'
+			        	var b_request = l_accordian_map;
+			        	var pre_html=''
 			        		pre_html+='<div class="panel-group m-r-c-p-group" id="accordion6">';
 			        	pre_html+='<div class="card panel manage-request-accordian">';
 			        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
@@ -547,8 +549,8 @@ function listViewTab(tutorList){
 			        	pre_html+='<span class="m-r-a-header-text">Requests ID : '+b_request.requestId+'</span>';
 			        	pre_html+='</div>';
 			        	pre_html+='<div class="col-md-12 m-t-minus-10">';
-						var date2 = new Date(Number(b_request.createdAt)).toString();
-						pre_html+='<span class="m-r-a-header-text">Requested At : '+date2+'</span>';
+						var date2 = new Date(Number(b_request.createdAt));
+						pre_html+='<span class="m-r-a-header-text">Requested At : '+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span>';
 						pre_html+='</div>'; 
 						pre_html+='</div>';
 						pre_html+='</div>';
@@ -602,6 +604,70 @@ function listViewTab(tutorList){
 			});
 }
 	
+	function actionForTuitionRequests(p_requestId,p_tuitionRequestId,p_tutorId,p_action,p_user_type){
+		
+		var l_map = {};
+		l_map.requestId = p_requestId;
+		l_map.tuitionRequestId = p_tuitionRequestId;
+		l_map.tutorId = p_tutorId;
+		l_map.action = p_action;
+		l_map.userType = p_user_type;
+		if(p_action == 'SUGGEST'){
+			$('#i_suggestBatch').modal('show');
+			$('.c_requestId').val(p_requestId);
+			$('.c_tuitionRequestId').val(p_tuitionRequestId);
+			$('.c_tutorId').val(p_tutorId);
+			$('.c_action').val(p_action);
+			$('.c_userType').val(p_user_type);
+			return;
+		}
+		
+		ajaxWithJSON("/common-tuition-request-action", l_map, 'POST', function(response) {
+			var l_data = response.object;
+			//alert(JSON.stringify(response));
+			if (response.status == 'SUCCESS') {
+				toastr.success(response.message);
+			}
+			if (response.status == 'ERROR') {
+				toastr.error(response.message);
+			}
+		});
+	}
+	
+	function suggestBatch(){
+		var l_map = {};
+		l_map.requestId = $('.c_requestId').val(requestId);
+		l_map.tuitionRequestId = $('.c_tuitionRequestId').val(tuitionRequestId);
+		l_map.tutorId = $('.c_tutorId').val(tutorId);
+		l_map.action = $('.c_action').val(action);
+		l_map.userType = $('.c_userType').val(userType);
+		l_map.suggestBatchId = $('.c_suggestBatchId').val();
+		
+		ajaxWithJSON("/common-tuition-request-action", l_map, 'POST', function(response) {
+			var l_data = response.object;
+			//alert(JSON.stringify(response));
+			if (response.status == 'SUCCESS') {
+				toastr.success(response.message);
+			}
+			if (response.status == 'ERROR') {
+				toastr.error(response.message);
+			}
+		});
+	}
+	function loadBatch(p_batchId,p_tutorId){
+		var l_map = {};
+		l_map.batchId = p_batchId;
+		ajaxWithJSON("/common-batch-detail", l_map, 'POST', function(response) {
+			var l_data = response.object;
+			//alert(JSON.stringify(response));
+			if (response.status == 'SUCCESS') {
+				toastr.success(response.message);
+			}
+			if (response.status == 'ERROR') {
+				toastr.error(response.message);
+			}
+		});
+	}
 	var g_batches = [];
 	function loadTutorBatches(p_user) {debugger;
 
@@ -626,9 +692,6 @@ function listViewTab(tutorList){
 		});
 	}
 	
-	function loadRequests(){
-		
-	}
 
 	  function showoption(p_flage) {
 	if (p_flage == "NONE") {
