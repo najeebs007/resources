@@ -4,6 +4,7 @@
 $(document).ready(function() {
 	debugger;
 	ratingStarCount2();
+	getSocialData1();
 	/* loadSpecializationData(); */
 
 });
@@ -204,8 +205,28 @@ function addStudentProfessionalDetail() {debugger;
 	
 	l_input_map.professionId = $(".professionIdClass").val();
 	l_input_map.occupation = $(".occupationClass").val();
-	l_input_map.startDate = $(".startDateClass").val();
-	l_input_map.endDate = $(".endDateClass").val();
+	
+	var l_date=l_input_map.startDate;
+	var l_dateStart = new Date(Number(l_date));
+	var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+	var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
+	var l_day = (weekday[l_dateStart.getDay()] + " ")
+    var l_date = (l_dateStart.getDate() + " ")
+    var l_month = (monthname[l_dateStart.getMonth()] + " ")
+    var l_year = (l_dateBirth.getFullYear())
+	var l_StartDate=l_day+l_date+l_month+l_year;
+	l_StartDate = $(".startDateClass").val();
+	
+	var l_dateE=l_input_map.endDate;
+	var l_dateEnd = new Date(Number(l_dateE));
+	var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+	var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
+	var l_day = (weekday[l_dateEnd.getDay()] + " ")
+    var l_date = (l_dateEnd.getDate() + " ")
+    var l_month = (monthname[l_dateEnd.getMonth()] + " ")
+    var l_year = (l_dateEnd.getFullYear())
+	var l_EndDate=l_day+l_date+l_month+l_year;
+	l_EndDate = $(".endDateClass").val();
 	l_input_map.location = $(".locationClass").val();
 	l_input_map.organization = $(".organizationClass").val();
 	l_input_map.remarks = $(".c_remarks").val();
@@ -475,6 +496,14 @@ ajaxWithJSON("/load-star-count", null, 'GET', function(response) {debugger;
 				 
 			s_html += '<span class="rating-text" style="color: white; font-weight: 500;margin-right: 5px;" >'+averageRating+'</span>';
 			switch (averageRating) { 
+			case "0":
+				s_html += '<span class="fa fa-star "></span>';
+				s_html += '<span class="fa fa-star "></span>';
+				s_html += '<span class="fa fa-star "></span>';
+				s_html += '<span class="fa fa-star "></span>';
+				s_html += '<span class="fa fa-star "></span>';
+				break;
+				
 			case "1":
 				s_html += '<span class="fa fa-star checked"></span>';
 				s_html += '<span class="fa fa-star "></span>';
@@ -516,6 +545,50 @@ ajaxWithJSON("/load-star-count", null, 'GET', function(response) {debugger;
 			}
 			
 			$('.s_rating').html(s_html);
-			alert("binding successfully ");
+			//alert("binding successfully ");
 		});
+}
+
+
+function getSocialData1() {debugger;
+//var l_data ={};
+	var s_html = "";
+	$('.c_socialName').html("");
+	var l_map = {};
+	
+	ajaxWithJSON("/common/student-dashboard-socialdata", l_map,'POST',	function(response) {debugger;
+				    var l_data = response.object;
+				   /*  alert(JSON.stringify(l_data)); */
+					for (var i = 0; i < l_data.length; i++) {debugger;
+					var r_map = l_data[i];
+					var l_baseURL=r_map.baseURL;
+					var l_socialMediaName=r_map.socialMediaName;
+					var l_remarks=r_map.remarks;
+					var l_iconId=r_map.iconId;
+					var l_userLinkId=r_map.userLinkId;
+					if(l_socialMediaName=='facebook'){
+						s_html += '<a href="'+l_baseURL+'" target="_blank">';
+						s_html += '<div class="social-icon"> <i class="fa fa-facebook-f" style="color: #4867aa;"></i></div>';
+						s_html += '</a>';	
+					}
+					if(l_socialMediaName=='twitter'){
+						s_html += '<a href="'+l_baseURL+'" target="_blank">';
+						s_html += '<div class="social-icon"> <i class="fa fa-twitter" style="color: #1da1f2;"></i></div>';
+						s_html += '</a>';	
+					}
+					if(l_socialMediaName=='google'){
+						s_html += '<a href="'+l_baseURL+'" target="_blank">';
+						s_html += '<div class="social-icon"> <i class="fa fa-google" style="color: #dc4a38;"></i></div>';
+						s_html += '</a>';
+					}
+					if(l_socialMediaName=='linkedin'){
+						s_html += '<a href="'+l_baseURL+'" target="_blank">';
+						s_html += '<div class="social-icon"> <i class="fa fa-linkedin" style="color: #007bb5;"></i></div>';
+						s_html += '</a>';
+					}
+                        $('.c_socialName').html(s_html);
+                        /* alert(s_html); */
+						//$('.c_social').text(socialData);
+					 }
+			});
 }
