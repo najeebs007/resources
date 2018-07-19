@@ -391,6 +391,7 @@ $(document).ready(function(){
 		
 		var locationMaps = l_location_list_obj[0];
 		var location = locationMaps[p_location_id];
+		alert(JSON.stringify(location));
 		
 		$(".contactDetails").find("input[type=text],input[type=hidden],select").each(function(index,item){
 			$(item).val(location[l_contact_array[index]]);
