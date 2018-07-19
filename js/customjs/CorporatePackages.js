@@ -12,7 +12,7 @@ function addNumberOfStudent(count, flag) {
 		$("#myModalabout").modal('show');
 	} else {
 		$('.c_numberOfStudent').val("1");
-		
+
 		addToPackage();
 	}
 }
@@ -316,10 +316,10 @@ $(".c_searchExams")
 									var counter = parseInt(p_data.counter);
 									var response = p_data.examList;
 									p_no_of_pages = p_data.numberOfPages;
-									if(response == ''){
+									if (response == '') {
 										toastr.error('No Records found. ');
 									}
-									l_exam_list =response;
+									l_exam_list = response;
 									// this is global variable define in
 									// createPackage.jsp page
 									searchFilters = p_data.searchFilters;
@@ -387,32 +387,40 @@ $(".c_searchExams")
 									if (l_extra_pages != 0) {
 										totalPages = totalPages + 1;
 									}
-									
+
 									$('#pagination').twbsPagination('destroy');
-									$('#pagination').twbsPagination({totalPages:p_no_of_pages});
+									$('#pagination').twbsPagination({
+										totalPages : p_no_of_pages
+									});
 									// var totalPages = 5;
-//									var pages = "";
-//									pages += '<div class="row"><div class="col-md-12" style="text-align:center;">';
-//									pages += '<ul class="pagination">'
-//									for (var i = 1; i <= totalPages; i++) {
-//										if (i == 1) {
-//											pages += '<li class="active"><a href="#" onclick="searchByPagination('
-//													+ i
-//													+ ')">'
-//													+ i
-//													+ '</a></li>';
-//										} else {
-//											pages += '<li><a href="#" onclick="searchByPagination('
-//													+ i
-//													+ ')">'
-//													+ i
-//													+ '</a></li>';
-//										}
-//
-//									}
-//									pages += '<li id="i_nid" class="c_nclass"><a href="#" onclick="searchByPagination(2)">Next</a></li></ul>';
-//									pages += '</div></div>';
-//									$('.c_pages').html(pages);
+									// var pages = "";
+									// pages += '<div class="row"><div
+									// class="col-md-12"
+									// style="text-align:center;">';
+									// pages += '<ul class="pagination">'
+									// for (var i = 1; i <= totalPages; i++) {
+									// if (i == 1) {
+									// pages += '<li class="active"><a href="#"
+									// onclick="searchByPagination('
+									// + i
+									// + ')">'
+									// + i
+									// + '</a></li>';
+									// } else {
+									// pages += '<li><a href="#"
+									// onclick="searchByPagination('
+									// + i
+									// + ')">'
+									// + i
+									// + '</a></li>';
+									// }
+									//
+									// }
+									// pages += '<li id="i_nid"
+									// class="c_nclass"><a href="#"
+									// onclick="searchByPagination(2)">Next</a></li></ul>';
+									// pages += '</div></div>';
+									// $('.c_pages').html(pages);
 									$(".loading").hide();
 								},
 								error : function(jqXHR, textStatus, errorThrown) {
@@ -424,11 +432,9 @@ $(".c_searchExams")
 
 				});
 
-
-
 function searchByPagination(selectedPage) {
 	debugger;
-	
+
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
 		return;
@@ -448,11 +454,7 @@ function searchByPagination(selectedPage) {
 	 * if (!($(".c_subjects").val() == '')) { l_map.subject =
 	 * $(".c_subjects").val(); }
 	 */
-	
-	
-	
-	
-	
+
 	var resultsPerPage = 10;
 	var start = parseInt((selectedPage - 1)) * resultsPerPage;
 	l_map.offSet = start;
@@ -474,7 +476,7 @@ function searchByPagination(selectedPage) {
 					var l_map = {};
 					var counter = parseInt(p_data.counter);
 					var response = p_data.examList;
-				        p_no_of_pages = p_data.numberOfPages;
+					p_no_of_pages = p_data.numberOfPages;
 					// this is global variable define in createPackage.jsp page
 					searchFilters = p_data.searchFilters;
 					var roleName = p_data.roleName;
@@ -533,41 +535,36 @@ function searchByPagination(selectedPage) {
 					if ($("#i_nid").hasClass("c_nclass")) {
 						totalPages = totalPages - 1;
 					}
-//					var pages = "";
-//					$('.c_pages').html('');
+					// var pages = "";
+					// $('.c_pages').html('');
 					debugger;
-//					alert("totalPages "+totalPages+" p_no_of_pages "+p_no_of_pages);
-//					callPagination(l_noOfPages);
-//					pages += '<div class="row"><div class="col-md-12" style="text-align:center;">';
-//					pages += '<ul class="pagination" id="pagination" ></ul>';
-					/*pages += '<ul class="pagination">'
-					if (parseInt(selectedPage) > 1) {
-						var previous = parseInt(selectedPage) - 1;
-						pages += '<li id="i_pid" class="c_pclass"><a href="#" onclick="searchByPagination('
-								+ previous + ')">Previous</a> </li>';
-					}
-
-					for (var i = 1; i <= totalPages; i++) {
-						if (parseInt(selectedPage) == i) {
-							pages += '<li class="active"><a href="#" onclick="searchByPagination('
-									+ i + ')">' + i + '</a></li>';
-						} else {
-							pages += '<li><a href="#" onclick="searchByPagination('
-									+ i + ')">' + i + '</a></li>';
-						}
-
-					}
-
-					var next = parseInt(selectedPage) + 1;
-					if (!(totalPages == parseInt(selectedPage))) {
-						pages += '<li id="i_nid" class="c_nclass"><a href="#" onclick="searchByPagination('
-								+ next + ')">Next</a></li></ul>';
-						pages += '</div></div>';
-					}*/
-//					
-//					pages += '</div></div>';
-//					$('.c_pages').html(pages);
-
+					// alert("totalPages "+totalPages+" p_no_of_pages
+					// "+p_no_of_pages);
+					// callPagination(l_noOfPages);
+					// pages += '<div class="row"><div class="col-md-12"
+					// style="text-align:center;">';
+					// pages += '<ul class="pagination" id="pagination" ></ul>';
+					/*
+					 * pages += '<ul class="pagination">' if
+					 * (parseInt(selectedPage) > 1) { var previous =
+					 * parseInt(selectedPage) - 1; pages += '<li id="i_pid" class="c_pclass"><a
+					 * href="#" onclick="searchByPagination(' + previous +
+					 * ')">Previous</a> </li>'; }
+					 * 
+					 * for (var i = 1; i <= totalPages; i++) { if
+					 * (parseInt(selectedPage) == i) { pages += '<li class="active"><a
+					 * href="#" onclick="searchByPagination(' + i + ')">' + i + '</a></li>'; }
+					 * else { pages += '<li><a href="#"
+					 * onclick="searchByPagination(' + i + ')">' + i + '</a></li>'; } }
+					 * 
+					 * var next = parseInt(selectedPage) + 1; if (!(totalPages ==
+					 * parseInt(selectedPage))) { pages += '<li id="i_nid" class="c_nclass"><a
+					 * href="#" onclick="searchByPagination(' + next + ')">Next</a></li></ul>';
+					 * pages += '</div></div>'; }
+					 */
+					//					
+					// pages += '</div></div>';
+					// $('.c_pages').html(pages);
 					$(".loading").hide();
 				},
 				error : function(jqXHR, textStatus, errorThrown) {
@@ -744,37 +741,37 @@ function candidateActions(packageId, examId, candidateId, count, actionType,
 }
 
 // function edit_row(no) {
-	// document.getElementById("edit_button" + no).style.display = "none";
-	// document.getElementById("save_button" + no).style.display = "block";
+// document.getElementById("edit_button" + no).style.display = "none";
+// document.getElementById("save_button" + no).style.display = "block";
 
-	// var sr = document.getElementById("sr_row" + no);
-	// var name = document.getElementById("name_row" + no);
-	// var email = document.getElementById("email_row" + no);
-	// var phone = document.getElementById("phone_row" + no);
-	// // var pin = document.getElementById("pin_row" + no);
-	// // var password = document.getElementById("password_row" + no);
+// var sr = document.getElementById("sr_row" + no);
+// var name = document.getElementById("name_row" + no);
+// var email = document.getElementById("email_row" + no);
+// var phone = document.getElementById("phone_row" + no);
+// // var pin = document.getElementById("pin_row" + no);
+// // var password = document.getElementById("password_row" + no);
 
-	// var sr_data = sr.innerHTML;
-	// var name_data = name.innerHTML;
-	// var email_data = email.innerHTML;
-	// var phone_data = phone.innerHTML;
-	// // var pin_data = pin.innerHTML;
-	// // var password_data = password.innerHTML;
+// var sr_data = sr.innerHTML;
+// var name_data = name.innerHTML;
+// var email_data = email.innerHTML;
+// var phone_data = phone.innerHTML;
+// // var pin_data = pin.innerHTML;
+// // var password_data = password.innerHTML;
 
-	// sr.innerHTML = "<input readonly type='text' id='sr_text" + no + "' value='"
-			// + sr_data + "'>";
-	// name.innerHTML = "<input type='text' id='name_text" + no + "' value='"
-			// + name_data + "'>";
-	// email.innerHTML = "<input readonly type='text' id='email_text" + no
-			// + "' value='" + email_data + "'>";
-	// phone.innerHTML = "<input type='text' id='phone_text" + no + "' value='"
-			// + phone_data
-			// + "' maxlength='10' onkeypress='return isMobile(event)'>";
-	// // pin.innerHTML = "<input type='text' id='pin_text" + no + "' value='"
-	// // + pin_data + "'maxlength='6' onkeypress='return isMobile(event)'>";
-	// // password.innerHTML = "<input type='text' id='password_text" + no + "'
-	// // value='"
-	// // + password_data + "'>";
+// sr.innerHTML = "<input readonly type='text' id='sr_text" + no + "' value='"
+// + sr_data + "'>";
+// name.innerHTML = "<input type='text' id='name_text" + no + "' value='"
+// + name_data + "'>";
+// email.innerHTML = "<input readonly type='text' id='email_text" + no
+// + "' value='" + email_data + "'>";
+// phone.innerHTML = "<input type='text' id='phone_text" + no + "' value='"
+// + phone_data
+// + "' maxlength='10' onkeypress='return isMobile(event)'>";
+// // pin.innerHTML = "<input type='text' id='pin_text" + no + "' value='"
+// // + pin_data + "'maxlength='6' onkeypress='return isMobile(event)'>";
+// // password.innerHTML = "<input type='text' id='password_text" + no + "'
+// // value='"
+// // + password_data + "'>";
 // }
 
 function selectNumberOfIds(packageId, examId) {
@@ -1186,15 +1183,19 @@ function edit_row(no) {
 	var phone = document.getElementById("phone_row" + no);
 	// var pin = document.getElementById("pin_row" + no);
 	// var password = document.getElementById("password_row" + no);
-  
-	var sr_data    = sr.innerHTML;
-	var name_data  = name.firstChild.data;;
-	var email_data = email.firstChild.data;;
-	var phone_data = phone.firstChild.data;;
+
+	var sr_data = sr.innerHTML;
+	var name_data = name.firstChild.data;
+	;
+	var email_data = email.firstChild.data;
+	;
+	var phone_data = phone.firstChild.data;
+	;
 	// var pin_data = pin.innerHTML;
 	// var password_data = password.innerHTML;
 
-	sr.innerHTML = "<input readonly type='text' id='sr_text" + no + "' value='" + sr_data + "'>";
+	sr.innerHTML = "<input readonly type='text' id='sr_text" + no + "' value='"
+			+ sr_data + "'>";
 	name.innerHTML = "<input type='text' id='name_text" + no + "' value='"
 			+ name_data + "'>";
 	email.innerHTML = "<input readonly type='text' id='email_text" + no
@@ -1735,9 +1736,9 @@ function checkIndividual(p_id, p_index) {
 	}
 
 }
- 
-function bulkCandidateActions(p_action_type) { 
- 
+
+function bulkCandidateActions(p_action_type) {
+
 	debugger;
 
 	if (!(navigator.onLine)) {
@@ -1775,7 +1776,7 @@ function bulkCandidateActions(p_action_type) {
 		l_final_map.examName = $('#i_exam_name').val();
 		l_final_map.inputs = l_map;
 
-		alert(JSON.stringify(l_final_map));
+		//alert(JSON.stringify(l_final_map));
 		$(".loading").show();
 		$
 				.ajax({
@@ -1806,99 +1807,14 @@ function bulkCandidateActions(p_action_type) {
 				});
 	}
 }
- 
-function SameGeneratePinAndPassword(p_action_type) {
-	debugger;
 
-	if (!(navigator.onLine)) {
-		toastr.error('You are offline. please check internet connection.');
-		return;
-	}
-	var l_map = {};
-	var l_final_map = {};
-	if (indexes_checked.length == 0) {
-		toastr.error('There is no record select to action.');
-		return false;
-	}
-	if (confirm("Are you sure for this action ?")) {
-		for (var i = 0; i < indexes_checked.length; i++) {
-			var element = indexes_checked[i];
+/*
+ * function callPagination(p_no_of_pages) { debugger; window.pagObj =
+ * $('#pagination').twbsPagination({ totalPages: p_no_of_pages, visiblePages:
+ * 10, onPageClick: function (event, page) { console.info(page + ' (from
+ * options)'); } }).on('page', function (event, page) { console.info(page + '
+ * (from event listening)'); searchByPagination(page);
+ * 
+ * }); }
+ */
 
-			if (p_action_type == 'SAMEPASSWORD') {
-
-				l_html += "<input type='hidden' id='c" + (i + 1)
-						+ "' value='SAMEPASSWORD'>";
-				l_html += "<span class='checkbox' id='check_button"
-
-			}
-
-			if (p_action_type == 'SAMEPASSWORD' || p_action_type == 'SAMEPIN') {
-				var l_map_row = {};
-
-				l_map_row.candidateId = $('#candidate_id' + element).val();
-				l_map_row.name = $('#candidate_name' + element).val();
-				l_map_row.mobile = $('#candidate_mobile' + element).val();
-				l_map_row.pin = $('#candidate_pin' + element).val();
-				l_map_row.password = $('#candidate_password' + element).val();
-				l_map['key' + i] = l_map_row;
-				l_map_row = {};
-			} else {
-
-				l_map['key' + i] = $('#candidate_id' + element).val();
-			}
-		}
-
-		l_final_map.actionType = p_action_type;
-		l_final_map.packageId = $('#i_g_package_id').val();
-		l_final_map.examId = $('#i_g_exam_id').val();
-		l_final_map.examName = $('#i_exam_name').val();
-		l_final_map.inputs = l_map;
-
-	
-		$(".loading").show();
-		$
-				.ajax({
-					url : '/common/bulk-actions',
-					cache : false,
-					async : true,
-					contentType : "application/json; charset=UTF-8",
-					dataType : 'json',
-					data : JSON.stringify(l_final_map),
-					type : 'POST',
-					success : function(response) {
-						debugger;
-						if (response.status == "SUCCESS"){
-							toastr.success(response.message);
-							location.reload();
-							$(".loading").hide();
-						}
-						if (response.status == "ERROR"){
-							$(".loading").hide();
-							toastr.error(response.message);
-						}
-					},
-					error : function(err){
-						$(".loading").hide();
-						toastr
-						.error("we did not find proper input . Try again later!");
-					}
-				});
-	}
-}
- 
-/*function callPagination(p_no_of_pages) {
-	debugger;
-    window.pagObj = $('#pagination').twbsPagination({
-        totalPages: p_no_of_pages,
-        visiblePages: 10,
-        onPageClick: function (event, page) {
-            console.info(page + ' (from options)');
-           
-        }
-    }).on('page', function (event, page) {
-        console.info(page + ' (from event listening)');
-        searchByPagination(page);
-  
-});
-}*/
- 
