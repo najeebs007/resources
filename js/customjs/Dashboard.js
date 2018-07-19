@@ -7,7 +7,7 @@ function loadProfileData() {
 	l_map.login = true;
 	ajaxWithJSON("/tutor-personal", l_map, 'POST', function(response) {
 		var l_data = response.object;
-		// alert(JSON.stringify(response));
+		// //(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
 			debugger;
 			if (!(l_data == null || l_data == undefined)) {
@@ -30,10 +30,10 @@ function loadProfileData() {
 						$('.c_user__name').text(userName);
 					}
 				}
-				// alert(JSON.stringify(l_data.user));
+				// //(JSON.stringify(l_data.user));
 				if ('user' in l_data) {
 					var user_data = l_data.user;
-					// alert(user_data);
+					// //(user_data);
 					$('.c_display_name').text(user_data[0]);
 					$('.c_phone').text(user_data[1]);
 
@@ -51,7 +51,7 @@ function loadTutorGeneral() {
 	ajaxWithJSON("/tutor-general-info", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		var l_general = l_data.tutorGeneral;
-		// alert(JSON.stringify(l_general));
+		// //(JSON.stringify(l_general));
 		if (response.status == 'SUCCESS') {
 			if(!(l_general.specialities == null || l_general.specialities== undefined ))
 			$('.c_specialty').text(l_general.specialities);
@@ -70,7 +70,7 @@ function loadSocialData() {
 			'POST',
 			function(response) {
 				var l_data = response.object;
-				// alert(JSON.stringify(response));
+				// //(JSON.stringify(response));
 				if (response.status == 'SUCCESS') {
 					$('#i_social').html('');
 					var b_list = l_data.data;
@@ -192,7 +192,7 @@ function loadGraphData() {
 			}
 			prepareGraph(categories, paidData, nonPaidData);
 
-			// alert(JSON.stringify(l_data));
+			// //(JSON.stringify(l_data));
 		}
 		if (response.status == 'ERROR') {
 			console.log(response.message);
@@ -303,42 +303,127 @@ function loadCalendar() {
 function loadRequestsData() {debugger;
 
 	var l_map = {};
-	l_map.login = true;
+	l_map.STUDENT = false;
+	l_map.TUTOR = true;
 	ajaxWithJSON(
-			"/tutor-dashboard-requests",
+			"/common/load-top3-tuition-requests",
 			l_map,
 			'POST',
 			function(response) {debugger;
-				var l_data = response.object;
-                var l_other = response.other;
+			var l_data = response.object;
+			var l_data_other = response.other;
+			var l_html = '';
 				alert(JSON.stringify(response));
-				if (response.status == 'SUCCESS') {
-					$('.c_count_request').text("Tuition Request("+l_other+")");
-					
-					for (var i = 0; i < l_data.length; i++) {
-						var b_map = l_data[i];
-						var b_request = b_map.request;
-						var l_html = "";
-						l_html += '<tr>';
-						l_html += '<td><img src="resources/img/profile-img/pro.jpg" alt="nature" class="proImg-tbl"></td>';
-						l_html += '<td class="td-dashboard">'
-								+ b_map.displayName + '</td>';
-						l_html += '<td class="td-dashboard">Request for : '
-								+ b_map.batch + '</td>';
+				
+					if (response.status == 'SUCCESS') {
 						
-							    if(b_request.comment == null){
-							    	l_html += '<td class="td-dashboard">No Information</td>';
-							    }else
-							    	l_html += '<td class="td-dashboard">'+ b_request.comment + '</td>';
-						l_html += '<td class="td-dashboard">'
-								+ b_map.date + '</td>';
-						l_html += '<td>';
-						l_html += '<button type="button" class="btn btn-green" onclick="acceptRequest()">Accept</button>';
-						l_html += '<button type="button" class="btn btn-red" onclick="rejectRequest()">Reject</button>';
-						l_html += '<button type="button" class="btn btn-yellow" onclick="suggestRequest()">Suggest</button>';
-						l_html += '</td>';
-						l_html += '</tr>';
-						$('.c_requests').append(l_html);
+				      // var b_data = l_data.data;
+				        for(var i=0;i<l_data_other.length;i++){
+				        	for(var j=0;j<l_data.length;j++){
+				        		var l_map = l_data[j];
+				        		if(l_data_other[i]==l_map.requestId){
+	                                   
+					            	  l_html+='<li class="timeline-inverted">';
+						              l_html+='<div class="timeline-circ"></div>';
+						              var date1 = new Date(Number(l_map.createdAt)).toString();
+						              l_html+='<div class="timeline-date">'+date1+'</div>';
+						              l_html+='<div class="timeline-entry">';
+						              l_html+='<div class="card timeline-card">';
+						              l_html+='<div class="card-body timeline-padding">';
+						              l_html+='<img class="img-responsive pull-left with-t-img" src="resources/img/batch-list/user-book.png" alt="" />';
+						             
+						            	  if(l_map.requestStatus=='REQUESTED'){
+						            		  if(l_map.reviewStatus=='TUTOR'){
+								              l_html+='<p class="reject">You got request.</p>';
+								              l_html+='<p class="reject">'+l_map.comment+'</p>';
+								              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionByTutor(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT\')">ACCEPT</button></p>';
+								              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionByTutor(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'SUGGEST\')">SUGGEST</button></p>';
+								              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionByTutor(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\')">REJECT</button></p>';
+						            		  
+						            		  }else{
+						            			  l_html+='<p class="reject">You got request.</p>';
+									              l_html+='<p class="reject">'+l_map.comment+'</p>';
+						            		  }
+						            	  }
+								              
+								              if(l_map.requestStatus=='ACCEPTED'){
+									              l_html+='<p class="reject">Tutor has been suggested.</p>';
+									              l_html+='<p class="reject">'+l_map.comment+'</p>';
+									           }
+								      
+						              /*l_html+='<p class="reject"><button type="button" class="btn btn-primary" style="float: right;" onclick="askQuestion(\''+b_inner_map.requestId+'\',\''+b_request.requestId+'\',\''+b_request.tutorId+'\')">Ask Question?</button></p>';*/
+						              /*l_html+='<span>'+b_inner_map.requestComment+'</span>';*/
+						              l_html+='</div>';
+						              l_html+='</div>';
+						              l_html+='</div>';
+						              l_html+='</li>'; 
+						              
+
+				        		}
+				        	}
+				        	// start accordian pre html
+				        	var b_request = l_data[i];
+				        	var pre_html=';'
+				        		pre_html+='<div class="panel-group m-r-c-p-group" id="accordion6">';
+				        	pre_html+='<div class="card panel manage-request-accordian">';
+				        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
+							// start header detail
+				        	pre_html+='<div class="row row-width">';
+				        	pre_html+='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">';
+				        	pre_html+='<div class="row">';
+				        	pre_html+='<div class="col-md-12">';
+				        	pre_html+='<span class="m-r-a-header-text">Requests ID : '+b_request.requestId+'</span>';
+				        	pre_html+='</div>';
+				        	pre_html+='<div class="col-md-12 m-t-minus-10">';
+							var date2 = new Date(Number(b_request.createdAt)).toString();
+							pre_html+='<span class="m-r-a-header-text">Requested At : '+date2+'</span>';
+							pre_html+='</div>'; 
+							pre_html+='</div>';
+							pre_html+='</div>';
+							pre_html+='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">';
+							pre_html+='<div class="row">';
+							pre_html+='<div class="col-md-12">';
+							pre_html+='<span class="m-r-a-header-text">Subject : '+b_request.subjectId+'</span>';
+							pre_html+='</div>';
+							pre_html+='</div>';
+							pre_html+='</div>';
+				           
+							pre_html+='<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 p-r-0">';
+							pre_html+='<div class="row">';
+							pre_html+='<div class="col-md-12 p-r-0">';
+							pre_html+='<span class="m-r-a-header-text">Location : '+b_request.location+'</span>';
+							pre_html+='<div class="tools m-r-a-tools">';
+							pre_html+='<a class="btn btn-icon-toggle tool-btn"><i class="fa fa-angle-down"></i></a>';
+							pre_html+='</div>'; 
+							pre_html+='</div>'; 
+							pre_html+='</div>'; 
+							pre_html+='</div>'; 
+							pre_html+='</div>';
+							// end header detail
+							pre_html+='</div>';
+				            
+							pre_html+='<div id="accordion6-'+i+'" class="collapse">';
+							// accordian body start
+							pre_html+='<div class="card-body m-r-a-body">';
+							pre_html+='<ul class="timeline collapse-md">';
+				        	
+				        	// end accordian post html
+							
+							// start post accordian
+							 var post_html = '';
+							 post_html+='</ul>';
+							 post_html+='</div>';
+							 post_html+='</div>';
+							 post_html+='</div>';
+							 post_html+='</div>';
+							// end post accordian
+							 $('.c_requests').append(pre_html+l_html+post_html);
+							
+							 pre_html = '';
+							 l_html = '';
+							 post_html = '';
+				        
+						
 					}
 
 				}
