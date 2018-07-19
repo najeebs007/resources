@@ -9675,6 +9675,20 @@ color: inherit;
 {
 	background-color: #9c9595b5;
 }
+.scrollIt::-webkit-scrollbar-track
+{
+	    border: 1px solid #c5bbbb03;
+    background-color: #e4e0e0;
+} 
+.scrollIt::-webkit-scrollbar
+{
+	width:5px;
+	background-color: #0080ff;
+} 
+.scrollIt::-webkit-scrollbar-thumb
+{
+	background-color: #9c9595b5;
+}
 .professionalPadding{padding-left:14px;}
 .btnaddInsti{    background-color: #d3d3db;
     float: right;
