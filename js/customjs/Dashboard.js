@@ -334,7 +334,7 @@ function loadRequestsData() {debugger;
 										l_html+='<td class="td-dashboard">Requests ID : '+b_request.requestId+'</td>';
 										l_html+='<td class="td-dashboard">Requested At : '+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</td>';
 										if(b_request.subjectId==null ||b_request.subjectId==undefined)
-										l_html+='<td class="td-dashboard">Subject :</td>';
+										l_html+='<td class="td-dashboard">Subject  :</td>';
                                          else
                                          l_html+='<td class="td-dashboard">Subject : '+b_request.subjectId+'</td>';
                                         if(b_request.location==null ||b_request.location==undefined) 									 
