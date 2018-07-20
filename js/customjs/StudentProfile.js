@@ -494,7 +494,7 @@ ajaxWithJSON("/load-star-count", null, 'GET', function(response) {debugger;
 			var averageRating = averageRating1.toString();
 				/*dynamic html code  */ 
 				 
-			s_html += '<span class="rating-text" style="color: white; font-weight: 500;margin-right: 5px;" >'+averageRating+'</span>';
+			s_html += '<span class="rating-text" style="font-weight: 500;margin-right: 5px;" >'+averageRating+'</span>';
 			switch (averageRating) { 
 			case "0":
 				s_html += '<span class="fa fa-star "></span>';

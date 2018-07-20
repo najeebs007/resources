@@ -1422,3 +1422,6 @@ margin-left:10px;
         display: none;
     }
 }
+.capitalize{
+	text-transform:capitalize;
+}
