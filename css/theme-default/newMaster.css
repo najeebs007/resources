@@ -1078,11 +1078,12 @@ margin-left:10px;
 .txt-bold{font-weight:600;}
 .s-profile-text-color{color:#9999ad !important;}
 .s-edit-ico-r{right:8px !important;}
-.s-myreq-exam-height{height: 320px;}
+.s-myreq-exam-height{height: 319px;}
+.s-myreq-exam-height-2{height: 275px;}
 /* .r_rating{width: 50%;} */
 .rating-height{height: 480px;}
 .institute-rating{width:auto !important;}
- 
+.line-height-for-all{line-height: 20px !important;}
 /*** Tution As a service css ***/
 .g-mapcard-black
 {

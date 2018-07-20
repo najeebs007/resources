@@ -613,12 +613,14 @@ function listViewTab(tutorList){
 		l_map.action = p_action;
 		l_map.userType = p_user_type;
 		if(p_action == 'SUGGEST'){
+			
 			$('#i_suggestBatch').modal('show');
 			$('.c_requestId').val(p_requestId);
 			$('.c_tuitionRequestId').val(p_tuitionRequestId);
 			$('.c_tutorId').val(p_tutorId);
 			$('.c_action').val(p_action);
 			$('.c_userType').val(p_user_type);
+			loadTutorBatches(p_tutorId);
 			return;
 		}
 		
@@ -641,7 +643,7 @@ function listViewTab(tutorList){
 		l_map.tutorId = $('.c_tutorId').val(tutorId);
 		l_map.action = $('.c_action').val(action);
 		l_map.userType = $('.c_userType').val(userType);
-		l_map.suggestBatchId = $('.c_suggestBatchId').val();
+		l_map.suggestBatchId = $('.c_tutor_batches').val();
 		
 		ajaxWithJSON("/common-tuition-request-action", l_map, 'POST', function(response) {
 			var l_data = response.object;

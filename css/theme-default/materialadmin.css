@@ -7601,7 +7601,7 @@ sub.badge {
 }
 .panel-group .manage-request-accordian.expanded{border:1px solid #80808075;}
 .panel-group .card.expanded>div.m-r-a-head:before{
-	position: absolute;
+	/* position: absolute;
     display: inline-block;
     content: '';
 	width:0;
@@ -7611,7 +7611,7 @@ sub.badge {
     border-top: 12px solid white;
     right: 25px; 
     left: 20px;
-    z-index: 1050;
+    z-index: 1050; */
 }
 .panel-group .card.expanded:first-child {
 	margin-top: 0;
