@@ -44,18 +44,12 @@ function gridViewTab(tutorList){debugger;
     			html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\" style='text-align:center;'>";
 				html += "<a href='../../tutor-profile?login=false&user="+tutorMap.userName+"' class=\"btn btn-primary\">View Profile</a>";
     			html += "</div>";
-    			 
-    			if(tutorMap.SEARCH=='REQUESTED'){
-    				html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 c_remove1"+i+"\" style='text-align:center;'>";
-    				html += "<a href=\"#\" onclick=\"return removeTutorToRequest('"+tutorMap.userName+"','"+tutorMap.requestId+"','"+i+"')\" class=\"btn btn-danger\">Select Tutor</a></div></div></div></div></div>";
-    			   
-    			}else{
     				html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 c_add1"+i+"\" style='text-align:center;'>";
 					 html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_grid"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\"><span>Select Tutor</span>";
 				     html += "</label></div></div></div></div></div>";
     			    // html += "<a href=\"#\" onclick=\"return addTutorToRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\" class=\"btn btn-danger\">Select Tutor</a></div></div></div></div></div>";
     			    
-    			}
+    			
     			    //html += "<a href=\"#\" onclick=\"return requestForTuition('"+tutorMap.userName+"','"+tutorMap.displayName+"')\" class=\"btn btn-danger\">Request For Tuition</a></div></div></div></div></div>";
     		}
     		
@@ -103,16 +97,10 @@ function listViewTab(tutorList){
  				html += "</span></div>";
  				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\" style='text-align:center;'><span class=\"profileSpan\" style=\"font-size: 16px;font-weight:500; font-family:open sans;\"> <span class=\"rating-text tutor-val-text\" style='font-size:16px;color:black;'>"+tutorMap.starCount+" reviews</span></span></div>";
  				html += "<div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12 m-t-30\" style='text-align:center;'><a href='../../tutor-profile?login=false&user="+tutorMap.userName+"'class=\"btn btn-primary\">View Profile</a></div>";
-     			if(tutorMap.SEARCH=='REQUESTED')
- 				 html += "<div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12 m-t-30\ c_remove2"+i+"\" style='text-align:center;'><a href=\"#\" onclick=\"return removeTutorToRequest('"+tutorMap.userName+"','"+tutorMap.requestId+"','"+i+"')\" class=\"btn btn-success\">Select Tutor</a></div>";
-     			else
-     			  html += "<div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12 m-t-30\ c_add2"+i+"\" style='text-align:center;'>";
-			      html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_list"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\"><span>Select Tutor</span>";
-				  html += "</label></div>";
-				   // html += "<div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12 m-t-30\ c_add2"+i+"\" style='text-align:center;'><a href=\"#\" onclick=\"return addTutorToRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\" class=\"btn btn-success\">Select Tutor</a></div>";
-     			//html += "<div class=\"ffs-bs col-xs-12 btn-half-wth\" style='text-align:center;'><a href=\"#\" onclick=\"return requestForTuition('"+tutorMap.userName+"','"+tutorMap.displayName+"')\" class=\"btn btn-default btn-small\">Request For Tuition<i class=\"fa fa-caret-right\"></i></a></div>";
-     			 
-     			html += " </div></div></div>";
+     			html += "<div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12 m-t-30\ c_add2"+i+"\" style='text-align:center;'>";
+			    html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_list"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\"><span>Select Tutor</span>";
+				html += "</label></div>";
+				html += " </div></div></div>";
  			}
  			
  			return html;
@@ -219,106 +207,8 @@ function listViewTab(tutorList){
 	}
 	// end search from filters
 	
-/*	
-
-	var tutorId = '';
-    function requestForTuition(p_user_name,p_display_name) {
-
-		$('#tuition_request').modal('show');
-		$('.c_tutor_name').html("Tutor : "+p_display_name);
-		tutorId= p_user_name;
-		loadTutorBatches(p_user_name);
-		
-		var l_html = '';
-		for(var i=0;i<g_subjects.length;i++){
-			var l_map = g_subjects[i];
-			l_html+='<option data-value="'+l_map.subjectId+'" value="'+l_map.subjectName+'"></option>';
-		}
-		$('#subjectListmodal').html(l_html);
-		//loadTutorSubjects(p_user_name);
-
-	}*/
-	
-	
-	
-	
-	
-	
-	/*var tutorId = '';
-    function addTutorToRequest(p_tutor_id,p_display_name,p_count){
-    	var l_search_map = {};
-		l_search_map.latitude = latitude;
-		l_search_map.longitude =longitude;
-		if(search_map_obj.subjectId == undefined || search_map_obj.subjectId == null || search_map_obj.subjectId == '')
-		  l_search_map.subjectId = '';
-		else
-			l_search_map.subjectId = search_map_obj.subjectId;
-		$('.loading').show();
-		ajaxWithJSON("/tutor-add-request",l_search_map,'POST',function(response) {
-			var l_data = response.object;
-			//alert(JSON.stringify(response));
-			if (response.status == 'SUCCESS') {
-				$('.loading').hide();
-			    $('.c_requestId').val(l_data);
-			    $('.c_count').val(p_count);
-				$('#tuition_request').modal('show');
-				$('.c_tutor_name').html("Tutor : "+p_display_name);
-				tutorId= p_tutor_id;
-				loadTutorBatches(p_tutor_id);
-				
-				var l_html = '';
-				for(var i=0;i<g_subjects.length;i++){
-					var l_map = g_subjects[i];
-					l_html+='<option data-value="'+l_map.subjectId+'" value="'+l_map.subjectName+'"></option>';
-				}
-				$('#subjectListmodal').html(l_html);
-				toastr.success(response.message);
-			}
-			if (response.status == 'ERROR') {
-				$('.loading').hide();
-				toastr.error(response.message);
-			}
-
-});
-    }
-    
-    function removeTutorToRequest(p_tutorId,p_requestId,p_count){
-    	var l_search_map = {};
-		l_search_map.latitude = latitude;
-		l_search_map.longitude =longitude;
-		l_search_map.tutorId = p_tutorId;
-		l_search_map.requestId = p_requestId;
-		if(search_map_obj.subjectId == undefined || search_map_obj.subjectId == null || search_map_obj.subjectId == '')
-		  l_search_map.subjectId = '';
-		else
-			l_search_map.subjectId = search_map_obj.subjectId;
-		$('.loading').show();
-		ajaxWithJSON("/tutor-remove-request",l_search_map,'POST',function(response) {
-			var l_data = response.object;
-			alert(JSON.stringify(response));
-			var html = '';
-			alert(JSON.stringify(response));
-			if (response.status == 'SUCCESS') {
-				$('.loading').hide();
-				var l_google_map_initailize = {};
-				var l_text='return addTutorToRequest(\''+p_tutorId+'\',\''+l_data.displayName+'\',\''+p_count+'\')';
-    			$('.c_add1'+p_count).html("<a href=\"#\" onclick=\"return addTutorToRequest('"+p_tutorId+"','"+l_data.displayName+"','"+p_count+"')\" class=\"btn btn-default btn-small-2 normal-p\" style='padding: 7.5px 19px;margin:0px !important;'>Select Tutor<i class=\"fa fa-caret-right\"></i></a></div></div></div></div></div>");
-			    $('.c_add2'+p_count).html("<div class=\"ffs-bs col-xs-12 btn-half-wth\ c_add2"+p_count+"\" style='text-align:center;'><a href=\"#\" onclick=\"return addTutorToRequest('"+p_tutorId+"','"+l_data.displayName+"','"+p_count+"')\" class=\"btn btn-default btn-small\">Select Tutor<i class=\"fa fa-caret-right\"></i></a></div>");
-			    
-			    l_google_map_initailize.text = '<button onclick="'+l_text+'">Select Request</button>';
-			    l_google_map_initailize.tutorId = p_tutorId;
-			    initializeCustomGoogleMap(tutorSearchResult,latitude,longitude,l_google_map_initailize);
-    			toastr.success(response.message);
-			}
-			if (response.status == 'ERROR') {
-				$('.loading').hide();
-				toastr.error(response.message);
-			}
-
-});
-    }*/
-	function initiateRequest(p_tutor_id,p_display_name,p_count){
-		if($('#i_tutor_grid'+p_count).is(':checked')){
+	function initiateRequest(p_tutor_id,p_display_name,p_count){debugger;
+		if($('#i_tutor_grid'+p_count).prop('checked')){
 			alert("rejecting request:");
 			removeStudentRequest(p_tutor_id,p_count);
 		}

@@ -133,16 +133,9 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 		var l_map = p_locations[i];
 		var l_text = '';
 
-		if(!(p_referesh==null)){
-			if(l_map.userName==p_referesh.tutorId)
-				l_text=p_referesh.text;
-		}else{
-			if(l_map.SEARCH=='REQUESTED')
-				l_text+='return removeTutorToRequest(\''+l_map.userName+'\',\''+l_map.requestId+'\',\''+i+'\')';
-			else
-				l_text+='return addTutorToRequest(\''+l_map.userName+'\',\''+l_map.displayName+'\',\''+i+'\')';
-		        //l_text=l_text+'<button onclick="'+l_text+'">Request For Tuition</button>';
-		}
+           l_text+='return initiateRequest(\''+l_map.userName+'\',\''+l_map.displayName+'\',\''+i+'\')';
+		        
+		
 		var star = '';
 		for(var j=0;j<5;j++){
 				if(j<=parseInt(l_map.averageStar)) 
