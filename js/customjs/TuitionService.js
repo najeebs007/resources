@@ -411,7 +411,9 @@ function listViewTab(tutorList){
 					            	  }
 							              
 							              if(l_map.requestStatus=='ACCEPTED'){
-								              l_html+='<p class="reject">Your suggested batch has been accepted.</p>';
+								              l_html+='<p class="reject">'+l_map.comment+'</p>';
+								           }
+							              if(l_map.requestStatus=='REJECTED'){
 								              l_html+='<p class="reject">'+l_map.comment+'</p>';
 								           }
 							      }
@@ -585,6 +587,59 @@ function listViewTab(tutorList){
 	}
 	
 
+	
+	
+	
+	
+	 var l_lat, l_lng;
+	 function codeAddress(p_flage) {debugger;
+	     geocoder = new google.maps.Geocoder();
+	     var address = document.getElementById("location").value;
+	     geocoder.geocode( { 'address': address}, function(results, status) {
+	       if (status == google.maps.GeocoderStatus.OK) {
+	        l_lat = results[0].geometry.location.lat();
+	        l_lng = results[0].geometry.location.lng();
+	        $("#latitude").val(l_lat);
+	        $("#longitude").val(l_lng);
+	       addTutorBatch(p_flage);
+	       } 
+
+	       else {
+	         alert("Geocode was not successful for the following reason: " + status);
+	       }
+	     });
+	   }
+	 google.maps.event.addDomListener(window, 'load', initialize);
+	 
+	 function addTutorBatch(p_flage){
+		 var l_batch_map = {};
+		    l_batch_map = readForm('i_batch_form');
+		 $(".loading").show();
+		 ajaxWithJSON("/tutor/save-batch-info", l_batch_map, 'POST', function(response) {debugger;
+		  $(".loading").hide();
+		//  alert(JSON.stringify(response));
+		  if (response.status == 'SUCCESS') {
+		   $("#addbatch").modal('hide');
+		   toastr.success(response.message);
+		   if(p_flage)
+		     window.reload();
+		  }
+		  if (response.status == 'ERROR') {
+		   $('.batch_message').html(response.message);
+
+		  }
+
+		 });
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	  function showoption(p_flage) {
 	if (p_flage == "NONE") {
 		toastr.error('Please select any one option.');
