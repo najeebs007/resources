@@ -749,12 +749,13 @@ margin-left:10px;
     box-shadow: unset !important;
 }
 /*manage-request-accordian(=m-r-a)*/
+.m-ra-header{padding: 11px 20px !important;}
 .m-r-a-head
 {
 	padding: 0px 12px !important;
 	border-bottom: 1px solid rgba(150, 156, 156, 0.14)  !important;
 }
-.m-r-c-p-group{margin-bottom:0px !important;}
+.m-r-c-p-group{margin-bottom:0px !important;padding: 5px 10px;}
 .m-r-a-pro{padding: 0px 0px !important;}
 .m-r-a-body
 {
@@ -773,8 +774,8 @@ margin-left:10px;
 {
     padding-right: 0px !important;
     float: right;
-    margin-right: -10px !important;
-    margin-top:30px !important;
+    margin-right: -30px !important;
+    margin-top: 15px !important;
 }
 .m-r-a-btn
 {
@@ -783,6 +784,7 @@ margin-left:10px;
     border-width: 1px;
 }
 .m-r-c-border{border:1px solid #ada4a4ad;}
+.action-area{margin-top:-40px;}
 .btn-icon-toggle{height:36px;}
  
 .timeline-padding{padding:5px 5px !important}

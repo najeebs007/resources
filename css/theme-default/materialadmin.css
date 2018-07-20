@@ -7684,13 +7684,13 @@ sub.badge {
 .timeline-entry {
 	position: relative;
 	display: inline-block;
-	width:66%;
+	width:84%;
 	padding: 0;
 	vertical-align: top;
 	margin: 0 -3px 0 0;
 	white-space: normal;
 	left: 100%;
-    margin-left: 140px;
+    margin-left: 190px;
 }
 
 .timeline-entry .card {
@@ -7704,7 +7704,7 @@ sub.badge {
 }
 
 .timeline-inverted .timeline-entry {
-	left: 122%;
+	left: 100%;
 }
 
 .timeline-inverted .timeline-entry .card {

@@ -345,7 +345,7 @@ function listViewTab(tutorList){
 				var l_data_other = response.other;
 				var l_html = '';
 				if (response.status == 'SUCCESS') {
-					$("#request_list_div").html('');
+					$(".request_list_div").html('');
 			    
 			        for(var i=0;i<l_data_other.length;i++){
 			        	var l_accordian_map = {};
@@ -361,60 +361,106 @@ function listViewTab(tutorList){
 					              l_html+='<div class="timeline-entry">';
 					              l_html+='<div class="card timeline-card">';
 					              l_html+='<div class="card-body timeline-padding">';
-					              l_html+='<img class="img-responsive pull-left with-t-img" src="resources/img/batch-list/user-book.png" alt="" />';
+								  l_html+='<div class="row">';
+								  l_html+=' <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">';
+								  l_html+='<img class="img-responsive pull-left with-t-img" src="resources/img/batch-list/user-book.png" alt="" />';
+								  l_html+='</div>';
+								  l_html+='	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">';
+								  l_html+='	<div class="row">';
+					              
 					              if($('#i_role').val()=='ROLE_STUDENT'){
 					              if(l_map.requestStatus=='REQUESTED'){
+								  l_html+=' <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 					              l_html+='<p class="reject">You have requested.</p>';
+								  l_html+=' </div>';
+								  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 					              l_html+='<p class="reject">'+l_map.comment+'</p>';
+								  l_html+='</div>';
 					              /*l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="rejectRequest(\''+b_inner_map.requestId+'\',\''+b_request.requestId+'\',\''+b_request.tutorId+'\')">Reject</button></p>';*/
 					              }
 					              
 					              if(l_map.requestStatus=='SUGGESTED'){
 					            	  if(l_map.reviewStatus=='STUDENT' && l_map.status=='ACTIVE'){
+									  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 						              l_html+='<p class="reject">Tutor has been suggested.</p>';
+									  l_html+='</div>';
+									  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 						              l_html+='<p class="reject">'+l_map.comment+'</p>';
-						              l_html+='<p class="reject"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT_SUGGESTION\',\'STUDENT\')">Accept Suggestion</button></p>';
-						              l_html+='<p class="reject"><button type="button" class="btn btn-green" style="float: right;" onclick="loadBatch(\''+l_map.suggestBatchId+'\',\''+l_map.tutorId+'\')">View Batch Detail</button></p>';
+						              l_html+='<div class="action-area"> <button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT_SUGGESTION\',\'STUDENT\')">Accept Suggestion</button>';
+						              l_html+=' <button type="button" class="btn btn-primary" style="float: right;" onclick="loadBatch(\''+l_map.suggestBatchId+'\',\''+l_map.tutorId+'\')">View Batch Detail</button></div>';
+									  l_html+='</div>';
 					            	  }else{
-					            		  l_html+='<p class="reject">Tutor has been suggested.</p>';
-							              l_html+='<p class="reject">'+l_map.comment+'</p>';
+									   l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+					            	   l_html+='<p class="reject">Tutor has been suggested.</p>';
+									   l_html+='</div>';
+									   l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+							           l_html+='<p class="reject">'+l_map.comment+'</p>';
+									   l_html+='</div>';
 					            	  }
 					            	  }
 					              if(l_map.requestStatus=='REJECTED'){
+								      l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 						              l_html+='<p class="reject">The request has been rejected.</p>';
+									  l_html+='</div>';
+									  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 						              l_html+='<p class="reject">'+l_map.comment+'</p>';
+									  l_html+='</div>';
 						            }
 					              if(l_map.requestStatus=='ACCEPTED'){
 					            	  if(l_map.reviewStatus=='STUDENT' && l_map.status=='ACTIVE'){
+									  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 					            	  l_html+='<p class="reject">The request has been accepted.</p>';
+									  l_html+='</div>';
+									  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 					            	  l_html+='<p class="reject">'+l_map.comment+'</p>';
-						              l_html+='<p class="reject"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">PayNow</button></p>';
+						              l_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">Pay Now</button></div>';
+									  l_html+='</div>';
 					            	  }else{
+									   l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 					            		  l_html+='<p class="reject">The request has been accepted.</p>';
+										  l_html+='</div>';
+										  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 						            	  l_html+='<p class="reject">'+l_map.comment+'</p>';
+										  l_html+='</div>';
 					            	  }
 					            	  }
 					              }
 					              if($('#i_role').val()=='ROLE_TUTOR'){
 					            	  if(l_map.requestStatus=='REQUESTED'){
 					            		  if(l_map.reviewStatus=='TUTOR' && l_map.status=='ACTIVE'){
+										  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 							              l_html+='<p class="reject">You got request.</p>';
+										  l_html+='</div>';
+										  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 							              l_html+='<p class="reject">'+l_map.comment+'</p>';
-							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT\',\'TUTOR\')">ACCEPT</button></p>';
-							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'SUGGEST\',\'TUTOR\')">SUGGEST</button></p>';
-							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'TUTOR\')">REJECT</button></p>';
-					            		  
+							               
+							              l_html+='<div class="action-area"><button type="button" class="btn btn-yellow" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'TUTOR\')">REJECT</button>';
+										  l_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'SUGGEST\',\'TUTOR\')">SUGGEST</button>';
+										  l_html+='<button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT\',\'TUTOR\')">ACCEPT</button></div>';
+										  
+					            		  l_html+='</div>';
 					            		  }else{
+										  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 					            			  l_html+='<p class="reject">You got request.</p>';
+											  l_html+='</div>';
+											  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 								              l_html+='<p class="reject">'+l_map.comment+'</p>';
+											  l_html+='</div>';
 					            		  }
 					            	  }
 							              
 							              if(l_map.requestStatus=='ACCEPTED'){
+										  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 								              l_html+='<p class="reject">Your suggested batch has been accepted.</p>';
+											  l_html+='</div>';
+											  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 								              l_html+='<p class="reject">'+l_map.comment+'</p>';
+											  l_html+='</div>';
 								           }
 							      }
+								  l_html+='</div>';
+								  l_html+='</div>';
+								  l_html+='</div>';
 					              /*l_html+='<p class="reject"><button type="button" class="btn btn-primary" style="float: right;" onclick="askQuestion(\''+b_inner_map.requestId+'\',\''+b_request.requestId+'\',\''+b_request.tutorId+'\')">Ask Question?</button></p>';*/
 					              /*l_html+='<span>'+b_inner_map.requestComment+'</span>';*/
 					              l_html+='</div>';
@@ -428,34 +474,34 @@ function listViewTab(tutorList){
 			        	// start accordian pre html
 			        	var b_request = l_accordian_map;
 			        	var pre_html=''
-			        		pre_html+='<div class="panel-group m-r-c-p-group" id="accordion6">';
+			        		pre_html+='<div class="panel-group m-r-c-p-group">';
 			        	pre_html+='<div class="card panel manage-request-accordian">';
 			        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
 						// start header detail
 			        	pre_html+='<div class="row row-width">';
-			        	pre_html+='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">';
+			        	pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
 			        	pre_html+='<div class="row">';
 			        	pre_html+='<div class="col-md-12">';
-			        	pre_html+='<span class="m-r-a-header-text">Requests ID : '+b_request.requestId+'</span>';
+			        	pre_html+='<span class="s-profile-text-gray s-bold">Requests ID : <span class="s-black">'+b_request.requestId+'</span></span>';
 			        	pre_html+='</div>';
 			        	pre_html+='<div class="col-md-12 m-t-minus-10">';
 						var date2 = new Date(Number(b_request.createdAt));
-						pre_html+='<span class="m-r-a-header-text">Requested At : '+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span>';
+						pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black">'+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span></span>';
 						pre_html+='</div>'; 
 						pre_html+='</div>';
 						pre_html+='</div>';
-						pre_html+='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">';
+						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
 						pre_html+='<div class="row">';
 						pre_html+='<div class="col-md-12">';
-						pre_html+='<span class="m-r-a-header-text">Subject : '+b_request.subjectId+'</span>';
+						pre_html+='<span class="s-profile-text-gray s-bold">Subject : <span class="s-black">'+b_request.subjectId+'</span></span>';
 						pre_html+='</div>';
 						pre_html+='</div>';
 						pre_html+='</div>';
 			           
-						pre_html+='<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 p-r-0">';
+						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 p-r-0">';
 						pre_html+='<div class="row">';
 						pre_html+='<div class="col-md-12 p-r-0">';
-						pre_html+='<span class="m-r-a-header-text">Location : '+b_request.location+'</span>';
+						pre_html+='<span class="s-profile-text-gray s-bold">Location : <span class="s-black">'+b_request.location+'</span></span>';
 						pre_html+='<div class="tools m-r-a-tools">';
 						pre_html+='<a class="btn btn-icon-toggle tool-btn"><i class="fa fa-angle-down"></i></a>';
 						pre_html+='</div>'; 
@@ -481,7 +527,7 @@ function listViewTab(tutorList){
 						 post_html+='</div>';
 						 post_html+='</div>';
 						// end post accordian
-						 $("#request_list_div").append(pre_html+l_html+post_html);
+						 $(".request_list_div").append(pre_html+l_html+post_html);
 						 pre_html = '';
 						 l_html = '';
 						 post_html = '';
