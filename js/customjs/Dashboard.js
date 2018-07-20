@@ -149,10 +149,10 @@ function loadBatchData() {
 								+ b_map.status + '</span>';
 						b_html += '<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Timing : '
 								+ b_map.batchStartTime
-								
+								 
 								+ '-'
 								+ b_map.batchEndTime
-								
+								 
 								+ '</span>';
 						b_html += '</div>';
 						b_html += '</div>';
@@ -319,111 +319,111 @@ function loadRequestsData() {debugger;
 						
 				      // var b_data = l_data.data;
 				        for(var i=0;i<l_data_other.length;i++){
+							var b_request = l_data[i];
+							var date2 = new Date(Number(b_request.createdAt));
+							  
 				        	for(var j=0;j<l_data.length;j++){
 				        		var l_map = l_data[j];
-				        		if(l_data_other[i]==l_map.requestId){
-	                                   
-					            	  l_html+='<li class="timeline-inverted">';
-						              l_html+='<div class="timeline-circ"></div>';
+				        		if(l_data_other[i]==l_map.requestId){ 
 						              var date1 = new Date(Number(l_map.createdAt)).toString();
-						              l_html+='<div class="timeline-date">'+date1+'</div>';
-						              l_html+='<div class="timeline-entry">';
-						              l_html+='<div class="card timeline-card">';
-						              l_html+='<div class="card-body timeline-padding">';
-						              l_html+='<img class="img-responsive pull-left with-t-img" src="resources/img/batch-list/user-book.png" alt="" />';
-						             
+						                // l_html+='<div class="timeline-date">'+date1+'</div>';
+						               
+									    l_html+='<tr>'; 
+										l_html+='<td class="td-dashboard">Requests ID : '+b_request.requestId+'</td>';
+										l_html+='<td class="td-dashboard">Requested At : '+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</td>';
+										if(b_request.subjectId==null ||b_request.subjectId==undefined)
+										l_html+='<td class="td-dashboard">Subject :</td>';
+                                         else
+                                         l_html+='<td class="td-dashboard">Subject : '+b_request.subjectId+'</td>';
+                                        if(b_request.location==null ||b_request.location==undefined) 									 
+										l_html+='<td class="td-dashboard">Location :</td>';
+									    else
+											
+									    l_html+='<td class="td-dashboard">Location : '+b_request.location+'</td>';
+										l_html+='<td>';
+										  
 						            	  if(l_map.requestStatus=='REQUESTED'){
 						            		  if(l_map.reviewStatus=='TUTOR'){
-								              l_html+='<p class="reject">You got request.</p>';
-								              l_html+='<p class="reject">'+l_map.comment+'</p>';
-								              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionByTutor(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT\')">ACCEPT</button></p>';
-								              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionByTutor(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'SUGGEST\')">SUGGEST</button></p>';
-								              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionByTutor(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\')">REJECT</button></p>';
-						            		  
+								            
+								              l_html+='<button type="button" class="btn btn-green" onclick="actionByTutor(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT\')">ACCEPT</button>';
+								              l_html+='<button type="button" class="btn btn-red" onclick="actionByTutor(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'SUGGEST\')">SUGGEST</button>';
+								              l_html+='<button type="button" class="btn btn-yellow" onclick="actionByTutor(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\')">REJECT</button>';
+						            		  l_html+='</td>';
 						            		  }else{
-						            			  l_html+='<p class="reject">You got request.</p>';
-									              l_html+='<p class="reject">'+l_map.comment+'</p>';
+						            			  l_html+='<span class="s-profile-text-gray">You got request.</span>'; 
+												  l_html+='</td>';
 						            		  }
 						            	  }
-								              
 								              if(l_map.requestStatus=='ACCEPTED'){
-									              l_html+='<p class="reject">Tutor has been suggested.</p>';
-									              l_html+='<p class="reject">'+l_map.comment+'</p>';
+									              l_html+='<span class="s-profile-text-gray">Tutor has been suggested.</span>';
+									              l_html+='</td>';
 									           }
-								      
-						              /*l_html+='<p class="reject"><button type="button" class="btn btn-primary" style="float: right;" onclick="askQuestion(\''+b_inner_map.requestId+'\',\''+b_request.requestId+'\',\''+b_request.tutorId+'\')">Ask Question?</button></p>';*/
-						              /*l_html+='<span>'+b_inner_map.requestComment+'</span>';*/
-						              l_html+='</div>';
-						              l_html+='</div>';
-						              l_html+='</div>';
-						              l_html+='</li>'; 
-						              
+								       				 
+										l_html+='</tr>';
+						               
 
 				        		}
 				        	}
-				        	// start accordian pre html
-				        	var b_request = l_data[i];
-				        	var pre_html=';'
-				        		pre_html+='<div class="panel-group m-r-c-p-group" id="accordion6">';
-				        	pre_html+='<div class="card panel manage-request-accordian">';
-				        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
-							// start header detail
-				        	pre_html+='<div class="row row-width">';
-				        	pre_html+='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">';
-				        	pre_html+='<div class="row">';
-				        	pre_html+='<div class="col-md-12">';
-				        	pre_html+='<span class="m-r-a-header-text">Requests ID : '+b_request.requestId+'</span>';
-				        	pre_html+='</div>';
-				        	pre_html+='<div class="col-md-12 m-t-minus-10">';
-							var date2 = new Date(Number(b_request.createdAt)).toString();
-							pre_html+='<span class="m-r-a-header-text">Requested At : '+date2+'</span>';
-							pre_html+='</div>'; 
-							pre_html+='</div>';
-							pre_html+='</div>';
-							pre_html+='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">';
-							pre_html+='<div class="row">';
-							pre_html+='<div class="col-md-12">';
-							pre_html+='<span class="m-r-a-header-text">Subject : '+b_request.subjectId+'</span>';
-							pre_html+='</div>';
-							pre_html+='</div>';
-							pre_html+='</div>';
+				        	// // start accordian pre html
+				        	// var b_request = l_data[i];
+				        	// var pre_html=';'
+				        		// pre_html+='<div class="panel-group m-r-c-p-group" id="accordion6">';
+				        	// pre_html+='<div class="card panel manage-request-accordian">';
+				        	// pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
+							// // start header detail
+				        	// pre_html+='<div class="row row-width">';
+				        	// pre_html+='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">';
+				        	// pre_html+='<div class="row">';
+				        	// pre_html+='<div class="col-md-12">';
+				        	// pre_html+='<span class="m-r-a-header-text">Requests ID : '+b_request.requestId+'</span>';
+				        	// pre_html+='</div>';
+				        	// pre_html+='<div class="col-md-12 m-t-minus-10">';
+							// var date2 = new Date(Number(b_request.createdAt)).toString();
+							// pre_html+='<span class="m-r-a-header-text">Requested At : '+date2+'</span>';
+							// pre_html+='</div>'; 
+							// pre_html+='</div>';
+							// pre_html+='</div>';
+							// pre_html+='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">';
+							// pre_html+='<div class="row">';
+							// pre_html+='<div class="col-md-12">';
+							// pre_html+='<span class="m-r-a-header-text">Subject : '+b_request.subjectId+'</span>';
+							// pre_html+='</div>';
+							// pre_html+='</div>';
+							// pre_html+='</div>';
 				           
-							pre_html+='<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 p-r-0">';
-							pre_html+='<div class="row">';
-							pre_html+='<div class="col-md-12 p-r-0">';
-							pre_html+='<span class="m-r-a-header-text">Location : '+b_request.location+'</span>';
-							pre_html+='<div class="tools m-r-a-tools">';
-							pre_html+='<a class="btn btn-icon-toggle tool-btn"><i class="fa fa-angle-down"></i></a>';
-							pre_html+='</div>'; 
-							pre_html+='</div>'; 
-							pre_html+='</div>'; 
-							pre_html+='</div>'; 
-							pre_html+='</div>';
-							// end header detail
-							pre_html+='</div>';
+							// pre_html+='<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 p-r-0">';
+							// pre_html+='<div class="row">';
+							// pre_html+='<div class="col-md-12 p-r-0">';
+							// pre_html+='<span class="m-r-a-header-text">Location : '+b_request.location+'</span>';
+							// pre_html+='<div class="tools m-r-a-tools">';
+							// pre_html+='<a class="btn btn-icon-toggle tool-btn"><i class="fa fa-angle-down"></i></a>';
+							// pre_html+='</div>'; 
+							// pre_html+='</div>'; 
+							// pre_html+='</div>'; 
+							// pre_html+='</div>'; 
+							// pre_html+='</div>';
+							// // end header detail
+							// pre_html+='</div>';
 				            
-							pre_html+='<div id="accordion6-'+i+'" class="collapse">';
-							// accordian body start
-							pre_html+='<div class="card-body m-r-a-body">';
-							pre_html+='<ul class="timeline collapse-md">';
-				        	
-				        	// end accordian post html
-							
-							// start post accordian
-							 var post_html = '';
-							 post_html+='</ul>';
-							 post_html+='</div>';
-							 post_html+='</div>';
-							 post_html+='</div>';
-							 post_html+='</div>';
+							// pre_html+='<div id="accordion6-'+i+'" class="collapse">';
+							// // accordian body start
+							// pre_html+='<div class="card-body m-r-a-body">';
+							// pre_html+='<ul class="timeline collapse-md">';
+				        	// // end accordian post html
+							// // start post accordian
+							 // var post_html = '';
+							 // post_html+='</ul>';
+							 // post_html+='</div>';
+							 // post_html+='</div>';
+							 // post_html+='</div>';
+							 // post_html+='</div>';
 							// end post accordian
-							 $('.c_requests').append(pre_html+l_html+post_html);
+							 $('.c_requests').append(l_html);
 							
-							 pre_html = '';
+							 
 							 l_html = '';
-							 post_html = '';
-				        
-						
+							 
+				     
 					}
 
 				}
