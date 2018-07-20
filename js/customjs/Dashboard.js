@@ -125,9 +125,11 @@ function loadBatchData() {
 			'POST',
 			function(response) {
 				var l_data = response.object;
+				var l_count_batches = response.other;
 				if (response.status == 'SUCCESS') {
 					var b_html = "";
 					$('.c_batches').html("");
+					$('.c_total_batches').text('My Batches('+l_count_batches+')');
 					for (var i = 0; i < l_data.length; i++) {
 						var b_map = l_data[i];
 

@@ -1037,23 +1037,53 @@ function loadProfessionalData() {
             l_html+='<div class="row">';
             for(var i=0;i<l_data.length;i++){
             	var b_map = l_data[i];
+            	var startDate=b_map.startDate;
+            	var endDate=b_map.endDate;
+            	
+            	var l_date=b_map.startDate;
+            	var l_dateStart = new Date(Number(l_date));
+            	var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+            	var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
+            	var l_day = (weekday[l_dateStart.getDay()] + " ")
+                var l_date = (l_dateStart.getDate() + " ")
+                var l_month = (monthname[l_dateStart.getMonth()] + " ")
+                var l_year = (l_dateStart.getFullYear())
+            	var startDate=l_day+l_date+l_month+l_year;
+            	
+            	if(startDate==null || startDate=='undefined'){
+            		startDate="";
+            	}
+            	
+            	var l_dateE=b_map.endDate;
+            	var l_dateEnd = new Date(Number(l_dateE));
+            	var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+            	var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
+            	var l_day = (weekday[l_dateEnd.getDay()] + " ")
+                var l_date = (l_dateEnd.getDate() + " ")
+                var l_month = (monthname[l_dateEnd.getMonth()] + " ")
+                var l_year = (l_dateEnd.getFullYear())
+            	var endDate=l_day+l_date+l_month+l_year;
+            	
+            	if(endDate==null || endDate=='undefined'){
+            		endDate="";
+            	}
             
             l_html+='<div class="col-lg-12">';
             l_html+='<div class="row">';
-            l_html+='<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2"> <span class="certificate-icon"><span style="font-size:15px;font-weight: 600;">'+b_map.jobTitle+'</span></span>';
+            l_html+='<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2"> <span class="certificate-icon"><span style="font-size:15px;font-weight: 600;">'+b_map.occupation+'</span></span>';
             l_html+='</div>';
             l_html+='<div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 m-t-2 onhover">';
             l_html+='<div class="row">';
             l_html+='<div class="col-lg-12 p-l-0">';
             l_html+='<div class="row">';
             l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 p-l-r-0">';
-            l_html+='<span class="pro-text" style="font-weight:600;">'+b_map.occupation+'</span>';
+            l_html+='<span class="pro-text capitalize" style="font-weight:600;">'+b_map.jobTitle+'</span>';
             l_html+='</div>';
 								  
             l_html+='<button type="button"  class="tool-edit" onclick="loadEditProfessional(\'EDIT\',\''+b_map.userProfessionalDetailId+'\')"> <i class="fa fa-pencil icon"></i></button>';
 								 
             l_html+='<div class="col-lg-12 p-l-r-0">';
-            l_html+='<span class="pro-small-text ">Session:  '+b_map.startDate+'- '+b_map.endDate+' </span> ';     
+            l_html+='<span class="pro-small-text ">Session:  '+startDate+' to '+endDate+' </span> ';     
             l_html+='</div>';
             l_html+='<div class="col-lg-12 p-l-r-0">';
             l_html+='<span class="pro-small-text ">Organization: '+b_map.organization+'</span>';      
@@ -1084,7 +1114,7 @@ function loadBatchData() {
 	l_map.top = true;
 	ajaxWithJSON("/tutor-batches", l_map, 'POST', function(response) {
 		var l_data = response.object;
-		alert(JSON.stringify(response));
+		//alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
             var l_html = '';
             l_html+='<div class="card-body card-body-padding-pro pro-height-sm" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
@@ -2412,7 +2442,7 @@ function selectEducation(){
 						var averageRating = averageRating1.toString();
 							/*dynamic html code  */ 
 							 
-						p_html += '<span class="rating-text" style="color: white; font-weight: 500;margin-right: 5px;" >'+averageRating+'</span>';
+						p_html += '<span class="rating-text" style="font-weight: 500;margin-right: 5px;" >'+averageRating+'</span>';
 						switch (averageRating) { 
 						case "1":
 							p_html += '<span class="fa fa-star checked"></span>';
