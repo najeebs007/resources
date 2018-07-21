@@ -6830,7 +6830,7 @@ button.close {
     border-top-right-radius: 10px;
 }
 .modal-header .close {
-  margin-top: -22px;
+  /* margin-top: -22px; */
 }
 .modal-title {
   margin: 0;
