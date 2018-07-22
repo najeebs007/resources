@@ -142,18 +142,20 @@ function listViewTab(tutorList){
 
 	function formSubmitFilter(lati,longi) {
 		var l_search_map = {};
-        
+       /* 
 		$(".all-input").find("input[type=text],select").each(
 				function(index, item) {
 					l_search_map[l_search_array[index]] = $(item)
 							.val();
-				});
-		l_search_map.requestId= null;
+				});*/
+	
 		l_search_map.latitude = lati;
 		l_search_map.longitude = longi;
 		l_search_map.offset = "0";
 		l_search_map.records = "10";
 		l_search_map.location = document.getElementById("address-map").value;
+		l_search_map.subjectId = document.getElementById("subjects").value;
+		//alert(JSON.stringify(l_search_map));
 		$('.loading').show();
 		ajaxWithJSON("/common/search-tutor-data", l_search_map, 'POST', function(response) {
 			//alert(JSON.stringify(response));
@@ -209,7 +211,7 @@ function listViewTab(tutorList){
 	
 	function initiateRequest(p_tutor_id,p_display_name,p_count){debugger;
 		if($('#i_tutor_grid'+p_count).prop('checked')){
-			alert("rejecting request:");
+			//alert("rejecting request:");
 			removeStudentRequest(p_tutor_id,p_count);
 		}
 		else{
@@ -222,6 +224,7 @@ function listViewTab(tutorList){
 		$('#i_tutor_list'+p_count).prop('checked', false);
 		$('#i_tutor_map'+p_count).prop('checked', false);
 		loadTutorBatches(p_tutor_id);
+		
 		// g_subjects in CommonFunction.js
 		var l_html = '';
 		for(var i=0;i<g_subjects.length;i++){
@@ -251,12 +254,14 @@ function listViewTab(tutorList){
 						$('#i_tutor_grid'+p_count).prop('checked', false);
 						$('#i_tutor_list'+p_count).prop('checked', false);
 						$('#i_tutor_map'+p_count).prop('checked', false);
-						toastr.error(response.message);
+						toastr.success(response.message);
 					}
 					if (response.status == 'ERROR') {
-						//$('c_request_error').html(response.message);
+						$('#i_tutor_grid'+p_count).prop('checked', true);
+						$('#i_tutor_list'+p_count).prop('checked', true);
+						$('#i_tutor_map'+p_count).prop('checked', true);
 						toastr.error(response.message);
-						//setTimeout(function(){ $('c_request_error').html(""); }, 3000);
+						
 					
 					}
 
@@ -342,145 +347,14 @@ function listViewTab(tutorList){
 	ajaxWithJSON("/common/load-tuition-requests",l_map,'POST',function(response) {debugger;
 	
 				var l_data = response.object;
-				var l_data_other = response.other;
-				var l_html = '';
+				//var l_data_other = response.other;
+				var pre_html = '';
 				if (response.status == 'SUCCESS') {
-					$(".request_list_div").html('');
-			    
-			        for(var i=0;i<l_data_other.length;i++){
-			        	var l_accordian_map = {};
-			        	for(var j=0;j<l_data.length;j++){
-			        		var l_map = l_data[j];
-			        		
-			        		if(l_data_other[i]==l_map.requestId){
-			        			l_accordian_map=l_map;
-				            	  l_html+='<li class="timeline-inverted">';
-					              l_html+='<div class="timeline-circ"></div>';
-					              var date1 = new Date(Number(l_map.createdAt));
-					              l_html+='<div class="timeline-date">'+date1.getDay()+'/'+date1.getMonth()+'/'+date1.getFullYear()+'</div>';
-					              l_html+='<div class="timeline-entry">';
-					              l_html+='<div class="card timeline-card">';
-					              l_html+='<div class="card-body timeline-padding">';
-								  l_html+='<div class="row">';
-								  l_html+=' <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">';
-								  l_html+='<img class="img-responsive pull-left with-t-img" src="resources/img/batch-list/user-book.png" alt="" />';
-								  l_html+='</div>';
-								  l_html+='	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">';
-								  l_html+='	<div class="row">';
-					              
-					              if($('#i_role').val()=='ROLE_STUDENT'){
-					              if(l_map.requestStatus=='REQUESTED'){
-								  l_html+=' <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-					              l_html+='<p class="reject">You have requested.</p>';
-								  l_html+=' </div>';
-								  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-					              l_html+='<p class="reject">'+l_map.comment+'</p>';
-								  l_html+='</div>';
-					              /*l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="rejectRequest(\''+b_inner_map.requestId+'\',\''+b_request.requestId+'\',\''+b_request.tutorId+'\')">Reject</button></p>';*/
-					              }
-					              
-					              if(l_map.requestStatus=='SUGGESTED'){
-					            	  if(l_map.reviewStatus=='STUDENT' && l_map.status=='ACTIVE'){
-									  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-						              l_html+='<p class="reject">Tutor has been suggested.</p>';
-									  l_html+='</div>';
-									  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-						              l_html+='<p class="reject">'+l_map.comment+'</p>';
-						              l_html+='<div class="action-area"> <button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT_SUGGESTION\',\'STUDENT\')">Accept Suggestion</button>';
-						              l_html+=' <button type="button" class="btn btn-primary" style="float: right;" onclick="loadBatch(\''+l_map.suggestBatchId+'\',\''+l_map.tutorId+'\')">View Batch Detail</button></div>';
-									  l_html+='</div>';
-					            	  }else{
-									   l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-					            	   l_html+='<p class="reject">Tutor has been suggested.</p>';
-									   l_html+='</div>';
-									   l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-							           l_html+='<p class="reject">'+l_map.comment+'</p>';
-									   l_html+='</div>';
-					            	  }
-					            	  }
-					              if(l_map.requestStatus=='REJECTED'){
-								      l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-						              l_html+='<p class="reject">The request has been rejected.</p>';
-									  l_html+='</div>';
-									  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-						              l_html+='<p class="reject">'+l_map.comment+'</p>';
-									  l_html+='</div>';
-						            }
-					              if(l_map.requestStatus=='ACCEPTED'){
-					            	  if(l_map.reviewStatus=='STUDENT' && l_map.status=='ACTIVE'){
-									  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-					            	  l_html+='<p class="reject">The request has been accepted.</p>';
-									  l_html+='</div>';
-									  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-					            	  l_html+='<p class="reject">'+l_map.comment+'</p>';
-						              l_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">Pay Now</button></div>';
-									  l_html+='</div>';
-					            	  }else{
-									   l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-					            		  l_html+='<p class="reject">The request has been accepted.</p>';
-										  l_html+='</div>';
-										  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-						            	  l_html+='<p class="reject">'+l_map.comment+'</p>';
-										  l_html+='</div>';
-					            	  }
-					            	  }
-					              }
-					              if($('#i_role').val()=='ROLE_TUTOR'){
-					            	  if(l_map.requestStatus=='REQUESTED'){
-					            		  if(l_map.reviewStatus=='TUTOR' && l_map.status=='ACTIVE'){
-										  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-							              l_html+='<p class="reject">You got request.</p>';
-										  l_html+='</div>';
-										  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-							              l_html+='<p class="reject">'+l_map.comment+'</p>';
-							               
-							              l_html+='<div class="action-area"><button type="button" class="btn btn-yellow" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'TUTOR\')">REJECT</button>';
-										  l_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'SUGGEST\',\'TUTOR\')">SUGGEST</button>';
-										  l_html+='<button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT\',\'TUTOR\')">ACCEPT</button></div>';
-										  
-					            		  l_html+='</div>';
-					            		  }else{
-										  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-					            			  l_html+='<p class="reject">You got request.</p>';
-											  l_html+='</div>';
-											  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-								              l_html+='<p class="reject">'+l_map.comment+'</p>';
-											  l_html+='</div>';
-					            		  }
-					            	  }
-							              
-							              if(l_map.requestStatus=='ACCEPTED'){
-<<<<<<< HEAD
-										  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-								              l_html+='<p class="reject">Your suggested batch has been accepted.</p>';
-											  l_html+='</div>';
-											  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-=======
-								              l_html+='<p class="reject">'+l_map.comment+'</p>';
-								           }
-							              if(l_map.requestStatus=='REJECTED'){
->>>>>>> c32d4889aafd47c19ed330b7a150c88d9c0586cf
-								              l_html+='<p class="reject">'+l_map.comment+'</p>';
-											  l_html+='</div>';
-								           }
-							      }
-								  l_html+='</div>';
-								  l_html+='</div>';
-								  l_html+='</div>';
-					              /*l_html+='<p class="reject"><button type="button" class="btn btn-primary" style="float: right;" onclick="askQuestion(\''+b_inner_map.requestId+'\',\''+b_request.requestId+'\',\''+b_request.tutorId+'\')">Ask Question?</button></p>';*/
-					              /*l_html+='<span>'+b_inner_map.requestComment+'</span>';*/
-					              l_html+='</div>';
-					              l_html+='</div>';
-					              l_html+='</div>';
-					              l_html+='</li>'; 
-					              
-
-			        		}
-			        	}
-			        	// start accordian pre html
-			        	var b_request = l_accordian_map;
-			        	var pre_html=''
-			        		pre_html+='<div class="panel-group m-r-c-p-group">';
+					for(var i=0;i<l_data.length;i++){
+						var b_data_map = l_data[i]; 
+						if(l_map.STUDENT){
+						//alert(i);
+						pre_html+='<div class="panel-group m-r-c-p-group">';
 			        	pre_html+='<div class="card panel manage-request-accordian">';
 			        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
 						// start header detail
@@ -488,57 +362,299 @@ function listViewTab(tutorList){
 			        	pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
 			        	pre_html+='<div class="row">';
 			        	pre_html+='<div class="col-md-12">';
-			        	pre_html+='<span class="s-profile-text-gray s-bold">Requests ID : <span class="s-black">'+b_request.requestId+'</span></span>';
-			        	pre_html+='</div>';
-			        	pre_html+='<div class="col-md-12 m-t-minus-10">';
-						var date2 = new Date(Number(b_request.createdAt));
-						pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black">'+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span></span>';
-						pre_html+='</div>'; 
+			        	if(b_data_map.requestId==null || b_data_map.requestId==undefined)
+			        		pre_html+='<span class="s-profile-text-gray s-bold">Requests ID : <span class="s-black"></span></span>';
+			        	else
+			        	pre_html+='<span class="s-profile-text-gray s-bold">Requests ID : <span class="s-black">'+b_data_map.requestId+'</span></span>';
+			        	
+			        	pre_html+='</div>'; 
 						pre_html+='</div>';
 						pre_html+='</div>';
 						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
 						pre_html+='<div class="row">';
 						pre_html+='<div class="col-md-12">';
-						pre_html+='<span class="s-profile-text-gray s-bold">Subject : <span class="s-black">'+b_request.subjectId+'</span></span>';
-						pre_html+='</div>';
+						if(b_data_map.subject==null || b_data_map.subject==undefined)
+						pre_html+='<span class="s-profile-text-gray s-bold">Subject : <span class="s-black"></span></span>';
+						else
+							pre_html+='<span class="s-profile-text-gray s-bold">Subject : <span class="s-black">'+b_data_map.subject+'</span></span>';
+						pre_html+='</div>'; 
 						pre_html+='</div>';
 						pre_html+='</div>';
 			           
 						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 p-r-0">';
 						pre_html+='<div class="row">';
 						pre_html+='<div class="col-md-12 p-r-0">';
-						pre_html+='<span class="s-profile-text-gray s-bold">Location : <span class="s-black">'+b_request.location+'</span></span>';
+						if(b_data_map.location==null || b_data_map.location==undefined)
+						pre_html+='<span class="s-profile-text-gray s-bold">Location : <span class="s-black"></span></span>';
+						else
+							pre_html+='<span class="s-profile-text-gray s-bold">Location : <span class="s-black">'+b_data_map.location+'</span></span>';
 						pre_html+='<div class="tools m-r-a-tools">';
 						pre_html+='<a class="btn btn-icon-toggle tool-btn"><i class="fa fa-angle-down"></i></a>';
 						pre_html+='</div>'; 
 						pre_html+='</div>'; 
 						pre_html+='</div>'; 
 						pre_html+='</div>'; 
+                        pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+			        	pre_html+='<div class="row">'; 
+			        	pre_html+='<div class="col-md-12 m-t-minus-24">';
+			        	if(b_data_map.requestedAt == null || b_data_map.requestedAt == undefined)
+			        		pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black"></span></span>';
+			        	else{
+						var date2 = new Date(Number(b_data_map.requestedAt));
+						pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black">'+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span></span>';
+					    }
+						pre_html+='</div>'; 
+						pre_html+='</div>';
+						pre_html+='</div>';
+                        pre_html+='<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">';
+			        	pre_html+='<div class="row">'; 
+			        	pre_html+='<div class="col-md-12 m-t-minus-24">';
+						
+						pre_html+='<span class="s-profile-text-gray s-bold">Active Tutors :'; 
+						if(b_data_map.activeTutors == null || b_data_map.activeTutors == undefined)
+							pre_html+='<span class="s-black"></span>';
+						else{
+						var tutors = b_data_map.activeTutors;
+						for(var j=0;j<tutors.length;j++){
+						var tutor = tutors[j];
+						pre_html+='<span class="s-black">'+tutor.displayName+',</span>';
+						}
+						}
+						pre_html+='</span>';
+						pre_html+='</div>'; 
+						pre_html+='</div>';
+						pre_html+='</div>';							
 						pre_html+='</div>';
 						// end header detail
 						pre_html+='</div>';
 			            
 						pre_html+='<div id="accordion6-'+i+'" class="collapse">';
-						// accordian body start
+						
+						pre_html+='<div class="card-body m-r-a-body">';
+						pre_html+='<ul class="timeline collapse-md">';
+						var b_history_list = b_data_map.history;
+			        	for(var k=0;k<b_history_list.length;k++){
+			        		var b_history_map = b_history_list[k];
+                          pre_html+='<li class="timeline-inverted">';
+			              pre_html+='<div class="timeline-circ"></div>';
+			              var date1 = new Date(Number(b_history_map.createdAt));
+			              pre_html+='<div class="timeline-date">'+date1.getDay()+'/'+date1.getMonth()+'/'+date1.getFullYear()+'</div>';
+			              pre_html+='<div class="timeline-entry">';
+			              pre_html+='<div class="card timeline-card">';
+			              pre_html+='<div class="card-body timeline-padding">';
+						  pre_html+='<div class="row">';
+						  pre_html+=' <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">';
+						  pre_html+='<img class="img-responsive pull-left with-t-img" src="resources/img/batch-list/user-book.png" alt="" />';
+						  pre_html+='</div>';
+						  pre_html+='	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">';
+						  pre_html+='	<div class="row">';
+			              
+			              pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+						  pre_html+=' <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+			              pre_html+='<span class="s-profile-text-gray">Tutor Name: <span class="s-black">'+b_history_map.displayName+'</span></span>';
+						  pre_html+=' </div>';
+						  pre_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+			              pre_html+='<span class="s-profile-text-gray">Comment: <span class="s-black">'+b_history_map.comment+'</span></span>';
+						  pre_html+='</div>';
+						  pre_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+			              pre_html+='<span class="s-profile-text-gray">Timing Opted: <span class="s-black">'+b_history_map.optedTime+'</span></span>';
+						  pre_html+='</div>';
+						  
+			              pre_html+='</div>';
+						  // button for different action
+			              
+			               pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+			               if(b_history_map.requestStatus=='REQUESTED')
+			            	   if(b_history_map.status=='ACTIVE')
+			                     pre_html+='<div class="action-area"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+			               if(b_history_map.requestStatus=='ACCEPTED'){
+			            	   if(b_history_map.status=='ACTIVE'){
+			            	   pre_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">Pay Now</button>';
+			            	   pre_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+			            	   }
+			               }
+			            	   if(b_history_map.requestStatus=='REJECTED'){
+			            	   
+			               }
+                           if(b_history_map.requestStatus=='SUGGESTED'){
+                        	   if(b_history_map.status=='ACTIVE'){
+                        	   pre_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'ACCEPT_SUGGESTION\',\'STUDENT\')">Accept Suggetion</button>';
+    				           pre_html+=' <button type="button" class="btn btn-primary" style="float: right;" onclick="loadBatch(\''+b_history_map.suggestBatchId+'\',\''+b_history_map.tutorId+'\')">View Batch Detail</button> ';
+    				           pre_html+=' <button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+                        	   }
+                        	  }
+			               pre_html+='</div>';
+						  
+						  
+			              pre_html+='</div>';
+			              pre_html+='</div>';
+			              pre_html+='</div>';
+						  pre_html+='</div>';
+			              pre_html+='</div>';
+						  pre_html+='</div>'; 
+			              pre_html+='</li>'; 
+			        	}
+						pre_html+='</ul>';
+						pre_html+='</div>';
+						pre_html+='</div>';
+						pre_html+='</div>';
+						pre_html+='</div>';
+						$(".request_list_div").append(pre_html);
+						pre_html='';
+					}
+					}
+					if(l_map.TUTOR){
+						
+						pre_html+='<div class="panel-group m-r-c-p-group">';
+			        	pre_html+='<div class="card panel manage-request-accordian">';
+			        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
+						// start header detail
+			        	pre_html+='<div class="row row-width">';
+			        	pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+			        	pre_html+='<div class="row">';
+			        	pre_html+='<div class="col-md-12">';
+			        	if(b_data_map.requestId==null || b_data_map.requestId==undefined)
+			        		pre_html+='<span class="s-profile-text-gray s-bold">Requests ID : <span class="s-black"></span></span>';
+			        	else
+			        	pre_html+='<span class="s-profile-text-gray s-bold">Requests ID : <span class="s-black">'+b_data_map.requestId+'</span></span>';
+			        	
+			        	pre_html+='</div>'; 
+						pre_html+='</div>';
+						pre_html+='</div>';
+						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+						pre_html+='<div class="row">';
+						pre_html+='<div class="col-md-12">';
+						if(b_data_map.subject==null || b_data_map.subject==undefined)
+						pre_html+='<span class="s-profile-text-gray s-bold">Subject : <span class="s-black"></span></span>';
+						else
+							pre_html+='<span class="s-profile-text-gray s-bold">Subject : <span class="s-black">'+b_data_map.subject+'</span></span>';
+						pre_html+='</div>'; 
+						pre_html+='</div>';
+						pre_html+='</div>';
+			           
+						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 p-r-0">';
+						pre_html+='<div class="row">';
+						pre_html+='<div class="col-md-12 p-r-0">';
+						if(b_data_map.location==null || b_data_map.location==undefined)
+						pre_html+='<span class="s-profile-text-gray s-bold">Location : <span class="s-black"></span></span>';
+						else
+							pre_html+='<span class="s-profile-text-gray s-bold">Location : <span class="s-black">'+b_data_map.location+'</span></span>';
+						pre_html+='<div class="tools m-r-a-tools">';
+						pre_html+='<a class="btn btn-icon-toggle tool-btn"><i class="fa fa-angle-down"></i></a>';
+						pre_html+='</div>'; 
+						pre_html+='</div>'; 
+						pre_html+='</div>'; 
+						pre_html+='</div>'; 
+                        pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+			        	pre_html+='<div class="row">'; 
+			        	pre_html+='<div class="col-md-12 m-t-minus-24">';
+			        	if(b_data_map.requestedAt == null || b_data_map.requestedAt == undefined)
+			        		pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black"></span></span>';
+			        	else{
+						var date2 = new Date(Number(b_data_map.requestedAt));
+						pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black">'+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span></span>';
+					    }
+						pre_html+='</div>'; 
+						pre_html+='</div>';
+						pre_html+='</div>';
+                        pre_html+='<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">';
+			        	pre_html+='<div class="row">'; 
+			        	pre_html+='<div class="col-md-12 m-t-minus-24">';
+						
+						pre_html+='<span class="s-profile-text-gray s-bold">Active Students :'; 
+						if(b_data_map.activeStudents == null || b_data_map.activeStudents == undefined)
+							pre_html+='<span class="s-black"></span>';
+						else{
+						var students = b_data_map.activeStudents;
+						for(var j=0;j<students.length;j++){
+						var student = students[j];
+						pre_html+='<span class="s-black">'+student.displayName+',</span>';
+						}
+						}
+						pre_html+='</span>';
+						pre_html+='</div>'; 
+						pre_html+='</div>';
+						pre_html+='</div>';							
+						pre_html+='</div>';
+						// end header detail
+						pre_html+='</div>';
+			            
+						pre_html+='<div id="accordion6-'+i+'" class="collapse">';
+						
 						pre_html+='<div class="card-body m-r-a-body">';
 						pre_html+='<ul class="timeline collapse-md">';
 			        	
-			        	// end accordian post html
 						
-						// start post accordian
-						 var post_html = '';
-						 post_html+='</ul>';
-						 post_html+='</div>';
-						 post_html+='</div>';
-						 post_html+='</div>';
-						 post_html+='</div>';
-						// end post accordian
-						 $(".request_list_div").append(pre_html+l_html+post_html);
-						 pre_html = '';
-						 l_html = '';
-						 post_html = '';
-			        }
-			        
+						var b_history_list = b_data_map.history;
+			        	for(var k=0;k<b_history_list.length;k++){
+			        		var b_history_map = b_history_list[k];
+                          pre_html+='<li class="timeline-inverted">';
+			              pre_html+='<div class="timeline-circ"></div>';
+			              var date1 = new Date(Number(b_history_map.createdAt));
+			              pre_html+='<div class="timeline-date">'+date1.getDay()+'/'+date1.getMonth()+'/'+date1.getFullYear()+'</div>';
+			              pre_html+='<div class="timeline-entry">';
+			              pre_html+='<div class="card timeline-card">';
+			              pre_html+='<div class="card-body timeline-padding">';
+						  pre_html+='<div class="row">';
+						  pre_html+=' <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">';
+						  pre_html+='<img class="img-responsive pull-left with-t-img" src="resources/img/batch-list/user-book.png" alt="" />';
+						  pre_html+='</div>';
+						  pre_html+='	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">';
+						  pre_html+='	<div class="row">';
+			              
+			              pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+						  pre_html+=' <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+			              pre_html+='<span class="s-profile-text-gray">Tutor Name: <span class="s-black">'+b_history_map.displayName+'</span></span>';
+						  pre_html+=' </div>';
+						  pre_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+			              pre_html+='<span class="s-profile-text-gray">Comment: <span class="s-black">'+b_history_map.comment+'</span></span>';
+						  pre_html+='</div>';
+						  pre_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+			              pre_html+='<span class="s-profile-text-gray">Timing Opted: <span class="s-black">'+b_history_map.startTime+'-'+b_history_map.endTime+'</span></span>';
+						  pre_html+='</div>';
+						  
+			              pre_html+='</div>';
+						  // button for different action
+			              
+			               pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+			               if(b_history_map.requestStatus=='REQUESTED')
+						   {
+			            	  if(b_history_map.status=='ACTIVE'){
+			            	  pre_html+='<div class="action-area">';
+			                  pre_html+='<button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'ACCEPT\',\'TUTOR\')">Accept Request</button>';
+			                  pre_html+='<button type="button" class="btn btn-yellow" style="float: right;" onclick="selectBatch(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.studentId+'\',\''+b_history_map.startTime+'\',\''+b_history_map.endTime+'\',\''+b_data_map.location+'\',\''+b_data_map.subject+'\',\''+b_history_map.tutorId+'\')">Suggest Other Batch</button>';
+							  pre_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'TUTOR\')">Reject Request</button>';
+							  pre_html+='</div>';
+			            	  }
+			                }
+			               if(b_history_map.requestStatus=='ACCEPTED'){}
+			            	   
+			               if(b_history_map.requestStatus=='REJECTED'){
+			            	   
+			               }
+                           if(b_history_map.requestStatus=='SUGGESTED'){
+                        	}
+			               pre_html+='</div>';
+						  
+						  pre_html+='</div>';
+			              pre_html+='</div>';
+			              pre_html+='</div>';
+						  pre_html+='</div>';
+			              pre_html+='</div>';
+						  pre_html+='</div>'; 
+			              pre_html+='</li>'; 
+			        	}
+						
+						
+						pre_html+='</ul>';
+						pre_html+='</div>';
+						pre_html+='</div>';
+						pre_html+='</div>';
+						pre_html+='</div>';
+						$(".request_list_div").append(pre_html);
+						pre_html='';
+					}
+			     
 			    }
 				if (response.status == 'ERROR') {
 					console.log(response.message);
@@ -546,7 +662,9 @@ function listViewTab(tutorList){
 			});
 }
 	
-	function actionForTuitionRequests(p_requestId,p_tuitionRequestId,p_tutorId,p_action,p_user_type){
+	
+	
+	function actionForTuitionRequests(p_requestId,p_tuitionRequestId,p_tutorId,p_action,p_user_type){debugger;
 		
 		var l_map = {};
 		l_map.requestId = p_requestId;
@@ -554,17 +672,7 @@ function listViewTab(tutorList){
 		l_map.tutorId = p_tutorId;
 		l_map.action = p_action;
 		l_map.userType = p_user_type;
-		if(p_action == 'SUGGEST'){
-			
-			$('#i_suggestBatch').modal('show');
-			$('.c_requestId').val(p_requestId);
-			$('.c_tuitionRequestId').val(p_tuitionRequestId);
-			$('.c_tutorId').val(p_tutorId);
-			$('.c_action').val(p_action);
-			$('.c_userType').val(p_user_type);
-			loadTutorBatches(p_tutorId);
-			return;
-		}
+
 		
 		ajaxWithJSON("/common-tuition-request-action", l_map, 'POST', function(response) {
 			var l_data = response.object;
@@ -578,20 +686,38 @@ function listViewTab(tutorList){
 		});
 	}
 	
+	function selectBatch(p_requestId,p_tuitionRequestId,p_studentId,p_startTime,p_endTime,p_location,p_subject,p_tutorId){
+		
+		  //alert(JSON.stringify(p_suggest_data));
+		    $('#i_suggestBatch').modal('show');
+		    $('.c_subject_request').text(p_subject);
+		    $('.c_location_request').text(p_location);
+		    $('.c_time_opted').text(p_startTime+'-'+p_endTime);
+			$('.c_requestId').val(p_requestId);
+			$('.c_tuitionRequestId').val(p_tuitionRequestId);
+			$('.c_studentId').val(p_studentId);
+			
+			loadTutorBatches(p_tutorId);
+			
+		
+		
+	}
 	function suggestBatch(){
 		var l_map = {};
 		l_map.requestId = $('.c_requestId').val(requestId);
 		l_map.tuitionRequestId = $('.c_tuitionRequestId').val(tuitionRequestId);
-		l_map.tutorId = $('.c_tutorId').val(tutorId);
-		l_map.action = $('.c_action').val(action);
-		l_map.userType = $('.c_userType').val(userType);
+		l_map.studentId = $('.c_studentId').val();
+		l_map.action = 'SUGGEST';
+		l_map.userType = 'TUTOR';
 		l_map.suggestBatchId = $('.c_tutor_batches').val();
 		
 		ajaxWithJSON("/common-tuition-request-action", l_map, 'POST', function(response) {
 			var l_data = response.object;
 			//alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
+				$('#i_suggestBatch').modal('hide');
 				toastr.success(response.message);
+				
 			}
 			if (response.status == 'ERROR') {
 				toastr.error(response.message);
@@ -603,9 +729,19 @@ function listViewTab(tutorList){
 		l_map.batchId = p_batchId;
 		ajaxWithJSON("/common-batch-detail", l_map, 'POST', function(response) {
 			var l_data = response.object;
-			//alert(JSON.stringify(response));
+			alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
-				toastr.success(response.message);
+				$('#i_batch_detail').modal('show');
+				$('.c_batch_name').text(l_data.batchName);
+				$('.c_subject').text(l_data.subjectId);
+				
+				$('.c_batchMode').text(l_data.batchMode);
+				$('.c_totalNumberOfClasses').text(l_data.totalNumberOfClasses);
+				$('.c_totalHours').text(l_data.totalHours);
+				$('.c_medium').text(l_data.medium);
+				$('.c_feeAmount').text(l_data.feeAmount);
+				$('.c_totalSeats').text(l_data.totalSeats);
+				//toastr.success(response.message);
 			}
 			if (response.status == 'ERROR') {
 				toastr.error(response.message);
@@ -626,7 +762,9 @@ function listViewTab(tutorList){
 				g_batches = l_data;
 	            for(var i=0;i<l_data.length;i++){
 	            	var b_map = l_data[i];
-	            	$('.c_tutor_batches').append('<option value="'+b_map.batchId+'">'+b_map.batchName+','+b_map.batchMode+','+b_map.medium+'</option>');
+	            	
+					 
+	            	$('.c_tutor_batches').append('<option value="'+b_map.batchId+'"><span style="color:gray !important;">Batch Name:- '+b_map.batchName+'&nbsp;&nbsp;&nbsp;&nbsp;</span>,<span class="s-profile-text-gray">Fee:- '+b_map.feeAmount+'</span> &nbsp;&nbsp;,<option><span class="s-profile-text-gray">Timing:-'+b_map.batchStartTime+' - '+b_map.batchEndTime+'</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="s-profile-text-gray">No of Students:- '+b_map.enrollment+'</span></option>');
 	            
 	            }
 			}
@@ -638,49 +776,6 @@ function listViewTab(tutorList){
 	
 
 	
-	
-	
-	
-	 var l_lat, l_lng;
-	 function codeAddress(p_flage) {debugger;
-	     geocoder = new google.maps.Geocoder();
-	     var address = document.getElementById("location").value;
-	     geocoder.geocode( { 'address': address}, function(results, status) {
-	       if (status == google.maps.GeocoderStatus.OK) {
-	        l_lat = results[0].geometry.location.lat();
-	        l_lng = results[0].geometry.location.lng();
-	        $("#latitude").val(l_lat);
-	        $("#longitude").val(l_lng);
-	       addTutorBatch(p_flage);
-	       } 
-
-	       else {
-	         alert("Geocode was not successful for the following reason: " + status);
-	       }
-	     });
-	   }
-	 google.maps.event.addDomListener(window, 'load', initialize);
-	 
-	 function addTutorBatch(p_flage){
-		 var l_batch_map = {};
-		    l_batch_map = readForm('i_batch_form');
-		 $(".loading").show();
-		 ajaxWithJSON("/tutor/save-batch-info", l_batch_map, 'POST', function(response) {debugger;
-		  $(".loading").hide();
-		//  alert(JSON.stringify(response));
-		  if (response.status == 'SUCCESS') {
-		   $("#addbatch").modal('hide');
-		   toastr.success(response.message);
-		   if(p_flage)
-		     window.reload();
-		  }
-		  if (response.status == 'ERROR') {
-		   $('.batch_message').html(response.message);
-
-		  }
-
-		 });
-		}
 	
 	
 	

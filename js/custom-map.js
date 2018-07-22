@@ -130,11 +130,7 @@ $.ajaxSetup({
 function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 	var locations = [ ];
 	for (var i = 0; i < p_locations.length; i++) {
-		var l_map = p_locations[i];
-		var l_text = '';
-
-           l_text+='return initiateRequest(\''+l_map.userName+'\',\''+l_map.displayName+'\',\''+i+'\')';
-		        
+		var l_map = p_locations[i];   
 		
 		var star = '';
 		for(var j=0;j<5;j++){
@@ -148,7 +144,7 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 		 if(l_map.price == undefined || l_map.price==null){
 			 l_map.price = 'Available on request' ;
 		 }
-		 var id_map='i_tutor_map'+i;
+		 
 		 var a=['<div class="card card-customize"><div class="card-body"><div class="row">'
 			  + '<div class="g-mapcard-left-img"> <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
 			  + '<div class="s-profile-pic-card"> <img src="../resources/img/batch-list/rs.png" alt="" style="width: 100%;border-radius: 50%;"> </div></div>'
@@ -181,7 +177,7 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 			  + '<div class="row"> <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 ">' 
 			  + '<button type="button" class="btn btn-primary">View Profile</button></div>'
 			  + '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'
-			  + '<label class=\"checkbox-inline checkbox-styled\"><input id="'+id_map+'" type=\"checkbox\" value=\"option1\" onclick="'+l_text+'"><span>Select Tutor</span>'
+			  + '<label class="checkbox-inline checkbox-styled"><input id="i_tutor_map'+i+'" type="checkbox" value="option1" onclick="return initiateRequest(\''+l_map.userName+'\',\''+l_map.displayName+'\',\''+i+'\')"><span>Select Tutor</span>'
 			  + '</label>'
 			 /* + '<button type="button" class="btn btn-danger" onclick="'+l_text+'">Request For Tution</button>'*/
 			  + '</div></div></div></div></div></div></div>', l_map.latitude, l_map.longitude];
