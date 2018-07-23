@@ -302,11 +302,11 @@ function loadCalendar() {
 
 }
 
-function loadRequestsData() {debugger;
+function loadStudentTop3Requests() {debugger;
 
 	var l_map = {};
-	l_map.STUDENT = false;
-	l_map.TUTOR = true;
+	l_map.STUDENT = true;
+	l_map.TUTOR = false;
 	ajaxWithJSON(
 			"/common/load-top3-tuition-requests",
 			l_map,
@@ -315,11 +315,11 @@ function loadRequestsData() {debugger;
 			var l_data = response.object;
 			var l_data_other = response.other;
 			var l_html = '';
-				//alert(JSON.stringify(response));
+				alert(JSON.stringify(response));
 				
 					if (response.status == 'SUCCESS') {
 						
-						$('.c_count_request').text('My Tuition Requests ('+l_data_other.length+')');
+						$('.c_total_requests').text('My Tuition Requests ('+l_data_other+')');
 				        for(var i=0;i<l_data_other.length;i++){
 							
 							for(var j=0;j<l_data.length;j++){
@@ -381,4 +381,85 @@ function loadRequestsData() {debugger;
 					console.log(response.message);
 				}
 			});
+}
+
+function loadTutorTop3Requests() {debugger;
+
+var l_map = {};
+l_map.STUDENT = false;
+l_map.TUTOR = true;
+ajaxWithJSON(
+		"/common/load-top3-tuition-requests",
+		l_map,
+		'POST',
+		function(response) {debugger;
+		var l_data = response.object;
+		var l_data_other = response.other;
+		var l_html = '';
+			alert(JSON.stringify(response));
+			
+				if (response.status == 'SUCCESS') {
+					
+					$('.c_count_request').text('My Tuition Requests ('+l_data_other+')');
+			        for(var i=0;i<l_data_other.length;i++){
+						
+						for(var j=0;j<l_data.length;j++){
+			        		var l_map = l_data[j];
+			        		if(l_data_other[i]==l_map.requestId){ 
+			        			 // alert(JSON.stringify(l_map));
+					              var date1 = new Date(Number(l_map.createdAt));
+					               
+								    l_html+='<tr>'; 
+									l_html+='<td class="td-dashboard" width="20%">Requests ID : '+l_map.requestId+'</td>';
+									l_html+='<td class="td-dashboard" width="15%">Requested At : '+date1.getDay()+'/'+date1.getMonth()+'/'+date1.getFullYear()+'</td>';
+									if(l_map.subjectId==null ||l_map.subjectId==undefined)
+									l_html+='<td class="td-dashboard" width="15%">Subject :</td>';
+                                     else
+                                     l_html+='<td class="td-dashboard" width="15%">Subject : '+l_map.subjectId+'</td>';
+                                    if(l_map.location==null ||l_map.location==undefined) 									 
+									l_html+='<td class="td-dashboard" width="15%">Location :</td>';
+								    else
+									  l_html+='<td class="td-dashboard" width="15%">Location : '+l_map.location+'</td>';
+									l_html+='<td class="td-dashboard" width="25%">';
+									  
+					            	  if(l_map.requestStatus=='REQUESTED'){
+					            		  if(l_map.reviewStatus=='TUTOR' && l_map.status=='ACTIVE'){
+							              l_html+='<p class="reject"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT\',\'TUTOR\')">ACCEPT</button></p>';
+							              l_html+='<p class="reject"><button type="button" class="btn btn-yellow" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'SUGGEST\',\'TUTOR\')">SUGGEST</button></p>';
+							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'TUTOR\')">REJECT</button></p>';
+					            		  
+							              l_html+='</td>';
+					            		  }else{
+					            			  l_html+='<span class="s-profile-text-gray">'+l_map.comment+'</span>'; 
+					            			  l_html+='</td>';
+					            		  }
+					            	  }
+							           if(l_map.requestStatus=='ACCEPTED'){
+								              l_html+='<span class="s-profile-text-gray">'+l_map.comment+'.</span>';
+								              l_html+='</td>';
+								        }
+							           if(l_map.requestStatus=='REJECTED'){
+								              l_html+='<span class="s-profile-text-gray">'+l_map.comment+'.</span>';
+								              l_html+='</td>';
+								        }
+							       				 
+									l_html+='</tr>';
+					               
+
+			        		}
+			        	}
+			        	
+						 $('.c_requests').append(l_html);
+						
+						 
+						 l_html = '';
+						 
+			     
+				}
+
+			}
+			if (response.status == 'ERROR') {
+				console.log(response.message);
+			}
+		});
 }
