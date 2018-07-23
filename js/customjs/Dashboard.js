@@ -371,10 +371,7 @@ function loadStudentTop3Requests() {debugger;
                                                l_html+='</div>';    
 							            	  }
 							            	  }
-						              /*l_html+='<p class="reject"><button type="button" class="btn btn-primary" style="float: right;" onclick="askQuestion(\''+b_inner_map.requestId+'\',\''+b_request.requestId+'\',\''+b_request.tutorId+'\')">Ask Question?</button></p>';*/
-						              /*l_html+='<span>'+b_inner_map.requestComment+'</span>';*/
-						   
-				        	// start accordian pre html
+	
 				        
 				        	var b_request = l_accordian_map;
 				        	var pre_html='';

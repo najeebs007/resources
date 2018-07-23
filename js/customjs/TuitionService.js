@@ -621,7 +621,8 @@ function listViewTab(tutorList){
 						   {
 			            	  if(b_history_map.status=='ACTIVE'){
 			            	  pre_html+='<div class="action-area">';
-			                  pre_html+='<button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'ACCEPT\',\'TUTOR\')">Accept Request</button>';
+			            	  if(b_history_map.batchType=='EXIST')
+			                     pre_html+='<button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'ACCEPT\',\'TUTOR\')">Accept Request</button>';
 			                  pre_html+='<button type="button" class="btn btn-yellow" style="float: right;" onclick="selectBatch(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.studentId+'\',\''+b_history_map.startTime+'\',\''+b_history_map.endTime+'\',\''+b_data_map.location+'\',\''+b_data_map.subject+'\',\''+b_history_map.tutorId+'\')">Suggest Other Batch</button>';
 							  pre_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'TUTOR\')">Reject Request</button>';
 							  pre_html+='</div>';
@@ -663,7 +664,7 @@ function listViewTab(tutorList){
 }
 	
 	
-	
+	// this is the action area for student and tutor
 	function actionForTuitionRequests(p_requestId,p_tuitionRequestId,p_tutorId,p_action,p_user_type){debugger;
 		
 		var l_map = {};
@@ -679,6 +680,7 @@ function listViewTab(tutorList){
 			//alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				toastr.success(response.message);
+				window.reload();
 			}
 			if (response.status == 'ERROR') {
 				toastr.error(response.message);
@@ -686,7 +688,7 @@ function listViewTab(tutorList){
 		});
 	}
 	
-	function selectBatch(p_requestId,p_tuitionRequestId,p_studentId,p_startTime,p_endTime,p_location,p_subject,p_tutorId){
+	function selectBatch(p_requestId,p_tuitionRequestId,p_studentId,p_startTime,p_endTime,p_location,p_subject,p_tutorId){debugger;
 		
 		  //alert(JSON.stringify(p_suggest_data));
 		    $('#i_suggestBatch').modal('show');
@@ -696,17 +698,25 @@ function listViewTab(tutorList){
 			$('.c_requestId').val(p_requestId);
 			$('.c_tuitionRequestId').val(p_tuitionRequestId);
 			$('.c_studentId').val(p_studentId);
+			$('.c_tutorId').val(p_tutorId);
 			
 			loadTutorBatches(p_tutorId);
-			
-		
+			 
+		 
 		
 	}
-	function suggestBatch(){
+	function suggestBatch(){debugger;
+		
+		if($('.c_tutor_batches').val()=='' || $('.c_tutor_batches').val()==undefined || $('.c_tutor_batches').val()==null){
+			$('.c_error_request_suggest').text("Please select Batch for suggestion.");
+			setTimeout(function(){ $('.c_error_request_suggest').text(""); }, 3000);
+			return;
+		}
 		var l_map = {};
-		l_map.requestId = $('.c_requestId').val(requestId);
-		l_map.tuitionRequestId = $('.c_tuitionRequestId').val(tuitionRequestId);
+		l_map.requestId = $('.c_requestId').val();
+		l_map.tuitionRequestId = $('.c_tuitionRequestId').val();
 		l_map.studentId = $('.c_studentId').val();
+		l_map.tutorId = $('.c_tutorId').val();
 		l_map.action = 'SUGGEST';
 		l_map.userType = 'TUTOR';
 		l_map.suggestBatchId = $('.c_tutor_batches').val();
@@ -717,7 +727,7 @@ function listViewTab(tutorList){
 			if (response.status == 'SUCCESS') {
 				$('#i_suggestBatch').modal('hide');
 				toastr.success(response.message);
-				
+				window.reload();
 			}
 			if (response.status == 'ERROR') {
 				toastr.error(response.message);
@@ -729,7 +739,7 @@ function listViewTab(tutorList){
 		l_map.batchId = p_batchId;
 		ajaxWithJSON("/common-batch-detail", l_map, 'POST', function(response) {
 			var l_data = response.object;
-			alert(JSON.stringify(response));
+			//alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				$('#i_batch_detail').modal('show');
 				$('.c_batch_name').text(l_data.batchName);
@@ -762,30 +772,42 @@ function listViewTab(tutorList){
 				g_batches = l_data;
 	            for(var i=0;i<l_data.length;i++){
 	            	var b_map = l_data[i];
-	            	
-					 
-	            	$('.c_tutor_batches').append('<option value="'+b_map.batchId+'"><span style="color:gray !important;">Batch Name:- '+b_map.batchName+'&nbsp;&nbsp;&nbsp;&nbsp;</span>,<span class="s-profile-text-gray">Fee:- '+b_map.feeAmount+'</span> &nbsp;&nbsp;,<option><span class="s-profile-text-gray">Timing:-'+b_map.batchStartTime+' - '+b_map.batchEndTime+'</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="s-profile-text-gray">No of Students:- '+b_map.enrollment+'</span></option>');
+	            	$('.c_tutor_batches').append('<option value="'+b_map.batchId+'"><span style="color:gray !important;">Batch Name:- '+b_map.batchName+'&nbsp;&nbsp;&nbsp;&nbsp;</span>,<span class="s-profile-text-gray">Fee:- '+b_map.feeAmount+'</span> &nbsp;&nbsp;,<option><span class="s-profile-text-gray">Timing:-'+b_map.batchStartTime+' - '+b_map.batchEndTime+'</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="s-profile-text-gray">No of Students: '+b_map.enrollment+'</span></option>');
 	            
 	            }
 			}
 			if (response.status == 'ERROR') {
-				console.log(response.message);
+				//document.write(response.message);
 			}
 		});
 	}
 	
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	  function showoption(p_flage) {
+
+
+/*	function createBatch(){debugger;
+		 var l_batch_map = {};
+		    l_batch_map = readFormWithId('i_batch_form');
+		    alert(JSON.stringify(l_batch_map));
+		 $(".loading").show();
+		 ajaxWithJSON("/tutor/save-batch-info", l_batch_map, 'POST', function(response) {debugger;
+		  $(".loading").hide();
+		  alert(JSON.stringify(response));
+		  if (response.status == 'SUCCESS') {
+		   toastr.success(response.message);
+		   $('.c_tutor_batches').append('<option value="'+l_batch_map.batchId+'"><span style="color:gray !important;">Batch Name:- '+l_batch_map.batchName+'&nbsp;</span>,<span class="s-profile-text-gray">Fee:- '+l_batch_map.feeAmount+'</span> &nbsp;,<option><span class="s-profile-text-gray">Timing:-'+l_batch_map.batchStartTime+' - '+l_batch_map.batchEndTime+'</span>&nbsp;,<span class="s-profile-text-gray">No of Students: 0</span></option>');
+		   // reset form
+		  }
+		  if (response.status == 'ERROR') {
+		   $('.c_error_create_batch').html(response.message);
+
+		  }
+
+		 });
+		}*/
+
+  function showoption(p_flage) {
 	if (p_flage == "NONE") {
 		toastr.error('Please select any one option.');
 
@@ -813,4 +835,58 @@ function listViewTab(tutorList){
 	});
 }
 	
-
+	  function batchDays(p_flag){
+		   if(p_flag=='weekend'){
+		    if($('#i_weekend').is(':checked')){
+		     $('input:checkbox[name=SUNDAY]').attr('checked',true);
+		     $('input:checkbox[name=SATURDAY]').attr('checked',true);
+		    }else{
+		     $('input:checkbox[name=SUNDAY]').attr('checked',false);
+		     $('input:checkbox[name=SATURDAY]').attr('checked',false);
+		    }
+		    //$('input:checkbox[name=checkme]').is(':checked');
+		    
+		   }
+		            if(p_flag=='weekdays'){
+		    
+		             if($('#i_weekdays').is(':checked')){
+		     $('input:checkbox[name=MONDAY]').attr('checked',true);
+		     $('input:checkbox[name=TUESDAY]').attr('checked',true);
+		     $('input:checkbox[name=WEDNESDAY]').attr('checked',true);
+		     $('input:checkbox[name=THURSDAY]').attr('checked',true);
+		     $('input:checkbox[name=FRIDAY]').attr('checked',true);
+		    }else{
+		     $('input:checkbox[name=MONDAY]').attr('checked',false);
+		     $('input:checkbox[name=TUESDAY]').attr('checked',false);
+		     $('input:checkbox[name=WEDNESDAY]').attr('checked',false);
+		     $('input:checkbox[name=THURSDAY]').attr('checked',false);
+		     $('input:checkbox[name=FRIDAY]').attr('checked',false);
+		    }
+		   }
+		            if(p_flag=='MWF'){
+		    if($('#i_mwf').is(':checked')){
+		     $('input:checkbox[name=MONDAY]').attr('checked',true);
+		     $('input:checkbox[name=WEDNESDAY]').attr('checked',true);
+		     $('input:checkbox[name=FRIDAY]').attr('checked',true);
+		    }else{
+		     $('input:checkbox[name=MONDAY]').attr('checked',false);
+		     $('input:checkbox[name=WEDNESDAY]').attr('checked',false);
+		     $('input:checkbox[name=FRIDAY]').attr('checked',false);
+		    }
+		    //$('input:checkbox[name=checkme]').is(':checked');
+		    
+		   }
+		            if(p_flag=='TTS'){
+		    if($('#i_tts').is(':checked')){
+		     $('input:checkbox[name=TUESDAY]').attr('checked',true);
+		     $('input:checkbox[name=THURSDAY]').attr('checked',true);
+		     $('input:checkbox[name=SATURDAY]').attr('checked',true);
+		    }else{
+		     $('input:checkbox[name=TUESDAY]').attr('checked',false);
+		     $('input:checkbox[name=THURSDAY]').attr('checked',false);
+		     $('input:checkbox[name=SATURDAY]').attr('checked',false);
+		    }
+		    //$('input:checkbox[name=checkme]').is(':checked');
+		    
+		   }
+	  }

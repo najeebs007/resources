@@ -391,7 +391,7 @@ function readForm(p_formId) {
 	return l_data;
 }
 
-function readFormWithId(p_formId) {
+function readFormWithId(p_formId) {debugger;
 	var l_data = {};
 	$("form#" + p_formId + " :input").each(function() {
 		var input = $(this); // This is the jquery object of the input
