@@ -315,39 +315,82 @@ function loadStudentTop3Requests() {debugger;
 			var l_data = response.object;
 			var l_data_other = response.other;
 			var l_html = '';
-				alert(JSON.stringify(response));
+				//alert(JSON.stringify(response));
 				
 					if (response.status == 'SUCCESS') { 
 						$('.c_total_requests').text('My Tuition Requests ('+l_data_other+')'); 
 						 
-				        	var l_accordian_map = {}; 
 				        	for(var i=0;i<l_data.length;i++){
 				        		var l_map = l_data[i]; 
-				        			l_accordian_map=l_map; 
+				        			  
+				        		l_html+='<div class="panel-group m-r-c-p-group" id="accordion6">';
+				        		l_html+='<div class="card panel manage-request-accordian">';
+					        	l_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
+								// start header detail
+					        	l_html+='<div class="row row-width">';
+					        	l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+					        	l_html+='<div class="row">';
+					        	l_html+='<div class="col-md-12">';
+					        	l_html+='<span class="s-profile-text-gray ">Requests ID : <span style="color:black !important;">'+l_map.requestId+'</span></span>';
+					        	l_html+='</div>'; 
+					        	l_html+='</div>';
+								l_html+='</div>'; 
+								l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+								l_html+='<div class="row">';
+								l_html+='<div class="col-md-12">';
+								if(l_map.subjectId==null || l_map.subjectId==undefined)
+									l_html+='<span class="s-profile-text-gray">Subject : <span style="color:black !important;"></span></span>';	 
+									else
+										l_html+='<span class="s-profile-text-gray">Subject : <span style="color:black !important;">'+l_map.subjectId+'</span></span>';
+								l_html+='</div>';
+								l_html+='</div>';
+								l_html+='</div>';
+								
+								l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+								l_html+='<div class="row">'; 
+					        	l_html+='<div class="col-md-12 m-t-minus-10">';
+								var date2 = new Date(Number(l_map.createdAt));
+								l_html+='<span class="s-profile-text-gray">Requested At : <span style="color:black !important;">'+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span></span>';
+								l_html+='</div>'; 
+								l_html+='</div>';
+								l_html+='</div>';
+					           
+								l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+								l_html+='<div class="row">';
+								l_html+='<div class="col-md-12 m-t-minus-10 line-height-for-all">';
+								if(l_map.location==null || l_map.location==undefined)
+									l_html+='<span class="s-profile-text-gray">Location : <span style="color:black !important;"></span></span>';
+								else
+									l_html+='<span class="s-profile-text-gray">Location : <span style="color:black !important;">'+l_map.location+'</span></span>';
+								l_html+='</div>'; 
+								l_html+='</div>'; 
+								l_html+='</div>'; 
+								l_html+='</div>';
+								// end header detail
+								l_html+='</div>';
+					            
+								l_html+='<div id="accordion6-'+i+'" class="collapse">';
+								// accordian body start
+								l_html+='<div class="card-body">';
+								l_html+='<div class="row">';
+								
+				        			  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:left;">';
+						              l_html+='<span class="s-profile-text-gray ">You have requested.</span>';
+						              l_html+='<span class="s-profile-text-gray s-black">'+l_map.comment+'</span>';
+									  l_html+='</div>';
 						              if(l_map.requestStatus=='REQUESTED'){ 
-										  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:left;">';
-							              l_html+='<span class="s-profile-text-gray ">You have requested.</span>';
-							              l_html+='<span class="s-profile-text-gray s-black">'+l_map.comment+'</span>';
-										  l_html+='</div>';
-							              /*l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="rejectRequest(\''+b_inner_map.requestId+'\',\''+b_request.requestId+'\',\''+b_request.tutorId+'\')">Reject</button></p>';*/
+										  
+							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject</button></p>';
 							              }
 							              
 							              if(l_map.requestStatus=='SUGGESTED'){
-							            	  if(l_map.reviewStatus=='STUDENT'){
-											  //l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:left;">';
-											  //l_html+='<span class="s-profile-text-gray">Tutor has been suggested.</span>';
-							                  //l_html+='<span class="s-profile-text-gray s-black">'+l_map.comment+'</span>';
-                                              //l_html+='</div>';	
-                                              l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:right;">';											  
-								              l_html+='<button type="button" class="btn btn-green" style="float: right;" onclick="actionByStudent(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT_SUGGESTION\')">Accept Suggestion</button>';
+							            	  
+											  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:right;">';											  
+                                              l_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT_SUGGESTION\',\'STUDENT\')">Accept Suggetion</button>';
 								              l_html+='<button type="button" class="btn btn-default" style="float: right;" onclick="loadBatch(\''+l_map.suggestBatchId+'\',\''+l_map.tutorId+'\')">View Batch Detail</button>';
-											  l_html+='</div>';	
-							            	  }else{
-							            		  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:left;">';
-											      l_html+='<span class="s-profile-text-gray">Tutor has been suggested.</span>';
-							                      l_html+='<span class="s-profile-text-gray s-black">'+l_map.comment+'</span>';
-                                                  l_html+='</div>';	
-							            	  }
+								              l_html+=' <button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+								              l_html+='</div>';	
+							            	 
 							            	  }
 							              if(l_map.requestStatus=='REJECTED'){
 											   l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:left;">';
@@ -356,94 +399,24 @@ function loadStudentTop3Requests() {debugger;
                                                l_html+='</div>'; 
 								            }
 							              if(l_map.requestStatus=='ACCEPTED'){
-							            	  if(l_map.reviewStatus=='STUDENT'){
-											  //l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:left;">';
-											 // l_html+='<span class="s-profile-text-gray ">The request has been accepted.</span>';
-							                  //l_html+='<span class="s-profile-text-gray s-black">'+l_map.comment+'</span>';
-                                              //l_html+='</div>';
-							            	  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:right;">';;
-								              l_html+='<button type="button" class="btn btn-primary" style="float: right;" onclick="actionByStudent(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'PAYMENT\')">PayNow</button>';
-											  l_html+='</div>';	
-							            	  }else{
-											   l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:left;">';
-											   l_html+='<span class="s-profile-text-gray">The request has been accepted.</span>';
-							                   l_html+='<span class="s-profile-text-gray s-black">'+l_map.comment+'</span>';
-                                               l_html+='</div>';    
-							            	  }
-							            	  }
+							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">Pay Now</button>';
+							            	  l_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+							            	    
+							            	}
 	
 				        
-				        	var b_request = l_accordian_map;
-				        	var pre_html='';
-				        		pre_html+='<div class="panel-group m-r-c-p-group" id="accordion6">';
-				        	pre_html+='<div class="card panel manage-request-accordian">';
-				        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
-							// start header detail
-				        	pre_html+='<div class="row row-width">';
-				        	pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
-				        	pre_html+='<div class="row">';
-				        	pre_html+='<div class="col-md-12">';
-				        	pre_html+='<span class="s-profile-text-gray ">Requests ID : <span style="color:black !important;">'+b_request.requestId+'</span></span>';
-				        	pre_html+='</div>'; 
-							pre_html+='</div>';
-							pre_html+='</div>'; 
-							pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
-							pre_html+='<div class="row">';
-							pre_html+='<div class="col-md-12">';
-							if(b_request.subjectId==null || b_request.subjectId==undefined)
-								pre_html+='<span class="s-profile-text-gray">Subject : <span style="color:black !important;"></span></span>';	 
-								else
-							pre_html+='<span class="s-profile-text-gray">Subject : <span style="color:black !important;">'+b_request.subjectId+'</span></span>';
-							pre_html+='</div>';
-							pre_html+='</div>';
-							pre_html+='</div>';
-							
-							pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
-				        	pre_html+='<div class="row">'; 
-				        	pre_html+='<div class="col-md-12 m-t-minus-10">';
-							var date2 = new Date(Number(b_request.createdAt));
-							pre_html+='<span class="s-profile-text-gray">Requested At : <span style="color:black !important;">'+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span></span>';
-							pre_html+='</div>'; 
-							pre_html+='</div>';
-							pre_html+='</div>';
-				           
-							pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
-							pre_html+='<div class="row">';
-							pre_html+='<div class="col-md-12 m-t-minus-10 line-height-for-all">';
-							if(b_request.location==null || b_request.location==undefined)
-							pre_html+='<span class="s-profile-text-gray">Location : <span style="color:black !important;"></span></span>';
-							else
-							pre_html+='<span class="s-profile-text-gray">Location : <span style="color:black !important;">'+b_request.location+'</span></span>';
-							pre_html+='</div>'; 
-							pre_html+='</div>'; 
-							pre_html+='</div>'; 
-							pre_html+='</div>';
-							// end header detail
-							pre_html+='</div>';
-				            
-							pre_html+='<div id="accordion6-'+i+'" class="collapse">';
-							// accordian body start
-							pre_html+='<div class="card-body">';
-							pre_html+='<div class="row">';
-				        	
-				        	
-				        	
-				        	// start post accordian
-							 var post_html = '';
-							 post_html+='</div>';
-							 post_html+='</div>';
-							 post_html+='</div>';
-							 post_html+='</div>';
-							 post_html+='</div>';
-							// end post accordian
-				        	// end accordian post html
+							              l_html+='</div>';
+							              l_html+='</div>';
+							              l_html+='</div>';
+							              l_html+='</div>';
+							              l_html+='</div>';
 							
 							
-							 $('.c_tuitionrequest').append(pre_html+l_html+post_html);
-				        	 
-							 pre_html = '';
+							
+							 $('.c_tuitionrequest').append(l_html);
+				        	
 							 l_html = '';
-							 post_html = '';
+							
 				   
 						}
 				}
@@ -486,23 +459,19 @@ ajaxWithJSON(
 										l_html+='<span class="ellipsis-v"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></span>';
 										l_html+='<div class="control-section-card">';
 										if(l_map.requestStatus=='REQUESTED'){
-										l_html+='<button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT\',\'TUTOR\')">ACCEPT</button>'; 
-								        l_html+='<button type="button" class="btn btn-yellow" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'SUGGEST\',\'TUTOR\')">SUGGEST</button> '; 
-								        l_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'TUTOR\')">REJECT</button>';
+										l_html+='<button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT\',\'TUTOR\')">Accept</button>'; 
+								        l_html+='<button type="button" class="btn btn-yellow" style="float: right;" onclick="selectBatch(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.studentId+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.location+'\',\''+l_map.subject+'\',\''+l_map.tutorId+'\')">Suggest</button> '; 
+								        l_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'TUTOR\')">Reject</button>';
 										
-										}else{
-					            			  l_html+='<span class="s-profile-text-gray s-black">'+l_map.comment+'</span>'; 
-												 
-											  }
-										  
-										   if(l_map.requestStatus=='ACCEPTED'){
+										}
+										if(l_map.requestStatus=='ACCEPTED'){
 												  l_html+='<span class="s-profile-text-gray s-black">'+l_map.comment+'.</span>';
 												  
-											}
-										   if(l_map.requestStatus=='REJECTED'){
+										}
+										 if(l_map.requestStatus=='REJECTED'){
 												  l_html+='<span class="s-profile-text-gray s-black">'+l_map.comment+'.</span>';
 												 
-											}
+										}
 										
 										l_html+='</div></div>';		 
 										l_html+='</div><div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-minus-10">'; 
@@ -528,49 +497,16 @@ ajaxWithJSON(
 										l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-l-0 t-ellipsis" data-toggle="tooltip" data-placement="top" title="'+l_map.location+'">'; 
 										l_html+='<span class="s-profile-text-gray s-black s-bold font-12">'+l_map.location+'</span>'; 
 										l_html+='</div></div></div></div></div></div></div>';
-								    // l_html+='<tr>'; 
-									// l_html+='<td class="td-dashboard" width="20%">Requests ID : '+l_map.requestId+'</td>';
-									// l_html+='<td class="td-dashboard" width="15%">Requested At : '+date1.getDay()+'/'+date1.getMonth()+'/'+date1.getFullYear()+'</td>';
-									// if(l_map.subjectId==null ||l_map.subjectId==undefined)
-									// l_html+='<td class="td-dashboard" width="15%">Subject :</td>';
-                                     // else
-                                     // l_html+='<td class="td-dashboard" width="15%">Subject : '+l_map.subjectId+'</td>';
-                                    // if(l_map.location==null ||l_map.location==undefined) 									 
-									// l_html+='<td class="td-dashboard" width="15%">Location :</td>';
-								    // else
-									  // l_html+='<td class="td-dashboard" width="15%">Location : '+l_map.location+'</td>';
-									// l_html+='<td class="td-dashboard" width="25%">';
-									  
-					            	  // if(l_map.requestStatus=='REQUESTED'){
-					            		  // if(l_map.reviewStatus=='TUTOR' && l_map.status=='ACTIVE'){
-							              // l_html+='<p class="reject"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT\',\'TUTOR\')">ACCEPT</button></p>';
-							              // l_html+='<p class="reject"><button type="button" class="btn btn-yellow" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'SUGGEST\',\'TUTOR\')">SUGGEST</button></p>';
-							              // l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'TUTOR\')">REJECT</button></p>';
-					            		  
-							              // l_html+='</td>';
-					            		  // }else{
-					            			  // l_html+='<span class="s-profile-text-gray">'+l_map.comment+'</span>'; 
-					            			  // l_html+='</td>';
-					            		  // }
-					            	  // }
-							           // if(l_map.requestStatus=='ACCEPTED'){
-								              // l_html+='<span class="s-profile-text-gray">'+l_map.comment+'.</span>';
-								              // l_html+='</td>';
-								        // }
-							           // if(l_map.requestStatus=='REJECTED'){
-								              // l_html+='<span class="s-profile-text-gray">'+l_map.comment+'.</span>';
-								              // l_html+='</td>';
-								        // }
-							       				 
-									// l_html+='</tr>';
-					               
+								    
+										 $('.c_requests').append(l_html);
+										 l_html = '';
  
 			        	}
 			        	
-						 $('.c_requests').append(l_html);
+						
 						
 						 
-						 l_html = '';
+						 
 						 
 			     
 			 
