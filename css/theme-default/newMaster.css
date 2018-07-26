@@ -869,17 +869,21 @@ margin-left:10px;
 /***** Reviews and rating *****/
 .rating-pic-small
 {
-	width:50px;
-	height:50px;
+	width: 50px;
+    max-width: 50px;
+    height: 50px;
+	
 }
 .rating-text-normal
 {
 	font-size:15px;
+	font-family: "Open Sans"; 
     font-weight:500;
 }
 .rating-text
 {
 	font-size:13px;
+	font-family: "Open Sans"; 
     color:gray;
 }
 .card-body-padding-rating{padding:15px 20px !important;}
@@ -890,9 +894,9 @@ margin-left:10px;
     margin-left: -12px;
     margin-right: -12px;
 }
-.margin-rating-bar{margin-top:105px;}
+.margin-rating-bar{margin-top:20px;}
 .rating-top{top: 44% !important;}
-.rating-row-customize{width: 6%;
+.rating-row-customize{width: 12%;
     padding-right: 0px;}
 	
 /************* student profile css ******************/
@@ -1109,7 +1113,16 @@ margin-left:10px;
 .s-myreq-exam-height{height: 319px;}
 .s-myreq-exam-height-2{height: 275px;}
 /* .r_rating{width: 50%;} */
-.rating-height{height: 480px;}
+.rating-height{height:260px;}
+.g-review-hr
+{
+	margin-top: 0px !important;
+    margin-bottom: 10px !important;
+    border: 0;
+    border-top: 4px solid #0a8de7 !important;
+    width: 35px !important;
+    float: left !important;
+}
 .institute-rating{width:auto !important;}
 .line-height-for-all{line-height: 20px !important;}
 .s-edu-height
@@ -1428,7 +1441,7 @@ margin-left:10px;
     padding: 0px 0px;
 }
 .s-height {
-    height: 180px;
+    height:261px;
 }
 .s-profile-content {
     padding: 0px 0px;
