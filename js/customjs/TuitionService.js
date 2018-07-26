@@ -408,7 +408,7 @@ function listViewTab(tutorList){
 			        	if(b_data_map.requestedAt == null || b_data_map.requestedAt == undefined)
 			        		pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black"></span></span>';
 			        	else{
-						//var date2 = new Date(Number(b_data_map.requestedAt));
+						
 						pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black">'+b_data_map.requestedAt+'</span></span>';
 					    }
 						pre_html+='</div>'; 
