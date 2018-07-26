@@ -349,8 +349,8 @@ function loadStudentTop3Requests() {debugger;
 								l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
 								l_html+='<div class="row">'; 
 					        	l_html+='<div class="col-md-12 m-t-minus-10">';
-								var date2 = new Date(Number(l_map.createdAt));
-								l_html+='<span class="s-profile-text-gray">Requested At : <span style="color:black !important;">'+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span></span>';
+								//var date2 = new Date(Number(l_map.createdAt));
+								l_html+='<span class="s-profile-text-gray">Requested At : <span style="color:black !important;">'+l_map.containAll+'</span></span>';
 								l_html+='</div>'; 
 								l_html+='</div>';
 								l_html+='</div>';
@@ -399,7 +399,7 @@ function loadStudentTop3Requests() {debugger;
                                                l_html+='</div>'; 
 								            }
 							              if(l_map.requestStatus=='COMPLETED'){
-							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'BOOKING\',\'TUTOR\')">View Booking Detail</button>';
+							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail">View Booking Detail</a></button>';
 						                   }
 							              if(l_map.requestStatus=='ACCEPTED'){
 							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">Pay Now</button>';
@@ -408,82 +408,14 @@ function loadStudentTop3Requests() {debugger;
 							            	}
 	
 				        
-<<<<<<< HEAD
 							              l_html+='</div>';
 							              l_html+='</div>';
 							              l_html+='</div>';
 							              l_html+='</div>';
 							              l_html+='</div>';
 							
-=======
-				        	var b_request = l_accordian_map;
-				        	var pre_html='';
-				        		pre_html+='<div class="panel-group m-r-c-p-group" id="accordion6">';
-				        	pre_html+='<div class="card panel manage-request-accordian">';
-				        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
-							// start header detail
-				        	pre_html+='<div class="row row-width">';
-				        	pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-10">';
-				        	pre_html+='<div class="row">';
-				        	pre_html+='<div class="col-md-12">';
-				        	pre_html+='<span class="s-profile-text-gray ">Requests ID : <span style="color:black !important;">'+b_request.requestId+'</span></span>';
-				        	pre_html+='</div>'; 
-							pre_html+='</div>';
-							pre_html+='</div>'; 
-							pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-15">';
-							pre_html+='<div class="row">';
-							pre_html+='<div class="col-md-12">';
-							if(b_request.subjectId==null || b_request.subjectId==undefined)
-								pre_html+='<span class="s-profile-text-gray">Subject : <span style="color:black !important;"></span></span>';	 
-								else
-							pre_html+='<span class="s-profile-text-gray">Subject : <span style="color:black !important;">'+b_request.subjectId+'</span></span>';
-							pre_html+='</div>';
-							pre_html+='</div>';
-							pre_html+='</div>';
-							
-							pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-10">';
-				        	pre_html+='<div class="row">'; 
-				        	pre_html+='<div class="col-md-12 m-t-minus-10">';
-							var date2 = new Date(Number(b_request.createdAt));
-							pre_html+='<span class="s-profile-text-gray">Requested At : <span style="color:black !important;">'+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span></span>';
-							pre_html+='</div>'; 
-							pre_html+='</div>';
-							pre_html+='</div>';
-				           
-							pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-10">';
-							pre_html+='<div class="row">';
-							pre_html+='<div class="col-md-12 m-t-minus-10 m-t-minus-no line-height-for-all">';
-							if(b_request.location==null || b_request.location==undefined)
-							pre_html+='<span class="s-profile-text-gray">Location : <span style="color:black !important;"></span></span>';
-							else
-							pre_html+='<span class="s-profile-text-gray">Location : <span style="color:black !important;">'+b_request.location+'</span></span>';
-							pre_html+='</div>'; 
-							pre_html+='</div>'; 
-							pre_html+='</div>'; 
-							pre_html+='</div>';
-							// end header detail
-							pre_html+='</div>';
-				            
-							pre_html+='<div id="accordion6-'+i+'" class="collapse">';
-							// accordian body start
-							pre_html+='<div class="card-body">';
-							pre_html+='<div class="row">';
-				        	
-				        	
-				        	
-				        	// start post accordian
-							 var post_html = '';
-							 post_html+='</div>';
-							 post_html+='</div>';
-							 post_html+='</div>';
-							 post_html+='</div>';
-							 post_html+='</div>';
-							// end post accordian
-				        	// end accordian post html
->>>>>>> e0d2dcc46f12bd3384824b2fc5659657f53f5b6a
-							
-							
-							 $('.c_tuitionrequest').append(l_html);
+
+				        	$('.c_tuitionrequest').append(l_html);
 				        	
 							 l_html = '';
 							
@@ -519,7 +451,7 @@ ajaxWithJSON(
 			        		var l_map = l_data[j]; 
 								  //alert(l_data.length);
 			        			  //alert(JSON.stringify(l_map));
-					              var date1 = new Date(Number(l_map.createdAt));
+					              //var date1 = new Date(Number(l_map.createdAt));
 					               
 								     l_html+='<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-l-5 p-r-5">'; 
 										l_html+='<div class="card card-underline card-customize">'; 
@@ -557,7 +489,7 @@ ajaxWithJSON(
 										l_html+='<div class="row"> <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
 										l_html+='<span class="s-profile-text-gray font-12">Requested At </span> <strong style="float:right;">:</strong></div>';
 										l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-l-0">'; 
-										l_html+='<span class="s-profile-text-gray s-black s-bold font-12">'+date1.getDay()+'/'+date1.getMonth()+'/'+date1.getFullYear()+'</span>'; 
+										l_html+='<span class="s-profile-text-gray s-black s-bold font-12">'+l_map.containAll+'</span>'; 
 										l_html+='</div></div></div>';
 										l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"> <div class="row">'; 
 										l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 

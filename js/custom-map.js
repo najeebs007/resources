@@ -144,6 +144,8 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 		 if(l_map.price == undefined || l_map.price==null){
 			 l_map.price = 'Available on request' ;
 		 }
+		 if(l_map.price==null || l_map.price==undefined || isNaN(l_map.price))
+			 l_map.price = 0.0;
 		 
 		 var a=['<div class="card card-customize"><div class="card-body"><div class="row">'
 			  + '<div class="g-mapcard-left-img"> <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
@@ -168,7 +170,7 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 			  + Math.round(parseFloat(l_map.distance))
 			  +' KM</span></span></div>'
 			  + '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "> '
-			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Average Price : <span style="color:#80808094;font-weight: 400;">&#8377; '+l_map.price+'</span></span></div>'
+			  + '<span class="g-mapcard-text-gray g-mapcard-black g-mapcard-bold">Average Price : <span style="color:#80808094;font-weight: 400;">&#8377; '+parseFloat(l_map.price).toFixed(2)+'</span></span></div>'
 			  + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
 			  + '<span class="profileSpan" style="font-size: 16px;font-weight:500; font-family:open sans; ">' 
 			  + star+'</br>'

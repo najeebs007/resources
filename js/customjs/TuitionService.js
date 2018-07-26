@@ -29,7 +29,11 @@ function gridViewTab(tutorList){debugger;
     			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Experience :</strong><span class=\"tutor-val-text\">"+tutorMap.totalExperience+" Years</span></span><br/>"; 
     			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Expert In :</strong><span class=\"tutor-val-text\">"+tutorMap.specialities+"</span></span><br/>";
     			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>No of Active Batches :</strong><span class=\"tutor-val-text\">"+tutorMap.noOfBatches+"</span></span><br/>";
-    			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Average Price :</strong><span class=\"tutor-val-text\">&#8377; "+tutorMap.price+"</span></span><br/>";
+    			if(tutorMap.price==null || tutorMap.price==undefined || isNaN(tutorMap.price)){
+    				html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Average Price :</strong><span class=\"tutor-val-text\">&#8377; 0.0</span></span><br/>";
+    			}else{
+    			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Average Price :</strong><span class=\"tutor-val-text\">&#8377; "+parseFloat(tutorMap.price).toFixed(2)+"</span></span><br/>";
+    			}
     			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Distance :</strong><span class=\"tutor-val-text\">"+Math.round(parseFloat(tutorMap.distance))+" km </span></span><br/>"; 
     		    html += "<span class=\"profileSpan\" style=\"font-size: 16px;font-weight:500; font-family:open sans;\">";
     		    for(var j=0;j<5;j++){
@@ -80,7 +84,11 @@ function listViewTab(tutorList){
  				html += "</div>";
  				html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">";
  				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">";
- 				html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Average Price :</strong><span class=\"tutor-val-text\">&#8377; "+tutorMap.price+"</span></span></div>";
+ 				if(tutorMap.price == null || tutorMap.price==undefined || isNaN(tutorMap.price)){
+ 					html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Average Price :</strong><span class=\"tutor-val-text\">&#8377; 0.0</span></span></div>";
+ 				}else{
+ 				html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Average Price :</strong><span class=\"tutor-val-text\">&#8377; "+parseFloat(tutorMap.price).toFixed(2)+"</span></span></div>";
+ 				}
  				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">";
  				html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Distance :</strong><span class=\"tutor-val-text\">"+Math.round(parseFloat(tutorMap.distance))+" km </span></span></div>";
  				html += "</div>"; 
@@ -400,8 +408,8 @@ function listViewTab(tutorList){
 			        	if(b_data_map.requestedAt == null || b_data_map.requestedAt == undefined)
 			        		pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black"></span></span>';
 			        	else{
-						var date2 = new Date(Number(b_data_map.requestedAt));
-						pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black">'+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span></span>';
+						//var date2 = new Date(Number(b_data_map.requestedAt));
+						pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black">'+b_data_map.requestedAt+'</span></span>';
 					    }
 						pre_html+='</div>'; 
 						pre_html+='</div>';
@@ -482,7 +490,7 @@ function listViewTab(tutorList){
 			                   }
 			            	   if(b_history_map.requestStatus=='COMPLETED'){
 			            		   if(b_history_map.status=='ACTIVE'){
-			            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'BOOKING\',\'STUDENT\')">View Booking Detail</button>';
+			            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="../../student-tuition-booking-detail">View Booking Detail</a></button>';
 			            		   }
 			            		 }
                            if(b_history_map.requestStatus=='SUGGESTED'){
@@ -560,8 +568,8 @@ function listViewTab(tutorList){
 			        	if(b_data_map.requestedAt == null || b_data_map.requestedAt == undefined)
 			        		pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black"></span></span>';
 			        	else{
-						var date2 = new Date(Number(b_data_map.requestedAt));
-						pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black">'+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span></span>';
+						//var date2 = new Date(Number(b_data_map.requestedAt));
+						pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black">'+b_data_map.requestedAt+'</span></span>';
 					    }
 						pre_html+='</div>'; 
 						pre_html+='</div>';
