@@ -380,14 +380,14 @@ function loadStudentTop3Requests() {debugger;
 				        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
 							// start header detail
 				        	pre_html+='<div class="row row-width">';
-				        	pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+				        	pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-10">';
 				        	pre_html+='<div class="row">';
 				        	pre_html+='<div class="col-md-12">';
 				        	pre_html+='<span class="s-profile-text-gray ">Requests ID : <span style="color:black !important;">'+b_request.requestId+'</span></span>';
 				        	pre_html+='</div>'; 
 							pre_html+='</div>';
 							pre_html+='</div>'; 
-							pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+							pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-15">';
 							pre_html+='<div class="row">';
 							pre_html+='<div class="col-md-12">';
 							if(b_request.subjectId==null || b_request.subjectId==undefined)
@@ -398,7 +398,7 @@ function loadStudentTop3Requests() {debugger;
 							pre_html+='</div>';
 							pre_html+='</div>';
 							
-							pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+							pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-10">';
 				        	pre_html+='<div class="row">'; 
 				        	pre_html+='<div class="col-md-12 m-t-minus-10">';
 							var date2 = new Date(Number(b_request.createdAt));
@@ -407,9 +407,9 @@ function loadStudentTop3Requests() {debugger;
 							pre_html+='</div>';
 							pre_html+='</div>';
 				           
-							pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+							pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-10">';
 							pre_html+='<div class="row">';
-							pre_html+='<div class="col-md-12 m-t-minus-10 line-height-for-all">';
+							pre_html+='<div class="col-md-12 m-t-minus-10 m-t-minus-no line-height-for-all">';
 							if(b_request.location==null || b_request.location==undefined)
 							pre_html+='<span class="s-profile-text-gray">Location : <span style="color:black !important;"></span></span>';
 							else

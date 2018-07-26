@@ -908,10 +908,10 @@ margin-left:10px;
 	color: #007aff !important;
     font-size: 16px !important;
 }
-.s-profile-img-left{height:325px;}
+.s-profile-img-left{height:260px;}
 .s-profile-content
 {
-	padding: 70px 0px;
+	padding: 15px 0px;
 }
 .s-dashboard-profile-content
 {
@@ -928,7 +928,7 @@ margin-left:10px;
 	height:195px;
 	width: 100%;
 }
-.s-height{height:325px;}
+.s-height{height:260px;}
 .s-dashboard-height{height:240px;}
 .s-profile-pic-card{
   border-width: 2px;
@@ -1112,6 +1112,18 @@ margin-left:10px;
 .rating-height{height: 480px;}
 .institute-rating{width:auto !important;}
 .line-height-for-all{line-height: 20px !important;}
+.s-edu-height
+{
+	height: 420px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+.s-pro-certi-height
+{
+	height: 340px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
 /*** Tution As a service css ***/
 .g-mapcard-black
 {
@@ -1336,8 +1348,8 @@ margin-left:10px;
 }
 .pro-left-padding-right{padding-right:12px !important;}
 .pro-right-padding-left{padding-left:12px !important;}
-.s-profile-padding-r-0{padding-right:12px;}
-.s-profile-padding-l-0{padding-left:12px;margin-bottom: 14px;}
+.s-profile-padding-r-0{padding-right:15px;}
+.s-profile-padding-l-0{padding-left:15px;margin-bottom: 14px;}
 .margin-rating-bar{margin-top:15px;}
 .rating-row-customize{width:unset;
     padding-right:unset;}
@@ -1377,7 +1389,9 @@ margin-left:10px;
 .dropi-menu:before { 
     right:64%;
 }
+.m-t-minus-no{margin-top:0px !important;}
 /* minus marg on mobile= (m-o-m)****/
+.m-o-m-t-5{margin-top:-5px;}
 .m-o-m-t-10{margin-top:-10px;}
 .m-o-m-t-15{margin-top:-15px;}
 .m-o-m-t-20{margin-top:-20px;} 
@@ -1408,8 +1422,8 @@ margin-left:10px;
 .rating-row-customize{width:unset;
     padding-right:unset;}
  
-.s-profile-padding-r-0{padding-right:12px;}
-.s-profile-padding-l-0{padding-left:12px;margin-bottom: 14px;}
+.s-profile-padding-r-0{padding-right:15px;}
+.s-profile-padding-l-0{padding-left:15px;margin-bottom: 14px;}
 .s-profile-content {
     padding: 0px 0px;
 }
@@ -1437,6 +1451,12 @@ margin-left:10px;
 	height: 440px;
 	overflow-y:auto;
 }
+.m-t-minus-no{margin-top:0px !important;}
+/* minus marg on mobile= (m-o-m)****/
+.m-o-m-t-5{margin-top:-5px;}
+.m-o-m-t-10{margin-top:-10px;}
+.m-o-m-t-15{margin-top:-15px;}
+.m-o-m-t-20{margin-top:-20px;} 
 }
 /*media for ipad Pro only****/
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1200px) {
@@ -1458,11 +1478,11 @@ margin-left:10px;
  .rating-row-customize{width:unset;
     padding-right:unset;}
 .s-profile-padding-l-0 {
-    padding-left: 12px;
+    padding-left: 15px;
     margin-bottom: 22px;
 }
 .s-profile-padding-r-0 {
-    padding-right: 12px;
+    padding-right: 15px;
 }
 .corpo-card-height-5 {
     height: 320px;
