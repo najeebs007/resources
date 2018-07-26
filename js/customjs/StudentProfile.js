@@ -1,6 +1,8 @@
 /**
+
  * 
  */
+
 $(document).ready(function() {
 	debugger;
 	ratingStarCount2();
@@ -484,11 +486,14 @@ function uploadDocuments(formObject, result) {
 			});
 }
 
+
+
 function ratingStarCount2() {debugger;
 var s_html = "";
 $('.s_rating').html("");
-ajaxWithJSON("/load-star-count", null, 'GET', function(response) {debugger;
+ajaxWithJSON("/common/load-star-count", g_data, 'POST', function(response) {debugger;
 			var l_data = response.object;
+			
 			var dataLength =l_data.length;
 			var averageRating1=l_data.averageRating;
 			var averageRating = averageRating1.toString();

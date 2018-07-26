@@ -18,14 +18,28 @@ $(document).ready(function() {
 	loadCertificationData();
 	loadBatchData();
 	ratingStarCountProfile();
+	uploadProfileImage();
 	/* loadSpecializationData(); */
 
 });
 
+
+function uploadProfileImage() {
+	var l_map = g_data;
+	ajaxWithJSON("/common/upload-profile-image", l_map, 'POST', function(response) {debugger;
+		var l_data = response.object;
+		
+	});
+}
+
+
+
+
+
 function loadProfileData() {
 	var l_map = g_data;
 	//var l_map = {};
-	ajaxWithJSON("/tutor-personal", l_map, 'POST', function(response) {
+	ajaxWithJSON("/tutor-personal", l_map, 'POST', function(response) {debugger;
 		var l_data = response.object;
 		// alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
@@ -68,11 +82,7 @@ function loadProfileData() {
 function loadSocialData() {
 	var l_map = g_data;
 	//l_map.login = true;
-	ajaxWithJSON(
-			"/tutor-social",
-			l_map,
-			'POST',
-			function(response) {
+	ajaxWithJSON("/tutor-social", l_map, 'POST', function(response) {debugger;
 				var l_data = response.object;
 				// alert(JSON.stringify(response));
 				if (response.status == 'SUCCESS') {
@@ -150,7 +160,7 @@ function loadEditIntro(p_flage) {
 			$('.c_intro_mtongue').val(l_intro_data.motherTongue);
 		if (!(l_intro_data.totalExperience == null
 				|| l_intro_data.totalExperience == undefined || l_intro_data.totalExperience == ''))
-			$('.c_intro_experience').val(l_intro_data.totalExperience);
+			$('.c_intro_experience').val(l_intro_data.totalExperience + " Years");
 		if (l_intro_data.haveDigitalPen == true)
 			$('.c_intro_digital_pen').prop('checked', true);
 		if (l_intro_data.haveDigitalPen == true)
@@ -196,11 +206,7 @@ function loadIntroData() {
 	// alert("/tutor-general-info");
 	var l_map = g_data;
 	//var l_map = {};
-	ajaxWithJSON(
-			"/tutor-general-info",
-			l_map,
-			'POST',
-			function(response) {
+	ajaxWithJSON("/tutor-general-info", l_map, 'POST', function(response) {debugger;
 				var l_data = response.object;
 				//alert(JSON.stringify(response));
 				if (response.status == 'SUCCESS') {
@@ -216,14 +222,10 @@ function loadIntroData() {
 						l_html += "<div class='row'>";
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'> Date of Birth <span style='color:black;float:right;font-weight: bold;'>:</span> </span></div>";
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
-						if (l_map.dateOfBirth == null
-								|| l_map.dateOfBirth == undefined
-								|| l_map.dateOfBirth == '') {
+						if (l_map.dateOfBirth == null || l_map.dateOfBirth == undefined	|| l_map.dateOfBirth == '') {
 							l_html += "<span class='pro-text'></span>";
 						} else {
-							l_html += "<span class='pro-text'>"
-									+ getDateFormat(l_map.dateOfBirth)
-									+ "</span>";
+							l_html += "<span class='pro-text'>"	+ getDateFormat(l_map.dateOfBirth) + "</span>";
 						}
 						l_html += "</div></div>";
 						l_html += "</div>";
@@ -240,13 +242,10 @@ function loadIntroData() {
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'> Total Experience <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
-						if (l_map.totalExperience == null
-								|| l_map.totalExperience == undefined
-								|| l_map.totalExperience == '')
+						if (l_map.totalExperience == null || l_map.totalExperience == undefined || l_map.totalExperience == '')
 							l_html += "<span class='pro-text'></span>";
 						else
-							l_html += "<span class='pro-text'>"
-									+ l_map.totalExperience + "</span>";
+							l_html += "<span class='pro-text'>" + l_map.totalExperience +" Years"+ "</span>";
 						l_html += "</div>";
 						l_html += "</div>";
 						l_html += "</div>";
@@ -255,8 +254,7 @@ function loadIntroData() {
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'> MS Office Knowledge <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
-						if (l_map.msOfficeKnowlege == null
-								|| l_map.msOfficeKnowlege == undefined)
+						if (l_map.msOfficeKnowlege == null || l_map.msOfficeKnowlege == undefined)
 							l_html += "<span class='pro-text'></span>";
 						if (l_map.msOfficeKnowlege == true)
 							l_html += "<span class='pro-text'>Yes</span>";
@@ -268,13 +266,10 @@ function loadIntroData() {
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'>Specialities <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'> ";
-						if (l_map.specialities == null
-								|| l_map.specialities == undefined
-								|| l_map.specialities == '')
+						if (l_map.specialities == null || l_map.specialities == undefined || l_map.specialities == '')
 							l_html += "<span class='pro-text'></span>";
 						else {
-							l_html += "<span class='pro-text'>"
-									+ l_map.specialities + "</span>";
+							l_html += "<span class='pro-text'>" + l_map.specialities + "</span>";
 							$('.c_specialities').text(l_map.specialities);
 						}
 						l_html += "</div>";
@@ -285,9 +280,7 @@ function loadIntroData() {
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'> Demo Class Available <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
-						if (l_map.demoClassAvailable == null
-								|| l_map.demoClassAvailable == undefined
-								|| l_map.demoClassAvailable == '')
+						if (l_map.demoClassAvailable == null || l_map.demoClassAvailable == undefined || l_map.demoClassAvailable == '')
 							l_html += "<span class='pro-text'></span>";
 						if (l_map.demoClassAvailable == true)
 							l_html += "<span class='pro-text'>Yes</span>";
@@ -299,9 +292,7 @@ function loadIntroData() {
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'>Have Digital Pen<span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
-						if (l_map.haveDigitalPen == null
-								|| l_map.haveDigitalPen == undefined
-								|| l_map.haveDigitalPen == '')
+						if (l_map.haveDigitalPen == null || l_map.haveDigitalPen == undefined || l_map.haveDigitalPen == '')
 							l_html += "<span class='pro-text'></span>";
 						if (l_map.haveDigitalPen == true)
 							l_html += "<span class='pro-text'>Yes</span>";
@@ -312,8 +303,7 @@ function loadIntroData() {
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'> Status <span style='color:black;float:right;font-weight: bold;'>:</span> </span>";
 						l_html += "</div>";
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
-						if (l_map.status == null || l_map.status == undefined
-								|| l_map.status == '')
+						if (l_map.status == null || l_map.status == undefined || l_map.status == '')
 							l_html += "<span class='pro-text'></span>";
 						else
 							l_html += "<span class='pro-text'>Active</span>";
@@ -467,18 +457,18 @@ var g_contact_data = {};
 function loadContactData() { debugger;
 	// alert("/tutor-contact-data");
 	var l_map = g_data;
-//var l_map = {};
-	ajaxWithJSON(
-			"/tutor-contact-data",
-			l_map,
-			'POST',
-			function(response) {
+	var l_login=l_map.login;
+	//alert(l_login);
+	
+	//alert(JSON.stringify(l_map))
+	ajaxWithJSON("/tutor-contact-data", l_map, 'POST', function(response) {
 				var l_data = response.object;
 				 //alert(JSON.stringify(response));
 				if (response.status == 'SUCCESS') {
 					g_contact_data = l_data;
 					var html = "";
 					var l_html = "";
+					
 					l_html += "<div class='card-body card-body-padding-pro pro-height' id='i_contact' style='overflow-y:auto;margin-bottom:10px;'>";
 					l_html += "<div class='row'>";
 					for (var i = 0; i < l_data.length; i++) {
@@ -496,7 +486,9 @@ function loadContactData() { debugger;
 						l_html += "<div class='row'>";
 						l_html += "<div class='col-lg-12'> <span class='pro-text' style='font-weight:600;'>"
 								+ l_map_inner.addressTitle + "</span>";
-						l_html += "<button type='button'  class='tool-edit' onclick=\"loadEditContact('EDIT','"+l_map_inner.addressId+"')\"> <i class='fa fa-pencil icon'></i></button></div>";
+						if(l_login)
+							l_html += "<button type='button'  class='tool-edit' onclick=\"loadEditContact('EDIT','"+l_map_inner.addressId+"')\"> <i class='fa fa-pencil icon'></i></button></div>";	
+						
 						l_html += "<div class='col-lg-12'>";
 						if (l_map_inner.addressPhoneNumber == null
 								|| l_map_inner.addressPhoneNumber == undefined
@@ -825,8 +817,10 @@ function saveQualification(p_form_id) {debugger;
 }
 var g_qualifications = [];
 function loadQualificationData() {
-	//alert("/tutor-qualifications");
 	var l_map = g_data;
+	var l_login=l_map.login;
+	//alert(l_login);
+	
 	//var l_map = {};
 	ajaxWithJSON("/common/load-user-qualifications", l_map, 'POST', function(response) {
 		var l_data = response.object;
@@ -854,6 +848,7 @@ function loadQualificationData() {
             	 l_html+='<span class="pro-text" style="font-weight:600;">'+b_map.educationTypeId+'</span>';
              }
              l_html+='</div>'; 
+             if(l_login)
              l_html+='<button type="button"  class="tool-edit" onclick="loadEditQualification(\'EDIT\',\''+b_map.educationId+'\')"> <i class="fa fa-pencil icon"></i></button>'; 
              l_html+='<div class="col-lg-12 p-l-r-0">';
              l_html+='<span class="pro-small-text "> '+b_map.passOutYear+' </span>';      
@@ -927,8 +922,11 @@ function saveCertificate(p_form_id) {
 }
 var g_certificate_data = [];
 function loadCertificationData() {
-	//alert("/tutor-certification");
+	
 	var l_map = g_data;
+	var l_login=l_map.login;
+	//alert(l_login);
+	
 	//var l_map = {};
 	ajaxWithJSON("/common/load-user-certifications", l_map, 'POST', function(response) {
 		var l_data = response.object;
@@ -948,6 +946,7 @@ function loadCertificationData() {
             	l_html+='<div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 m-t-2 onhover">';
             	l_html+='<div class="row">';
             	l_html+='<div class="col-lg-12">'; 
+            	if(l_login)
             	l_html+='<span class="pro-text">'+b_map.certificationName+'</span><button type="button"  class="tool-edit" onclick="loadEditCertificate(\'EDIT\',\''+b_map.userCertificationsId+'\')"> <i class="fa fa-pencil icon"></i></button></div>';
             	l_html+='<div class="col-lg-12">';
             	l_html+='<div class="row">';
@@ -1024,8 +1023,10 @@ function saveProfessional(p_form_id) {
 }
 var g_professional_data = [];
 function loadProfessionalData() {
-	//alert("/tutor-professional");
 	var l_map = g_data;
+	var l_login=l_map.login;
+	alert(l_login);
+	
 	//var l_map = {};
 	ajaxWithJSON("/common/load-user-professional-detail", l_map, 'POST', function(response) {
 		var l_data = response.object;
@@ -1079,7 +1080,7 @@ function loadProfessionalData() {
             l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 p-l-r-0">';
             l_html+='<span class="pro-text capitalize" style="font-weight:600;">'+b_map.jobTitle+'</span>';
             l_html+='</div>';
-								  
+            if(l_login)				  
             l_html+='<button type="button"  class="tool-edit" onclick="loadEditProfessional(\'EDIT\',\''+b_map.userProfessionalDetailId+'\')"> <i class="fa fa-pencil icon"></i></button>';
 								 
             l_html+='<div class="col-lg-12 p-l-r-0">';
@@ -2433,10 +2434,10 @@ function selectEducation(){
 
 		function ratingStarCountProfile() {debugger;
 			var p_html = "";
-			var l_map = g_data;
 			$('.p_rating').html("");
-			ajaxWithJSON("/load-star-count", l_map, 'GET', function(response) {debugger;
+			ajaxWithJSON("/common/load-star-count", g_data, 'POST', function(response) {debugger;
 						var l_data = response.object;
+					//	alert(l_data);
 						var dataLength =l_data.length;
 						var averageRating1=l_data.averageRating;
 						var averageRating = averageRating1.toString();
