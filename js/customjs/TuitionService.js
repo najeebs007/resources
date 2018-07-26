@@ -480,6 +480,11 @@ function listViewTab(tutorList){
 			            	   if(b_history_map.requestStatus=='REJECTED'){
 			            	   
 			                   }
+			            	   if(b_history_map.requestStatus=='COMPLETED'){
+			            		   if(b_history_map.status=='ACTIVE'){
+			            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'BOOKING\',\'STUDENT\')">View Booking Detail</button>';
+			            		   }
+			            		 }
                            if(b_history_map.requestStatus=='SUGGESTED'){
                         	   if(b_history_map.status=='ACTIVE'){
                         	   pre_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'ACCEPT_SUGGESTION\',\'STUDENT\')">Accept Suggetion</button>';
@@ -632,13 +637,20 @@ function listViewTab(tutorList){
 							  pre_html+='</div>';
 			            	  }
 			                }
+			               if(b_history_map.requestStatus=='COMPLETED'){
+			            	   if(b_history_map.status=='ACTIVE'){
+		            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'BOOKING\',\'TUTOR\')">View Booking Detail</button>';
+			            	   }
+			            	 }
 			               if(b_history_map.requestStatus=='ACCEPTED'){}
 			            	   
 			               if(b_history_map.requestStatus=='REJECTED'){
 			            	   
 			               }
                            if(b_history_map.requestStatus=='SUGGESTED'){
+                        	   if(b_history_map.status=='ACTIVE'){
                         	   pre_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'TUTOR\')">Reject Request</button>';
+                        	   }
                         	}
 			               pre_html+='</div>';
 						  

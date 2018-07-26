@@ -398,6 +398,9 @@ function loadStudentTop3Requests() {debugger;
 							                   l_html+='<span class="s-profile-text-gray s-black">'+l_map.comment+'</span>';
                                                l_html+='</div>'; 
 								            }
+							              if(l_map.requestStatus=='COMPLETED'){
+							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'BOOKING\',\'TUTOR\')">View Booking Detail</button>';
+						                   }
 							              if(l_map.requestStatus=='ACCEPTED'){
 							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">Pay Now</button>';
 							            	  l_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
@@ -472,6 +475,9 @@ ajaxWithJSON(
 												  l_html+='<span class="s-profile-text-gray s-black">'+l_map.comment+'.</span>';
 												 
 										}
+										 if(l_map.requestStatus=='COMPLETED'){
+											 l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'BOOKING\',\'TUTOR\')">View Booking Detail</button>';
+						                   }
 										
 										l_html+='</div></div>';		 
 										l_html+='</div><div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-minus-10">'; 
