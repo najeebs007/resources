@@ -138,7 +138,7 @@ function loadBatchData() {
 						b_html += '<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">';
 						b_html += '<img src="resources/img/ico/icon-d.png" alt="batches-icon" width="24px">';
 						b_html += '</div>';
-						b_html += '<div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-xs-11 m-t-2">';
+						b_html += '<div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-xs-11 m-t-2 p-l-5">';
 						b_html += '<div class="row">';
 						b_html += '<div class="col-lg-12 m-t-minus-5"> <span class="pro-text">'
 								+ b_map.batchName + '</span></div>';
