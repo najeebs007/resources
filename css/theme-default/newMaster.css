@@ -1350,7 +1350,21 @@ margin-left:10px;
 .hvr:hover{background:transparent;}
 .cntrl-section:hover>.control-section-card{visibility: visible;}
 .font-12{font-size: 12px !important;}
-
+.overall-r-h
+{
+	height: 205px;
+}
+.tutor-rating-section
+{
+    border-top: 1px solid #80808042; 
+    padding: 5px 5px !important;
+    margin-top: 18px;
+}
+/******* Color shades ******/
+.light-gray
+{
+	background-color:#f9f9f9;
+}
  @media screen and (max-width: 767px){
 	 .top-header-author {
     position: absolute;
