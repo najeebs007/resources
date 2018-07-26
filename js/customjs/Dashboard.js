@@ -408,12 +408,79 @@ function loadStudentTop3Requests() {debugger;
 							            	}
 	
 				        
+<<<<<<< HEAD
 							              l_html+='</div>';
 							              l_html+='</div>';
 							              l_html+='</div>';
 							              l_html+='</div>';
 							              l_html+='</div>';
 							
+=======
+				        	var b_request = l_accordian_map;
+				        	var pre_html='';
+				        		pre_html+='<div class="panel-group m-r-c-p-group" id="accordion6">';
+				        	pre_html+='<div class="card panel manage-request-accordian">';
+				        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
+							// start header detail
+				        	pre_html+='<div class="row row-width">';
+				        	pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-10">';
+				        	pre_html+='<div class="row">';
+				        	pre_html+='<div class="col-md-12">';
+				        	pre_html+='<span class="s-profile-text-gray ">Requests ID : <span style="color:black !important;">'+b_request.requestId+'</span></span>';
+				        	pre_html+='</div>'; 
+							pre_html+='</div>';
+							pre_html+='</div>'; 
+							pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-15">';
+							pre_html+='<div class="row">';
+							pre_html+='<div class="col-md-12">';
+							if(b_request.subjectId==null || b_request.subjectId==undefined)
+								pre_html+='<span class="s-profile-text-gray">Subject : <span style="color:black !important;"></span></span>';	 
+								else
+							pre_html+='<span class="s-profile-text-gray">Subject : <span style="color:black !important;">'+b_request.subjectId+'</span></span>';
+							pre_html+='</div>';
+							pre_html+='</div>';
+							pre_html+='</div>';
+							
+							pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-10">';
+				        	pre_html+='<div class="row">'; 
+				        	pre_html+='<div class="col-md-12 m-t-minus-10">';
+							var date2 = new Date(Number(b_request.createdAt));
+							pre_html+='<span class="s-profile-text-gray">Requested At : <span style="color:black !important;">'+date2.getDay()+'/'+date2.getMonth()+'/'+date2.getFullYear()+'</span></span>';
+							pre_html+='</div>'; 
+							pre_html+='</div>';
+							pre_html+='</div>';
+				           
+							pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-10">';
+							pre_html+='<div class="row">';
+							pre_html+='<div class="col-md-12 m-t-minus-10 m-t-minus-no line-height-for-all">';
+							if(b_request.location==null || b_request.location==undefined)
+							pre_html+='<span class="s-profile-text-gray">Location : <span style="color:black !important;"></span></span>';
+							else
+							pre_html+='<span class="s-profile-text-gray">Location : <span style="color:black !important;">'+b_request.location+'</span></span>';
+							pre_html+='</div>'; 
+							pre_html+='</div>'; 
+							pre_html+='</div>'; 
+							pre_html+='</div>';
+							// end header detail
+							pre_html+='</div>';
+				            
+							pre_html+='<div id="accordion6-'+i+'" class="collapse">';
+							// accordian body start
+							pre_html+='<div class="card-body">';
+							pre_html+='<div class="row">';
+				        	
+				        	
+				        	
+				        	// start post accordian
+							 var post_html = '';
+							 post_html+='</div>';
+							 post_html+='</div>';
+							 post_html+='</div>';
+							 post_html+='</div>';
+							 post_html+='</div>';
+							// end post accordian
+				        	// end accordian post html
+>>>>>>> e0d2dcc46f12bd3384824b2fc5659657f53f5b6a
 							
 							
 							 $('.c_tuitionrequest').append(l_html);
