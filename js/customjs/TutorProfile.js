@@ -18,9 +18,23 @@ $(document).ready(function() {
 	loadCertificationData();
 	loadBatchData();
 	ratingStarCountProfile();
+	uploadProfileImage();
 	/* loadSpecializationData(); */
 
 });
+
+
+function uploadProfileImage() {
+	var l_map = g_data;
+	ajaxWithJSON("/common/upload-profile-image", l_map, 'POST', function(response) {debugger;
+		var l_data = response.object;
+		
+	});
+}
+
+
+
+
 
 function loadProfileData() {
 	var l_map = g_data;
@@ -444,9 +458,9 @@ function loadContactData() { debugger;
 	// alert("/tutor-contact-data");
 	var l_map = g_data;
 	var l_login=l_map.login;
-	alert(l_login);
+	//alert(l_login);
 	
-	alert(JSON.stringify(l_map))
+	//alert(JSON.stringify(l_map))
 	ajaxWithJSON("/tutor-contact-data", l_map, 'POST', function(response) {
 				var l_data = response.object;
 				 //alert(JSON.stringify(response));
@@ -805,7 +819,7 @@ var g_qualifications = [];
 function loadQualificationData() {
 	var l_map = g_data;
 	var l_login=l_map.login;
-	alert(l_login);
+	//alert(l_login);
 	
 	//var l_map = {};
 	ajaxWithJSON("/common/load-user-qualifications", l_map, 'POST', function(response) {
@@ -911,7 +925,7 @@ function loadCertificationData() {
 	
 	var l_map = g_data;
 	var l_login=l_map.login;
-	alert(l_login);
+	//alert(l_login);
 	
 	//var l_map = {};
 	ajaxWithJSON("/common/load-user-certifications", l_map, 'POST', function(response) {
@@ -2420,12 +2434,10 @@ function selectEducation(){
 
 		function ratingStarCountProfile() {debugger;
 			var p_html = "";
-			/*var l_map={};
-			 l_map = g_data;*/
 			$('.p_rating').html("");
 			ajaxWithJSON("/common/load-star-count", g_data, 'POST', function(response) {debugger;
 						var l_data = response.object;
-						alert(l_data);
+					//	alert(l_data);
 						var dataLength =l_data.length;
 						var averageRating1=l_data.averageRating;
 						var averageRating = averageRating1.toString();

@@ -73,14 +73,14 @@ $(document).ready(function() {
 	ratingList();
 	addRatingDetails();
 	ratingStarCount();
-	var l_publicId = getUrlParameter("user");
+	/*var l_publicId = getUrlParameter("user");
 	alert("public is = " + l_publicId);
 	var l_currentUser = $
 	{
 		user.userName
 	}
 	;
-	alert("l_currentUser =" + l_currentUser);
+	alert("l_currentUser =" + l_currentUser);*/
 });
 
 function ratingList() {
