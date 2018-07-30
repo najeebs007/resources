@@ -647,7 +647,7 @@ function listViewTab(tutorList){
 			                }
 			               if(b_history_map.requestStatus=='COMPLETED'){
 			            	   if(b_history_map.status=='ACTIVE'){
-		            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'BOOKING\',\'TUTOR\')">View Booking Detail</button>';
+			            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="../../manage-lectures">View Booking Detail</a></button>';
 			            	   }
 			            	 }
 			               if(b_history_map.requestStatus=='ACCEPTED'){}

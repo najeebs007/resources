@@ -1556,19 +1556,20 @@ margin-left:10px;
     width: 15%;
     margin-top:2px;
 	font-weight: 600;
-	margin-bottom:2px;
+	margin-bottom:0px;
 }
 
 .middle {
-    margin-top:10px;
+    margin-top:5px;
     float: left;
-    width: 70%;
+    width: 49%;
 	margin-bottom:0px;
 }
 
 /* Place text to the right */
 .right {
     text-align: right;
+    width: 36% !important;
 }
 
 /* Clear floats after the columns */
@@ -1600,3 +1601,13 @@ margin-left:10px;
 .capitalize{
 	text-transform:capitalize;
 }
+.border-attendance-right
+{
+	border-top: 1px solid #80808063;
+    border-right: 1px solid #80808063;
+}
+.border-attendance-left
+{
+	border-top: 1px solid #80808063;
+    border-left: 1px solid #80808063;
+} 
