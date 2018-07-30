@@ -886,6 +886,13 @@ margin-left:10px;
 	font-family: "Open Sans"; 
     color:gray;
 }
+.avrg-r-section
+{
+	text-align: center;
+    height: 55px;
+    width: 110px;
+    border: 2px solid #2196f3;
+}
 .card-body-padding-rating{padding:15px 20px !important;}
 .ratingHr
 {

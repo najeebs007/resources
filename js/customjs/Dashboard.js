@@ -399,8 +399,12 @@ function loadStudentTop3Requests() {debugger;
                                                l_html+='</div>'; 
 								            }
 							              if(l_map.requestStatus=='COMPLETED'){
-							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail">View Booking Detail</a></button>';
+							            	  if(l_map.batchType=='NEW'){
+							            		  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+l_map.tuitionRequestId+'&user='+l_map.tutorId+'&batchId='+l_map.suggestBatchId+'&studentId='+l_map.studentId+'&login=true">View Booking Detail</a></button>';
+							            	  }else
+							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+l_map.tuitionRequestId+'&user='+l_map.tutorId+'&batchId='+l_map.batchId+'&studentId='+l_map.studentId+'&login=true">View Booking Detail</a></button>';
 						                   }
+							              
 							              if(l_map.requestStatus=='ACCEPTED'){
 							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">Pay Now</button>';
 							            	  l_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';

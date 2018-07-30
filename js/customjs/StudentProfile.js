@@ -327,11 +327,7 @@ var l_input_map = {};
 	 $(".loading").show();
 	$.ajax({
 
-				type : 'GET',
-
-				url : "/student/get-certificate",
-				data : {certificateId:certificateId},
-				success : function(response) {
+				type : 'GET', url : "/student/get-certificate", data : {certificateId:certificateId}, success : function(response) {
 					
 					if (!(response.userCertificationsId == "none")) {
 						
@@ -409,7 +405,7 @@ var l_input_map = {};
 		},
 
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert("error:" + textStatus + " exception:" + errorThrown);
+			//alert("error:" + textStatus + " exception:" + errorThrown);
 		}
 
 	});
@@ -444,7 +440,7 @@ function loadStateDistrictCity(tokenName) {
 		},
 
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert("error:" + textStatus + " exception:" + errorThrown);
+		//	alert("error:" + textStatus + " exception:" + errorThrown);
 		}
 
 	});
@@ -481,7 +477,7 @@ function uploadDocuments(formObject, result) {
 						$(result).html(failed);
 				},
 				error : function(jqXHR) {
-					alert(jqXHR[2]);
+					//alert(jqXHR[2]);
 				}
 			});
 }
@@ -496,10 +492,11 @@ ajaxWithJSON("/common/load-star-count", g_data, 'POST', function(response) {debu
 			
 			var dataLength =l_data.length;
 			var averageRating1=l_data.averageRating;
+			var countRating=l_data.countRating;
 			var averageRating = averageRating1.toString();
 				/*dynamic html code  */ 
 				 
-			s_html += '<span class="rating-text" style="font-weight: 500;margin-right: 5px;" >'+averageRating+'</span>';
+		
 			switch (averageRating) { 
 			case "0":
 				s_html += '<span class="fa fa-star "></span>';
@@ -548,7 +545,7 @@ ajaxWithJSON("/common/load-star-count", g_data, 'POST', function(response) {debu
 				s_html += '<span class="fa fa-star checked"></span>';
 				s_html += '<span class="fa fa-star checked"></span>';
 			}
-			
+			s_html += '<span class="rating-text" style="font-weight: 500;margin-right: 5px;margin-left:5px;" >'+countRating+' reviews </span>';
 			$('.s_rating').html(s_html);
 			//alert("binding successfully ");
 		});
