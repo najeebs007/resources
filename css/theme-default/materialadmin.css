@@ -10039,42 +10039,40 @@ xfilter
   }
 }
 
+
+#page-content-search{margin-top:64px;}
+.fix-search-bar
+{
+	margin-left: -24px;
+    margin-right: -24px;
+    background: #e5e6e6;
+    padding: 14px 24px;
+    position: fixed;
+    top: 62px;
+    width: 100%;
+    height: 60px;
+    z-index: 100;
+}
 .cd-filter-trigger {
-  position: fixed;
-  top:145px;
-  left: 0;
-  height: 50px;
-  line-height:32px;
-  width: 60px;
-  /* image replacement */
-  overflow: hidden;
-  text-indent: 100%;
-  color: transparent;
-  white-space: nowrap;
-  background: transparent url("../img/cd-icon-filter.svg") no-repeat center center;
-  z-index: 3;
+  position: relative; 
+  line-height:28px; 
+ 
+  
 }
 .cd-filter-trigger.filter-is-visible {
   pointer-events: none;
 }
+
 @media only screen and (min-width: 1170px) {
   .cd-filter-trigger {
-   width: 90px;
-    height:30px;
+    width: 30px;
+    height: 30px;
     background: #1d92e8;
-    left: 6%;
-    text-indent: 0;
-    color: white;
-    text-transform: uppercase;
-    font-size: 1.3rem;
-    font-weight: 700;
-    padding-left: 19px;
-    background-position: left center;
-    -webkit-transition: color 0.3s;
-    -moz-transition: color 0.3s;
-    transition: color 0.3s;
-    border-radius: 4px;
-    box-shadow: 2px 1px 2px 1px #f04e09;
+	display:inline-block; 
+    color: white; 
+    padding: 0px 8px; 
+    border-radius:10px;
+	box-shadow: 0px 0px 20px 0px #42a8f3;  
   }
   .no-touch .cd-filter-trigger:hover {
     color: #41307c;
@@ -10085,23 +10083,14 @@ xfilter
 }
 @media only screen and (max-width:414px) {
   .cd-filter-trigger {
-   width: 90px;
-    height:30px;
+  width: 30px;
+    height: 30px;
     background: #1d92e8;
-	top:208px;
-    left:2%;
-    text-indent: 0;
-    color: white;
-    text-transform: uppercase;
-    font-size: 1.3rem;
-    font-weight: 700;
-    padding-left: 19px;
-    background-position: left center;
-    -webkit-transition: color 0.3s;
-    -moz-transition: color 0.3s;
-    transition: color 0.3s;
-    border-radius: 4px;
-    box-shadow: 2px 1px 2px 1px #f04e09;
+	display:inline-block; 
+    color: white; 
+    padding: 0px 8px; 
+    border-radius:10px;
+	box-shadow: 0px 0px 20px 0px #42a8f3;
   }
   .no-touch .cd-filter-trigger:hover {
     color: #41307c;
@@ -10118,24 +10107,32 @@ xfilter
     padding-left: 0px !important;}
 }
 @media only screen and (max-width:767px) {
+  .fix-search-bar
+{
+	margin-left: -24px;
+    margin-right: -24px;
+    background: #e5e6e6;
+    padding: 14px 24px;
+    position: relative;
+   
+    width: 100%;
+    height: 60px;
+    z-index: 100;
+}
+  .stickonMob
+  {
+	position:fixed;
+    top:235px;	
+  }
   .cd-filter-trigger {
-   width: 90px;
-    height:30px;
+    width: 30px;
+    height: 30px;
     background: #1d92e8;
-	top:208px;
-    left:2%;
-    text-indent: 0;
-    color: white;
-    text-transform: uppercase;
-    font-size: 1.3rem;
-    font-weight: 700;
-    padding-left: 19px;
-    background-position: left center;
-    -webkit-transition: color 0.3s;
-    -moz-transition: color 0.3s;
-    transition: color 0.3s;
-    border-radius: 4px;
-    box-shadow: 2px 1px 2px 1px #f04e09;
+	display:inline-block; 
+    color: white; 
+    padding: 0px 8px; 
+    border-radius:10px;
+	box-shadow: 0px 0px 20px 0px #42a8f3;
   }
   .no-touch .cd-filter-trigger:hover {
     color: #41307c;
@@ -10153,23 +10150,14 @@ xfilter
 }
 @media only screen and (min-device-width:768px) and (max-device-width:1023px) {
   .cd-filter-trigger {
-   width: 90px;
-    height:30px;
+ width: 30px;
+    height: 30px;
     background: #1d92e8;
-	top:208px;
-    left:2%;
-    text-indent: 0;
-    color: white;
-    text-transform: uppercase;
-    font-size: 1.3rem;
-    font-weight: 700;
-    padding-left: 19px;
-    background-position: left center;
-    -webkit-transition: color 0.3s;
-    -moz-transition: color 0.3s;
-    transition: color 0.3s;
-    border-radius: 4px;
-    box-shadow: 2px 1px 2px 1px #f04e09;
+	display:inline-block; 
+    color: white; 
+    padding: 0px 8px; 
+    border-radius:10px;
+	box-shadow: 0px 0px 20px 0px #42a8f3;
   }
   .no-touch .cd-filter-trigger:hover {
     color: #41307c;

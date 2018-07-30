@@ -12,9 +12,8 @@ $(document).ready(
 			 * click
 			 */
 			$('#stars li').on('mouseover', function() {
-				onStar = parseInt($(this).data('value'), 10); // The star
-																// currently
-																// mouse on
+				onStar = parseInt($(this).data('value'), 10); 
+																
 
 				// Now highlight all the stars that's not after the current
 				// hovered star
@@ -32,13 +31,9 @@ $(document).ready(
 				});
 			});
 			/* 2. Action to perform on click */
-			$('#stars li').on(
-					'click',
-					function() {
-						var onStar = parseInt($(this).data('value'), 10); // The
-																			// star
-																			// currently
-																			// selected
+			$('#stars li').on('click', function() {
+						var onStar = parseInt($(this).data('value'), 10); 
+																		
 						var stars = $(this).parent().children('li.star');
 						for (i = 0; i < stars.length; i++) {
 							$(stars[i]).removeClass('selected');
