@@ -129,7 +129,7 @@ function loadBatchData() {
 				if (response.status == 'SUCCESS') {
 					var b_html = "";
 					$('.c_batches').html("");
-					$('.c_total_batches').text('My Batches('+l_count_batches+')');
+					$('.c_total_batches').text('My Batches ('+l_count_batches+')');
 					for (var i = 0; i < l_data.length; i++) {
 						var b_map = l_data[i];
 
@@ -138,7 +138,7 @@ function loadBatchData() {
 						b_html += '<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">';
 						b_html += '<img src="resources/img/ico/icon-d.png" alt="batches-icon" width="24px">';
 						b_html += '</div>';
-						b_html += '<div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-xs-11 m-t-2">';
+						b_html += '<div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-xs-11 m-t-2 p-l-5">';
 						b_html += '<div class="row">';
 						b_html += '<div class="col-lg-12 m-t-minus-5"> <span class="pro-text">'
 								+ b_map.batchName + '</span></div>';
@@ -276,7 +276,7 @@ function loadGraphData() {
 }
 // for full calendar js
 function loadCalendar() {
-	
+	 
 	$(".fc-week").hide();
 	$('#calendar').fullCalendar({
 		nowIndicator : true,
@@ -289,6 +289,105 @@ function loadCalendar() {
 		navLinks : true, // can click day/week names to navigate views
 		editable : true,
 		eventLimit : true, // allow "more" link when too many events
+		eventMouseover: function (data, event, view) {
+
+                	tooltip = '<div class="tooltiptopicevent" style="width:auto;height:auto;color:white;background:#1E90FF;position:absolute;z-index:10001;padding:10px 10px 10px 10px ;  line-height: 200%;">' + 'title: ' + ': ' + data.title + '</br>' + 'start: ' + ': ' + data.start + '</br>' + 'End: ' + ': ' + data.end +'</br>' + 'Description: ' + ': ' + data.description + '</div>';
+
+
+                    $("body").append(tooltip);
+                    $(this).mouseover(function (e) {
+                        $(this).css('z-index', 10000);
+                        $('.tooltiptopicevent').fadeIn('500');
+                        $('.tooltiptopicevent').fadeTo('10', 1.9);
+                    }).mousemove(function (e) {
+                        $('.tooltiptopicevent').css('top', e.pageY + 10);
+                        $('.tooltiptopicevent').css('left', e.pageX + 20);
+                    });
+
+
+                },
+                eventMouseout: function (data, event, view) {
+                    $(this).css('z-index', 8);
+
+                    $('.tooltiptopicevent').remove();
+
+                },
+                dayClick: function () {
+                    tooltip.hide()
+                },
+                eventResizeStart: function () {
+                    tooltip.hide()
+                },
+                eventDragStart: function () {
+                    tooltip.hide()
+                },
+                viewDisplay: function () {
+                    tooltip.hide()
+                },
+                /* eventMouseover: function (event, jsEvent, view) {
+                	
+                    //set the values and open the modal
+                    $("#eventInfo").html(event.description);
+                    $("#i_startevent").html(moment(event.start).format('MMM Do h:mm A'));
+                    $("#i_endevent").html(moment(event.end).format('MMM Do h:mm A'));
+                    $("#eventLink").attr('href', event.url);
+                    $("#eventContent").dialog({
+                        modal: true,
+                        title: event.title
+                    });
+                    return false;
+                },
+                eventMouseout: function (event, jsEvent, view) {
+                    //set the values and open the modal
+                    
+                    $("#eventContent").dialog({
+                        modal: false,
+                        
+                    });
+                    return false;
+                },
+                */
+				/*dayClick: function(data, event, view){
+		            alert('Clicked on: ' + date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear());  
+
+					
+				 } */
+				 dayClick: function(date, jsEvent, view) {  
+                        $('.c_startFrom').val(date.format("DD/MM/YYYY")); 
+				        $('#addEvent').modal('show'); 
+				       /*  // change the day's background color just for fun
+				        $(this).css('background-color', 'red'); */ 
+				    }
+				 ,
+                events:
+                  [
+                	  
+                	{
+                          
+                    	  
+                         "title":"Event Name 1",
+                         "allday":"false",
+                         "description":"event name 1 description",
+                         "start":"2018-07-24",
+                         "end":"2018-07-25",
+                         "url":"" 
+                     	 
+                    },
+                    {
+                        
+                   	  
+                        "title":"Event Name 2",
+                        "allday":"false",
+                        "description":"event name 2 description",
+                        "start":"2018-07-26",
+                         "end":"2018-07-28",
+                        "url":"remarks" 
+                    
+                   } 
+
+           
+              
+                ]
 
 	});
 

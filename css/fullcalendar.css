@@ -519,7 +519,7 @@ a.fc-more:hover {
 .fc-view>table {
     position: relative;
     z-index: 1;
-	height: 550px;  
+	height:420px;  
     bottom:0;
     overflow-y: auto; 
 }

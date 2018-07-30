@@ -408,7 +408,7 @@ function listViewTab(tutorList){
 			        	if(b_data_map.requestedAt == null || b_data_map.requestedAt == undefined)
 			        		pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black"></span></span>';
 			        	else{
-						//var date2 = new Date(Number(b_data_map.requestedAt));
+						
 						pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black">'+b_data_map.requestedAt+'</span></span>';
 					    }
 						pre_html+='</div>'; 
@@ -847,7 +847,7 @@ function listViewTab(tutorList){
 	function addTutorBatch(){debugger;
 		 var l_batch_map = {};
 		    l_batch_map = readForm('i_batch_data');
-		    
+		  var c_batches_html=""; 
 		 $(".loading").show();
 		 ajaxWithJSON("/tutor/save-batch-info", l_batch_map, 'POST', function(response) {debugger;
 		  $(".loading").hide();
@@ -856,7 +856,22 @@ function listViewTab(tutorList){
 		  if (response.status == 'SUCCESS') {
 		   toastr.success(response.message);
 		   //$('.c_tutor_batches').append('<option value="'+l_batch_map.batchId+'"><span style="color:gray !important;">Batch Name:- '+l_batch_map.batchName+'&nbsp;</span>,<span class="s-profile-text-gray">Fee:- '+l_batch_map.feeAmount+'</span> &nbsp;,<option><span class="s-profile-text-gray">Timing:-'+l_batch_map.batchStartTime+' - '+l_batch_map.batchEndTime+'</span>&nbsp;,<span class="s-profile-text-gray">No of Students: 0</span></option>');
-		   $(".c_tutor_batches").prepend('<option selected="selected" value="'+l_batch_map.batchId+'"><span style="color:gray !important;">Batch Name:- '+l_batch_map.batchName+' </span>,<span class="s-profile-text-gray">Fee:- '+l_batch_map.feeAmount+'</span>,<option><span class="s-profile-text-gray">Timing:-'+l_batch_map.batchStartTime+' - '+l_batch_map.batchEndTime+'</span>,<span class="s-profile-text-gray">No of Students: 0</span></option>');
+		   
+		   c_batches_html+='<li><a href="#">';
+		   c_batches_html+='<div class="row">';
+		   c_batches_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+		   c_batches_html+='<input type="hidden" value="'+l_batch_map.batchId+'" id="selected_batch">';
+		   c_batches_html+='<span class="s-profile-text-gray">Batch Name: <span class="s-profile-text-gray s-black" >'+l_batch_map.batchName+'</span></span>';
+		   c_batches_html+='</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+		   c_batches_html+='<span class="s-profile-text-gray">Fee: <span class="s-profile-text-gray s-black">'+l_batch_map.feeAmount+'</span></span></div>';
+		   c_batches_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+		   c_batches_html+='<span class="s-profile-text-gray">timing: <span class="s-profile-text-gray s-black"  >'+l_batch_map.batchStartTime+' - '+l_batch_map.batchEndTime+'</span></span></div>';
+		   c_batches_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+		   c_batches_html+='<span class="s-profile-text-gray">No of Student: <span class="s-profile-text-gray s-black"  >'+l_batch_map.noOfStudent+'</span></span></div>';
+		   c_batches_html+='</div> ';
+		   c_batches_html+='</a></li>';
+		   $(".c_tutor_batches_pre").prepend(c_batches_html);
+		   //$(".c_tutor_batches").prepend('<option selected="selected" value="'+l_batch_map.batchId+'"><span style="color:gray !important;">Batch Name:- '+l_batch_map.batchName+' </span>,<span class="s-profile-text-gray">Fee:- '+l_batch_map.feeAmount+'</span>,<option><span class="s-profile-text-gray">Timing:-'+l_batch_map.batchStartTime+' - '+l_batch_map.batchEndTime+'</span>,<span class="s-profile-text-gray">No of Students: 0</span></option>');
 		   $("#i_batch_data").hide();
 		  }
 		  if (response.status == 'ERROR') {
