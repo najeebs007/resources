@@ -207,7 +207,49 @@ function ratingList() {
 			});
 }
 
-function addRatingDetails() {
+
+function addRatingDetails() {debugger;
+var l_map = {};
+if ($('#targetUser').val() == undefined) {
+	p_targetUser = "Sachin Sharma";
+	// p_targetUser = g_data.user;
+	// alert(p_targetUser);
+}
+if ($('#givenByName').val() == undefined) {
+	p_givenByName = null;
+}
+if ($('#givenByEmail').val() == undefined) {
+	p_givenByEmail = null;
+}
+var p_targetUser = document.getElementById('targetUser').value;
+var p_givenByName = document.getElementById('givenByName').value;
+var p_starRating = onStar;
+var p_comment = document.getElementById("myTextarea").value;
+var p_givenByEmail = document.getElementById('givenByEmail').value;
+
+l_map.targetUser = p_targetUser;
+l_map.givenByName = p_givenByName;
+l_map.starRating = p_starRating;
+l_map.comment=p_comment;
+l_map.givenByEmail = p_givenByEmail;
+	$(".loading").show();
+	//    $(".loading").show();
+	ajaxWithJSON("/tutor/save-rating-info", l_map, 'POST', function(response) {debugger;
+		$(".loading").hide();
+		if (response.status == 'SUCCESS') {
+			toastr.success("successfully added rating");
+			window.reload();
+		}
+		if (response.status == 'ERROR') {
+			toastr.success("some error occured");
+		}
+
+	});
+
+}
+
+
+/*function addRatingDetails() {
 	debugger;
 	var l_map = {};
 	var p_targetUser;
@@ -252,7 +294,7 @@ function addRatingDetails() {
 	});
 
 }
-
+*/
 // 3red div
 
 function ratingStarCount() {debugger;

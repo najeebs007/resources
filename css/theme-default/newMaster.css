@@ -291,6 +291,13 @@ padding: 0px 10px !important;}
   text-align: center; 
 }
 .blank-hieght{height:220px;}
+.blank-hieght-certi-myreq{height:330px;}
+.body-certi-myreq
+{
+  padding: 125px 0px;
+   background-color: rgb(245, 244, 244); 
+  text-align: center;  
+}
 .body-blank{
   background-color: rgb(245, 244, 244);
   padding:70px; 
@@ -954,6 +961,7 @@ margin-left:10px;
     font-size: 16px !important;
 }
 .s-profile-img-left{height:260px;}
+.s-intro-h{height:638px;}
 .s-profile-content
 {
 	padding: 15px 0px;
@@ -1701,15 +1709,16 @@ margin-left:10px;
 }
 
 .middle {
-    margin-top:10px;
+    margin-top:5px;
     float: left;
-    width: 70%;
+    width: 50%;
 	margin-bottom:0px;
 }
 
 /* Place text to the right */
 .right {
     text-align: right;
+    width:35%;
 }
 
 /* Clear floats after the columns */

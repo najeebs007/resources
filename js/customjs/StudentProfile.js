@@ -96,6 +96,9 @@ function addStudentEducation() {
 	l_input_map.branch = $(".c_eduBranch").val();
 	l_input_map.section = $(".c_section").val();
 	l_input_map.startDate = $(".c_studentStartDate").val();
+
+	
+	
 	if($(".c_grade").val() != '')
 	     l_input_map.grade = $(".c_grade").val();
 	if($(".c_percent").val() != '')
@@ -131,6 +134,7 @@ function addStudentEducation() {
 
 }
 function editStudentEducation(educationId) {
+	//alert("edit education");
 	$(".loading").show();
 	$.ajax({
 
@@ -139,12 +143,46 @@ function editStudentEducation(educationId) {
 				data : {educationId:educationId},
 				success : function(response) {
 					if(!(response.educationId == 'none')){
-						$(".c_educationId").val(response.educationId);
+						
+						$(".universityBoard").val(response.universityBoard);
+						$(".instituteSchoolCollege").val(response.instituteId);
+						$(".studentEdu").val(response.educationTypeId);
 						$(".c_rollnumberOrEID").val(response.rollNumber);
-						$(".c_section").val(response.section);
 						$(".c_yearClass").val(response.year);
+						
+						var l_date=response.startDate;
+						var l_dateStart = new Date(Number(l_date));
+						var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+						var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
+						var l_day = (weekday[l_dateStart.getDay()] + " ")
+					    var l_date = (l_dateStart.getDate() + " ")
+					    var l_month = (monthname[l_dateStart.getMonth()] + " ")
+					    var l_year = (l_dateStart.getFullYear())
+						var startDate=l_day+l_date+l_month+l_year;
+						$(".c_studentStartDate").val(startDate);
+						
+						var l_dateE=response.endDate;
+						var l_dateEnd = new Date(Number(l_dateE));
+						var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+						var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
+						var l_day = (weekday[l_dateEnd.getDay()] + " ")
+					    var l_date = (l_dateEnd.getDate() + " ")
+					    var l_month = (monthname[l_dateEnd.getMonth()] + " ")
+					    var l_year = (l_dateEnd.getFullYear())
+						var endDate=l_day+l_date+l_month+l_year;
+						$(".c_eduEndDate").val(endDate);
+						
 						$(".c_desc").val(response.description);
+						
+						$(".eduBranch").val(response.branch);
+						$(".c_section").val(response.section);
+						
+						$(".c_grade").val(response.grade);
+						$(".c_percent").val(response.percent);
+						$(".c_educationId").val(response.eduId);
+						
 						$(".loading").hide();
+						$("#myModaleduction").modal('show');
 						floats();
 						
 					}
@@ -178,9 +216,28 @@ function editProfession(professionId) {
 						 $(".occupationClass").val(response.occupation);
 						 $(".locationClass").val(response.location);
 						 $(".organizationClass").val(response.organization);
-				/*		 $(".startDateClass").val(response.startDate);*/
 						 $(".c_remarks").val(response.remarks);
-						/* $(".endDate").val(response.endDate);*/
+						 
+						    var l_date=response.startDate;
+							var l_dateStart = new Date(Number(l_date));
+							var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+							var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
+							var l_day = (weekday[l_dateStart.getDay()] + " ")
+						    var l_date = (l_dateStart.getDate() + " ")
+						    var l_month = (monthname[l_dateStart.getMonth()] + " ")
+						    var l_year = (l_dateStart.getFullYear())
+							var startDate=l_day+l_date+l_month+l_year;
+					        $(".startDateClass").val(startDate);
+						    var l_dateE=response.endDate;
+							var l_dateEnd = new Date(Number(l_dateE));
+							var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+							var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
+							var l_day = (weekday[l_dateEnd.getDay()] + " ")
+						    var l_date = (l_dateEnd.getDate() + " ")
+						    var l_month = (monthname[l_dateEnd.getMonth()] + " ")
+						    var l_year = (l_dateEnd.getFullYear())
+							var endDate=l_day+l_date+l_month+l_year;
+						    $(".endDateClass").val(endDate);
 						 
 						$('#myModalprofessional').modal('show');
 						$(".loading").hide();
@@ -215,9 +272,9 @@ function addStudentProfessionalDetail() {debugger;
 	var l_day = (weekday[l_dateStart.getDay()] + " ")
     var l_date = (l_dateStart.getDate() + " ")
     var l_month = (monthname[l_dateStart.getMonth()] + " ")
-    var l_year = (l_dateBirth.getFullYear())
-	var l_StartDate=l_day+l_date+l_month+l_year;
-	l_StartDate = $(".startDateClass").val();
+    var l_year = (l_dateStart.getFullYear())
+	var startDate=l_day+l_date+l_month+l_year;
+	l_input_map.startDate = $(".startDateClass").val();
 	
 	var l_dateE=l_input_map.endDate;
 	var l_dateEnd = new Date(Number(l_dateE));
@@ -227,8 +284,8 @@ function addStudentProfessionalDetail() {debugger;
     var l_date = (l_dateEnd.getDate() + " ")
     var l_month = (monthname[l_dateEnd.getMonth()] + " ")
     var l_year = (l_dateEnd.getFullYear())
-	var l_EndDate=l_day+l_date+l_month+l_year;
-	l_EndDate = $(".endDateClass").val();
+	var endDate=l_day+l_date+l_month+l_year;
+	l_input_map.endDate = $(".endDateClass").val();
 	l_input_map.location = $(".locationClass").val();
 	l_input_map.organization = $(".organizationClass").val();
 	l_input_map.remarks = $(".c_remarks").val();
@@ -334,9 +391,20 @@ var l_input_map = {};
 						 $(".certificateIdClass").val(response.userCertificationsId);
 						 $(".certificateNameClass").val(response.certificationName);
 						 $(".certificateNumberClass").val(response.certificationNumber);
-				/*		 $(".certificateExpiryClass").val(response.certificationExpiryDate);*/
+						 /*$(".certificateExpiryClass").val(response.certificationExpiryDate);*/ 
 						 $(".certificateAuthorityClass").val(response.certificationAuthority);
-						/* $(".certificateDateClass").val(response.certificationDate);*/
+						 
+						    var l_dateE=response.certificationDate;
+							var l_dateEnd = new Date(Number(l_dateE));
+							var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+							var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
+							var l_day = (weekday[l_dateEnd.getDay()] + " ")
+						    var l_date = (l_dateEnd.getDate() + " ")
+						    var l_month = (monthname[l_dateEnd.getMonth()] + " ")
+						    var l_year = (l_dateEnd.getFullYear())
+							var certificationDate=l_day+l_date+l_month+l_year;
+						 
+						    $(".certificateDateClass").val(certificationDate);
 						 
 						$('#myModalcerti').modal('show');
 						$(".loading").hide();

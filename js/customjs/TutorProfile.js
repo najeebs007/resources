@@ -38,9 +38,13 @@ function uploadProfileImage() {
 
 function loadProfileData() {
 	var l_map = g_data;
+	//alert("load profile data = " + l_map)
+	
+	
 	//var l_map = {};
 	ajaxWithJSON("/tutor-personal", l_map, 'POST', function(response) {debugger;
 		var l_data = response.object;
+		$(".c_targetUser").val(l_data.userName);
 		// alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
 			debugger;
@@ -127,11 +131,13 @@ function saveIntro(p_form_id) {
 	var l_map = {};
 	l_map = readFormWithId(p_form_id);
 	//alert(JSON.stringify(l_map));
+	//alert(JSON.stringify(l_map));
 	ajaxWithJSON("/tutor-save-general-detail", l_map, 'POST',
 			function(response) {
 				if(response.status == 'SUCCESS'){
 					toastr.success(response.message);
 					$('#addIntro').modal('hide');
+					location.reload();
 				}
 				if(response.status == 'ERROR'){
 					$('.c_error_intro').text(response.message);
@@ -208,10 +214,12 @@ function loadIntroData() {
 	//var l_map = {};
 	ajaxWithJSON("/tutor-general-info", l_map, 'POST', function(response) {debugger;
 				var l_data = response.object;
-				//alert(JSON.stringify(response));
+				//alert(JSON.stringify(l_data));
 				if (response.status == 'SUCCESS') {
 					if ('tutorGeneral' in l_data) {
 						var l_map = l_data.tutorGeneral;
+						//alert(JSON.stringify(l_map));
+						
 						l_intro_data = l_map;
 
 						var l_html = "";
@@ -432,6 +440,7 @@ function saveContact(p_form_id) {debugger;
 	initializeLatLong();
     var l_map = {};
 	l_map = readFormWithId(p_form_id);
+	
 	l_map.latitude=latitude;
 	l_map.longitude=longitude;
 	//alert(JSON.stringify(l_map));
@@ -441,6 +450,7 @@ function saveContact(p_form_id) {debugger;
 					toastr.success(response.message);
 					$('#addcontact').modal('hide');
 					loadContactData();
+					location.reload();
 				}
 				if(response.status == 'ERROR'){
 					$('.c_error_contact').text(response.message);
@@ -541,8 +551,10 @@ if (p_flage == 'NEW'){
 	$('#addqualification').modal('show');
 }
 if (p_flage == 'EDIT') {
+	//alert("p_education_id = " + p_education_id);
 	for(var i=0;i<g_qualifications.length;i++){
 		var b_map = g_qualifications[i];
+		//alert("add qualification = " + JSON.stringify(b_map));
 		if(p_education_id==b_map.educationId){
 			
 			var l_html = '';
@@ -634,7 +646,7 @@ if (p_flage == 'EDIT') {
 						l_html+='<option value="Diploma">Diploma</option>';
 					}
 					if(b_map.level=='Diploma'){
-						l_html+='<option value="Doctorate/PHD"  >Doctorate/PHD</option>';
+						l_html+='<option value="Dotoracte/PHD"  >Doctorate/PHD</option>';
 						l_html+='<option value="Master/Post-Graduation" >Master/Post-Graduation</option>';
 						l_html+='<option value="Graduation">Graduation</option>';
 						l_html+='<option value="Diploma" selected >Diploma</option>';
@@ -645,7 +657,8 @@ if (p_flage == 'EDIT') {
 					l_html+='</div>';
 					l_html+='</div>';
 					
-				
+					//alert("branch = " + b_map.branch);
+					//alert("education type id  = " + b_map.educationTypeId);
 					l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">';
 					l_html+='<div class="form-group newForm">'; 
 					l_html+='<label class="control-label label-extended">Course</label>'; 
@@ -795,9 +808,9 @@ if (p_flage == 'EDIT') {
 
 }
 
-function saveQualification(p_form_id) {debugger;
+function saveQualification(i_education_form) {debugger;
 	var l_form_data = {};
-	l_form_data = readForm(p_form_id);
+	l_form_data = readForm(i_education_form);
 	//alert(JSON.stringify(l_form_data));
 	ajaxWithJSON("/common/save-qualification-detail", l_form_data, 'POST', function(response) {
 		var l_data = response.object;
@@ -805,6 +818,7 @@ function saveQualification(p_form_id) {debugger;
 		if (response.status == 'SUCCESS') {
 			$('#addqualification').modal('hide');
 			toastr.success(response.message);
+			location.reload();
 			
 		}
 		if (response.status == 'ERROR') {
@@ -907,6 +921,7 @@ function saveCertificate(p_form_id) {
 		if (response.status == 'SUCCESS') {
 			$('#addcertificates').modal('hide');
 			toastr.success(response.message);
+			location.reload();
 			
 
 		}
@@ -1004,10 +1019,11 @@ function loadEditProfessional(p_flage,p_professional_id){
 function saveProfessional(p_form_id) {
 	var l_form_data = {};
 	l_form_data = readFormWithId(p_form_id);
-	//alert(JSON.stringify(l_form_data));
+	// alert(JSON.stringify(l_form_data));
 	ajaxWithJSON("/common/save-professional-detail", l_form_data, 'POST', function(response) {
 		if (response.status == 'SUCCESS') {
 			$('#addprofessional').modal('hide');
+			location.reload();
 			toastr.success(response.message);
 			
 
@@ -1025,7 +1041,7 @@ var g_professional_data = [];
 function loadProfessionalData() {
 	var l_map = g_data;
 	var l_login=l_map.login;
-	alert(l_login);
+	//alert(l_login);
 	
 	//var l_map = {};
 	ajaxWithJSON("/common/load-user-professional-detail", l_map, 'POST', function(response) {
@@ -1033,6 +1049,7 @@ function loadProfessionalData() {
 		//alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
 			g_professional_data = l_data;
+			//alert(JSON.stringify(g_professional_data));
             var l_html = '';
             l_html+='<div class="card-body card-body-padding-pro pro-height-s" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
             l_html+='<div class="row">';
@@ -1111,17 +1128,24 @@ function loadProfessionalData() {
 function loadBatchData() {
 
 	var l_map = g_data;
+	//alert(JSON.stringify(l_map));
 	//var l_map = {};
+	var l_html = "";
+	$('#i_batches').html("");
 	l_map.top = true;
 	ajaxWithJSON("/tutor-batches", l_map, 'POST', function(response) {
 		var l_data = response.object;
-		//alert(JSON.stringify(response));
+		//alert("tutor batches = " + JSON.stringify(l_data));
 		if (response.status == 'SUCCESS') {
             var l_html = '';
             l_html+='<div class="card-body card-body-padding-pro pro-height-sm" id="style-8" style="overflow-y:auto;margin-bottom:15px;">';
             l_html+='<div class="row">';
             for(var i=0;i<l_data.length;i++){
             	var b_map = l_data[i];
+            	//alert("batches" + JSON.stringify(b_map));
+            	
+            	
+            	
             l_html+='<div class="col-lg-12">';
             l_html+='<div class="row">';
             l_html+='<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1"> ';
@@ -1134,7 +1158,7 @@ function loadBatchData() {
             l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Batch Mode : '+b_map.batchMode+'</span>';
             l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Fees : &#x20B9;  '+b_map.feeAmount+'</span>';
             l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Status : '+b_map.status+'</span>';
-            l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Timing : '+ b_map.batchStartTime + b_map.batchStartTimeAMPM+ '-' + b_map.batchEndTime+ b_map.batchEndTimeAMPM+'</span>'; 
+            l_html+='<span class="pro-heading m-10"><i class="fa fa-dot-circle-o m-r-5" aria-hidden="true"></i>Timing : '+ b_map.batchStartTime + '-' + b_map.batchEndTime+'</span>'; 
             l_html+='</div>';    
             l_html+='</div>';
             l_html+='</div>';
@@ -2101,7 +2125,7 @@ function selectEducation(){
         	loadBoards();
         	loadMediums();
         }
-        if($('.c_education').val()=='Master/Post-Graduation' || $('.c_education').val()=='Graduation' || $('.c_education').val()=='Doctorate/PHD' || $('.c_education').val()=='Diploma'){
+        if($('.c_education').val()=='Master/Post-Graduation' || $('.c_education').val()=='Graduation' || $('.c_education').val()=='Doctorate/PHD' || $('.c_education').val()=='Diploma'){debugger;
         	 loadEducationTypes();
         	 loadInstitutes();
         }
@@ -2205,7 +2229,7 @@ function selectEducation(){
 		var g_mediums = [];
 		function loadMediums(){
 			if(g_mediums.length==0){
-			 ("/load-mediums", null, 'GET',function(response) {
+				ajaxWithJSON("/load-mediums", null, 'GET',function(response) {
 				var l_data = response.object;
 				var l_html = '';
 		        //alert(JSON.stringify(response));
@@ -2265,20 +2289,22 @@ function selectEducation(){
 		
 	}
 		var g_education_types = [];
-		function loadEducationTypes(){
+		function loadEducationTypes(){debugger;
 			if(g_education_types.length==0){
 				var l_map = {};
 				    l_map.level = $('.c_education').val();
 				    l_map.all = false;
 				    
-			ajaxWithJSON("/common/load-education-type", l_map, 'POST',function(response) {
+			ajaxWithJSON("/common/load-education-type", l_map, 'POST',function(response) {debugger;
 				var l_data = response.object;
 				var l_html = '';
-		       // alert(JSON.stringify(response));
+		     // alert(JSON.stringify("load education type = " + l_data));
 				if(response.status == 'SUCCESS'){
 					g_education_types = l_data;
+				//	alert(JSON.stringify(l_data));
 					for(var i=0;i<l_data.length;i++){
 						var l_map = l_data[i];
+						//alert(JSON.stringify("education data = " + l_map));
 						l_html+='<option value="'+l_map.educationShortName+'">';
 					}
 					l_html+='<option value="Other">';
@@ -2305,6 +2331,7 @@ function selectEducation(){
 			      l_map.list = false;
 			 for(var i=0;i<g_education_types.length;i++){
 					var b_map = g_education_types[i];
+					//alert("load education branch = " + JSON.stringify(b_map));
 					if(b_map.educationShortName == ($('.c_education_type').val()).trim()){
 						l_map.educationTypeId = b_map.educationTypeId;
 					}
@@ -2318,6 +2345,7 @@ function selectEducation(){
 				if(response.status == 'SUCCESS'){
 					for(var i=0;i<l_data.length;i++){
 						var l_map = l_data[i];
+					//	alert("load education branch type = " + JSON.stringify(l_map));
 						l_html+='<option value="'+l_map.educationBranchShortName+'">';
 					}
 					l_html+='<option value="Other">';
@@ -2434,17 +2462,31 @@ function selectEducation(){
 
 		function ratingStarCountProfile() {debugger;
 			var p_html = "";
+			
 			$('.p_rating').html("");
+			
 			ajaxWithJSON("/common/load-star-count", g_data, 'POST', function(response) {debugger;
 						var l_data = response.object;
 					//	alert(l_data);
 						var dataLength =l_data.length;
 						var averageRating1=l_data.averageRating;
 						var averageRating = averageRating1.toString();
+						if(averageRating==null){
+							averageRating='0';
+						}
+						//alert(averageRating);
 							/*dynamic html code  */ 
 							 
 						p_html += '<span class="rating-text" style="font-weight: 500;margin-right: 5px;" >'+averageRating+'</span>';
 						switch (averageRating) { 
+						case "0":
+							p_html += '<span class="fa fa-star checked"></span>';
+							p_html += '<span class="fa fa-star "></span>';
+							p_html += '<span class="fa fa-star "></span>';
+							p_html += '<span class="fa fa-star "></span>';
+							p_html += '<span class="fa fa-star "></span>';
+							break;
+							
 						case "1":
 							p_html += '<span class="fa fa-star checked"></span>';
 							p_html += '<span class="fa fa-star "></span>';
@@ -2483,6 +2525,16 @@ function selectEducation(){
 							p_html += '<span class="fa fa-star checked"></span>';
 							p_html += '<span class="fa fa-star checked"></span>';
 							p_html += '<span class="fa fa-star checked"></span>';
+							break;
+							
+						case "default":
+							p_html += '<span class="fa fa-star "></span>';
+							p_html += '<span class="fa fa-star "></span>';
+							p_html += '<span class="fa fa-star "></span>';
+							p_html += '<span class="fa fa-star "></span>';
+							p_html += '<span class="fa fa-star "></span>';
+							break;
+							
 						}
 
 

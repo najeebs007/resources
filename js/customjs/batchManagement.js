@@ -5,6 +5,7 @@ function batchListing(){debugger;
 	l_map.top = true;
 	ajaxWithJSON("/tutor/batch-listing", l_map, 'POST', function(response) {
 		var l_data = response.object;
+		alert(JSON.stringify(l_data));
 		var status = response.status;
 		if (response.status == 'SUCCESS') {
 			setBatchData(l_data);
@@ -24,9 +25,7 @@ function  setBatchData(l_data){debugger;
 	$('.c_batches').html("");
 	for (var i = 0; i < l_data.length; i++) {
 		var b_map = l_data[i];
-		
-		//var b_map = r_map.batch;
-		
+		alert(JSON.stringify(b_map));
 		var batchStartTime= b_map.batchStartTime;
 		var batchEndTime = b_map.batchEndTime;
 		var totalNumberOfClasses = b_map.totalNumberOfClasses;
@@ -34,8 +33,8 @@ function  setBatchData(l_data){debugger;
 		var batchMode = b_map.batchMode;
 		var location = b_map.location;
 		var enrollments= b_map.enrollment;
-		var className= b_map.className;
-		var subjectName= b_map.subjectName;
+		var className= b_map.batchName;
+		var subjectName= b_map.subjectId;
 		var active= b_map.activeStudent;
 		
 	
@@ -51,7 +50,7 @@ function  setBatchData(l_data){debugger;
 		   b_html += '	  <img src="resources/img/batch-list/users.png"> <span class="list-heading">' + batchStartTime+' </span>';
 	   	   b_html += '    </div>';
 		   b_html += '<div class="col-lg-12 m-t-10">';
-		   b_html += '	  <img src="resources/img/batch-list/classes.png"> <span class="list-text">Class | Subject :  <strong class="bold">'+ className +'  / '+ subjectName +'</strong></span>';
+		   b_html += '	  <img src="resources/img/batch-list/classes.png"> <span class="list-text">Batch | Subject :  <strong class="bold">'+ className +'  / '+ subjectName +'</strong></span>';
 		   b_html += '   </div>';
 		    b_html += '	<div class="col-lg-12 m-t-10">';
 			b_html += '	  <img src="resources/img/batch-list/list.png"> <span class="list-text">Enrollment :  <strong class="bold">'+ enrollments +'</strong></span>';
@@ -78,7 +77,7 @@ function  setBatchData(l_data){debugger;
 		b_html += '	<img src="resources/img/batch-list/users.png"> <span class="list-heading">' + batchStartTime+' </span>';
 		b_html += '	</div>';
 		b_html += '	<div class="col-lg-12 m-t-10">';
-		b_html += '	<img src="resources/img/batch-list/classes.png"> <span class="list-text">Class | Subject :  <strong class="bold">'+ className +'  / '+ subjectName +'</strong></strong></span>';
+		b_html += '	<img src="resources/img/batch-list/classes.png"> <span class="list-text">Batch | Subject :  <strong class="bold">'+ className +'  / '+ subjectName +'</strong></strong></span>';
 	    b_html += '	</div>';
 	    b_html += '	<div class="col-lg-12 m-t-10">';
 		b_html += '	<img src="resources/img/batch-list/list.png"> <span class="list-text">Enrollment :  <strong class="bold">'+ enrollments +'</strong></span>';
@@ -87,7 +86,7 @@ function  setBatchData(l_data){debugger;
 		b_html += '	<span class="list-icon"><i class="fa fa-check" aria-hidden="true"style="font-size:10px;color:white;"></i></span> <span class="list-text" style="color:#3cb878;">Active Student : '+ active +'</span>';
 		b_html += ' </div>';
 		b_html += '	<div class="col-lg-12 m-t-10">';
-		b_html += ' <span   ><i class="fas fa-clock" aria-hidden="true" style="font-size:15px;color:#928484;"></i></span> <span class="list-text">' + batchStartTime+' To '+ batchStartTime +'</span>';
+		b_html += ' <span   ><i class="fas fa-clock" aria-hidden="true" style="font-size:15px;color:#928484;"></i></span> <span class="list-text">' + batchStartTime+' To '+ batchEndTime +'</span>';
 		b_html += '	</div>';
 		b_html += '	<div class="col-lg-12 m-t-10">';
 		b_html += '	<img src="resources/img/batch-list/classes.png"> <span class="list-text"> ' + totalNumberOfClasses + ' out of '+ totalNumberOfClasses + ' class complete'+' </span>';
@@ -102,7 +101,7 @@ function  setBatchData(l_data){debugger;
 		b_html += '	<i class="fas fa-map-marker" style="font-size:15px;color:#928484;"></i> <span class="list-text">Location : '+ location +'</span>';
 		b_html += ' </div>';
 		b_html += '	<div class="col-lg-12 m-t-10">';
-		b_html += '	<button type="button" class="btn btn-primary">View complete Details</button> <button type="button" class="btn btn-danger">View Students</button>';
+		b_html += '	<button type="button" class="btn btn-primary" ><a href="../../manage-lectures?batchId='+b_map.batchId+'">View Booking Detail</a></button> <button type="button" class="btn btn-danger">View Students</button>';
 		b_html += ' </div>';
 		b_html += ' </div>';
 		b_html += ' </div>';
