@@ -1711,22 +1711,15 @@ margin-left:10px;
 .middle {
     margin-top:5px;
     float: left;
-<<<<<<< HEAD
     width: 50%;
-=======
-    width: 49%;
->>>>>>> 32e45bc3f5419e6f8f6ee1e390b5d2433f695fcf
 	margin-bottom:0px;
 }
 
 /* Place text to the right */
 .right {
     text-align: right;
-<<<<<<< HEAD
     width:35%;
-=======
-    width: 36% !important;
->>>>>>> 32e45bc3f5419e6f8f6ee1e390b5d2433f695fcf
+
 }
 
 /* Clear floats after the columns */
