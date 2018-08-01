@@ -57,6 +57,8 @@ function convertCurrentDateToMap() {
 	return l_map;
 }
 
+
+
 function loadCountries(p_flag){ 
 	var l_map = {};
 	l_map.get = 'COUNTRIES';

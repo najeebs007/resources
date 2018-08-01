@@ -2,10 +2,7 @@
  * 
  */
 
-$(document).ready(function(){
-	loadTutorSubjects();
-	
-});
+
 $(document).ready(function() {
 	  $('#tuition_request').on('hidden', function() {
 	    clear()
@@ -488,6 +485,9 @@ function listViewTab(tutorList){
 			            	   if(b_history_map.requestStatus=='REJECTED'){
 			            	   
 			                   }
+			            	   if(b_history_map.requestStatus=='CANCELLED'){
+				            	   
+				               }
 			            	   if(b_history_map.requestStatus=='COMPLETED'){
 			            		   if(b_history_map.status=='ACTIVE'){
 			            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'">View Booking Detail</a></button>';
@@ -647,7 +647,10 @@ function listViewTab(tutorList){
 			                }
 			               if(b_history_map.requestStatus=='COMPLETED'){
 			            	   if(b_history_map.status=='ACTIVE'){
-			            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="../../manage-lectures">View Booking Detail</a></button>';
+			            		   if(b_history_map.batchType='EXIST')
+			            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="../../manage-lectures?tuitionRequest='+b_history_map.tuitionRequestId+'&batchId='+b_history_map.batchId+'">View Booking Detail</a></button>';
+			            		   else
+			            			   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="../../manage-lectures?tuitionRequest='+b_history_map.tuitionRequestId+'&batchId='+b_history_map.suggestBatchId+'">View Booking Detail</a></button>';
 			            	   }
 			            	 }
 			               if(b_history_map.requestStatus=='ACCEPTED'){}
@@ -655,6 +658,10 @@ function listViewTab(tutorList){
 			               if(b_history_map.requestStatus=='REJECTED'){
 			            	   
 			               }
+                           if(b_history_map.requestStatus=='CANCELLED'){
+			            	   
+			               }
+			               
                            if(b_history_map.requestStatus=='SUGGESTED'){
                         	   if(b_history_map.status=='ACTIVE'){
                         	   pre_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'TUTOR\')">Reject Request</button>';
@@ -967,3 +974,475 @@ function listViewTab(tutorList){
 		    
 		   }
 	  }
+	  
+	  
+	  var lecture_batchId = '';
+	  var lecture_size = 0;
+	  function loadTutorLectures(){debugger;
+		 var l_map = {};
+		 l_map = params;
+		 $(".loading").show();
+		 ajaxWithJSON("/tutor/load-lectures", l_map, 'POST', function(response) {debugger;
+		  $(".loading").hide();
+          //alert(JSON.stringify(response));
+		  if (response.status == 'SUCCESS') {
+			  var l_data = response.object;
+			  var l_basic = response.other;
+			  $('.c_basic').html("Batch :"+l_basic.batchName+' || Subject:'+l_basic.subjectName);
+			  var l_html = '';
+			  lecture_size = l_data.length;
+			  for(var i=0;i<l_data.length;i++){
+				  var l_map = l_data[i];
+			  
+			  lecture_batchId = l_map.batchId;
+			  l_html+='<tr class="trHover">';
+			  l_html+='<td class="s-profile-text-gray">'+l_map.lectureName+'</td>'; 
+			  l_html+='<td class="s-profile-text-gray">'+l_map.startTime+' - '+l_map.endTime+'</td>';
+			  l_html+='<td class="s-profile-text-gray">'+l_map.topicDescription+'</td>';
+			  l_html+='<td class="s-profile-text-gray">'+l_map.lectureAtString+'</td>';
+			  l_html+='<td class="s-profile-text-gray">'+l_map.status+'</td>';
+			  l_html+='<td class="s-profile-text-gray">';
+			  l_html+='<div class="action">';
+			  if(l_map.status=='COMPELETED'){	   
+			  l_html+='<button title="Attendance Completed" disabled type="button" class="btn btn-primary" data-toggle="modal" data-target="#" onclick="markAttendance(\''+l_map.lectureId+'\',\''+i+'\',\''+l_data.length+'\')">Mark Attendance</button>';
+			  l_html+='<button title="Cancelled not allow" disabled type="button" class="btn btn-danger" data-toggle="modal" data-target="#"  onclick="cancelLecture(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+i+'\',\''+l_data.length+'\')">Cancel</button>';
+			  l_html+='<button title="Change timing not allow" disabled type="button" class="btn btn-yellow" data-toggle="modal" data-target="#batch"  onclick="changeLectureTime(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+i+'\',\''+l_data.length+'\')">Change Timing</button>';
+			  }else if(l_map.status=='CANCELLED'){
+				  l_html+='<button title="Cancelled lecture" disabled type="button" class="btn btn-primary" data-toggle="modal" data-target="#" onclick="markAttendance(\''+l_map.lectureId+'\',\''+i+'\',\''+l_data.length+'\')">Mark Attendance</button>';
+				  l_html+='<button title="Cancelled not allow" disabled type="button" class="btn btn-danger" data-toggle="modal" data-target="#"  onclick="cancelLecture(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+i+'\',\''+l_data.length+'\')">Cancel</button>';
+				  l_html+='<button title="Change timing not allow" disabled type="button" class="btn btn-yellow" data-toggle="modal" data-target="#batch"  onclick="changeLectureTime(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+i+'\',\''+l_data.length+'\')">Change Timing</button>';
+				  
+			  }else{
+				  l_html+='<button id="markAttendance'+i+'" title="Mark Attendance" type="button" class="btn btn-primary" data-toggle="modal" data-target="#" onclick="markAttendance(\''+l_map.lectureId+'\',\''+i+'\',\''+l_data.length+'\')">Mark Attendance</button>';
+				  l_html+='<button id="markCancel'+i+'" type="button" class="btn btn-danger" data-toggle="modal" data-target="#"  onclick="cancelLecture(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+i+'\',\''+l_data.length+'\')">Cancel</button>';
+				  l_html+='<button id="markChange'+i+'" type="button" class="btn btn-yellow" data-toggle="modal" data-target="#batch"  onclick="changeLectureTime(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+i+'\',\''+l_data.length+'\')">Change Timing</button>';
+				  
+			  }
+			  l_html+=' </div>';
+			  l_html+='</td>';
+				 
+			  l_html+='</tr>';
+              $('.c_lectures_data').append(l_html);
+              l_html = '';
+			  }
+		   
+		  }
+		  if (response.status == 'ERROR') {
+			  toastr.error(response.message);
+		  // $('.c_error_request_suggest').text(response.message);
+			//setTimeout(function(){ $('.c_error_request_suggest').text(""); }, 3000);
+
+		  }
+		  
+
+		 });
+		}
+	 
+	  function addTutorLectures(){debugger;
+		 var l_map = {};
+		 
+		 if($('.c_lectureName').val()==''){
+			 $('.c_lecture_add_error').text("Enter Lecture Name.");
+			  setTimeout(function(){ $('.c_lecture_add_error').text(""); }, 3000);
+			  return;
+		 }
+		 if($('.c_topic').val()==''){
+			 $('.c_lecture_add_error').text("Enter Topic description.");
+			  setTimeout(function(){ $('.c_lecture_add_error').text(""); }, 3000);
+			  return;
+		 }
+		 if($('.c_lectureDate').val()==''){
+			 $('.c_lecture_add_error').text("Enter Lecture Date.");
+			  setTimeout(function(){ $('.c_lecture_add_error').text(""); }, 3000);
+			  return;
+		 }
+		 if($('.c_startTime').val()==''){
+			 $('.c_lecture_add_error').text("Enter Lecture Start time.");
+			  setTimeout(function(){ $('.c_lecture_add_error').text(""); }, 3000);
+			  return;
+		 }
+		 if($('.c_endTime').val()==''){
+			 $('.c_lecture_add_error').text("Enter Lecture end time.");
+			  setTimeout(function(){ $('.c_lecture_add_error').text(""); }, 3000);
+			  return;
+		 }
+		 
+        
+		 l_map = readForm('i_lecture_data');
+		 l_map.batchId = lecture_batchId;
+		 //alert(JSON.stringify(l_map));
+		 $(".loading").show();
+		 ajaxWithJSON("/tutor/add-lecture", l_map, 'POST', function(response) {debugger;
+		  $(".loading").hide();
+         // alert(JSON.stringify(response));
+		  if (response.status == 'SUCCESS') {
+			toastr.success(response.message);
+		    $('#addLecture').modal('hide');
+		    $('#i_lecture_data').trigger("reset");
+		    
+	          var l_map = response.object;
+			  var l_html = '';
+			  l_html+='<tr class="trHover">';
+			  l_html+='<td class="s-profile-text-gray">'+l_map.lectureName+'</td>'; 
+			  l_html+='<td class="s-profile-text-gray">'+l_map.startTime+' - '+l_map.endTime+'</td>';
+			  l_html+='<td class="s-profile-text-gray">'+l_map.topicDescription+'</td>';
+			  l_html+='<td class="s-profile-text-gray">'+l_map.lectureAtString+'</td>';
+			  l_html+='<td class="s-profile-text-gray">'+l_map.status+'</td>';
+			  l_html+='<td class="s-profile-text-gray">';
+			  l_html+='<div class="action">';
+			
+			
+			 /* l_html+='<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#" onclick="markAttendance(\''+l_map.lectureId+'\',\''+$('.c_countAttendance').val()+'\',\''+$('.c_countAttendanceSize').val()+'\')">Mark Attendance</button>';
+			  l_html+='<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#"  onclick="cancelLecture(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+$('.c_countAttendance').val()+'\',\''+$('.c_countAttendanceSize').val()+'\')">Cancel</button>';
+			  l_html+='<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#batch"  onclick="changeLectureTime(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+$('.c_countAttendance').val()+'\',\''+$('.c_countAttendanceSize').val()+'\')">Change Timing</button>';
+			  */
+			  l_html+='<button id="markAttendance'+lecture_size+'" title="Mark Attendance" type="button" class="btn btn-primary" data-toggle="modal" data-target="#" onclick="markAttendance(\''+l_map.lectureId+'\',\''+lecture_size+'\',\''+(lecture_size+1)+'\')">Mark Attendance</button>';
+			  l_html+='<button id="markCancel'+lecture_size+'" type="button" class="btn btn-danger" data-toggle="modal" data-target="#"  onclick="cancelLecture(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+lecture_size+'\',\''+(lecture_size+1)+'\')">Cancel</button>';
+			  l_html+='<button id="markChange'+lecture_size+'" type="button" class="btn btn-yellow" data-toggle="modal" data-target="#batch"  onclick="changeLectureTime(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+lecture_size+'\',\''+(lecture_size+1)+'\')">Change Timing</button>';
+			  
+			  l_html+=' </div>';
+			  l_html+='</td>';
+				 
+			  l_html+='</tr>';
+              $('.c_lectures_data').append(l_html);
+              lecture_size = lecture_size+1;
+		  }
+		  if (response.status == 'SESSION') {
+			  location.replace('/');
+			   
+		  }
+		  if (response.status == 'ERROR') {
+			  $('.c_lecture_add_error').text(response.message);
+			  setTimeout(function(){ $('.c_lecture_add_error').text(""); }, 3000);
+		  // $('.c_lecture_add_error').text(response.message);
+			//setTimeout(function(){ $('.c_lecture_add_error').text(""); }, 3000);
+
+		  }
+
+		 });
+		}
+      var g_students = [];
+	  function loadBatchStudents(){
+		  
+		  var l_map = {};
+		  l_map = params;
+			 //$(".loading").show();
+			 ajaxWithJSON("/tutor/load-batch-students", l_map, 'POST', function(response) {debugger;
+			  //$(".loading").hide();
+	          //alert(JSON.stringify(response));
+			  if (response.status == 'SUCCESS') {
+				  g_students = response.object;
+			   
+			  }
+			  if (response.status == 'ERROR') {
+			  // $('.c_error_request_suggest').text(response.message);
+				//setTimeout(function(){ $('.c_error_request_suggest').text(""); }, 3000);
+
+			  }
+
+			 });
+	  }
+function markAttendance(p_lectureId,count,size){
+	$('#i_attendance').modal('show');
+	$('#i_form_attendance').trigger("reset");
+	$('.c_lectureAttendance').val(p_lectureId);
+	$('.c_countAttendance').val(count);
+	$('.c_countAttendanceSize').val(size);
+	for(var i=0;i<g_students.length;i++){
+		var student = g_students[i];
+		var l_html = "";
+		l_html+='<tr>';
+		l_html+='<td class="s-profile-text-gray" width="25%">';
+		l_html+='<label class="checkbox-inline checkbox-styled">';
+		l_html+='<input type="checkbox" class="ck" name="'+student[0]+'">';
+		l_html+='<span></span></label>';
+		l_html+='</td> ';
+		l_html+='<td class="s-profile-text-gray">';
+		l_html+='<span class="s-profile-text-gray s-black s-bold">'+student[1]+'</span>';
+		l_html+='</td> '; 
+		l_html+='</tr>';
+		
+	}
+	$('#i_attendanceStudents').html(l_html);
+}
+function saveAttendance(){debugger;
+	var l_map = {};
+	var l_is_studentd_selected = false;
+	/*if($('.c_remarksAttendance').val()==''){
+		if(confirm("Would you like to write some remarks ?")){
+			return;
+		}
+	}*/
+	 l_map = readForm('i_form_attendance');
+	 
+	 var keys = Object.keys(l_map);
+	 
+	 //alert(JSON.stringify(keys));
+	 for(var i=0;i<keys.length;i++){
+		 var key = keys[i];
+		 if(key in l_map) { 
+			   if(l_map[key]==true){
+				   if(!(key=='undefined'))
+				       l_is_studentd_selected = true;
+			   }   
+			}
+	 }
+	 if(!l_is_studentd_selected){
+		 $('.c_AttendanceError').text('Select students for attendance.');
+		 return;
+	 }
+	 l_map.batchId = lecture_batchId;
+	 //alert(JSON.stringify(l_map));
+	 $(".loading").show();
+	 ajaxWithJSON("/tutor/save-lecture-students-attendance", l_map, 'POST', function(response) {debugger;
+	  $(".loading").hide();
+    
+	  if (response.status == 'SUCCESS') {
+		toastr.success(response.message);
+		location.reload();
+		  
+		 /*$('#markAttendance'+button_id).prop("disabled",true);
+		 $('#markCancel'+button_id).prop("disabled",true);
+		 $('#markChange'+button_id).prop("disabled",true);*/
+	  }
+	  if (response.status == 'ERROR') {
+	     $('.c_AttendanceError').text(response.message);
+		setTimeout(function(){ $('.c_AttendanceError').text(""); }, 3000);
+
+	  }
+
+	 });
+}
+function cancelLecture(p_lectureId,lectureName,start,end,topic,lectureAt,count,size){
+	$('#i_cancelLecture').modal('show');
+	$('#i_cancel_lecture_form').trigger("reset");
+	$('.c_lectureCancel').val(p_lectureId);
+	$('.c_lecture_name_cancel').text(lectureName);
+	$('.c_lecture_cancel_time').text(start+'-'+end);
+	$('.c_lecture_cancel_topic').text(topic);
+	$('.c_lecture_cancel_at').text(lectureAt);
+	
+	$('.c_countCancel').val(count);
+	$('.c_countCancelSize').val(size);
+	for(var i=0;i<g_students.length;i++){
+		var student = g_students[i];
+		var l_html = "";
+		l_html+='<tr>';
+		l_html+='<td class="s-profile-text-gray" width="25%">';
+		l_html+='<label class="checkbox-inline checkbox-styled">';
+		l_html+='<input type="checkbox" class="ck" name="'+student[0]+'">';
+		l_html+='<span></span></label>';
+		l_html+='</td> ';
+		l_html+='<td class="s-profile-text-gray">';
+		l_html+='<span class="s-profile-text-gray s-black s-bold">'+student[1]+'</span>';
+		l_html+='</td> '; 
+		l_html+='</tr>';
+		
+	}
+	$('#i_lectureCancellation').html(l_html);
+}
+
+function changeLectureTime(p_lectureId,lectureName,start,end,topic,lectureAt,count,size){
+	$('#i_change_lecture_timing').modal('show');
+	$('#i_lecture_timing').trigger("reset");
+	$('.c_lectureChangeTiming').val(p_lectureId);
+	$('.c_lecture_name_timing').text(lectureName);
+	$('.c_lecture_time_timing').text(start+'-'+end);
+	$('.c_lecture_topic_timing').text(topic);
+	$('.c_lecture_at_timing').text(lectureAt);
+	$('.c_countChange').val(count);
+	$('.c_countChangeSize').val(size);
+	for(var i=0;i<g_students.length;i++){
+		var student = g_students[i];
+		var l_html = "";
+		l_html+='<tr>';
+		l_html+='<td class="s-profile-text-gray" width="25%">';
+		l_html+='<label class="checkbox-inline checkbox-styled">';
+		l_html+='<input type="checkbox" class="ck" name="'+student[0]+'">';
+		l_html+='<span></span></label>';
+		l_html+='</td> ';
+		l_html+='<td class="s-profile-text-gray">';
+		l_html+='<span class="s-profile-text-gray s-black s-bold">'+student[1]+'</span>';
+		l_html+='</td> '; 
+		l_html+='</tr>';
+		
+	}
+	$('#i_lectureTimingChange').html(l_html);
+}
+function updateLecture(p_flage){debugger;
+	var l_map = {};
+	if(p_flage=='CANCEL'){
+		
+		 var l_is_studentd_selected = false;
+		 l_map = readForm('i_cancel_lecture_form');
+		 var keys = Object.keys(l_map);
+		 for(var i=0;i<keys.length;i++){
+			 var key = keys[i];
+			 if(key in l_map) { 
+				   if(l_map[key]==true){
+					   if(!(key=='undefined'))
+					       l_is_studentd_selected = true;
+				   }   
+				}
+		 }
+		 if(!l_is_studentd_selected){
+			 $('.c_error_cancel_lecture').text("Please select students to notify cancel lecture.");
+				setTimeout(function(){ $('.c_error_cancel_lecture').text(""); }, 3000);
+			 
+			 return;
+		 }
+		
+		
+		var isNotify = false;
+		var email = false;
+		var sms = false;
+			
+			if($('#i_cancel_lecture_email').prop('checked')){
+				isNotify = true;
+				email = true;
+			}
+			if($('#i_cancel_lecture_sms').prop('checked')){
+				isNotify = true;
+				sms = true;
+			}
+			if(!isNotify){
+			$('.c_error_cancel_lecture').text("Please select Email or SMS to notify students.");
+			setTimeout(function(){ $('.c_error_cancel_lecture').text(""); }, 3000);
+			return;
+		   }
+			l_map.email = email;
+			l_map.sms = sms;
+			l_map.action = 'CANCEL';
+			
+	}
+	if(p_flage=='CHANGE_TIMING'){
+		
+		
+		if($('.c_lectureAt_change').val()==''){
+			$('.c_error_change_timing').text("Please enter lecture date.");
+			setTimeout(function(){ $('.c_error_change_timing').text(""); }, 3000);
+			return;
+		}
+		if($('.c_startTime_change').val()==''){
+			$('.c_error_change_timing').text("Please enter lecture start time.");
+			setTimeout(function(){ $('.c_error_change_timing').text(""); }, 3000);
+			return;
+		}
+		if($('.c_endTime_change').val()==''){
+			$('.c_error_change_timing').text("Please enter lecture end time.");
+			setTimeout(function(){ $('.c_error_change_timing').text(""); }, 3000);
+			return;
+		}
+		
+		 var l_is_studentd_selected = false;
+		 l_map = readForm('i_lecture_timing');
+		 var keys = Object.keys(l_map);
+		 for(var i=0;i<keys.length;i++){
+			 var key = keys[i];
+			 if(key in l_map) { 
+				   if(l_map[key]==true){
+					   if(!(key=='undefined'))
+					       l_is_studentd_selected = true;
+				   }   
+				}
+		 }
+		 if(!l_is_studentd_selected){
+			 $('.c_error_change_timing').text('Please select students to notify change lecture timing.');
+			 setTimeout(function(){ $('.c_error_change_timing').text(""); }, 3000);
+			 return;
+		 }
+		
+		
+		var isNotify = false;
+		var email = false;
+		var sms = false;
+			
+			if($('#i_timing_lecture_email').prop('checked')){
+				isNotify = true;
+				email = true;
+			}
+			if($('#i_timing_lecture_sms').prop('checked')){
+				isNotify = true;
+				sms = true;
+			}
+			if(!isNotify){
+			$('.c_error_change_timing').text("Please select Email or SMS to notify students.");
+			setTimeout(function(){ $('.c_error_change_timing').text(""); }, 3000);
+			return;
+		   }
+
+			l_map.email = email;
+			l_map.sms = sms;
+			l_map.action = 'CHANGE_TIMING';
+	}
+	
+	 l_map.batchId = lecture_batchId;
+	 
+	 alert(JSON.stringify(l_map));
+	 $(".loading").show();
+	 ajaxWithJSON("/tutor/update-lecture-changes", l_map, 'POST', function(response) {debugger;
+	  $(".loading").hide();
+    
+	  if (response.status == 'SUCCESS') {
+		toastr.success(response.message);		 
+		 location.reload();
+	  }
+	  if (response.status == 'ERROR') {
+		  if(p_flage=='CANCEL'){
+			  $('.c_error_cancel_lecture').text(response.message);
+				setTimeout(function(){ $('.c_error_cancel_lecture').text(""); }, 3000);
+		  }
+         if(p_flage=='CHANGE_TIMING'){
+        	 $('.c_error_change_timing').text(response.message);
+     		setTimeout(function(){ $('.c_error_change_timing').text(""); }, 3000);
+		  }
+	    
+
+	  }
+
+	 });
+	
+}
+
+function selectAllStudents(p_flage,p_is_checked){
+	var l_html = "";
+	if($(p_is_checked).is(':checked')){
+	    
+		for(var i=0;i<g_students.length;i++){
+			var student = g_students[i];
+			
+			l_html+='<tr>';
+			l_html+='<td class="s-profile-text-gray" width="25%" style="line-height: 1.246154;">';
+			l_html+='<label class="checkbox-inline checkbox-styled">';
+			l_html+='<input type="checkbox" checked class="ck" name="'+student[0]+'">';
+			l_html+='<span></span></label>';
+			l_html+='</td> ';
+			l_html+='<td class="s-profile-text-gray">';
+			l_html+='<span class="s-profile-text-gray s-black s-bold">'+student[1]+'</span>';
+			l_html+='</td> '; 
+			l_html+='</tr>';
+			
+		}
+		
+	    }else{
+	    
+			for(var i=0;i<g_students.length;i++){
+				var student = g_students[i];
+				
+				l_html+='<tr>';
+				l_html+='<td class="s-profile-text-gray" width="25%" style="line-height: 1.246154;">';
+				l_html+='<label class="checkbox-inline checkbox-styled">';
+				l_html+='<input type="checkbox" class="ck" name="'+student[0]+'">';
+				l_html+='<span></span></label>';
+				l_html+='</td> ';
+				l_html+='<td class="s-profile-text-gray">';
+				l_html+='<span class="s-profile-text-gray s-black s-bold">'+student[1]+'</span>';
+				l_html+='</td> '; 
+				l_html+='</tr>';
+				
+			}
+	    	
+	    }
+	
+	$(p_flage).html(l_html);
+}

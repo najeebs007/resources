@@ -1330,13 +1330,13 @@ margin-left:10px;
 .myrequest-table-width{width: 155% !important;
     max-width: 155% !important;}
 .tutor-payment-request-section{height:190px;}
-.t-d-p-r-cardheight{height: 222px;}
+.t-d-p-r-cardheight{height: 240px;}
 .myreq-height
 {
-	height: 142px; 
+	height: 160px; 
     padding: 10px 5px !important;
 }
-.myreq-body-padding-pro{padding:5px 10px 10px 5px !important;}
+.myreq-body-padding-pro{padding:5px 10px 5px 5px !important;}
 .ellipsis-v
 {
 	color: #ffffff;
@@ -1358,7 +1358,7 @@ margin-left:10px;
 {
 	white-space: nowrap;
     overflow: hidden;
-    width: 110px;
+    width: 100px;
     text-overflow: ellipsis;
 }
 .control-section-card
