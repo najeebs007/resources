@@ -415,3 +415,6 @@ function readFormWithId(p_formId) {debugger;
 	return l_data;
 }
 
+function isEmptyB(obj) {
+	  return Object.keys(obj).length === 0;
+}

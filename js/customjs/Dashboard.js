@@ -578,28 +578,31 @@ ajaxWithJSON(
 												 
 										}
 										 if(l_map.requestStatus=='COMPLETED'){
-											 l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'BOOKING\',\'TUTOR\')">View Booking Detail</button>';
+											 if(l_map.batchType='EXIST')
+												 l_html+='<button type="button" class="btn btn-primary" style="float: right;"><a href="../../manage-lectures?tuitionRequest='+l_map.tuitionRequestId+'&batchId='+l_map.batchId+'">View Booking Detail</a></button>';
+											 else
+												 l_html+='<button type="button" class="btn btn-primary" style="float: right;"><a href="../../manage-lectures?tuitionRequest='+l_map.tuitionRequestId+'&batchId='+l_map.suggestBatchId+'">View Booking Detail</a></button>';
 						                   }
 										
 										l_html+='</div></div>';		 
-										l_html+='</div><div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-minus-10">'; 
+										l_html+='</div><div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-minus-10  ">'; 
 										l_html+='<div class="row"> <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
 										l_html+='<span class="s-profile-text-gray font-12">Requests ID</span> <strong style="float:right;">:</strong> </div>';
 										l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-l-0">'; 
 										l_html+='<span class="s-profile-text-gray s-black s-bold font-12">'+l_map.requestId+'</span>'; 
 										l_html+='</div></div></div>';
-										l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">'; 
+										l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12  ">'; 
 										l_html+='<div class="row"> <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
 										l_html+='<span class="s-profile-text-gray font-12">Requested At </span> <strong style="float:right;">:</strong></div>';
 										l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-l-0">'; 
 										l_html+='<span class="s-profile-text-gray s-black s-bold font-12">'+l_map.containAll+'</span>'; 
 										l_html+='</div></div></div>';
-										l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"> <div class="row">'; 
+										l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12  "> <div class="row">'; 
 										l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
 										l_html+='<span class="s-profile-text-gray font-12">Subject </span> <strong style="float:right;">:</strong></div>';
 										l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-l-0"> <span class="s-profile-text-gray s-black s-bold font-12">'+l_map.subjectId+'</span>'; 
 										l_html+='</div></div></div>';
-										l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">'; 
+										l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12  ">'; 
 										l_html+='<div class="row"> <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
 										l_html+='<span class="s-profile-text-gray font-12">Location </span> <strong style="float:right;">:</strong></div>';
 										l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-l-0 t-ellipsis" data-toggle="tooltip" data-placement="top" title="'+l_map.location+'">'; 

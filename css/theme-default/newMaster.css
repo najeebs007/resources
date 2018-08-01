@@ -1338,13 +1338,13 @@ margin-left:10px;
 .myrequest-table-width{width: 155% !important;
     max-width: 155% !important;}
 .tutor-payment-request-section{height:190px;}
-.t-d-p-r-cardheight{height: 222px;}
+.t-d-p-r-cardheight{height: 240px;}
 .myreq-height
 {
-	height: 142px; 
+	height: 160px; 
     padding: 10px 5px !important;
 }
-.myreq-body-padding-pro{padding:5px 10px 10px 5px !important;}
+.myreq-body-padding-pro{padding:5px 10px 5px 5px !important;}
 .ellipsis-v
 {
 	color: #ffffff;
@@ -1366,7 +1366,7 @@ margin-left:10px;
 {
 	white-space: nowrap;
     overflow: hidden;
-    width: 110px;
+    width: 100px;
     text-overflow: ellipsis;
 }
 .control-section-card
@@ -1705,20 +1705,28 @@ margin-left:10px;
     width: 15%;
     margin-top:2px;
 	font-weight: 600;
-	margin-bottom:2px;
+	margin-bottom:0px;
 }
 
 .middle {
     margin-top:5px;
     float: left;
+<<<<<<< HEAD
     width: 50%;
+=======
+    width: 49%;
+>>>>>>> 32e45bc3f5419e6f8f6ee1e390b5d2433f695fcf
 	margin-bottom:0px;
 }
 
 /* Place text to the right */
 .right {
     text-align: right;
+<<<<<<< HEAD
     width:35%;
+=======
+    width: 36% !important;
+>>>>>>> 32e45bc3f5419e6f8f6ee1e390b5d2433f695fcf
 }
 
 /* Clear floats after the columns */
@@ -1750,3 +1758,13 @@ margin-left:10px;
 .capitalize{
 	text-transform:capitalize;
 }
+.border-attendance-right
+{
+	border-top: 1px solid #80808063;
+    border-right: 1px solid #80808063;
+}
+.border-attendance-left
+{
+	border-top: 1px solid #80808063;
+    border-left: 1px solid #80808063;
+} 
