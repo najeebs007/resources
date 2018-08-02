@@ -1040,7 +1040,7 @@ function listViewTab(tutorList){
 	 
 	  function addTutorLectures(){debugger;
 		 var l_map = {};
-		 
+		
 		 if($('.c_lectureName').val()==''){
 			 $('.c_lecture_add_error').text("Enter Lecture Name.");
 			  setTimeout(function(){ $('.c_lecture_add_error').text(""); }, 3000);
@@ -1069,7 +1069,8 @@ function listViewTab(tutorList){
 		 
         
 		 l_map = readForm('i_lecture_data');
-		 l_map.batchId = lecture_batchId;
+		 l_map.batchId = params.batchId;
+		// l_map.batchId = lecture_batchId;
 		 //alert(JSON.stringify(l_map));
 		 $(".loading").show();
 		 ajaxWithJSON("/tutor/add-lecture", l_map, 'POST', function(response) {debugger;
