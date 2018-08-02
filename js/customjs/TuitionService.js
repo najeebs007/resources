@@ -979,10 +979,10 @@ function listViewTab(tutorList){
 	  var lecture_batchId = '';
 	  var lecture_size = 0;
 	  function loadTutorLectures(){debugger;
-		 var l_map = {};
-		 l_map = params;
+		 var l_local_map = {};
+		 l_local_map = params;
 		 $(".loading").show();
-		 ajaxWithJSON("/tutor/load-lectures", l_map, 'POST', function(response) {debugger;
+		 ajaxWithJSON("/tutor/load-lectures", l_local_map, 'POST', function(response) {debugger;
 		  $(".loading").hide();
           //alert(JSON.stringify(response));
 		  if (response.status == 'SUCCESS') {
