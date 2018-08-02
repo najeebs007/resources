@@ -169,7 +169,7 @@ function loadEditIntro(p_flage) {
 			$('.c_intro_experience').val(l_intro_data.totalExperience + " Years");
 		if (l_intro_data.haveDigitalPen == true)
 			$('.c_intro_digital_pen').prop('checked', true);
-		if (l_intro_data.haveDigitalPen == true)
+		if (l_intro_data.haveHeadPhone == true)
 			$('.c_intro_have_head_phone').prop('checked', true);
 		$('select').val('the_value');
 		var html = '';
