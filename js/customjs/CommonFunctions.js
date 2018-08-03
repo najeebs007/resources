@@ -159,7 +159,7 @@ function selectUniversityBoard(p_educationLevel){
 } 
  var g_subjects = [];
 
-function loadTutorSubjects() {
+function loadTutorSubjects() {debugger;
 	
 	if(g_subjects.length==0){
 	ajaxWithJSON("/load-subjects", null, 'GET',function(response) {
