@@ -364,7 +364,7 @@ function listViewTab(tutorList){
 			        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
 						// start header detail
 			        	pre_html+='<div class="row row-width">';
-			        	pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+			        	pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">';
 			        	pre_html+='<div class="row">';
 			        	pre_html+='<div class="col-md-12">';
 			        	if(b_data_map.requestId==null || b_data_map.requestId==undefined)
@@ -375,9 +375,9 @@ function listViewTab(tutorList){
 			        	pre_html+='</div>'; 
 						pre_html+='</div>';
 						pre_html+='</div>';
-						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">';
 						pre_html+='<div class="row">';
-						pre_html+='<div class="col-md-12">';
+						pre_html+='<div class="col-md-12 m-o-m-t-10">';
 						if(b_data_map.subject==null || b_data_map.subject==undefined)
 						pre_html+='<span class="s-profile-text-gray s-bold">Subject : <span class="s-black"></span></span>';
 						else
@@ -386,9 +386,9 @@ function listViewTab(tutorList){
 						pre_html+='</div>';
 						pre_html+='</div>';
 			           
-						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 p-r-0">';
+						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 p-r-0">';
 						pre_html+='<div class="row">';
-						pre_html+='<div class="col-md-12 p-r-0">';
+						pre_html+='<div class="col-md-12 p-r-0 m-o-m-t-10">';
 						if(b_data_map.location==null || b_data_map.location==undefined)
 						pre_html+='<span class="s-profile-text-gray s-bold">Location : <span class="s-black"></span></span>';
 						else
@@ -399,9 +399,9 @@ function listViewTab(tutorList){
 						pre_html+='</div>'; 
 						pre_html+='</div>'; 
 						pre_html+='</div>'; 
-                        pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+                        pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">';
 			        	pre_html+='<div class="row">'; 
-			        	pre_html+='<div class="col-md-12 m-t-minus-24">';
+			        	pre_html+='<div class="col-md-12 m-t-minus-24 m-o-m-t-24">';
 			        	if(b_data_map.requestedAt == null || b_data_map.requestedAt == undefined)
 			        		pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black"></span></span>';
 			        	else{
@@ -411,9 +411,9 @@ function listViewTab(tutorList){
 						pre_html+='</div>'; 
 						pre_html+='</div>';
 						pre_html+='</div>';
-                        pre_html+='<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">';
+                        pre_html+='<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">';
 			        	pre_html+='<div class="row">'; 
-			        	pre_html+='<div class="col-md-12 m-t-minus-24">';
+			        	pre_html+='<div class="col-md-12 m-t-minus-24 m-o-m-t-10">';
 						
 						pre_html+='<span class="s-profile-text-gray s-bold">Active Tutors :'; 
 						if(b_data_map.activeTutors == null || b_data_map.activeTutors == undefined)
