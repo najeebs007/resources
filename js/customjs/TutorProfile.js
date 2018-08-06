@@ -1168,7 +1168,8 @@ function loadBatchData() {
             }
             l_html+='</div>';
             l_html+='</div>';
-            $('#i_batches').replaceWith(l_html);
+            if(!(l_data.length==0))
+             $('#i_batches').replaceWith(l_html);
 		}
 		if (response.status == 'ERROR') {
 			console.log(response.message);
