@@ -2,7 +2,7 @@
  * 
  */
 
-function loadProfileData() {
+function loadProfileData() {debugger;
 	var l_map = {};
 	l_map.login = true;
 	ajaxWithJSON("/tutor-personal", l_map, 'POST', function(response) {
@@ -13,14 +13,17 @@ function loadProfileData() {
 			if (!(l_data == null || l_data == undefined)) {
 				if ('profile_image' in l_data) {
 					var img = l_data.profile_image;
+					
 					if (!(img == null || img == undefined)) {
 						$('img#profileImg').attr('src', img);
 					}
 				}
 				if ('profile_cover' in l_data) {
 					var img = l_data.profile_cover;
+					alert(img);
 					if (!(img == null || img == undefined)) {
-						$("#coverImg").css("background-image", "img")
+						var path = img.replace(/\\/g, "/");
+						$("#coverImg").css("background-image", 'url(' + path + ')');
 						// $('img#coverImg').attr('src', img);
 					}
 				}

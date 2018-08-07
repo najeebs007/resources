@@ -5,7 +5,7 @@ function batchListing(){debugger;
 	l_map.top = true;
 	ajaxWithJSON("/tutor/batch-listing", l_map, 'POST', function(response) {
 		var l_data = response.object;
-		alert(JSON.stringify(l_data));
+		//alert(JSON.stringify(l_data));
 		var status = response.status;
 		if (response.status == 'SUCCESS') {
 			setBatchData(l_data);
@@ -25,7 +25,7 @@ function  setBatchData(l_data){debugger;
 	$('.c_batches').html("");
 	for (var i = 0; i < l_data.length; i++) {
 		var b_map = l_data[i];
-		alert(JSON.stringify(b_map));
+		//alert(JSON.stringify(b_map));
 		var batchStartTime= b_map.batchStartTime;
 		var batchEndTime = b_map.batchEndTime;
 		var totalNumberOfClasses = b_map.totalNumberOfClasses;

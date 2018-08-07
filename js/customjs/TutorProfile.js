@@ -24,28 +24,29 @@ $(document).ready(function() {
 });
 
 
-function uploadProfileImage() {
-	var l_map = g_data;
-	ajaxWithJSON("/common/upload-profile-image", l_map, 'POST', function(response) {debugger;
-		var l_data = response.object;
-		
-	});
-}
+//function uploadProfileImage() {
+//	var l_map = g_data;
+//	ajaxWithJSON("/common/upload-profile-image", l_map, 'POST', function(response) {debugger;
+//		var l_data = response.object;
+//		
+//	});
+//}
 
 
 
 
 
 function loadProfileData() {
-	var l_map = g_data;
+	var l_profile = g_data;
+	//alert(JSON.stringify(l_profile));
 	//alert("load profile data = " + l_map)
 	
 	
 	//var l_map = {};
-	ajaxWithJSON("/tutor-personal", l_map, 'POST', function(response) {debugger;
+	ajaxWithJSON("/tutor-personal", l_profile, 'POST', function(response) {debugger;
 		var l_data = response.object;
 		$(".c_targetUser").val(l_data.userName);
-		// alert(JSON.stringify(response));
+		// alert(JSON.stringify(l_data));
 		if (response.status == 'SUCCESS') {
 			debugger;
 			if (!(l_data == null || l_data == undefined)) {
@@ -322,10 +323,8 @@ function loadIntroData() {
 						l_html += "</div>";
 						l_html += "</div>";
 						$("#i_intro_data").replaceWith(l_html);
-
-						$("#i_add_intro_click")
-								.replaceWith(
-										"<button id='i_edit_intro_click' type='button'  class='tool-edit-main' data-toggle='modal' data-target='#addIntro' onclick='loadEditIntro(\"EDIT\")'> <i class='fa fa-pencil icon'></i></button>");
+                        if(g_data.login)
+						 $("#i_add_intro_click").replaceWith("<button id='i_edit_intro_click' type='button'  class='tool-edit-main' data-toggle='modal' data-target='#addIntro' onclick='loadEditIntro(\"EDIT\")'> <i class='fa fa-pencil icon'></i></button>");
 					}
 					// alert(JSON.stringify(l_data));
 				}
@@ -467,13 +466,13 @@ var g_contact_data = {};
 function loadContactData() { debugger;
 	// alert("/tutor-contact-data");
 	var l_map = g_data;
-	//var l_login=l_map.login;
+	var l_login=l_map.login;
 	//alert(l_login);
 	
 	//alert(JSON.stringify(l_map))
 	ajaxWithJSON("/tutor-contact-data", l_map, 'POST', function(response) {
 				var l_data = response.object;
-				 //alert(JSON.stringify(response));
+				// alert(JSON.stringify(response));
 				if (response.status == 'SUCCESS') {
 					g_contact_data = l_data;
 					var html = "";
@@ -505,7 +504,7 @@ function loadContactData() { debugger;
 								|| l_map_inner.addressPhoneNumber == '')
 							l_html += "<span class='pro-small-text'></span>";
 						else
-							l_html += "<span class='pro-small-text'>"
+							l_html += "<span class='pro-small-text'> +91"
 									+ l_map_inner.addressPhoneNumber
 									+ "</span>";
 						l_html += "</div>"
@@ -832,7 +831,7 @@ function saveQualification(i_education_form) {debugger;
 var g_qualifications = [];
 function loadQualificationData() {
 	var l_map = g_data;
-	//var l_login=l_map.login;
+	var l_login=l_map.login;
 	//alert(l_login);
 	
 	//var l_map = {};
@@ -905,8 +904,8 @@ function loadEditCertificate(p_flage,p_certificate_id){
 			if(p_certificate_id==b_map.userCertificationsId){
 				$('.c_certification_id').val(p_certificate_id);
 				$('.c_certificationName').val(b_map.certificationName);
-				$('.certificationAuthority').val(b_map.certificationAuthority);
-				$('.c_certificationNumber').val(b_map.certificationNumber );
+				$('.c_certificationAuthority').val(b_map.certificationAuthority);
+				$('.c_certificationNumber').val(b_map.certificationNumber);
 			}
 	}
 		$('#addcertificates').modal('show');
@@ -939,7 +938,7 @@ var g_certificate_data = [];
 function loadCertificationData() {
 	
 	var l_map = g_data;
-	//var l_login=l_map.login;
+	var l_login=l_map.login;
 	//alert(l_login);
 	
 	//var l_map = {};
@@ -1040,7 +1039,7 @@ function saveProfessional(p_form_id) {
 var g_professional_data = [];
 function loadProfessionalData() {
 	var l_map = g_data;
-	//var l_login=l_map.login;
+	var l_login=l_map.login;
 	//alert(l_login);
 	
 	//var l_map = {};
@@ -1798,8 +1797,8 @@ function selectEducation(){
 			
 			ajaxWithJSON("/common/load-star-count", g_data, 'POST', function(response) {debugger;
 						var l_data = response.object;
-					//	alert(l_data);
-						var dataLength =l_data.length;
+						//alert(JSON.stringify(l_data));
+						//var dataLength =l_data.length;
 						var averageRating1=l_data.averageRating;
 						var averageRating = averageRating1.toString();
 						if(averageRating==null){
