@@ -5098,7 +5098,7 @@ body [class*=" md-"], [class^=md-] {
 	-webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
 }
-.dropdown-menu:before{
+.dropi-angle:before{
 	    position: absolute;
     display: inline-block;
     content: '';
