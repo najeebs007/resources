@@ -179,6 +179,9 @@ function listViewTab(tutorList){
 				 counter 	        = l_data.counter;
 				 var l_text=" || <span style='font-weight: 400;'>"+$('#address-map').val()+"</span><span>|| "+$('#subjectId').val()+"</span>";
 		    	 
+				 if(tutorSearchResult.length==0){
+					 toastr.error('No tutor find at this location.');
+				 }
 			    	//if(counter<10)
 			    	$('.i_total_result').html("Total showing "+tutorSearchResult.length+" out of "+counter+l_text);
 			    	//else
@@ -433,10 +436,10 @@ function listViewTab(tutorList){
 							pre_html+='<span class="s-black"></span>';
 						else{
 						var tutors = b_data_map.activeTutors;
-						for(var j=0;j<tutors.length;j++){
-						var tutor = tutors[j];
-						pre_html+='<span class="s-black">'+tutor.displayName+',</span>';
-						}
+						//for(var j=0;j<tutors.length;j++){
+						//var tutor = tutors[j];
+						pre_html+='<span class="s-black">'+tutors.toString()+',</span>';
+						//}
 						}
 						pre_html+='</span>';
 						pre_html+='</div>'; 
@@ -458,8 +461,8 @@ function listViewTab(tutorList){
 			        		var b_history_map = b_history_list[k];
                           pre_html+='<li class="timeline-inverted">';
 			              pre_html+='<div class="timeline-circ"></div>';
-			              var date1 = new Date(Number(b_history_map.createdAt));
-			              pre_html+='<div class="timeline-date">'+date1.getDay()+'/'+date1.getMonth()+'/'+date1.getFullYear()+'</div>';
+			             // var date1 = new Date(Number(b_history_map.createdAt));
+			              pre_html+='<div class="timeline-date">'+b_history_map.requestAt+'</div>';
 			              pre_html+='<div class="timeline-entry">';
 			              pre_html+='<div class="card timeline-card">';
 			              pre_html+='<div class="card-body timeline-padding">';
@@ -491,11 +494,11 @@ function listViewTab(tutorList){
 			               pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
 			               if(b_history_map.requestStatus=='REQUESTED')
 			            	   if(b_history_map.status=='ACTIVE')
-			                     pre_html+='<div class="action-area"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+			                     pre_html+='<div class="action-area"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Cancel Request</button></div>';
 			               if(b_history_map.requestStatus=='ACCEPTED'){
 			            	   if(b_history_map.status=='ACTIVE'){
 			            	   pre_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">Pay Now</button>';
-			            	   pre_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+			            	   pre_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Cancel Request</button></div>';
 			            	   }
 			               }
 			            	   if(b_history_map.requestStatus=='REJECTED'){
@@ -513,7 +516,7 @@ function listViewTab(tutorList){
                         	   if(b_history_map.status=='ACTIVE'){
                         	   pre_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'ACCEPT_SUGGESTION\',\'STUDENT\')">Accept Suggetion</button>';
     				           pre_html+=' <button type="button" class="btn btn-primary" style="float: right;" onclick="loadBatch(\''+b_history_map.suggestBatchId+'\',\''+b_history_map.tutorId+'\')">View Batch Detail</button> ';
-    				           pre_html+=' <button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+    				           pre_html+=' <button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Cancel Request</button></div>';
                         	   }
                         	  }
 			               pre_html+='</div>';
@@ -623,8 +626,8 @@ function listViewTab(tutorList){
 			        		var b_history_map = b_history_list[k];
                           pre_html+='<li class="timeline-inverted">';
 			              pre_html+='<div class="timeline-circ"></div>';
-			              var date1 = new Date(Number(b_history_map.createdAt));
-			              pre_html+='<div class="timeline-date">'+date1.getDay()+'/'+date1.getMonth()+'/'+date1.getFullYear()+'</div>';
+			              //var date1 = new Date(Number(b_history_map.createdAt));
+			              pre_html+='<div class="timeline-date">'+b_history_map.requestAt+'</div>';
 			              pre_html+='<div class="timeline-entry">';
 			              pre_html+='<div class="card timeline-card">';
 			              pre_html+='<div class="card-body timeline-padding">';

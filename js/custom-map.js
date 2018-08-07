@@ -195,7 +195,7 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 	var iconsLength = icons.length;
 
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom : 8,
+		zoom : 10,
 		center : new google.maps.LatLng(28.609834, 77.362591),
 		mapTypeId : google.maps.MapTypeId.ROADMAP,
 		mapTypeControl : false,
@@ -205,7 +205,8 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 			position : google.maps.ControlPosition.LEFT_BOTTOM
 		}
 	});
-
+	//map.setZoom(17);
+	//map.panTo(curmarker.position);
 	var infowindow = new google.maps.InfoWindow({
 		//content: popupContent
         maxWidth :310
