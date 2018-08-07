@@ -429,17 +429,17 @@ function loadStudentTop3Requests() {debugger;
 				        		l_html+='<div class="card panel manage-request-accordian">';
 					        	l_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
 								// start header detail
-					        	l_html+='<div class="row row-width">';
-					        	l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+					        	l_html+='<div class="row row-width row-width-m-b m-t-minus-10">';
+					        	l_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
 					        	l_html+='<div class="row">';
 					        	l_html+='<div class="col-md-12">';
 					        	l_html+='<span class="s-profile-text-gray ">Requests ID : <span style="color:black !important;">'+l_map.requestId+'</span></span>';
 					        	l_html+='</div>'; 
 					        	l_html+='</div>';
 								l_html+='</div>'; 
-								l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+								l_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
 								l_html+='<div class="row">';
-								l_html+='<div class="col-md-12">';
+								l_html+='<div class="col-md-12 m-o-m-t-20">';
 								if(l_map.subjectId==null || l_map.subjectId==undefined)
 									l_html+='<span class="s-profile-text-gray">Subject : <span style="color:black !important;"></span></span>';	 
 									else
@@ -448,18 +448,18 @@ function loadStudentTop3Requests() {debugger;
 								l_html+='</div>';
 								l_html+='</div>';
 								
-								l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+								l_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-10">';
 								l_html+='<div class="row">'; 
-					        	l_html+='<div class="col-md-12 m-t-minus-10">';
+					        	l_html+='<div class="col-md-12 line-height-for-all ">';
 								//var date2 = new Date(Number(l_map.createdAt));
 								l_html+='<span class="s-profile-text-gray">Requested At : <span style="color:black !important;">'+l_map.containAll+'</span></span>';
 								l_html+='</div>'; 
 								l_html+='</div>';
 								l_html+='</div>';
 					           
-								l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+								l_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
 								l_html+='<div class="row">';
-								l_html+='<div class="col-md-12 m-t-minus-10 line-height-for-all">';
+								l_html+='<div class="col-md-12   line-height-for-all">';
 								if(l_map.location==null || l_map.location==undefined)
 									l_html+='<span class="s-profile-text-gray">Location : <span style="color:black !important;"></span></span>';
 								else
