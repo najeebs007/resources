@@ -117,7 +117,10 @@ function listViewTab(tutorList){
 	
 	var l_search_array = [ "address-map", "subjectId"];
 	function searchTutors() {
-		
+		if (!(navigator.onLine)) {
+			toastr.error('You are offline. please check internet connection.');
+			return;
+		}
 		var address = $("#address-map").val();
 
 		if (address.length == 0) {
@@ -146,14 +149,13 @@ function listViewTab(tutorList){
 	}
 
 	function formSubmitFilter(lati,longi) {
+		
 		var l_search_map = {};
-       /* 
-		$(".all-input").find("input[type=text],select").each(
-				function(index, item) {
-					l_search_map[l_search_array[index]] = $(item)
-							.val();
-				});*/
 	
+		if (!(navigator.onLine)) {
+			toastr.error('You are offline. please check internet connection.');
+			return;
+		}
 		l_search_map.latitude = lati;
 		l_search_map.longitude = longi;
 		l_search_map.offset = "0";
@@ -177,10 +179,10 @@ function listViewTab(tutorList){
 				 counter 	        = l_data.counter;
 				 var l_text=" || <span style='font-weight: 400;'>"+$('#address-map').val()+"</span><span>|| "+$('#subjectId').val()+"</span>";
 		    	 
-			    	if(counter<10)
-			    	$('.i_total_result').html("Total showing "+counter+" out of "+counter+l_text);
-			    	else
-			    		$('.i_total_result').html("Total showing 10 out of "+counter+l_text);
+			    	//if(counter<10)
+			    	$('.i_total_result').html("Total showing "+tutorSearchResult.length+" out of "+counter+l_text);
+			    	//else
+			    		//$('.i_total_result').html("Total showing 10 out of "+counter+l_text);
 				 SearchByFilter();
 
 			}
@@ -215,6 +217,12 @@ function listViewTab(tutorList){
 	// end search from filters
 	
 	function initiateRequest(p_tutor_id,p_display_name,p_count){debugger;
+	
+	   if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	    }
+	
 		if($('#i_tutor_grid'+p_count).prop('checked')){
 			//alert("rejecting request:");
 			removeStudentRequest(p_tutor_id,p_count);
@@ -242,6 +250,11 @@ function listViewTab(tutorList){
 		
 	}
 	function removeStudentRequest(p_tutorId,p_count){debugger;
+	
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 		var l_request_map ={};
 		l_request_map.latitude = latitude;
 		l_request_map.longitude =longitude;
@@ -273,7 +286,10 @@ function listViewTab(tutorList){
 		});
 	}
 	function saveStudentRequest(p_flage) {debugger;
-
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 		
 		var l_request_map ={};
 		//l_request_map.requestId = $('.c_requestId').val();
@@ -698,7 +714,10 @@ function listViewTab(tutorList){
 	
 	// this is the action area for student and tutor
 	function actionForTuitionRequests(p_requestId,p_tuitionRequestId,p_tutorId,p_action,p_user_type){debugger;
-		
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 		var l_map = {};
 		l_map.requestId = p_requestId;
 		l_map.tuitionRequestId = p_tuitionRequestId;
@@ -706,8 +725,9 @@ function listViewTab(tutorList){
 		l_map.action = p_action;
 		l_map.userType = p_user_type;
 
-		
+		$('.loading').show();
 		ajaxWithJSON("/common-tuition-request-action", l_map, 'POST', function(response) {
+			$('.loading').hide();
 			var l_data = response.object;
 			//alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
@@ -740,6 +760,10 @@ function listViewTab(tutorList){
 	}
 	function suggestBatch(){debugger;
 		
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 		if($('.c_tutor_batches').val()=='' || $('.c_tutor_batches').val()==undefined || $('.c_tutor_batches').val()==null){
 			$('.c_error_request_suggest').text("Please select Batch for suggestion.");
 			setTimeout(function(){ $('.c_error_request_suggest').text(""); }, 3000);
@@ -768,6 +792,10 @@ function listViewTab(tutorList){
 		});
 	}
 	function loadBatch(p_batchId,p_tutorId){
+		if (!(navigator.onLine)) {
+			toastr.error('You are offline. please check internet connection.');
+			return;
+		}
 		var l_map = {};
 		l_map.batchId = p_batchId;
 		ajaxWithJSON("/common-batch-detail", l_map, 'POST', function(response) {
@@ -793,7 +821,10 @@ function listViewTab(tutorList){
 	}
 	var g_batches = [];
 	function loadTutorBatches(p_user) {debugger;
-
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 		var l_map = {};
 		l_map.login = false;
 		l_map.user = p_user;
@@ -833,6 +864,10 @@ function listViewTab(tutorList){
 
 	var l_lat, l_lng;
 	function codeAddress() {debugger;
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 	    geocoder = new google.maps.Geocoder();
 	    var address = document.getElementById("location").value;
 	    geocoder.geocode( { 'address': address}, function(results, status) {
@@ -852,6 +887,11 @@ function listViewTab(tutorList){
 	google.maps.event.addDomListener(window, 'load', initialize);
 
 	function addTutorBatch(){debugger;
+	
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 		 var l_batch_map = {};
 		    l_batch_map = readForm('i_batch_data');
 		  var c_batches_html=""; 
@@ -1039,6 +1079,11 @@ function listViewTab(tutorList){
 		}
 	 
 	  function addTutorLectures(){debugger;
+	  
+	  if (!(navigator.onLine)) {
+			toastr.error('You are offline. please check internet connection.');
+			return;
+		}
 		 var l_map = {};
 		
 		 if($('.c_lectureName').val()==''){
@@ -1144,6 +1189,10 @@ function listViewTab(tutorList){
 			 });
 	  }
 function markAttendance(p_lectureId,count,size){
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 	$('#i_attendance').modal('show');
 	$('#i_form_attendance').trigger("reset");
 	$('.c_lectureAttendance').val(p_lectureId);
@@ -1167,13 +1216,13 @@ function markAttendance(p_lectureId,count,size){
 	$('#i_attendanceStudents').html(l_html);
 }
 function saveAttendance(){debugger;
+
+if (!(navigator.onLine)) {
+	toastr.error('You are offline. please check internet connection.');
+	return;
+}
 	var l_map = {};
 	var l_is_studentd_selected = false;
-	/*if($('.c_remarksAttendance').val()==''){
-		if(confirm("Would you like to write some remarks ?")){
-			return;
-		}
-	}*/
 	 l_map = readForm('i_form_attendance');
 	 
 	 var keys = Object.keys(l_map);
@@ -1215,6 +1264,11 @@ function saveAttendance(){debugger;
 	 });
 }
 function cancelLecture(p_lectureId,lectureName,start,end,topic,lectureAt,count,size){
+	
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 	$('#i_cancelLecture').modal('show');
 	$('#i_cancel_lecture_form').trigger("reset");
 	$('.c_lectureCancel').val(p_lectureId);
@@ -1244,6 +1298,10 @@ function cancelLecture(p_lectureId,lectureName,start,end,topic,lectureAt,count,s
 }
 
 function changeLectureTime(p_lectureId,lectureName,start,end,topic,lectureAt,count,size){
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 	$('#i_change_lecture_timing').modal('show');
 	$('#i_lecture_timing').trigger("reset");
 	$('.c_lectureChangeTiming').val(p_lectureId);
@@ -1271,6 +1329,11 @@ function changeLectureTime(p_lectureId,lectureName,start,end,topic,lectureAt,cou
 	$('#i_lectureTimingChange').html(l_html);
 }
 function updateLecture(p_flage){debugger;
+
+if (!(navigator.onLine)) {
+	toastr.error('You are offline. please check internet connection.');
+	return;
+}
 	var l_map = {};
 	if(p_flage=='CANCEL'){
 		

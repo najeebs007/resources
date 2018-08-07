@@ -20,7 +20,7 @@ function loadProfileData() {debugger;
 				}
 				if ('profile_cover' in l_data) {
 					var img = l_data.profile_cover;
-					alert(img);
+					
 					if (!(img == null || img == undefined)) {
 						var path = img.replace(/\\/g, "/");
 						$("#coverImg").css("background-image", 'url(' + path + ')');
