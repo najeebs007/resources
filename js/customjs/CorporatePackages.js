@@ -296,7 +296,7 @@ $(".c_searchExams")
 					}
 
 					l_map.offSet = '0';
-					l_map.numberOfRecord = '10';
+					l_map.numberOfRecord = '9';
 					l_map.source = "SM";
 					// alert(JSON.stringify(l_map));
 					$(".loading").show();
@@ -381,9 +381,9 @@ $(".c_searchExams")
 										$('.c_examsListTab').append(exams);
 									}
 
-									var totalPages = counter / 10;
+									var totalPages = counter / 9;
 									var l_extra_pages = 0;
-									l_extra_pages = counter % 10;
+									l_extra_pages = counter % 9;
 									if (l_extra_pages != 0) {
 										totalPages = totalPages + 1;
 									}
@@ -455,14 +455,13 @@ function searchByPagination(selectedPage) {
 	 * $(".c_subjects").val(); }
 	 */
 
-	var resultsPerPage = 10;
+	var resultsPerPage = 9;
 	var start = parseInt((selectedPage - 1)) * resultsPerPage;
 	l_map.offSet = start;
 	l_map.numberOfRecord = resultsPerPage;
 	l_map.source = "SM";
 	$(".loading").show();
-	$
-			.ajax({
+	$.ajax({
 
 				type : 'POST',
 				url : "/corporate/exam-list-by-filter",

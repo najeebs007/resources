@@ -179,7 +179,7 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 			  + '<div class="row"> <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 ">' 
 			  + '<button type="button" class="btn btn-primary"><a href="../../tutor-profile?login=false&user='+l_map.userName+'" >View Profile</a></button></div>'
 			  + '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'
-			  + '<label class="checkbox-inline checkbox-styled"><input id="i_tutor_map'+i+'" type="checkbox" value="option1" onclick="return initiateRequest(\''+l_map.userName+'\',\''+l_map.displayName+'\',\''+i+'\')"><span>Select Tutor</span>'
+			  + '<label class="checkbox-inline checkbox-styled"><input id="i_tutor_map'+i+'" type="checkbox" value="option1" onclick="return initiateRequest(\''+l_map.userName+'\',\''+l_map.displayName+'\',\''+i+'\',\'i_tutor_map\')"><span>Select Tutor</span>'
 			  + '</label>'
 			 /* + '<button type="button" class="btn btn-danger" onclick="'+l_text+'">Request For Tution</button>'*/
 			  + '</div></div></div></div></div></div></div>', l_map.latitude, l_map.longitude];
@@ -195,7 +195,7 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 	var iconsLength = icons.length;
 
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom : 8,
+		zoom : 10,
 		center : new google.maps.LatLng(28.609834, 77.362591),
 		mapTypeId : google.maps.MapTypeId.ROADMAP,
 		mapTypeControl : false,
@@ -205,7 +205,8 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 			position : google.maps.ControlPosition.LEFT_BOTTOM
 		}
 	});
-
+	//map.setZoom(17);
+	//map.panTo(curmarker.position);
 	var infowindow = new google.maps.InfoWindow({
 		//content: popupContent
         maxWidth :310
