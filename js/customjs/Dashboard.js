@@ -236,7 +236,7 @@ function loadGraphData() {
 				tickLength : 3,
 				gridLineColor : '#66666661',
 				min : 0,
-				max : 450,
+				max : 250,
 				tickInterval : 50,
 				title : {
 					text : 'Students',
@@ -416,13 +416,12 @@ function loadStudentTop3Requests() {debugger;
 			function(response) {debugger;
 			var l_data = response.object;
 			var l_data_other = response.other;
-			if(l_data_other == 0 || l_data_other=='0')
-				l_data_other = 1;
+			
 			var l_html = '';
 				//alert(JSON.stringify(response));
 				
 					if (response.status == 'SUCCESS') { 
-						$('.c_total_requests').text('My Tuition Requests ('+(parseInt(l_data_other)-1)+')'); 
+						$('.c_total_requests').text('My Tuition Requests ('+l_data_other+')'); 
 						 
 				        	for(var i=0;i<l_data.length;i++){
 				        		var l_map = l_data[i]; 

@@ -512,6 +512,15 @@ function listViewTab(tutorList){
 			            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'">View Booking Detail</a></button>';
 			            		   }
 			            		 }
+			            	   
+			            	   if(b_history_map.requestStatus=='COMPLETED'){
+			            		   if(b_history_map.status=='ACTIVE'){
+					            	  if(b_history_map.batchType=='NEW'){
+					            		  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'&batchId='+b_history_map.suggestBatchId+'&studentId='+b_history_map.studentId+'&login=true">View Booking Detail</a></button>';
+					            	  }else
+					            	  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'&batchId='+b_history_map.batchId+'&studentId='+b_history_map.studentId+'&login=true">View Booking Detail</a></button>';
+			            		   }
+			            		   }
                            if(b_history_map.requestStatus=='SUGGESTED'){
                         	   if(b_history_map.status=='ACTIVE'){
                         	   pre_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'ACCEPT_SUGGESTION\',\'STUDENT\')">Accept Suggetion</button>';
