@@ -131,7 +131,27 @@ function saveIntro(p_form_id) {
 	}
 	var l_map = {};
 	l_map = readFormWithId(p_form_id);
-	//alert(JSON.stringify(l_map));
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+	    dd = '0'+dd
+	} 
+
+	if(mm<10) {
+	    mm = '0'+mm
+	} 
+
+	today = dd + '/' + mm + '/' + yyyy;
+	var dateOfBirth = l_map.dateOfBirth;
+	alert(l_map.haveDigitalPen);
+	if(dateOfBirth > today){
+		$(".c_error_intro").html("please select past date from today");
+		return;
+	}
+	alert(JSON.stringify(l_map));
 	//alert(JSON.stringify(l_map));
 	ajaxWithJSON("/tutor-save-general-detail", l_map, 'POST',
 			function(response) {
@@ -156,20 +176,23 @@ function loadEditIntro(p_flage) {
 		return;
 	}
 	if (p_flage == 'EDIT') {
-		//alert(JSON.stringify(l_intro_data));
+		
+		var date = l_intro_data.dateOfBirth;
+		var dateOfBirth = getDateFormat(date);
+		
+		alert(JSON.stringify(l_intro_data));
 		if (!(l_intro_data.tutorId == null || l_intro_data.tutorId == undefined || l_intro_data.tutorId == ''))
 			$('.c_tutorId').val(l_intro_data.tutorId);
-		if (!(l_intro_data.dateOfBirth == null
-				|| l_intro_data.dateOfBirth == undefined || l_intro_data.dateOfBirth == ''))
-			$('.c_intro_dob').val(l_intro_data.dateOfBirth);
-		if (!(l_intro_data.motherTongue == null
-				|| l_intro_data.motherTongue == undefined || l_intro_data.motherTongue == ''))
+		if (!(dateOfBirth == null || dateOfBirth == undefined || dateOfBirth == ''))
+			$('.c_intro_dob').val(dateOfBirth);
+		if (!(l_intro_data.motherTongue == null || l_intro_data.motherTongue == undefined || l_intro_data.motherTongue == ''))
 			$('.c_intro_mtongue').val(l_intro_data.motherTongue);
-		if (!(l_intro_data.totalExperience == null
-				|| l_intro_data.totalExperience == undefined || l_intro_data.totalExperience == ''))
-			$('.c_intro_experience').val(l_intro_data.totalExperience + " Years");
+		if (!(l_intro_data.totalExperience == null || l_intro_data.totalExperience == undefined || l_intro_data.totalExperience == ''))
+			$('.c_intro_experience').val(l_intro_data.totalExperience);
+		
 		if (l_intro_data.haveDigitalPen == true)
 			$('.c_intro_digital_pen').prop('checked', true);
+		
 		if (l_intro_data.haveHeadPhone == true)
 			$('.c_intro_have_head_phone').prop('checked', true);
 		$('select').val('the_value');
@@ -222,6 +245,7 @@ function loadIntroData() {
 						//alert(JSON.stringify(l_map));
 						
 						l_intro_data = l_map;
+				
 
 						var l_html = "";
 						l_html += "<div class='card-body card-body-padding-pro pro-height' id='style-8' style='overflow-y:auto;margin-bottom:10px;' id='i_intro_data'>";
@@ -231,6 +255,7 @@ function loadIntroData() {
 						l_html += "<div class='row'>";
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12'> <span class='pro-heading'> Date of Birth <span style='color:black;float:right;font-weight: bold;'>:</span> </span></div>";
 						l_html += "<div class='col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-t-2'>";
+						
 						if (l_map.dateOfBirth == null || l_map.dateOfBirth == undefined	|| l_map.dateOfBirth == '') {
 							l_html += "<span class='pro-text'></span>";
 						} else {
@@ -449,7 +474,7 @@ function saveContact(p_form_id) {debugger;
 					toastr.success(response.message);
 					$('#addcontact').modal('hide');
 					loadContactData();
-					location.reload();
+					//location.reload();
 				}
 				if(response.status == 'ERROR'){
 					$('.c_error_contact').text(response.message);
