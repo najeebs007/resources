@@ -1,4 +1,4 @@
-function batchListing(){debugger;
+/*function batchListing(){debugger;
 	
 	var l_map = {};
 	l_map.login = true;
@@ -16,137 +16,9 @@ function batchListing(){debugger;
 		}
 
 	});
-}
+}*/
 
-function  setBatchData(l_data){debugger;
-	
-	
-	var b_html = "";
-	$('.c_batches').html("");
-	for (var i = 0; i < l_data.length; i++) {
-		var b_map = l_data[i];
-		//alert(JSON.stringify(b_map));
-		var batchStartTime= b_map.batchStartTime;
-		var batchEndTime = b_map.batchEndTime;
-		var totalNumberOfClasses = b_map.totalNumberOfClasses;
-		var feeAmount = b_map.feeAmount;
-		var batchMode = b_map.batchMode;
-		var location = b_map.location;
-		var enrollments= b_map.enrollment;
-		var className= b_map.batchName;
-		var subjectName= b_map.subjectName;
-		var active= b_map.totalSeats;
-		var sunday = b_map.sunday;
-		var monday = b_map.monday;
-		var tuesday = b_map.tuesday;
-		var wednesday = b_map.wednesday;
-		var thursday = b_map.thursday;
-		var friday = b_map.friday;
-		var saturday = b_map.saturday;
-		var classDays = [];
-		if(sunday){
-			classDays.push('Sunday');
-		}
-		if(monday){
-			classDays.push('Monday');
-		}
-		if(tuesday){
-			classDays.push('Tuesday');
-		}
-		if(wednesday){
-			classDays.push('Wednesday');
-		}
-		if(thursday){
-			classDays.push('Thursday');
-		}
-		if(friday){
-			classDays.push('Friday');
-		}
-		if(saturday){
-			classDays.push('Saturday');
-		}
-		                               
-		
-	
-		
-	   	b_html += ' <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6 parent"><div class="card border-img-top card-shadow">';
-		   b_html += '   <div class="card-body batch-img-padding">';
-	       b_html += '   <img src="resources/img/batch-img.png" class="b-img">';
-		   b_html += ' </div>';
-		   b_html += '	 <div class="card-body card-body-padding-batch">';
-		   b_html += '  <span class="list-icon i-l" style="float: right; margin-top: -24px;"><i class="fa fa-check" aria-hidden="true"style="font-size:16px;color:white;"></i></span>';
-		   b_html += '  <div class="row">';
-		   b_html += '  <div class="col-lg-12">'; 
-		   b_html += '	  <img src="resources/img/batch-list/users.png"> <span class="list-heading">' + batchStartTime+' </span>';
-	   	   b_html += '    </div>';
-		   b_html += '<div class="col-lg-12 m-t-10">';
-		   b_html += '	  <img src="resources/img/batch-list/classes.png"> <span class="list-text">Batch | Subject :  <strong class="bold">'+ className +'  / '+ subjectName +'</strong></span>';
-		   b_html += '   </div>';
-		    b_html += '	<div class="col-lg-12 m-t-10">';
-			b_html += '	  <img src="resources/img/batch-list/list.png"> <span class="list-text">Enrollment :  <strong class="bold">'+ enrollments +'</strong></span>';
-			  b_html += '   </div>';
-		    b_html += '<div class="col-lg-12 m-t-10">';
-			b_html += '	  <span class="list-icon"><i class="fa fa-check" aria-hidden="true"style="font-size:10px;color:white;"></i></span> <span class="list-text" style="color:#3cb878;">Max Registration : '+ active +'</span>';
-			  b_html += '   </div>';
-			  
-		    b_html += '	<div class="col-lg-12 m-t-10">';
-			b_html += '	  <span   ><i class="fas fa-clock" aria-hidden="true"style="font-size:15px;color:#928484;"></i></span> <span class="list-text">' + batchStartTime+' To '+ batchEndTime+'</span>';
-			  b_html += '    </div>';
-		    b_html += '  </div>';
-		  b_html += '	 </div>  ';
-		 b_html += '   </div> ';
-		
-		
-		b_html += ' <div class="card card-on-hover">';
-		b_html += ' <div class="card-body batch-img-padding-hover">';
-		b_html += ' <img src="resources/img/batch-img.png" class="b-img">';
-		b_html += '	</div>';
-		b_html += ' <div class="card-body card-body-padding-batch">';
-		b_html += '	<span class="list-icon i-l" style="float: right; margin-top: -34px;"><i class="fa fa-check" aria-hidden="true"style="font-size:16px;color:white;"></i></span>';
-		b_html += '	<div class="row">';
-		b_html += '	<div class="col-lg-12">';
-		b_html += '	<img src="resources/img/batch-list/users.png"> <span class="list-heading">' + batchStartTime+' </span>';
-		b_html += '	</div>';
-		b_html += '	<div class="col-lg-12 m-t-10">';
-		b_html += '	<img src="resources/img/batch-list/classes.png"> <span class="list-text">Batch | Subject :  <strong class="bold">'+ className +'  / '+ subjectName +'</strong></strong></span>';
-	    b_html += '	</div>';
-	    b_html += '	<div class="col-lg-12 m-t-10">';
-		b_html += '	<img src="resources/img/batch-list/list.png"> <span class="list-text">Enrollment :  <strong class="bold">'+ enrollments +'</strong></span>';
-		b_html += ' </div>';
-		b_html += '	<div class="col-lg-12 m-t-10">';
-		b_html += '	<span class="list-icon"><i class="fa fa-check" aria-hidden="true"style="font-size:10px;color:white;"></i></span> <span class="list-text" style="color:#3cb878;">Max Registration : '+ active +'</span>';
-		b_html += '<div class="col-lg-12 m-t-10">';
-		b_html += '	  <span class="list-icon"><i class="fa fa-check" aria-hidden="true"style="font-size:10px;color:white;"></i></span> <span class="list-text" style="color:#3cb878;">Class Days : '+ classDays.toString() +'</span>';
-		  b_html += '   </div>';
-		b_html += ' </div>';
-		b_html += '	<div class="col-lg-12 m-t-10">';
-		b_html += ' <span   ><i class="fas fa-clock" aria-hidden="true" style="font-size:15px;color:#928484;"></i></span> <span class="list-text">' + batchStartTime+' To '+ batchEndTime +'</span>';
-		b_html += '	</div>';
-		b_html += '	<div class="col-lg-12 m-t-10">';
-		b_html += '	<img src="resources/img/batch-list/classes.png"> <span class="list-text"> ' + totalNumberOfClasses + ' out of '+ totalNumberOfClasses + ' class complete'+' </span>';
-		b_html += ' </div>';
-		b_html += '	<div class="col-lg-12 m-t-10">';
-		b_html += ' <img src="resources/img/batch-list/fee.png"> <span class="list-text"> Fee Per Student : &#8377; ' + feeAmount + ' </span>';
-		b_html += ' </div>';
-		b_html += ' <div class="col-lg-12 m-t-10">';
-		b_html += '	<i class="fas fa-dot-circle" style="font-size:15px;color:#928484;"></i><span class="list-text">  Mode : '+ batchMode + '</span>';
-		b_html += ' </div>';
-		b_html += '	<div class="col-lg-12 m-t-10">';
-		b_html += '	<i class="fas fa-map-marker" style="font-size:15px;color:#928484;"></i> <span class="list-text">Location : '+ location +'</span>';
-		b_html += ' </div>';
-		b_html += '	<div class="col-lg-12 m-t-10">';
-		b_html += '	<button type="button" class="btn btn-primary" ><a href="../../manage-lectures?batchId='+b_map.batchId+'">Batch Detail</a></button> <button type="button" class="btn btn-danger" onclick="loadBatchStudents(\''+b_map.batchId+'\')">View Students</button>';
-		b_html += ' </div>';
-		b_html += ' </div>';
-		b_html += ' </div>';
-		b_html += ' </div></div>'; 
-		
-	}
-	$('.c_batches').html(b_html);
-	
-	
-	
-}
+
 
 
 function batchDays(p_flag) {
