@@ -1031,8 +1031,13 @@ function loadEditProfessional(p_flage,p_professional_id){
 				$('.c_jobTitle').val(b_map.jobTitle);
 				$('.c_occupation').val(b_map.occupation);
 				$('.c_organization').val(b_map.organization );
-				$('.c_startDate').val(b_map.startDate);
-				$('.c_endDate').val(b_map.endDate);
+				var l_date=b_map.startDate;
+				var startDate = getDateFormat(l_date);
+				var l_dateE=b_map.endDate;
+				var endDate = getDateFormat(l_dateE);
+				
+				$('.c_startDate').val(startDate);
+				$('.c_endDate').val(endDate);
 				if(b_map.currentWorking)
 				   $('#i_currently').prop('checked', true);
 			}
@@ -1043,6 +1048,14 @@ function loadEditProfessional(p_flage,p_professional_id){
 function saveProfessional(p_form_id) {
 	var l_form_data = {};
 	l_form_data = readFormWithId(p_form_id);
+	var startDate=l_form_data.startDate;
+	var endDate=l_form_data.endDate;
+	
+	if(startDate > endDate){
+		$(".c_error_intro").html("please select start date greater from end date ");
+		return;
+	}
+	
 	// alert(JSON.stringify(l_form_data));
 	ajaxWithJSON("/common/save-professional-detail", l_form_data, 'POST', function(response) {
 		if (response.status == 'SUCCESS') {
@@ -1081,30 +1094,32 @@ function loadProfessionalData() {
             	var b_map = l_data[i];
             	var startDate=b_map.startDate;
             	var endDate=b_map.endDate;
-            	
             	var l_date=b_map.startDate;
-            	var l_dateStart = new Date(Number(l_date));
-            	var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
-            	var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
-            	var l_day = (weekday[l_dateStart.getDay()] + " ")
-                var l_date = (l_dateStart.getDate() + " ")
-                var l_month = (monthname[l_dateStart.getMonth()] + " ")
-                var l_year = (l_dateStart.getFullYear())
-            	var startDate=l_day+l_date+l_month+l_year;
+				var startDate = getDateFormat(l_date);
+            	
+//            	var l_dateStart = new Date(Number(l_date));
+//            	var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+//            	var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
+//            	var l_day = (weekday[l_dateStart.getDay()] + " ")
+//                var l_date = (l_dateStart.getDate() + " ")
+//                var l_month = (monthname[l_dateStart.getMonth()] + " ")
+//                var l_year = (l_dateStart.getFullYear())
+//            	var startDate=l_day+l_date+l_month+l_year;
             	
             	if(startDate==null || startDate=='undefined'){
             		startDate="";
             	}
             	
             	var l_dateE=b_map.endDate;
-            	var l_dateEnd = new Date(Number(l_dateE));
-            	var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
-            	var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
-            	var l_day = (weekday[l_dateEnd.getDay()] + " ")
-                var l_date = (l_dateEnd.getDate() + " ")
-                var l_month = (monthname[l_dateEnd.getMonth()] + " ")
-                var l_year = (l_dateEnd.getFullYear())
-            	var endDate=l_day+l_date+l_month+l_year;
+            	var endDate = getDateFormat(l_dateE);
+//            	var l_dateEnd = new Date(Number(l_dateE));
+//            	var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+//            	var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")       
+//            	var l_day = (weekday[l_dateEnd.getDay()] + " ")
+//                var l_date = (l_dateEnd.getDate() + " ")
+//                var l_month = (monthname[l_dateEnd.getMonth()] + " ")
+//                var l_year = (l_dateEnd.getFullYear())
+//            	var endDate=l_day+l_date+l_month+l_year;
             	
             	if(endDate==null || endDate=='undefined'){
             		endDate="";
