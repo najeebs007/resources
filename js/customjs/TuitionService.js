@@ -507,18 +507,13 @@ function listViewTab(tutorList){
 			            	   if(b_history_map.requestStatus=='CANCELLED'){
 				            	   
 				               }
-			            	   if(b_history_map.requestStatus=='COMPLETED'){
-			            		   if(b_history_map.status=='ACTIVE'){
-			            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'">View Booking Detail</a></button>';
-			            		   }
-			            		 }
 			            	   
 			            	   if(b_history_map.requestStatus=='COMPLETED'){
 			            		   if(b_history_map.status=='ACTIVE'){
-					            	  if(b_history_map.batchType=='NEW'){
-					            		  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'&batchId='+b_history_map.suggestBatchId+'&studentId='+b_history_map.studentId+'&login=true">View Booking Detail</a></button>';
+					            	  if(b_history_map.batchId=='' || b_history_map.batchId==null || b_history_map.batchId==undefined){
+					            		  pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'&batchId='+b_history_map.suggestBatchId+'&studentId='+b_history_map.studentId+'&login=true">View Booking Detail</a></button>';
 					            	  }else
-					            	  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'&batchId='+b_history_map.batchId+'&studentId='+b_history_map.studentId+'&login=true">View Booking Detail</a></button>';
+					            		  pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'&batchId='+b_history_map.batchId+'&studentId='+b_history_map.studentId+'&login=true">View Booking Detail</a></button>';
 			            		   }
 			            		   }
                            if(b_history_map.requestStatus=='SUGGESTED'){
@@ -1534,7 +1529,7 @@ if (!(navigator.onLine)) {
 	
 	 l_map.batchId = lecture_batchId;
 	 
-	 alert(JSON.stringify(l_map));
+	// alert(JSON.stringify(l_map));
 	 $(".loading").show();
 	 ajaxWithJSON("/tutor/update-lecture-changes", l_map, 'POST', function(response) {debugger;
 	  $(".loading").hide();
