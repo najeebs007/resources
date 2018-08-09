@@ -46,7 +46,7 @@ function gridViewTab(tutorList){debugger;
 				html += "<a href='../../tutor-profile?login=false&user="+tutorMap.userName+"' class=\"btn btn-primary\">View Profile</a>";
     			html += "</div>";
     				html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 c_add1"+i+"\" style='text-align:center;'>";
-					 html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_grid"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\"><span>Select Tutor</span>";
+					 html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_grid"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"',\'i_tutor_grid\')\"><span>Select Tutor</span>";
 				     html += "</label></div></div></div></div></div>";
     			    // html += "<a href=\"#\" onclick=\"return addTutorToRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\" class=\"btn btn-danger\">Select Tutor</a></div></div></div></div></div>";
     			    
@@ -103,7 +103,7 @@ function listViewTab(tutorList){
  				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\" style='text-align:center;'><span class=\"profileSpan\"> <span class=\"rating-text tutor-val-text rviewText\" style='color:black;'>"+tutorMap.starCount+" reviews</span></span></div>";
  				html += "<div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-6 m-t-30\" style='text-align:center;'><a href='../../tutor-profile?login=false&user="+tutorMap.userName+"'class=\"btn btn-primary\">View Profile</a></div>";
      			html += "<div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-6 m-t-30\ c_add2"+i+"\" style='text-align:center;'>";
-			    html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_list"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\"><span>Select Tutor</span>";
+			    html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_list"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"',\'i_tutor_list\')\"><span>Select Tutor</span>";
 				html += "</label></div>";
 				html += " </div></div></div>";
  			}
@@ -219,14 +219,14 @@ function listViewTab(tutorList){
 	}
 	// end search from filters
 	
-	function initiateRequest(p_tutor_id,p_display_name,p_count){debugger;
+	function initiateRequest(p_tutor_id,p_display_name,p_count,requestFrom){debugger;
 	
 	   if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
 		return;
 	    }
 	
-		if($('#i_tutor_grid'+p_count).prop('checked')){
+		if(!($('#'+requestFrom+p_count).prop('checked'))){
 			//alert("rejecting request:");
 			removeStudentRequest(p_tutor_id,p_count);
 		}
@@ -538,7 +538,7 @@ function listViewTab(tutorList){
 						$(".request_list_div").append(pre_html);
 						pre_html='';
 					}
-					}
+					
 					if(l_map.TUTOR){
 						
 						pre_html+='<div class="panel-group m-r-c-p-group">';
@@ -640,7 +640,7 @@ function listViewTab(tutorList){
 			              
 			              pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">';
 						  pre_html+=' <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-			              pre_html+='<span class="s-profile-text-gray">Tutor Name: <span class="s-black">'+b_history_map.displayName+'</span></span>';
+			              pre_html+='<span class="s-profile-text-gray">Student Name: <span class="s-black">'+b_history_map.displayName+'</span></span>';
 						  pre_html+=' </div>';
 						  pre_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 			              pre_html+='<span class="s-profile-text-gray">Comment: <span class="s-black">'+b_history_map.comment+'</span></span>';
@@ -705,6 +705,7 @@ function listViewTab(tutorList){
 						pre_html+='</div>';
 						$(".request_list_div").append(pre_html);
 						pre_html='';
+					}
 					}
 			     
 			    }
@@ -865,7 +866,8 @@ function listViewTab(tutorList){
 	
 
 
-	var l_lat, l_lng;
+
+/*	var l_lat, l_lng;
 	function codeAddress() {debugger;
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
@@ -886,7 +888,22 @@ function listViewTab(tutorList){
 	        alert("Geocode was not successful for the following reason: " + status);
 	      }
 	    }); 
-	  }
+	  }*/
+	function subjectData() {
+	//var l_map = {};
+	//l_map.all = true;
+
+		ajaxWithJSON("/load-subjects",null, 'GET', function(response) {debugger;
+			var l_data = response.object;
+			for (var i = 0; i < l_data.length; i++) {debugger;
+				var r_map = l_data[i];
+				/*$('#subjects').append("<option value='"+r_map.subjectName+"'>");*/
+				$('#subjectList').append("<option value='"+r_map.subjectName+"'>");
+			}
+		});
+	}
+	 var input2 = document.getElementById('location');
+	  new google.maps.places.Autocomplete(input2);
 	google.maps.event.addDomListener(window, 'load', initialize);
 
 	function addTutorBatch(){debugger;
@@ -895,6 +912,69 @@ function listViewTab(tutorList){
 		toastr.error('You are offline. please check internet connection.');
 		return;
 	}
+	
+	if($('.c_batchName').val()==''){
+		$('.c_error_create_batch').text("Please enter batch name.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_subjectId').val()==''){
+		$('.c_error_create_batch').text("Please select subject name.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_totalNumberOfClasses').val()==''){
+		$('.c_error_create_batch').text("Please enter total classes.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_totalHours').val()==''){
+		$('.c_error_create_batch').text("Please enter total hours.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_totalSeats').val()==''){
+		$('.c_error_create_batch').text("Please enter max registrations.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_minRegistration').val()==''){
+		$('.c_error_create_batch').text("Please enter min registrations.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_batchStartDate').val()==''){
+		$('.c_error_create_batch').text("Please enter batch start date.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	
+	if($('.c_registrationEndDate').val()==''){
+		$('.c_error_create_batch').text("Please enter registration end date.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_batchStartTime').val()==''){
+		$('.c_error_create_batch').text("Please enter batch start time.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_batchEndTime').val()==''){
+		$('.c_error_create_batch').text("Please enter batch end time.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_feeAmount').val()==''){
+		$('.c_error_create_batch').text("Please enter fee for the batch.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_location').val()==''){
+		$('.c_error_create_batch').text("Please select location.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	
 		 var l_batch_map = {};
 		    l_batch_map = readForm('i_batch_data');
 		  var c_batches_html=""; 

@@ -107,7 +107,7 @@ function loadTutorStatistics() {
 	ajaxWithJSON("/tutor-statistics", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		if (response.status == 'SUCCESS') {
-			$('.c_visitor').text(l_data.visitor + " Visitors Today");
+			$('.c_visitor').text(l_data.visitor + " Visitors");
 			$('.c_batches_count').text(l_data.batches);
 			$('.c_registration').text(l_data.registrations);
 		}
@@ -416,11 +416,13 @@ function loadStudentTop3Requests() {debugger;
 			function(response) {debugger;
 			var l_data = response.object;
 			var l_data_other = response.other;
+			if(l_data_other == 0 || l_data_other=='0')
+				l_data_other = 1;
 			var l_html = '';
 				//alert(JSON.stringify(response));
 				
 					if (response.status == 'SUCCESS') { 
-						$('.c_total_requests').text('My Tuition Requests ('+l_data_other+')'); 
+						$('.c_total_requests').text('My Tuition Requests ('+(parseInt(l_data_other)-1)+')'); 
 						 
 				        	for(var i=0;i<l_data.length;i++){
 				        		var l_map = l_data[i]; 
@@ -482,7 +484,7 @@ function loadStudentTop3Requests() {debugger;
 									  l_html+='</div>';
 						              if(l_map.requestStatus=='REQUESTED'){ 
 										  
-							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject</button></p>';
+							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Cancel</button></p>';
 							              }
 							              
 							              if(l_map.requestStatus=='SUGGESTED'){
@@ -490,7 +492,7 @@ function loadStudentTop3Requests() {debugger;
 											  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:right;">';											  
                                               l_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT_SUGGESTION\',\'STUDENT\')">Accept Suggetion</button>';
 								              l_html+='<button type="button" class="btn btn-default" style="float: right;" onclick="loadBatch(\''+l_map.suggestBatchId+'\',\''+l_map.tutorId+'\')">View Batch Detail</button>';
-								              l_html+=' <button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+								              l_html+=' <button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Cancel Request</button></div>';
 								              l_html+='</div>';	
 							            	 
 							            	  }
@@ -509,7 +511,7 @@ function loadStudentTop3Requests() {debugger;
 							              
 							              if(l_map.requestStatus=='ACCEPTED'){
 							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">Pay Now</button>';
-							            	  l_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+							            	  l_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Cancel Request</button></div>';
 							            	    
 							            	}
 	
