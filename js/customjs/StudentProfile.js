@@ -142,45 +142,51 @@ function editStudentEducation(educationId) {
 		success : function(response) {
 			if (!(response.educationId == 'none')) {
 
-				$(".universityBoard").val(response.universityBoard);
+				$(".universityBoard").val(response.universityName);
+				$("#tags2-value2").val(response.universityBoard);
 				$(".instituteSchoolCollege").val(response.instituteName);
-				$(".studentEdu").val(response.educationTypeId);
+				$("#tags-value").val(response.instituteId);
+				$(".studentEdu").val(response.degreeDiplomaName);
+				$("#tags1-value1").val(response.educationTypeId);
+				
+				
 				$(".c_rollnumberOrEID").val(response.rollNumber);
 				$(".c_yearClass").val(response.year);
 
 				var l_date = response.startDate;
-				var l_dateStart = new Date(Number(l_date));
-				var weekday = new Array("Sunday", "Monday", "Tuesday",
-						"Wednesday", "Thursday", "Friday", "Saturday")
-				var monthname = new Array("Jan", "Feb", "Mar", "Apr", "May",
-						"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-				var l_day = (weekday[l_dateStart.getDay()] + " ")
-				var l_date = (l_dateStart.getDate() + " ")
-				var l_month = (monthname[l_dateStart.getMonth()] + " ")
-				var l_year = (l_dateStart.getFullYear())
-				var startDate = l_day + l_date + l_month + l_year;
+				var startDate = getDateFormat(l_date);
+//				var l_dateStart = new Date(Number(l_date));
+//				var monthname = new Array("01", "02", "03", "04", "05", "06",
+//						"07", "08", "09", "10", "11", "12")
+//				var l_date = (l_dateStart.getDate() + " ")
+//				var l_month = (monthname[l_dateStart.getMonth()] + " ")
+//				var l_year = (l_dateStart.getFullYear())
+//				var startDate = l_date.trim() + "/" + l_month.trim() + "/"
+//						+ l_year;
 				$(".c_studentStartDate").val(startDate);
 
 				var l_dateE = response.endDate;
-				var l_dateEnd = new Date(Number(l_dateE));
-				var weekday = new Array("Sunday", "Monday", "Tuesday",
-						"Wednesday", "Thursday", "Friday", "Saturday")
-				var monthname = new Array("Jan", "Feb", "Mar", "Apr", "May",
-						"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-				var l_day = (weekday[l_dateEnd.getDay()] + " ")
-				var l_date = (l_dateEnd.getDate() + " ")
-				var l_month = (monthname[l_dateEnd.getMonth()] + " ")
-				var l_year = (l_dateEnd.getFullYear())
-				var endDate = l_day + l_date + l_month + l_year;
+				var endDate = getDateFormat(l_dateE);
+//				var l_dateEnd = new Date(Number(l_dateE));
+//				var monthname = new Array("01", "02", "03", "04", "05", "06",
+//						"07", "08", "09", "10", "11", "12")
+//				var l_date = (l_dateEnd.getDate() + " ")
+//				var l_month = (monthname[l_dateEnd.getMonth()] + " ")
+//				var l_year = (l_dateEnd.getFullYear())
+//				var endDate = l_date.trim() + "/" + l_month.trim() + "/"
+//						+ l_year;
+				
 				$(".c_eduEndDate").val(endDate);
 
 				$(".c_desc").val(response.description);
 
-				$(".eduBranch").val(response.branch);
+				$(".eduBranch").val(response.branchName);
+				$("#tags3-value3").val(response.branch);
+				
 				$(".c_section").val(response.section);
 
 				$(".c_grade").val(response.gradePercentage);
-				$(".c_percent").val(response.gradePercentage);
+				$(".c_percent").val(response.percent);
 				$(".c_educationId").val(response.eduId);
 
 				$(".loading").hide();
@@ -474,7 +480,7 @@ function addStudentContactDetail() {
 	l_input_map.city = $(".studentCity").val();
 	l_input_map.zip = $(".c_zip").val();
 	floats();
-	$(".loading").show();
+	//$(".loading").show();
 	$.ajax({
 
 		type : 'POST',
@@ -503,8 +509,9 @@ function addStudentContactDetail() {
 				$('.b_pin').html($(".c_zip").val());
 				$('#myModalcontact').modal('hide');
 			}
-			$(".loading").hide();
 			location.reload();
+			//$(".loading").hide();
+			
 
 		},
 
