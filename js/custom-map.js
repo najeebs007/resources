@@ -224,7 +224,7 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 					position : new google.maps.LatLng(locations[i][1],
 							locations[i][2]),
 					map : map,
-					icon : 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+					icon : '../../resources/img/ico/map-pin.svg',
 					animation : google.maps.Animation.DROP
 				});
 
