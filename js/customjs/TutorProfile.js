@@ -1052,7 +1052,7 @@ function saveProfessional(p_form_id) {
 	var endDate=l_form_data.endDate;
 	
 	if(startDate > endDate){
-		$(".c_error_intro").html("please select start date greater from end date ");
+		$(".c_error_professional").html("please select start date less from end date ");
 		return;
 	}
 	
