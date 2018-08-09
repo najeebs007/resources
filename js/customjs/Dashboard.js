@@ -2,7 +2,7 @@
  * 
  */
 
-function loadProfileData() {
+function loadProfileData() {debugger;
 	var l_map = {};
 	l_map.login = true;
 	ajaxWithJSON("/tutor-personal", l_map, 'POST', function(response) {
@@ -13,14 +13,17 @@ function loadProfileData() {
 			if (!(l_data == null || l_data == undefined)) {
 				if ('profile_image' in l_data) {
 					var img = l_data.profile_image;
+					
 					if (!(img == null || img == undefined)) {
 						$('img#profileImg').attr('src', img);
 					}
 				}
 				if ('profile_cover' in l_data) {
 					var img = l_data.profile_cover;
+					
 					if (!(img == null || img == undefined)) {
-						$("#coverImg").css("background-image", "img")
+						var path = img.replace(/\\/g, "/");
+						$("#coverImg").css("background-image", 'url(' + path + ')');
 						// $('img#coverImg').attr('src', img);
 					}
 				}
@@ -104,7 +107,7 @@ function loadTutorStatistics() {
 	ajaxWithJSON("/tutor-statistics", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		if (response.status == 'SUCCESS') {
-			$('.c_visitor').text(l_data.visitor + " Visitors Today");
+			$('.c_visitor').text(l_data.visitor + " Visitors");
 			$('.c_batches_count').text(l_data.batches);
 			$('.c_registration').text(l_data.registrations);
 		}
@@ -233,7 +236,7 @@ function loadGraphData() {
 				tickLength : 3,
 				gridLineColor : '#66666661',
 				min : 0,
-				max : 450,
+				max : 250,
 				tickInterval : 50,
 				title : {
 					text : 'Students',
@@ -413,6 +416,7 @@ function loadStudentTop3Requests() {debugger;
 			function(response) {debugger;
 			var l_data = response.object;
 			var l_data_other = response.other;
+			
 			var l_html = '';
 				//alert(JSON.stringify(response));
 				
@@ -426,17 +430,17 @@ function loadStudentTop3Requests() {debugger;
 				        		l_html+='<div class="card panel manage-request-accordian">';
 					        	l_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
 								// start header detail
-					        	l_html+='<div class="row row-width">';
-					        	l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+					        	l_html+='<div class="row row-width row-width-m-b m-t-minus-10">';
+					        	l_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
 					        	l_html+='<div class="row">';
 					        	l_html+='<div class="col-md-12">';
 					        	l_html+='<span class="s-profile-text-gray ">Requests ID : <span style="color:black !important;">'+l_map.requestId+'</span></span>';
 					        	l_html+='</div>'; 
 					        	l_html+='</div>';
 								l_html+='</div>'; 
-								l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+								l_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
 								l_html+='<div class="row">';
-								l_html+='<div class="col-md-12">';
+								l_html+='<div class="col-md-12 m-o-m-t-20">';
 								if(l_map.subjectId==null || l_map.subjectId==undefined)
 									l_html+='<span class="s-profile-text-gray">Subject : <span style="color:black !important;"></span></span>';	 
 									else
@@ -445,18 +449,18 @@ function loadStudentTop3Requests() {debugger;
 								l_html+='</div>';
 								l_html+='</div>';
 								
-								l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+								l_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m-o-m-t-10">';
 								l_html+='<div class="row">'; 
-					        	l_html+='<div class="col-md-12 m-t-minus-10">';
+					        	l_html+='<div class="col-md-12 line-height-for-all ">';
 								//var date2 = new Date(Number(l_map.createdAt));
 								l_html+='<span class="s-profile-text-gray">Requested At : <span style="color:black !important;">'+l_map.containAll+'</span></span>';
 								l_html+='</div>'; 
 								l_html+='</div>';
 								l_html+='</div>';
 					           
-								l_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+								l_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
 								l_html+='<div class="row">';
-								l_html+='<div class="col-md-12 m-t-minus-10 line-height-for-all">';
+								l_html+='<div class="col-md-12   line-height-for-all">';
 								if(l_map.location==null || l_map.location==undefined)
 									l_html+='<span class="s-profile-text-gray">Location : <span style="color:black !important;"></span></span>';
 								else
@@ -479,7 +483,7 @@ function loadStudentTop3Requests() {debugger;
 									  l_html+='</div>';
 						              if(l_map.requestStatus=='REQUESTED'){ 
 										  
-							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject</button></p>';
+							              l_html+='<p class="reject"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Cancel</button></p>';
 							              }
 							              
 							              if(l_map.requestStatus=='SUGGESTED'){
@@ -487,7 +491,7 @@ function loadStudentTop3Requests() {debugger;
 											  l_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:right;">';											  
                                               l_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'ACCEPT_SUGGESTION\',\'STUDENT\')">Accept Suggetion</button>';
 								              l_html+='<button type="button" class="btn btn-default" style="float: right;" onclick="loadBatch(\''+l_map.suggestBatchId+'\',\''+l_map.tutorId+'\')">View Batch Detail</button>';
-								              l_html+=' <button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+								              l_html+=' <button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Cancel Request</button></div>';
 								              l_html+='</div>';	
 							            	 
 							            	  }
@@ -506,7 +510,7 @@ function loadStudentTop3Requests() {debugger;
 							              
 							              if(l_map.requestStatus=='ACCEPTED'){
 							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">Pay Now</button>';
-							            	  l_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+							            	  l_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+l_map.requestId+'\',\''+l_map.tuitionRequestId+'\',\''+l_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Cancel Request</button></div>';
 							            	    
 							            	}
 	

@@ -23,15 +23,15 @@ function gridViewTab(tutorList){debugger;
     			html += "<div class=\"img-small\"><img src=\"http://placehold.it/255x200\" class=\"cercular-img\" alt=\"profile pic small\"></div></div>";
     			html += "<div class=\"item-title\">";
     			html += "<h4 class='tutor-value'>"+tutorMap.displayName+"</h4>";
-    			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Experience :</strong><span class=\"tutor-val-text\">"+tutorMap.totalExperience+" Years</span></span><br/>"; 
-    			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Expert In :</strong><span class=\"tutor-val-text\">"+tutorMap.specialities+"</span></span><br/>";
-    			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>No of Active Batches :</strong><span class=\"tutor-val-text\">"+tutorMap.noOfBatches+"</span></span><br/>";
+    			html += "<span class='tutor-value' ><strong>"+tutorMap.totalExperience+" Years of Experience</strong></span><br/>"; 
+    			html += "<span class='tutor-value' ><strong>Expert In "+tutorMap.specialities+"</strong></span></span><br/>";
+    			html += "<span class='tutor-value' ><strong>"+tutorMap.noOfBatches+" Active Batches</strong></span><br/>";
     			if(tutorMap.price==null || tutorMap.price==undefined || isNaN(tutorMap.price)){
-    				html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Average Price :</strong><span class=\"tutor-val-text\">&#8377; 0.0</span></span><br/>";
+    				html += "<span class='tutor-value' ><strong>Average Price is &#8377; 0.0 </strong></span><br/>";
     			}else{
-    			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Average Price :</strong><span class=\"tutor-val-text\">&#8377; "+parseFloat(tutorMap.price).toFixed(2)+"</span></span><br/>";
+    			html += "<span class='tutor-value' ><strong>Average Price is &#8377; "+parseFloat(tutorMap.price).toFixed(2)+"</strong> </span><br/>";
     			}
-    			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Distance :</strong><span class=\"tutor-val-text\">"+Math.round(parseFloat(tutorMap.distance))+" km </span></span><br/>"; 
+    			html += "<span class='tutor-value' ><strong>"+Math.round(parseFloat(tutorMap.distance))+" KM from selected Location</strong></span><br/>"; 
     		    html += "<span class=\"profileSpan\" style=\"font-size: 16px;font-weight:500; font-family:open sans;\">";
     		    for(var j=0;j<5;j++){
  					if(j<=parseInt(tutorMap.averageStar)) 
@@ -46,7 +46,7 @@ function gridViewTab(tutorList){debugger;
 				html += "<a href='../../tutor-profile?login=false&user="+tutorMap.userName+"' class=\"btn btn-primary\">View Profile</a>";
     			html += "</div>";
     				html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 c_add1"+i+"\" style='text-align:center;'>";
-					 html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_grid"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\"><span>Select Tutor</span>";
+					 html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_grid"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"',\'i_tutor_grid\')\"><span>Select Tutor</span>";
 				     html += "</label></div></div></div></div></div>";
     			    // html += "<a href=\"#\" onclick=\"return addTutorToRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\" class=\"btn btn-danger\">Select Tutor</a></div></div></div></div></div>";
     			    
@@ -64,34 +64,34 @@ function listViewTab(tutorList){
     			var tutorMap = tutorList[i];
 			
     			 html += "<div class=\"row white\" >";
-     			html += "<div class=\"col-lg-3 col-md-4 col-sm-4 col-xs-12 prp-img\">";
+     			html += "<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-12 prp-img\">";
      			html += "<div class=\"img-section\"><div class=\"exp-img-2\" style=\"background:url(http://placehold.it/255x200) center;background-size: cover;-webkit-filter: blur(2px);-moz-filter: blur(2px);-o-filter: blur(2px);-ms-filter: blur(2px);filter: blur(2px);\"></div>"; 
      			html += "<div class=\"img-small listview\"><img src=\"http://placehold.it/255x200\" class=\"cercular-img\" alt=\"profile pic small\"></div></div></div>";
-     			html += "<div class=\"item-info-map col-lg-6 col-md-5 col-sm-5 col-xs-6\">";
+     			html += "<div class=\"item-info-map col-lg-6 col-md-6 col-sm-6 col-xs-12\">";
  				html +="<div class=\"row\">";
- 				html +="<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">";
+ 				html +="<div class=\"col-lg-6 col-md-6 col-sm-7 col-xs-12\"><div class=\"row\">";
  				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">";
  				html += "<h4 class='tutor-value'>"+tutorMap.displayName+"</h4></div>";
  				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-10\">";
- 				html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Experience :</strong><span class=\"tutor-val-text\">"+tutorMap.totalExperience+" Years</span></span></div>";
+ 				html += "<span class='tutor-value' ><strong>"+tutorMap.totalExperience+" years of Experience</strong></span></div>";
                 html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">";				
-     			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Expert In :</strong><span class=\"tutor-val-text\">"+tutorMap.specialities+"</span></span></div>";
- 				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">";
-     			html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>No of Active Batches :</strong><span class=\"tutor-val-text\"> "+tutorMap.noOfBatches+"</span></span></div>";
- 				html += "</div>";
- 				html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">";
+     			html += "<span class='tutor-value' ><strong>Expert In "+tutorMap.specialities+"</strong></span></div>"; 
+				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">";
+ 				html += "<span class='tutor-value' ><strong>"+Math.round(parseFloat(tutorMap.distance))+" KM from selected Location</strong></div>";
+ 				html += "</div></div>";
+ 				html += "<div class=\"col-lg-6 col-md-6 col-sm-5 col-xs-12 m-t-40-tdetails\"><div class=\"row\">";
  				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">";
  				if(tutorMap.price == null || tutorMap.price==undefined || isNaN(tutorMap.price)){
- 					html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Average Price :</strong><span class=\"tutor-val-text\">&#8377; 0.0</span></span></div>";
+ 					html += "<span class='tutor-value' ><strong>Average Price is &#8377; 0.0 </strong></span></div>";
  				}else{
- 				html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Average Price :</strong><span class=\"tutor-val-text\">&#8377; "+parseFloat(tutorMap.price).toFixed(2)+"</span></span></div>";
+ 				html += "<span class='tutor-value' ><strong>Average Price is &#8377; "+parseFloat(tutorMap.price).toFixed(2)+" </strong></span> </div>";
  				}
  				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">";
- 				html += "<span class='tutor-value' style=\"font-size:15px;\"><strong>Distance :</strong><span class=\"tutor-val-text\">"+Math.round(parseFloat(tutorMap.distance))+" km </span></span></div>";
+     			html += "<span class='tutor-value' ><strong>"+tutorMap.noOfBatches+" Active Batches</strong></span></div></div>";
  				html += "</div>"; 
  				html += "</div>"; 
      			html += "</div>";
-     			html += "<div class=\"item-price col-lg-3 col-md-3 col-sm-3 col-xs-6\"><div class=\"row\">";
+     			html += "<div class=\"item-price col-lg-3 col-md-3 col-sm-3 col-xs-12\"><div class=\"row\">";
  				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\" style='text-align:center;'><span class=\"profileSpan\" style=\"font-size: 20px;font-weight:500; font-family:open sans;\">";
  				for(var j=0;j<5;j++){
  					if(j<=parseInt(tutorMap.averageStar)) 
@@ -100,10 +100,10 @@ function listViewTab(tutorList){
  				        html += "<span class=\"fa fa-star\"></span>"; 
  				}
  				html += "</span></div>";
- 				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\" style='text-align:center;'><span class=\"profileSpan\" style=\"font-size: 16px;font-weight:500; font-family:open sans;\"> <span class=\"rating-text tutor-val-text\" style='font-size:16px;color:black;'>"+tutorMap.starCount+" reviews</span></span></div>";
- 				html += "<div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12 m-t-30\" style='text-align:center;'><a href='../../tutor-profile?login=false&user="+tutorMap.userName+"'class=\"btn btn-primary\">View Profile</a></div>";
-     			html += "<div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12 m-t-30\ c_add2"+i+"\" style='text-align:center;'>";
-			    html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_list"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\"><span>Select Tutor</span>";
+ 				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\" style='text-align:center;'><span class=\"profileSpan\"> <span class=\"rating-text tutor-val-text rviewText\" style='color:black;'>"+tutorMap.starCount+" reviews</span></span></div>";
+ 				html += "<div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-6 m-t-30\" style='text-align:center;'><a href='../../tutor-profile?login=false&user="+tutorMap.userName+"'class=\"btn btn-primary\">View Profile</a></div>";
+     			html += "<div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-6 m-t-30\ c_add2"+i+"\" style='text-align:center;'>";
+			    html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_list"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"',\'i_tutor_list\')\"><span>Select Tutor</span>";
 				html += "</label></div>";
 				html += " </div></div></div>";
  			}
@@ -117,7 +117,10 @@ function listViewTab(tutorList){
 	
 	var l_search_array = [ "address-map", "subjectId"];
 	function searchTutors() {
-		
+		if (!(navigator.onLine)) {
+			toastr.error('You are offline. please check internet connection.');
+			return;
+		}
 		var address = $("#address-map").val();
 
 		if (address.length == 0) {
@@ -146,14 +149,13 @@ function listViewTab(tutorList){
 	}
 
 	function formSubmitFilter(lati,longi) {
+		
 		var l_search_map = {};
-       /* 
-		$(".all-input").find("input[type=text],select").each(
-				function(index, item) {
-					l_search_map[l_search_array[index]] = $(item)
-							.val();
-				});*/
 	
+		if (!(navigator.onLine)) {
+			toastr.error('You are offline. please check internet connection.');
+			return;
+		}
 		l_search_map.latitude = lati;
 		l_search_map.longitude = longi;
 		l_search_map.offset = "0";
@@ -177,10 +179,13 @@ function listViewTab(tutorList){
 				 counter 	        = l_data.counter;
 				 var l_text=" || <span style='font-weight: 400;'>"+$('#address-map').val()+"</span><span>|| "+$('#subjectId').val()+"</span>";
 		    	 
-			    	if(counter<10)
-			    	$('.i_total_result').html("Total showing "+counter+" out of "+counter+l_text);
-			    	else
-			    		$('.i_total_result').html("Total showing 10 out of "+counter+l_text);
+				 if(tutorSearchResult.length==0){
+					 toastr.error('No tutor find at this location.');
+				 }
+			    	//if(counter<10)
+			    	$('.i_total_result').html("Total showing "+tutorSearchResult.length+" out of "+counter+l_text);
+			    	//else
+			    		//$('.i_total_result').html("Total showing 10 out of "+counter+l_text);
 				 SearchByFilter();
 
 			}
@@ -214,8 +219,14 @@ function listViewTab(tutorList){
 	}
 	// end search from filters
 	
-	function initiateRequest(p_tutor_id,p_display_name,p_count){debugger;
-		if($('#i_tutor_grid'+p_count).prop('checked')){
+	function initiateRequest(p_tutor_id,p_display_name,p_count,requestFrom){debugger;
+	
+	   if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	    }
+	
+		if(!($('#'+requestFrom+p_count).prop('checked'))){
 			//alert("rejecting request:");
 			removeStudentRequest(p_tutor_id,p_count);
 		}
@@ -242,6 +253,11 @@ function listViewTab(tutorList){
 		
 	}
 	function removeStudentRequest(p_tutorId,p_count){debugger;
+	
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 		var l_request_map ={};
 		l_request_map.latitude = latitude;
 		l_request_map.longitude =longitude;
@@ -273,7 +289,10 @@ function listViewTab(tutorList){
 		});
 	}
 	function saveStudentRequest(p_flage) {debugger;
-
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 		
 		var l_request_map ={};
 		//l_request_map.requestId = $('.c_requestId').val();
@@ -358,13 +377,12 @@ function listViewTab(tutorList){
 					for(var i=0;i<l_data.length;i++){
 						var b_data_map = l_data[i]; 
 						if(l_map.STUDENT){
-						//alert(i);
 						pre_html+='<div class="panel-group m-r-c-p-group">';
 			        	pre_html+='<div class="card panel manage-request-accordian">';
 			        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
 						// start header detail
 			        	pre_html+='<div class="row row-width">';
-			        	pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+			        	pre_html+='<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">';
 			        	pre_html+='<div class="row">';
 			        	pre_html+='<div class="col-md-12">';
 			        	if(b_data_map.requestId==null || b_data_map.requestId==undefined)
@@ -375,9 +393,9 @@ function listViewTab(tutorList){
 			        	pre_html+='</div>'; 
 						pre_html+='</div>';
 						pre_html+='</div>';
-						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+						pre_html+='<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">';
 						pre_html+='<div class="row">';
-						pre_html+='<div class="col-md-12">';
+						pre_html+='<div class="col-md-12 m-o-m-t-10 no-minus-margin">';
 						if(b_data_map.subject==null || b_data_map.subject==undefined)
 						pre_html+='<span class="s-profile-text-gray s-bold">Subject : <span class="s-black"></span></span>';
 						else
@@ -386,22 +404,20 @@ function listViewTab(tutorList){
 						pre_html+='</div>';
 						pre_html+='</div>';
 			           
-						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 p-r-0">';
+						pre_html+='<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-r-0">';
 						pre_html+='<div class="row">';
-						pre_html+='<div class="col-md-12 p-r-0">';
+						pre_html+='<div class="col-md-12 p-r-0 m-o-m-t-10 no-minus-margin">';
 						if(b_data_map.location==null || b_data_map.location==undefined)
 						pre_html+='<span class="s-profile-text-gray s-bold">Location : <span class="s-black"></span></span>';
 						else
 							pre_html+='<span class="s-profile-text-gray s-bold">Location : <span class="s-black">'+b_data_map.location+'</span></span>';
-						pre_html+='<div class="tools m-r-a-tools">';
-						pre_html+='<a class="btn btn-icon-toggle tool-btn"><i class="fa fa-angle-down"></i></a>';
+						
 						pre_html+='</div>'; 
 						pre_html+='</div>'; 
 						pre_html+='</div>'; 
-						pre_html+='</div>'; 
-                        pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+                        pre_html+='<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">';
 			        	pre_html+='<div class="row">'; 
-			        	pre_html+='<div class="col-md-12 m-t-minus-24">';
+			        	pre_html+='<div class="col-md-12 m-t-minus-10 m-o-m-t-10 no-minus-margin">';
 			        	if(b_data_map.requestedAt == null || b_data_map.requestedAt == undefined)
 			        		pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black"></span></span>';
 			        	else{
@@ -411,25 +427,28 @@ function listViewTab(tutorList){
 						pre_html+='</div>'; 
 						pre_html+='</div>';
 						pre_html+='</div>';
-                        pre_html+='<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">';
+                        pre_html+='<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">';
 			        	pre_html+='<div class="row">'; 
-			        	pre_html+='<div class="col-md-12 m-t-minus-24">';
+			        	pre_html+='<div class="col-md-12 m-t-minus-10 m-o-m-t-10 no-minus-margin">';
 						
 						pre_html+='<span class="s-profile-text-gray s-bold">Active Tutors :'; 
 						if(b_data_map.activeTutors == null || b_data_map.activeTutors == undefined)
 							pre_html+='<span class="s-black"></span>';
 						else{
 						var tutors = b_data_map.activeTutors;
-						for(var j=0;j<tutors.length;j++){
-						var tutor = tutors[j];
-						pre_html+='<span class="s-black">'+tutor.displayName+',</span>';
-						}
+						//for(var j=0;j<tutors.length;j++){
+						//var tutor = tutors[j];
+						pre_html+='<span class="s-black">'+tutors.toString()+',</span>';
+						//}
 						}
 						pre_html+='</span>';
 						pre_html+='</div>'; 
 						pre_html+='</div>';
 						pre_html+='</div>';							
 						pre_html+='</div>';
+						pre_html+='<div class="tools m-r-a-tools">';
+						pre_html+='<a class="btn btn-icon-toggle tool-btn positionOnMobile "><i class="fa fa-angle-down"></i></a>';
+						pre_html+='</div>'; 
 						// end header detail
 						pre_html+='</div>';
 			            
@@ -442,19 +461,19 @@ function listViewTab(tutorList){
 			        		var b_history_map = b_history_list[k];
                           pre_html+='<li class="timeline-inverted">';
 			              pre_html+='<div class="timeline-circ"></div>';
-			              var date1 = new Date(Number(b_history_map.createdAt));
-			              pre_html+='<div class="timeline-date">'+date1.getDay()+'/'+date1.getMonth()+'/'+date1.getFullYear()+'</div>';
+			             // var date1 = new Date(Number(b_history_map.createdAt));
+			              pre_html+='<div class="timeline-date">'+b_history_map.requestAt+'</div>';
 			              pre_html+='<div class="timeline-entry">';
 			              pre_html+='<div class="card timeline-card">';
 			              pre_html+='<div class="card-body timeline-padding">';
 						  pre_html+='<div class="row">';
-						  pre_html+=' <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">';
+						  pre_html+=' <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">';
 						  pre_html+='<img class="img-responsive pull-left with-t-img" src="resources/img/batch-list/user-book.png" alt="" />';
 						  pre_html+='</div>';
-						  pre_html+='	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">';
+						  pre_html+='	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">';
 						  pre_html+='	<div class="row">';
 			              
-			              pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+			              pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
 						  pre_html+=' <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 			              pre_html+='<span class="s-profile-text-gray">Tutor Name: <span class="s-black">'+b_history_map.displayName+'</span></span>';
 						  pre_html+=' </div>';
@@ -472,14 +491,14 @@ function listViewTab(tutorList){
 			              pre_html+='</div>';
 						  // button for different action
 			              
-			               pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+			               pre_html+='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
 			               if(b_history_map.requestStatus=='REQUESTED')
 			            	   if(b_history_map.status=='ACTIVE')
-			                     pre_html+='<div class="action-area"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+			                     pre_html+='<div class="action-area"><button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Cancel Request</button></div>';
 			               if(b_history_map.requestStatus=='ACCEPTED'){
 			            	   if(b_history_map.status=='ACTIVE'){
 			            	   pre_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'PAYMENT\',\'STUDENT\')">Pay Now</button>';
-			            	   pre_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+			            	   pre_html+='<button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Cancel Request</button></div>';
 			            	   }
 			               }
 			            	   if(b_history_map.requestStatus=='REJECTED'){
@@ -488,16 +507,20 @@ function listViewTab(tutorList){
 			            	   if(b_history_map.requestStatus=='CANCELLED'){
 				            	   
 				               }
+			            	   
 			            	   if(b_history_map.requestStatus=='COMPLETED'){
 			            		   if(b_history_map.status=='ACTIVE'){
-			            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'">View Booking Detail</a></button>';
+					            	  if(b_history_map.batchId=='' || b_history_map.batchId==null || b_history_map.batchId==undefined){
+					            		  pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'&batchId='+b_history_map.suggestBatchId+'&studentId='+b_history_map.studentId+'&login=true">View Booking Detail</a></button>';
+					            	  }else
+					            		  pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'&batchId='+b_history_map.batchId+'&studentId='+b_history_map.studentId+'&login=true">View Booking Detail</a></button>';
 			            		   }
-			            		 }
+			            		   }
                            if(b_history_map.requestStatus=='SUGGESTED'){
                         	   if(b_history_map.status=='ACTIVE'){
                         	   pre_html+='<div class="action-area"><button type="button" class="btn btn-green" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'ACCEPT_SUGGESTION\',\'STUDENT\')">Accept Suggetion</button>';
     				           pre_html+=' <button type="button" class="btn btn-primary" style="float: right;" onclick="loadBatch(\''+b_history_map.suggestBatchId+'\',\''+b_history_map.tutorId+'\')">View Batch Detail</button> ';
-    				           pre_html+=' <button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Reject Request</button></div>';
+    				           pre_html+=' <button type="button" class="btn btn-red" style="float: right;" onclick="actionForTuitionRequests(\''+b_history_map.requestId+'\',\''+b_history_map.tuitionRequestId+'\',\''+b_history_map.tutorId+'\',\'REJECT\',\'STUDENT\')">Cancel Request</button></div>';
                         	   }
                         	  }
 			               pre_html+='</div>';
@@ -519,7 +542,7 @@ function listViewTab(tutorList){
 						$(".request_list_div").append(pre_html);
 						pre_html='';
 					}
-					}
+					
 					if(l_map.TUTOR){
 						
 						pre_html+='<div class="panel-group m-r-c-p-group">';
@@ -527,7 +550,7 @@ function listViewTab(tutorList){
 			        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
 						// start header detail
 			        	pre_html+='<div class="row row-width">';
-			        	pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+			        	pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">';
 			        	pre_html+='<div class="row">';
 			        	pre_html+='<div class="col-md-12">';
 			        	if(b_data_map.requestId==null || b_data_map.requestId==undefined)
@@ -538,9 +561,9 @@ function listViewTab(tutorList){
 			        	pre_html+='</div>'; 
 						pre_html+='</div>';
 						pre_html+='</div>';
-						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">';
 						pre_html+='<div class="row">';
-						pre_html+='<div class="col-md-12">';
+						pre_html+='<div class="col-md-12 m-o-m-t-10">';
 						if(b_data_map.subject==null || b_data_map.subject==undefined)
 						pre_html+='<span class="s-profile-text-gray s-bold">Subject : <span class="s-black"></span></span>';
 						else
@@ -549,9 +572,9 @@ function listViewTab(tutorList){
 						pre_html+='</div>';
 						pre_html+='</div>';
 			           
-						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 p-r-0">';
+						pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 p-r-0">';
 						pre_html+='<div class="row">';
-						pre_html+='<div class="col-md-12 p-r-0">';
+						pre_html+='<div class="col-md-12 p-r-0 m-o-m-t-10">';
 						if(b_data_map.location==null || b_data_map.location==undefined)
 						pre_html+='<span class="s-profile-text-gray s-bold">Location : <span class="s-black"></span></span>';
 						else
@@ -562,9 +585,9 @@ function listViewTab(tutorList){
 						pre_html+='</div>'; 
 						pre_html+='</div>'; 
 						pre_html+='</div>'; 
-                        pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+                        pre_html+='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">';
 			        	pre_html+='<div class="row">'; 
-			        	pre_html+='<div class="col-md-12 m-t-minus-24">';
+			        	pre_html+='<div class="col-md-12 m-t-minus-24 m-o-m-t-10">';
 			        	if(b_data_map.requestedAt == null || b_data_map.requestedAt == undefined)
 			        		pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black"></span></span>';
 			        	else{
@@ -574,9 +597,9 @@ function listViewTab(tutorList){
 						pre_html+='</div>'; 
 						pre_html+='</div>';
 						pre_html+='</div>';
-                        pre_html+='<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">';
+                        pre_html+='<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">';
 			        	pre_html+='<div class="row">'; 
-			        	pre_html+='<div class="col-md-12 m-t-minus-24">';
+			        	pre_html+='<div class="col-md-12 m-t-minus-24 m-o-m-t-10">';
 						
 						pre_html+='<span class="s-profile-text-gray s-bold">Active Students :'; 
 						if(b_data_map.activeStudents == null || b_data_map.activeStudents == undefined)
@@ -607,21 +630,21 @@ function listViewTab(tutorList){
 			        		var b_history_map = b_history_list[k];
                           pre_html+='<li class="timeline-inverted">';
 			              pre_html+='<div class="timeline-circ"></div>';
-			              var date1 = new Date(Number(b_history_map.createdAt));
-			              pre_html+='<div class="timeline-date">'+date1.getDay()+'/'+date1.getMonth()+'/'+date1.getFullYear()+'</div>';
+			              //var date1 = new Date(Number(b_history_map.createdAt));
+			              pre_html+='<div class="timeline-date">'+b_history_map.requestAt+'</div>';
 			              pre_html+='<div class="timeline-entry">';
 			              pre_html+='<div class="card timeline-card">';
 			              pre_html+='<div class="card-body timeline-padding">';
 						  pre_html+='<div class="row">';
-						  pre_html+=' <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">';
+						  pre_html+=' <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">';
 						  pre_html+='<img class="img-responsive pull-left with-t-img" src="resources/img/batch-list/user-book.png" alt="" />';
 						  pre_html+='</div>';
-						  pre_html+='	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">';
+						  pre_html+='	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">';
 						  pre_html+='	<div class="row">';
 			              
-			              pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+			              pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">';
 						  pre_html+=' <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-			              pre_html+='<span class="s-profile-text-gray">Tutor Name: <span class="s-black">'+b_history_map.displayName+'</span></span>';
+			              pre_html+='<span class="s-profile-text-gray">Student Name: <span class="s-black">'+b_history_map.displayName+'</span></span>';
 						  pre_html+=' </div>';
 						  pre_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 			              pre_html+='<span class="s-profile-text-gray">Comment: <span class="s-black">'+b_history_map.comment+'</span></span>';
@@ -633,7 +656,7 @@ function listViewTab(tutorList){
 			              pre_html+='</div>';
 						  // button for different action
 			              
-			               pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+			               pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">';
 			               if(b_history_map.requestStatus=='REQUESTED')
 						   {
 			            	  if(b_history_map.status=='ACTIVE'){
@@ -687,6 +710,7 @@ function listViewTab(tutorList){
 						$(".request_list_div").append(pre_html);
 						pre_html='';
 					}
+					}
 			     
 			    }
 				if (response.status == 'ERROR') {
@@ -698,7 +722,10 @@ function listViewTab(tutorList){
 	
 	// this is the action area for student and tutor
 	function actionForTuitionRequests(p_requestId,p_tuitionRequestId,p_tutorId,p_action,p_user_type){debugger;
-		
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 		var l_map = {};
 		l_map.requestId = p_requestId;
 		l_map.tuitionRequestId = p_tuitionRequestId;
@@ -706,8 +733,9 @@ function listViewTab(tutorList){
 		l_map.action = p_action;
 		l_map.userType = p_user_type;
 
-		
+		$('.loading').show();
 		ajaxWithJSON("/common-tuition-request-action", l_map, 'POST', function(response) {
+			$('.loading').hide();
 			var l_data = response.object;
 			//alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
@@ -740,6 +768,10 @@ function listViewTab(tutorList){
 	}
 	function suggestBatch(){debugger;
 		
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 		if($('.c_tutor_batches').val()=='' || $('.c_tutor_batches').val()==undefined || $('.c_tutor_batches').val()==null){
 			$('.c_error_request_suggest').text("Please select Batch for suggestion.");
 			setTimeout(function(){ $('.c_error_request_suggest').text(""); }, 3000);
@@ -768,6 +800,10 @@ function listViewTab(tutorList){
 		});
 	}
 	function loadBatch(p_batchId,p_tutorId){
+		if (!(navigator.onLine)) {
+			toastr.error('You are offline. please check internet connection.');
+			return;
+		}
 		var l_map = {};
 		l_map.batchId = p_batchId;
 		ajaxWithJSON("/common-batch-detail", l_map, 'POST', function(response) {
@@ -793,7 +829,10 @@ function listViewTab(tutorList){
 	}
 	var g_batches = [];
 	function loadTutorBatches(p_user) {debugger;
-
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 		var l_map = {};
 		l_map.login = false;
 		l_map.user = p_user;
@@ -831,8 +870,13 @@ function listViewTab(tutorList){
 	
 
 
-	var l_lat, l_lng;
+
+/*	var l_lat, l_lng;
 	function codeAddress() {debugger;
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 	    geocoder = new google.maps.Geocoder();
 	    var address = document.getElementById("location").value;
 	    geocoder.geocode( { 'address': address}, function(results, status) {
@@ -848,10 +892,93 @@ function listViewTab(tutorList){
 	        alert("Geocode was not successful for the following reason: " + status);
 	      }
 	    }); 
-	  }
+	  }*/
+	function subjectData() {
+	//var l_map = {};
+	//l_map.all = true;
+
+		ajaxWithJSON("/load-subjects",null, 'GET', function(response) {debugger;
+			var l_data = response.object;
+			for (var i = 0; i < l_data.length; i++) {debugger;
+				var r_map = l_data[i];
+				/*$('#subjects').append("<option value='"+r_map.subjectName+"'>");*/
+				$('#subjectList').append("<option value='"+r_map.subjectName+"'>");
+			}
+		});
+	}
+	 var input2 = document.getElementById('location');
+	  new google.maps.places.Autocomplete(input2);
 	google.maps.event.addDomListener(window, 'load', initialize);
 
 	function addTutorBatch(){debugger;
+	
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
+	
+	if($('.c_batchName').val()==''){
+		$('.c_error_create_batch').text("Please enter batch name.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_subjectId').val()==''){
+		$('.c_error_create_batch').text("Please select subject name.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_totalNumberOfClasses').val()==''){
+		$('.c_error_create_batch').text("Please enter total classes.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_totalHours').val()==''){
+		$('.c_error_create_batch').text("Please enter total hours.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_totalSeats').val()==''){
+		$('.c_error_create_batch').text("Please enter max registrations.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_minRegistration').val()==''){
+		$('.c_error_create_batch').text("Please enter min registrations.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_batchStartDate').val()==''){
+		$('.c_error_create_batch').text("Please enter batch start date.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	
+	if($('.c_registrationEndDate').val()==''){
+		$('.c_error_create_batch').text("Please enter registration end date.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_batchStartTime').val()==''){
+		$('.c_error_create_batch').text("Please enter batch start time.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_batchEndTime').val()==''){
+		$('.c_error_create_batch').text("Please enter batch end time.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_feeAmount').val()==''){
+		$('.c_error_create_batch').text("Please enter fee for the batch.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	if($('.c_location').val()==''){
+		$('.c_error_create_batch').text("Please select location.");
+		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+		return;
+	}
+	
 		 var l_batch_map = {};
 		    l_batch_map = readForm('i_batch_data');
 		  var c_batches_html=""; 
@@ -1039,6 +1166,11 @@ function listViewTab(tutorList){
 		}
 	 
 	  function addTutorLectures(){debugger;
+	  
+	  if (!(navigator.onLine)) {
+			toastr.error('You are offline. please check internet connection.');
+			return;
+		}
 		 var l_map = {};
 		
 		 if($('.c_lectureName').val()==''){
@@ -1144,6 +1276,10 @@ function listViewTab(tutorList){
 			 });
 	  }
 function markAttendance(p_lectureId,count,size){
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 	$('#i_attendance').modal('show');
 	$('#i_form_attendance').trigger("reset");
 	$('.c_lectureAttendance').val(p_lectureId);
@@ -1167,13 +1303,13 @@ function markAttendance(p_lectureId,count,size){
 	$('#i_attendanceStudents').html(l_html);
 }
 function saveAttendance(){debugger;
+
+if (!(navigator.onLine)) {
+	toastr.error('You are offline. please check internet connection.');
+	return;
+}
 	var l_map = {};
 	var l_is_studentd_selected = false;
-	/*if($('.c_remarksAttendance').val()==''){
-		if(confirm("Would you like to write some remarks ?")){
-			return;
-		}
-	}*/
 	 l_map = readForm('i_form_attendance');
 	 
 	 var keys = Object.keys(l_map);
@@ -1215,6 +1351,11 @@ function saveAttendance(){debugger;
 	 });
 }
 function cancelLecture(p_lectureId,lectureName,start,end,topic,lectureAt,count,size){
+	
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 	$('#i_cancelLecture').modal('show');
 	$('#i_cancel_lecture_form').trigger("reset");
 	$('.c_lectureCancel').val(p_lectureId);
@@ -1244,6 +1385,10 @@ function cancelLecture(p_lectureId,lectureName,start,end,topic,lectureAt,count,s
 }
 
 function changeLectureTime(p_lectureId,lectureName,start,end,topic,lectureAt,count,size){
+	if (!(navigator.onLine)) {
+		toastr.error('You are offline. please check internet connection.');
+		return;
+	}
 	$('#i_change_lecture_timing').modal('show');
 	$('#i_lecture_timing').trigger("reset");
 	$('.c_lectureChangeTiming').val(p_lectureId);
@@ -1271,6 +1416,11 @@ function changeLectureTime(p_lectureId,lectureName,start,end,topic,lectureAt,cou
 	$('#i_lectureTimingChange').html(l_html);
 }
 function updateLecture(p_flage){debugger;
+
+if (!(navigator.onLine)) {
+	toastr.error('You are offline. please check internet connection.');
+	return;
+}
 	var l_map = {};
 	if(p_flage=='CANCEL'){
 		
@@ -1379,7 +1529,7 @@ function updateLecture(p_flage){debugger;
 	
 	 l_map.batchId = lecture_batchId;
 	 
-	 alert(JSON.stringify(l_map));
+	// alert(JSON.stringify(l_map));
 	 $(".loading").show();
 	 ajaxWithJSON("/tutor/update-lecture-changes", l_map, 'POST', function(response) {debugger;
 	  $(".loading").hide();

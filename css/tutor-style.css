@@ -1,6 +1,4 @@
-@charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
-@import url(https://fonts.googleapis.com/css?family=Lora:400,700italic);
+
 /* line 1, ../scss/helpers/_elements.scss */
 a {
   -moz-transition: 0.2s;
@@ -2244,6 +2242,7 @@ figure {
 }
 .padding-price{padding: 6px 0px;}
 .tutor-value{
+	font-size: 14px; 
     margin-top: 5px;
     margin-bottom: 0px;
 }
@@ -9145,6 +9144,12 @@ body, html {
 	color: #808080;
     opacity: 0.8;
 }
+.rviewText
+{
+	 font-size: 16px;
+	 font-weight:500; 
+	 font-family:open sans;
+}
 @media screen and (max-width: 320px){
 }
 @media screen and (max-width: 414px){
@@ -9162,8 +9167,8 @@ body, html {
 }
 .item-price
 {
-	margin-top: 15px;
-    height: 165px;
+	margin-top: -24px;
+    height: 190px;
     padding: 0px 15px;
 }
 .m-t-30
@@ -9182,7 +9187,10 @@ body, html {
 }
 @media screen and (max-width: 667px) {}
 @media screen and (max-width: 767px) {}
-@media screen and (min-width: 768px) and (max-device-width:1024px) {
+@media screen and (min-width: 768px) and (max-device-width:1023px) {
+.tutor-value {
+    font-size: 12px;     
+}
 .tabs .tab-content 
 {
      padding:100px 15px;   
@@ -9200,13 +9208,40 @@ body, html {
 {
 	margin-top:15px !important;
 }
-.listview{left:75px !important;}
+.listview{left:55px !important;margin-top:18px;}
+.img-section {    
+    height: 170px;
+}
+.exp-img-2 { 
+    height: 162px; 
+}
+.img-small { 
+    height: 65px;
+    width: 65px;
+    
+}
+.rviewText
+{
+	 font-size: 13px;
+}
+
 }
 
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1200px) {
 .item-price 
 { 
     padding:5px 15px;
+}
+.listview{left:64px !important;}
+.img-section {    
+    height: 170px;
+}
+.exp-img-2 { 
+    height: 162px; 
+} 
+.rviewText
+{
+	 font-size: 13px;
 }
 }
  
