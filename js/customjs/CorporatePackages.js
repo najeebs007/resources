@@ -316,6 +316,7 @@ $(".c_searchExams")
 									var counter = parseInt(p_data.counter);
 									var response = p_data.examList;
 									p_no_of_pages = p_data.numberOfPages;
+									//alert(p_no_of_pages);
 									if (response == '') {
 										toastr.error('No Records found. ');
 									}
