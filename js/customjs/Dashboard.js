@@ -540,11 +540,7 @@ function loadTutorTop3Requests() {debugger;
 var l_map = {};
 l_map.STUDENT = false;
 l_map.TUTOR = true;
-ajaxWithJSON(
-		"/common/load-top3-tuition-requests",
-		l_map,
-		'POST',
-		function(response) {debugger;
+ajaxWithJSON("/common/load-top3-tuition-requests",l_map,'POST',function(response) {
 		var l_data = response.object;
 		//alert(JSON.stringify(l_data)); 
 		var l_data_other = response.other;
@@ -609,9 +605,16 @@ ajaxWithJSON(
 										l_html+='<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12  ">'; 
 										l_html+='<div class="row"> <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">'; 
 										l_html+='<span class="s-profile-text-gray font-12">Location </span> <strong style="float:right;">:</strong></div>';
+										if(l_map.location==null || l_map.location==undefined){
+											l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-l-0 t-ellipsis" data-toggle="tooltip" data-placement="top" title="No Location Found">'; 
+											l_html+='<span class="s-profile-text-gray s-black s-bold font-12"></span></div>'; 
+											
+										}
+										else{
 										l_html+='<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 p-l-0 t-ellipsis" data-toggle="tooltip" data-placement="top" title="'+l_map.location+'">'; 
-										l_html+='<span class="s-profile-text-gray s-black s-bold font-12">'+l_map.location+'</span>'; 
-										l_html+='</div></div></div></div></div></div></div>';
+										l_html+='<span class="s-profile-text-gray s-black s-bold font-12">'+l_map.location+'</span></div>'; 
+										}
+										l_html+='</div></div></div></div></div></div>';
 								    
 										 $('.c_requests').append(l_html);
 										 l_html = '';
