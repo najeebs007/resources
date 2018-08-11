@@ -3,12 +3,15 @@ var existMap = {};
 var package_price = 0;
 
 function addNumberOfStudent(count, flag) {
+
 	$('.c_examName').val($('.c_name' + count).val());
 	$('.c_examId').val($('.c_examId' + count).val());
 	$('.c_examPrice').val($('.c_price' + count).val());
 	$('.c_count').val(count);
 
 	if (flag) {
+		$('#i_errorMessage').html("");
+		$('.c_numberOfStudent').val("");
 		$("#myModalabout").modal('show');
 	} else {
 		$('.c_numberOfStudent').val("1");
@@ -403,7 +406,7 @@ $(".c_searchExams")
 									           
 									        }
 									    }).on('page', function (event, page) {debugger;
-									        console.info(page + ' (from event listening)');
+									        //console.info(page + ' (from event listening)');
 									        searchByPagination(page);
 									});
 									// var totalPages = 5;
