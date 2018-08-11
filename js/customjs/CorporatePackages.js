@@ -333,7 +333,7 @@ $(".c_searchExams")
 									for (var i = 0; i < response.length; i++) {
 										l_map = response[i];
 										var exams = "";
-										exams += '<div class="col-md-4">';
+										exams += '<div class="col-md-4 jQueryEqualHeightD">';
 										exams += '<div class="card card-type-pricing">';
 										exams += '<div class="card-body text-center style-skyblue"  style="padding:10px;">';
 										exams += '<input value="'
@@ -380,6 +380,7 @@ $(".c_searchExams")
 										}
 										exams += '</div></div>';
 										$('.c_examsListTab').append(exams);
+										equal_height();
 										examCount = examCount+1;
 									}
 
@@ -499,7 +500,7 @@ function searchByPagination(selectedPage) {
 					for (var i = 0; i < response.length; i++) {
 						l_map = response[i];
 						var exams = "";
-						exams += '<div class="col-md-4">';
+						exams += '<div class="col-md-4 jQueryEqualHeightD">';
 						exams += '<div class="card card-type-pricing">';
 						exams += '<div class="card-body text-center style-skyblue"  style="padding:10px;">'
 						exams += '<input value="' + l_map.examName
@@ -541,6 +542,7 @@ function searchByPagination(selectedPage) {
 
 						exams += '</div></div>';
 						$('.c_examsListTab').append(exams);
+						equal_height();
 					}
 
 //					var totalPages = $('.c_pages ul ').length;
@@ -1834,3 +1836,15 @@ function bulkCandidateActions(p_action_type) {
  * }); }
  */
 
+function equal_height() { 
+    // Equal Card Height, Text Height and Title Height
+    $('.jQueryEqualHeightD').jQueryEqualHeight('.card .card-body .card-title');
+    $('.jQueryEqualHeightD').jQueryEqualHeight('.card .card-body .list-unstyled');
+    $('.jQueryEqualHeightD').jQueryEqualHeight('.card');
+}
+$(window).on('load', function(event) {
+    equal_height();
+});
+$(window).resize(function(event) {
+    equal_height();
+});
