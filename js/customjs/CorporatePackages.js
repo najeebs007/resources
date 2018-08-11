@@ -264,7 +264,7 @@ $(".c_savePackageWithCart")
 							});
 
 				});
-
+var examCount = 10;
 $(".c_searchExams")
 		.click(
 				function() {
@@ -329,7 +329,7 @@ $(".c_searchExams")
 									var l_map = {};
 
 									$('.c_examsListTab').html('');
-
+                              
 									for (var i = 0; i < response.length; i++) {
 										l_map = response[i];
 										var exams = "";
@@ -339,12 +339,12 @@ $(".c_searchExams")
 										exams += '<input value="'
 												+ l_map.examName
 												+ '" type="hidden" class="c_name'
-												+ i + '">';
+												+ examCount + '">';
 										exams += '<h2 class="text-light" style="font-size:11px;margin-top: 10px;margin-bottom: 10px;">'
 												+ l_map.examName + '</h2>';
 										exams += '<input type="hidden" value="'
 												+ l_map.examId
-												+ '" class="c_examId' + i
+												+ '" class="c_examId' + examCount
 												+ '">';
 										exams += '</div>';
 										exams += '<div class="card-body no-padding"><ul class="list-unstyled text-left">';
@@ -362,7 +362,7 @@ $(".c_searchExams")
 										}
 										exams += '<input type="hidden" value="'
 												+ l_map.price
-												+ '" class="c_price' + i + '">';
+												+ '" class="c_price' + examCount + '">';
 										exams += '<li>Price : <i class="fa fa-inr"></i>'
 												+ l_map.price
 												+ ' per candidate <br><i>(All Inclusive)</i></li>';
@@ -370,16 +370,17 @@ $(".c_searchExams")
 										if (roleName == 'ROLE_CORPORATE'
 												|| roleName == 'ROLE_INSTITUTE') {
 											exams += '<div class="card-body butalign"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="" onclick="addNumberOfStudent(\''
-													+ i
+													+ examCount
 													+ '\',true)">Add To Package</button> </div>';
 										}
 										if (roleName == 'ROLE_STUDENT') {
 											exams += '<div class="card-body butalign"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="" onclick="addNumberOfStudent(\''
-													+ i
+													+ examCount
 													+ '\',false)">Add To Package</button> </div>';
 										}
 										exams += '</div></div>';
 										$('.c_examsListTab').append(exams);
+										examCount = examCount+1;
 									}
 
 									var l_totalPages = counter / 9;
@@ -395,8 +396,8 @@ $(".c_searchExams")
 								
 									$('#pagination').twbsPagination({
 											totalPages : p_no_of_pages,
-											
 											visiblePages: 10,
+											 startPage:1,
 									        onPageClick: function (event, page) {
 									            console.info(page + ' (from options)');
 									           
