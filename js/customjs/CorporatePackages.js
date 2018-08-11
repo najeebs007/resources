@@ -382,16 +382,28 @@ $(".c_searchExams")
 										$('.c_examsListTab').append(exams);
 									}
 
-									var totalPages = counter / 9;
+									var l_totalPages = counter / 9;
 									var l_extra_pages = 0;
 									l_extra_pages = counter % 9;
 									if (l_extra_pages != 0) {
-										totalPages = totalPages + 1;
+										l_totalPages = l_totalPages + 1;
 									}
-
-									$('#pagination').twbsPagination('destroy');
+									if($('#pagination').data("twbs-pagination")){
+					                    $('#pagination').twbsPagination('destroy');
+					                }
+									 
+								
 									$('#pagination').twbsPagination({
-										totalPages : p_no_of_pages
+											totalPages : p_no_of_pages,
+											
+											visiblePages: 10,
+									        onPageClick: function (event, page) {
+									            console.info(page + ' (from options)');
+									           
+									        }
+									    }).on('page', function (event, page) {debugger;
+									        console.info(page + ' (from event listening)');
+									        searchByPagination(page);
 									});
 									// var totalPages = 5;
 									// var pages = "";
@@ -476,7 +488,9 @@ function searchByPagination(selectedPage) {
 					var l_map = {};
 					var counter = parseInt(p_data.counter);
 					var response = p_data.examList;
+				 
 					p_no_of_pages = p_data.numberOfPages;
+					//alert(p_no_of_pages);
 					// this is global variable define in createPackage.jsp page
 					searchFilters = p_data.searchFilters;
 					var roleName = p_data.roleName;
@@ -528,13 +542,14 @@ function searchByPagination(selectedPage) {
 						$('.c_examsListTab').append(exams);
 					}
 
-					var totalPages = $('.c_pages ul ').length;
-					if ($("#i_pid").hasClass("c_pclass")) {
-						totalPages = totalPages - 1;
-					}
-					if ($("#i_nid").hasClass("c_nclass")) {
-						totalPages = totalPages - 1;
-					}
+//					var totalPages = $('.c_pages ul ').length;
+//					 
+//					if ($("#i_pid").hasClass("c_pclass")) {
+//						totalPages = totalPages - 1;
+//					}
+//					if ($("#i_nid").hasClass("c_nclass")) {
+//						totalPages = totalPages - 1;
+//					}
 					// var pages = "";
 					// $('.c_pages').html('');
 					debugger;
