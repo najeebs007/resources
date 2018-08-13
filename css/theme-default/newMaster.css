@@ -1,3 +1,18 @@
+
+.filterh
+{ 
+    display:  inline-block;
+    height: 30px;
+    width:  60px;
+	font-size: 14px;
+	font-weight:600;
+    line-height: 30px;
+    text-align:  center;
+    color:  white;
+    background: #f04d07;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px #d60c0c; 
+}
 .profileImg-r
 {
   height:320px; 
