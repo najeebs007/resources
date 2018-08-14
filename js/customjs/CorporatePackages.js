@@ -734,7 +734,13 @@ function candidateActions(packageId, examId, candidateId, count, actionType,
 							toastr.success("Email sent successfully.");
 						} else if (actionType == 'SMS') {
 							toastr.success("SMS sent successfully.");
-						} else {
+						} else if (actionType == 'PAYMENT_LINK') {
+							toastr.success(data.message);
+							$("#payment_link").prop('disabled', true);
+							
+							
+							
+						}else {
 							toastr.success(actionType + " updated success.");
 						}
 
