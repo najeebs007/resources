@@ -322,6 +322,7 @@ $(".c_searchExams")
 									//alert(p_no_of_pages);
 									if (response == '') {
 										toastr.error('No Records found. ');
+										$(".loading").hide();
 									}
 									l_exam_list = response;
 									// this is global variable define in
@@ -736,15 +737,13 @@ function candidateActions(packageId, examId, candidateId, count, actionType,
 							toastr.success("SMS sent successfully.");
 						} else if (actionType == 'PAYMENT_LINK') {
 							toastr.success(data.message);
-							$("#payment_link").prop('disabled', true);
-							
-							
+							$('#payment_link' +count).prop('disabled', true);
 							
 						}else {
 							toastr.success(actionType + " updated success.");
+							location.reload();
 						}
 
-						location.reload();
 					}
 					if (data.status == 'ERROR') {
 						toastr.error(data.message);
