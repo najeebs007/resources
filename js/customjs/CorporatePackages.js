@@ -866,16 +866,16 @@ function managCredential(examId, packageId, status, count) {
 
 	var examDetail = "";
 
-	examDetail += "<div class='card-body' id='addStudent'><div class='row'>";
-	examDetail += "<div class='col-md-12'><div style='display:flex;margin-bottom:20px;'> ";
-	examDetail += "<h3 style='margin-left:0px;margin-top:9px;'>Choose Your Option</span></h3></div> </div>";
+	examDetail += "<div class='row' id='addStudent'>";
+	//examDetail += "<div class='col-md-12'><div style='display:flex;margin-bottom:20px;'>  </div>";
+	//examDetail += "<h3 style='margin-left:0px;margin-top:9px;'>Choose Your Option</span></h3></div>";
 	examDetail += "<div class='col-md-12'><div class='row'> <a href='/corporate/add-candidates'>";
 	// start for one by one
 	examDetail += "<a href='/corporate/add-candidates?packageId="
 			+ packageId
 			+ "&examId="
 			+ examId
-			+ "&from=one'><div class='col-md-4'><div class='card ck1' style='border-radius: 25px;'>";
+			+ "&from=one'><div class='col-md-6'><div class='card ck1' style='border-radius: 25px;'>";
 	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
 	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div>";
 	examDetail += "<div class='col-md-12'><h5><strong>I have Candidate details (Email,Phone) and want to create one by one.</strong></h5>";
@@ -885,7 +885,7 @@ function managCredential(examId, packageId, status, count) {
 			+ packageId
 			+ "&examId="
 			+ examId
-			+ "&from=excel'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
+			+ "&from=excel'><div class='col-md-6'><div class='card' style='border-radius: 25px;'>";
 	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
 	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'> </div><div class='col-md-12'>";
 	examDetail += "<h5><strong>I want to upload excel file [ Please note that your excel should have email & phone ].</strong></h5>";
@@ -895,7 +895,7 @@ function managCredential(examId, packageId, status, count) {
 			+ packageId
 			+ "&examId="
 			+ examId
-			+ "&from=random'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
+			+ "&from=random'><div class='col-md-6'><div class='card' style='border-radius: 25px;'>";
 	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
 	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
 	examDetail += "<h5><strong>I don't have any information about Candidate. I want to generate Random Id.</strong></h5>";
@@ -905,24 +905,25 @@ function managCredential(examId, packageId, status, count) {
 			+ packageId
 			+ "&examId="
 			+ examId
-			+ "'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
+			+ "'><div class='col-md-6'><div class='card' style='border-radius: 25px;'>";
 	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
 	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
-	examDetail += "<h5 title=' Make your own registration form to plan your next event. Get started by editing a form template then send an email to your list and watch the responses pile up!'><strong>Customize your registration form to invite diverse candidate pool.</strong></h5>";
+	examDetail += "<h5 title=' Make your own registration form to plan your next event. Get started by editing a form template then send an email to your list and watch the responses pile up!' style='margin-bottom: 25px;'><strong>Customize your registration form to invite diverse candidate pool.</strong></h5>";
 	examDetail += " </div></div></div></div></div></a>";
 	// end for Custom form
-	examDetail += "<a href='/corporate/add-candidates?packageId="
-			+ packageId
-			+ "&examId="
-			+ examId
-			+ "&from=none'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
-	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
-	examDetail += "<h5><strong>I don't want to add candidates just view candidates.</strong></h5>";
-	examDetail += " </div></div></div></div></div></a>";
+	// examDetail += "<a href='/corporate/add-candidates?packageId="
+			// + packageId
+			// + "&examId="
+			// + examId
+			// + "&from=none'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
+	// examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
+	// examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
+	// examDetail += "<h5><strong>I don't want to add candidates just view candidates.</strong></h5>";
+	// examDetail += " </div></div></div></div></div></a>";
 	examDetail += "</div></div></div></div>";
 
-	$('.credential_space' + count).html(examDetail);
+	$('.credential_space' + count).html(examDetail); 
+     $("#managCredentialModal"+ count).modal('show');
 
 }
 
@@ -1843,17 +1844,4 @@ function bulkCandidateActions(p_action_type) {
  * (from event listening)'); searchByPagination(page);
  * 
  * }); }
- */
-
-function equal_height() { 
-    // Equal Card Height, Text Height and Title Height
-    $('.jQueryEqualHeightD').jQueryEqualHeight('.card .card-body .card-title');
-    $('.jQueryEqualHeightD').jQueryEqualHeight('.card .card-body .list-unstyled');
-    $('.jQueryEqualHeightD').jQueryEqualHeight('.card');
-}
-$(window).on('load', function(event) {
-    equal_height();
-});
-$(window).resize(function(event) {
-    equal_height();
-});
+ */ 

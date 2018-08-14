@@ -4558,6 +4558,7 @@ to {
 	display: inline-block;
 	cursor: pointer;
 	vertical-align: text-top;
+	line-height: 20px;
 }
 
 .checkbox-styled:not(ie8) input ~ span:before, .radio-styled:not(ie8) input 
