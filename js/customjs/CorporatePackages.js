@@ -411,35 +411,7 @@ $(".c_searchExams")
 									        //console.info(page + ' (from event listening)');
 									        searchByPagination(page);
 									});
-									// var totalPages = 5;
-									// var pages = "";
-									// pages += '<div class="row"><div
-									// class="col-md-12"
-									// style="text-align:center;">';
-									// pages += '<ul class="pagination">'
-									// for (var i = 1; i <= totalPages; i++) {
-									// if (i == 1) {
-									// pages += '<li class="active"><a href="#"
-									// onclick="searchByPagination('
-									// + i
-									// + ')">'
-									// + i
-									// + '</a></li>';
-									// } else {
-									// pages += '<li><a href="#"
-									// onclick="searchByPagination('
-									// + i
-									// + ')">'
-									// + i
-									// + '</a></li>';
-									// }
-									//
-									// }
-									// pages += '<li id="i_nid"
-									// class="c_nclass"><a href="#"
-									// onclick="searchByPagination(2)">Next</a></li></ul>';
-									// pages += '</div></div>';
-									// $('.c_pages').html(pages);
+									
 									$(".loading").hide();
 								},
 								error : function(jqXHR, textStatus, errorThrown) {
@@ -459,21 +431,6 @@ function searchByPagination(selectedPage) {
 		return;
 	}
 	var l_map = searchFilters;
-	/*
-	 * if (!($(".c_examLevel").val() == '')) { l_map.level =
-	 * $(".c_examLevel").val(); } if (!($(".c_maxExam").val() == '')) {
-	 * l_map.maxRange = $(".c_maxExam").val(); }
-	 * 
-	 * if (!($(".c_minExam").val() == '')) { l_map.minRange =
-	 * $(".c_minExam").val(); }
-	 * 
-	 * if (!($(".c_duration").val() == '')) { l_map.duration =
-	 * $(".c_duration").val(); }
-	 * 
-	 * if (!($(".c_subjects").val() == '')) { l_map.subject =
-	 * $(".c_subjects").val(); }
-	 */
-
 	var resultsPerPage = 9;
 	var start = parseInt((selectedPage - 1)) * resultsPerPage;
 	l_map.offSet = start;
@@ -549,44 +506,7 @@ function searchByPagination(selectedPage) {
 						equal_height();
 					}
 
-//					var totalPages = $('.c_pages ul ').length;
-//					 
-//					if ($("#i_pid").hasClass("c_pclass")) {
-//						totalPages = totalPages - 1;
-//					}
-//					if ($("#i_nid").hasClass("c_nclass")) {
-//						totalPages = totalPages - 1;
-//					}
-					// var pages = "";
-					// $('.c_pages').html('');
-					debugger;
-					// alert("totalPages "+totalPages+" p_no_of_pages
-					// "+p_no_of_pages);
-					// callPagination(l_noOfPages);
-					// pages += '<div class="row"><div class="col-md-12"
-					// style="text-align:center;">';
-					// pages += '<ul class="pagination" id="pagination" ></ul>';
-					/*
-					 * pages += '<ul class="pagination">' if
-					 * (parseInt(selectedPage) > 1) { var previous =
-					 * parseInt(selectedPage) - 1; pages += '<li id="i_pid" class="c_pclass"><a
-					 * href="#" onclick="searchByPagination(' + previous +
-					 * ')">Previous</a> </li>'; }
-					 * 
-					 * for (var i = 1; i <= totalPages; i++) { if
-					 * (parseInt(selectedPage) == i) { pages += '<li class="active"><a
-					 * href="#" onclick="searchByPagination(' + i + ')">' + i + '</a></li>'; }
-					 * else { pages += '<li><a href="#"
-					 * onclick="searchByPagination(' + i + ')">' + i + '</a></li>'; } }
-					 * 
-					 * var next = parseInt(selectedPage) + 1; if (!(totalPages ==
-					 * parseInt(selectedPage))) { pages += '<li id="i_nid" class="c_nclass"><a
-					 * href="#" onclick="searchByPagination(' + next + ')">Next</a></li></ul>';
-					 * pages += '</div></div>'; }
-					 */
-					//					
-					// pages += '</div></div>';
-					// $('.c_pages').html(pages);
+				
 					$(".loading").hide();
 				},
 				error : function(jqXHR, textStatus, errorThrown) {
@@ -602,9 +522,22 @@ function showModal(packageId, examId) {
 	$('#addStudent').modal('show');
 	$('.c_packageId').val(packageId);
 	$('.c_examId').val(examId);
+	for(var i=0;i<g_groups.length;i++){
+		var group = g_groups[i];
+			$('.c_group').append('<option value='+group.groupId+'>'+group.groupName+'</option>');
+	}
 }
-
+function selectGroup(){
+	var l_html = '';
+	if($('.c_group').val()=='other'){
+		l_html+='<input type="text" class="form-control c_other_group_value" for="group"';
+		l_html+='id="exampleInputEmail1"> <label class="control-label">Other Group</label>';
+		$('.c_other_group').html(l_html);
+	}else
+		$('.c_other_group').text('');
+}
 function addOneByOne() {
+	var l_map = {};
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
 		return;
@@ -624,8 +557,25 @@ function addOneByOne() {
 		$('.c_errorInfo').html("invalid mobile.");
 		return false;
 	}
-
-	var l_map = {};
+	if ($('.c_group').val()=='') {
+		$('.c_errorInfo').html("Please select group.");
+		return false;
+	}
+	if ($('.c_group').val()=='other') {
+		if($('.c_other_group_value').val()==''){
+		$('.c_errorInfo').html("Please enter other group name.");
+		return false;
+		}
+		else{
+			l_map.groupType='other';
+			l_map.group = $('.c_other_group_value').val();
+		}
+		
+	}else{
+		l_map.groupType='exist';
+		l_map.group = $('.c_group').val();
+	}
+	
 	l_map.packageId = $('.c_packageId').val();
 	l_map.examId = $('.c_examId').val();
 	l_map.name = $('.c_Name').val();
@@ -766,39 +716,6 @@ function candidateActions(packageId, examId, candidateId, count, actionType,
 
 }
 
-// function edit_row(no) {
-// document.getElementById("edit_button" + no).style.display = "none";
-// document.getElementById("save_button" + no).style.display = "block";
-
-// var sr = document.getElementById("sr_row" + no);
-// var name = document.getElementById("name_row" + no);
-// var email = document.getElementById("email_row" + no);
-// var phone = document.getElementById("phone_row" + no);
-// // var pin = document.getElementById("pin_row" + no);
-// // var password = document.getElementById("password_row" + no);
-
-// var sr_data = sr.innerHTML;
-// var name_data = name.innerHTML;
-// var email_data = email.innerHTML;
-// var phone_data = phone.innerHTML;
-// // var pin_data = pin.innerHTML;
-// // var password_data = password.innerHTML;
-
-// sr.innerHTML = "<input readonly type='text' id='sr_text" + no + "' value='"
-// + sr_data + "'>";
-// name.innerHTML = "<input type='text' id='name_text" + no + "' value='"
-// + name_data + "'>";
-// email.innerHTML = "<input readonly type='text' id='email_text" + no
-// + "' value='" + email_data + "'>";
-// phone.innerHTML = "<input type='text' id='phone_text" + no + "' value='"
-// + phone_data
-// + "' maxlength='10' onkeypress='return isMobile(event)'>";
-// // pin.innerHTML = "<input type='text' id='pin_text" + no + "' value='"
-// // + pin_data + "'maxlength='6' onkeypress='return isMobile(event)'>";
-// // password.innerHTML = "<input type='text' id='password_text" + no + "'
-// // value='"
-// // + password_data + "'>";
-// }
 
 function selectNumberOfIds(packageId, examId) {
 	$('#i_errorGenerate').html("");
@@ -866,8 +783,6 @@ function managCredential(examId, packageId, status, count) {
 	var examDetail = "";
 
 	examDetail += "<div class='row' id='addStudent'>";
-	//examDetail += "<div class='col-md-12'><div style='display:flex;margin-bottom:20px;'>  </div>";
-	//examDetail += "<h3 style='margin-left:0px;margin-top:9px;'>Choose Your Option</span></h3></div>";
 	examDetail += "<div class='col-md-12'><div class='row'> <a href='/corporate/add-candidates'>";
 	// start for one by one
 	examDetail += "<a href='/corporate/add-candidates?packageId="
@@ -910,15 +825,6 @@ function managCredential(examId, packageId, status, count) {
 	examDetail += "<h5 title=' Make your own registration form to plan your next event. Get started by editing a form template then send an email to your list and watch the responses pile up!' style='margin-bottom: 25px;'><strong>Customize your registration form to invite diverse candidate pool.</strong></h5>";
 	examDetail += " </div></div></div></div></div></a>";
 	// end for Custom form
-	// examDetail += "<a href='/corporate/add-candidates?packageId="
-			// + packageId
-			// + "&examId="
-			// + examId
-			// + "&from=none'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
-	// examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-	// examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
-	// examDetail += "<h5><strong>I don't want to add candidates just view candidates.</strong></h5>";
-	// examDetail += " </div></div></div></div></div></a>";
 	examDetail += "</div></div></div></div>";
 
 	$('.credential_space' + count).html(examDetail); 
@@ -933,22 +839,11 @@ function updateCandidateRegistrationAction(p_exam_id, p_package_id, p_status,
 		toastr.error('You are offline. please check internet connection.');
 		return;
 	}
-	// var l_radio = "";
-	/*
-	 * if($('.c_action_'+p_package_id+'_'+p_exam_id).val()==''){
-	 * toastr.error('Please select any one.'); return; }
-	 */
 	if ($('input[name=actions' + p_package_id + '_' + p_exam_id + ']:checked')
 			.val() == undefined) {
 		toastr.error('Please select any one option.');
 		return;
 	}
-	/*
-	 * if((document.getElementById('#c_action1_'+p_package_id+'_'+p_exam_id)).checked){
-	 * l_radio=document.getElementById('#c_action1_'+p_package_id+'_'+p_exam_id).value; }
-	 * if((document.getElementById('#c_action2_'+p_package_id+'_'+p_exam_id)).checked){
-	 * l_radio=document.getElementById('#c_action2_'+p_package_id+'_'+p_exam_id).value; }
-	 */
 
 	var l_map = {};
 	l_map.packageId = p_package_id;
@@ -1042,10 +937,6 @@ function managExam(examId, packageId, status) {
 						$(".loading").hide();
 						$('.credential_space' + packageId).html(examDetail);
 
-						// $(".loading").hide();
-
-						// $('.c_examDetail' + packageId).html(examDetail);
-
 					} else {
 						toastr.error('there is some error please try again!.');
 					}
@@ -1054,7 +945,6 @@ function managExam(examId, packageId, status) {
 				error : function(err) {
 					$(".loading").hide();
 					toastr.error('There is some error please try again!');
-					// alert(err);
 				}
 			});
 
@@ -1150,36 +1040,24 @@ function changePin(examId, packageId) {
 
 			$(".loading").hide();
 			if (data.status = 'SUCCESS') {
-				/*
-				 * $('.c_changePin').html("<span
-				 * style='color:green'>Successfully Updated !</span>");
-				 */
 				toastr.success('Successfully Updated');
 			}
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			// $(".loading").hide();
-			// toastr.success('Successfully Updated');
-			// alert("error:" + textStatus + " exception:" + errorThrown);
 			$(".loading").hide();
-			// $('.c_changePin').html("<span style='color:red'>There is some
-			// error. try again !</span>");
 			toastr.error('There is some error. try again !');
 		}
 	});
 }
 
 function deleteAllStudent() {
-	debugger;
-	// if(($(".c_studentRecords").find("tr").length) == 0){
 	if (confirm("You want to delete all students !")) {
 		$(".loading").show();
 		$.ajax({
 			url : '/corporate/delete-all',
 			type : 'POST',
 			success : function(data) {
-				debugger;
 				$(".loading").hide();
 				if (data.status == 'SUCCESS') {
 
@@ -1208,19 +1086,10 @@ function edit_row(no) {
 	var name = document.getElementById("name_row" + no);
 	var email = document.getElementById("email_row" + no);
 	var phone = document.getElementById("phone_row" + no);
-	// var pin = document.getElementById("pin_row" + no);
-	// var password = document.getElementById("password_row" + no);
-
 	var sr_data = sr.innerHTML;
 	var name_data = name.firstChild.data;
-	;
 	var email_data = email.firstChild.data;
-	;
 	var phone_data = phone.firstChild.data;
-	;
-	// var pin_data = pin.innerHTML;
-	// var password_data = password.innerHTML;
-
 	sr.innerHTML = "<input readonly type='text' id='sr_text" + no + "' value='"
 			+ sr_data + "'>";
 	name.innerHTML = "<input type='text' id='name_text" + no + "' value='"
@@ -1230,11 +1099,6 @@ function edit_row(no) {
 	phone.innerHTML = "<input type='text' id='phone_text" + no + "' value='"
 			+ phone_data
 			+ "' maxlength='10' onkeypress='return isMobile(event)'>";
-	// pin.innerHTML = "<input type='text' id='pin_text" + no + "' value='"
-	// + pin_data + "'maxlength='6' onkeypress='return isMobile(event)'>";
-	// password.innerHTML = "<input type='text' id='password_text" + no + "'
-	// value='"
-	// + password_data + "'>";
 }
 
 function save_row(no, info_id) {
@@ -1412,8 +1276,6 @@ function getCustomFormURLs() {
 
 						$("#i_url_container").html(l_html);
 						$('#viewURLs').modal('show');
-						// $('#myModal').modal('hide');
-						// toastr.success(response.message);
 					}
 
 					if (response.status == 'ERROR') {
@@ -1521,11 +1383,8 @@ function searchCandidates() {
 	l_map.viewResult = l_is_view_result;
 	l_map.packageId = $('#i_g_package_id').val();
 	l_map.examId = $('#i_g_exam_id').val();
-	// ajaxPostCall("/common/search-candidates",JSON.stringify(l_map),"p_successSearch","p_errorSearch");
-
-	$(".loading").show();
-	$
-			.ajax({
+    $(".loading").show();
+	$.ajax({
 				url : '/common/search-candidates',
 				cache : false,
 				async : true,
@@ -1802,9 +1661,7 @@ function bulkCandidateActions(p_action_type) {
 		l_final_map.examId = $('#i_g_exam_id').val();
 		l_final_map.examName = $('#i_exam_name').val();
 		l_final_map.inputs = l_map;
-
-		//alert(JSON.stringify(l_final_map));
-		$(".loading").show();
+        $(".loading").show();
 		$
 				.ajax({
 					url : '/common/bulk-actions',
@@ -1835,12 +1692,18 @@ function bulkCandidateActions(p_action_type) {
 	}
 }
 
-/*
- * function callPagination(p_no_of_pages) { debugger; window.pagObj =
- * $('#pagination').twbsPagination({ totalPages: p_no_of_pages, visiblePages:
- * 10, onPageClick: function (event, page) { console.info(page + ' (from
- * options)'); } }).on('page', function (event, page) { console.info(page + '
- * (from event listening)'); searchByPagination(page);
- * 
- * }); }
- */ 
+var g_groups = [];
+function loadGroups(){
+	var l_input = {};
+	l_input.groupFor='USER';
+	ajaxWithJSON("/common/load-groups", l_input, 'POST', function(response) {
+		
+		if(response.status=='SUCCESS'){
+			g_groups = response.object;
+		}
+		if(response.status=='ERROR'){
+			console.log(response.message);
+		}
+	});
+	
+}
