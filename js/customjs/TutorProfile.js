@@ -146,12 +146,12 @@ function saveIntro(p_form_id) {
 
 	today = dd + '/' + mm + '/' + yyyy;
 	var dateOfBirth = l_map.dateOfBirth;
-	alert(l_map.haveDigitalPen);
+	//alert(l_map.haveDigitalPen);
 	if(dateOfBirth > today){
 		$(".c_error_intro").html("please select past date from today");
 		return;
 	}
-	alert(JSON.stringify(l_map));
+	//alert(JSON.stringify(l_map));
 	//alert(JSON.stringify(l_map));
 	ajaxWithJSON("/tutor-save-general-detail", l_map, 'POST',
 			function(response) {
@@ -180,7 +180,7 @@ function loadEditIntro(p_flage) {
 		var date = l_intro_data.dateOfBirth;
 		var dateOfBirth = getDateFormat(date);
 		
-		alert(JSON.stringify(l_intro_data));
+		//alert(JSON.stringify(l_intro_data));
 		if (!(l_intro_data.tutorId == null || l_intro_data.tutorId == undefined || l_intro_data.tutorId == ''))
 			$('.c_tutorId').val(l_intro_data.tutorId);
 		if (!(dateOfBirth == null || dateOfBirth == undefined || dateOfBirth == ''))

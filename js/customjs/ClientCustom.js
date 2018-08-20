@@ -280,12 +280,10 @@ function resetForm(p_form_id) {
 }
 
 //export excel file of nominate students
-
 function exportExcel(tableId, fileName) {debugger;
 	$("#" + tableId).table2excel({
 		name : "Table2Excel",
 		filename : fileName+".xls",
-		trimWhitespace: true
 		//fileext : ".xlsx"
 	});
 }
