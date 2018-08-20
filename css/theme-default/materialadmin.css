@@ -10783,7 +10783,7 @@ xcustom form elements
     background: #80808000;
     border-radius: 25px;
     display: block;
-    border: 1px solid #80808045;
+    box-shadow:0px 0px 20px 0 rgba(46,61,73,.2);
 	margin-right:5px;
 }
 .switchspan
