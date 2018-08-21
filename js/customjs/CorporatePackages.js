@@ -1296,37 +1296,25 @@ var indexes_checked = [];
 var g_load_time = true;
 var l_value = "";
 var g_total_candidates = parseInt($('#totalCandidates').val());
-$(document)
-		.ready(
-				function() {
-					$('#search_candidates').keyup(function() {
+$(document).ready(function() {debugger;
+					$('#search_candidates').keyup(function() {debugger;
 						search_indexes = [];
 						g_is_load_time = false;
 						search_table($(this).val());
 					});
 
-					function search_table(value) {
-						$('#i_candidate_list tr')
-								.each(
-										function() {
+					function search_table(value) {debugger;
+						$('#i_candidate_list tr').each(function() {debugger;
 											var found = 'false';
-											$(this)
-													.each(
-															function() {
-																if ($(this)
-																		.text()
-																		.toLowerCase()
-																		.indexOf(
-																				value
-																						.toLowerCase()) >= 0) {
-																	found = 'true';
-																}
-															});
-											if (found == 'true') {
+											$(this).each(function() {debugger;
+											if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {debugger;
+											found = 'true';
+											}
+											});
+											if (found == 'true') {debugger;
 												$(this).show();
-												if ($("tr").index(this) != 0) {
-													search_indexes.push($("tr")
-															.index(this));
+												if ($("tr").index(this) != 0) {debugger;
+													search_indexes.push($("tr").index(this));
 													g_load_time = false;
 												}
 												// alert($("tr").index(this));
