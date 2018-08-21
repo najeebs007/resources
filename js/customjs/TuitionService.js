@@ -20,7 +20,7 @@ function gridViewTab(tutorList,login){debugger;
     			if(login){
     				box = "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_grid"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"',\'i_tutor_grid\')\"><span>Select Tutor</span></label>";
        		    }else{
-       			 box="<button type='button' class='btn btn-primary' style='float:right;'><a href='/'>Login/SignUp</a></button>";
+       			 box="<button type='button' class='btn btn-primary' style='float:right;'><a href='/'>Login/Signup to Select</a></button>";
        		    }
     			html += "<div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-6 prop jQueryEqualHeightD\">";
     			html += "<div class=\"wht-cont\">";
@@ -71,7 +71,7 @@ function listViewTab(tutorList,login){
     			if(login){
     				box = "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_list"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"',\'i_tutor_list\')\"><span>Select Tutor</span></label>";
        		    }else{
-       			 box="<button type='button' class='btn btn-primary' style='float:right;'><a href='/'>Login/SignUp</a></button>";
+       			 box="<button type='button' class='btn btn-primary' style='float:right;'><a href='/'>Login/Signup to Select</a></button>";
        		    }
     			 html += "<div class=\"row white\" >";
      			html += "<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-12 prp-img\">";
