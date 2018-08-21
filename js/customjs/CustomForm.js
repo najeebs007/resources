@@ -2,6 +2,23 @@
  * 
  */
 
+
+$(document).ready(function(){
+
+$(".c_group").click(function(){
+	
+	ajaxWithJSON("/common/isGroupsContain", null, 'POST', function(response) {
+		
+		if(response.status=='SUCCESS'){
+			
+		}
+        if(response.status=='ERROR'){
+			toastr.error(response.message);
+			$('.c_group').prop('checked', false);
+		}
+	});
+});
+});
 var g_form_field = {};
 var g_form_fields = [];
 var g_final_form_map = {};
@@ -46,11 +63,14 @@ function publishCustomform(p_form_id) {debugger;
 	l_final_map.title = $('.c_form_title').val();
 	l_final_map.instruction = $('.c_form_instruction').val();
 	l_final_map.logoLink = $('.c_form_logo_link').val();
+	 if($('.c_group').is(":checked")){
+		 l_final_map.group = true;
+	}else{
+			l_final_map.group = false;
+	}
 	l_extra_fields = readCustomForm(p_form_id);
+   
 	l_final_map.json = l_extra_fields;
-	//g_final_form_map.json = g_form_fields;
-
-	//alert(JSON.stringify(l_final_map));
 
 	$(".loading").show();
 	$.ajax({
@@ -92,30 +112,46 @@ if(!(navigator.onLine)){
 
     $('.c_customize_registration_error').html('');
 	var l_map = {};
+	var groupType ="";
 	if(!($('.c_terms_accept').is(":checked"))){
 		$('.c_customize_registration_error').html('Please accept terms and conditions.');
+		setTimeout(function(){ $('.c_customize_registration_error').html(''); }, 3000);
 		return false;
 	}
 	if($('#f-name').val()==''){
 		$('.c_customize_registration_error').html('Please enter display name.');
+		setTimeout(function(){ $('.c_customize_registration_error').html(''); }, 3000);
 		return false;
 	}
 	if($('#email').val()==''){
 		$('.c_customize_registration_error').html('Please enter email.');
+		setTimeout(function(){ $('.c_customize_registration_error').html(''); }, 3000);
 		return false;
 	}
 	if(!isValidEmail($("#email").val())){
 		$('.c_customize_registration_error').html('please enter valid email.');
+		setTimeout(function(){ $('.c_customize_registration_error').html(''); }, 3000);
 		return false;
 	}
 	if($('#mobile').val()==''){
 		$('.c_customize_registration_error').html('Please enter mobile.');
+		setTimeout(function(){ $('.c_customize_registration_error').html(''); }, 3000);
 		return false;
 	}
 	if(($("#mobile").val().length)!=10){
 		$('.c_customize_registration_error').html('please enter valid mobile.');
+		setTimeout(function(){ $('.c_customize_registration_error').html(''); }, 3000);
 		return false;
 	}
+	if($("#isGroupAllow").val()=='yes'){
+		if($("#group").val()==''){
+		$('.c_customize_registration_error').html('please select group.');
+		setTimeout(function(){ $('.c_customize_registration_error').html(''); }, 3000);
+		return false;
+		}else{
+			groupType='exist';
+		}
+	}   
 	
 	/*	l_map.email=$('.c_email').val();
 	 l_map.phone=$('.c_phone').val();
@@ -125,6 +161,7 @@ if(!(navigator.onLine)){
 	 l_map.examId=$('.c_exam_id').val();*/
 	// extra fields may not or may more
 	l_map = readForm(p_form_id);
+	l_map.groupType = groupType;
     //alert(JSON.stringify(l_map));
 	$(".loading").show();
 	$.ajax({
@@ -273,6 +310,7 @@ $(document).ready(function()
 	   });
 function preview(){
 	
+	
 	var l_parsed = {};
 	var l_html = "";
 	l_parsed = readCustomForm('i_other_fields');
@@ -282,6 +320,14 @@ function preview(){
 	var l_keys = Object.keys(l_parsed);
 	
 	$('.dynamicInputPreview').html('');
+	if($('.c_group').is(":checked")){
+		l_html+="<div class='col-md-4' id='r"+i+"'>";
+		l_html+="<h5 class='title'>Group</h5>";
+		l_html+="<div class='added-input'>";
+		l_html+="<select  id='email' tabindex='1' class='form-control cf-input-dynamic-left'><option>Select Group</option></select>";
+		l_html+="</div>";
+		l_html+="</div>";
+	}
 	for(var i=0;i<l_keys.length;i++){
 	l_html+="<div class='col-md-4' id='r"+i+"'>";
 	l_html+="<h5 class='title'>"+l_keys[i]+"</h5>";
@@ -493,3 +539,30 @@ function addInput(p_input)
 		 
 		 
 		 }
+	  function addGroup(){
+		  var l_group = {};
+		  if($('.c_group_name').val()==''){
+			  $('#i_errorGroup').text("Please enter group name.");
+			  setTimeout(function(){  $('#i_errorGroup').text(""); }, 3000);
+			  return;
+		}
+		  if($('.c_group_description').val()==''){
+			  l_group.description = "This Group is added by custom form.";
+		 }else{
+			 l_group.description = $('.c_group_description').val();
+		 }
+		  
+		  l_group.groupName =  $('.c_group_name').val();
+			ajaxWithJSON("/common/add-group", l_group, 'POST', function(response) {
+				
+				if(response.status=='SUCCESS'){
+					$('#addGroup').modal('hide');
+					toastr.success(response.message);
+				}
+				if(response.status=='ERROR'){
+					$('#i_errorGroup').text(response.message);
+					setTimeout(function(){  $('#i_errorGroup').text(""); }, 3000);
+				}
+			});
+		  
+	  }
