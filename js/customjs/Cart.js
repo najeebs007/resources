@@ -30,12 +30,13 @@ function addToCart(l_cartId,l_productId,l_productType){ debugger;
 			  contentType : "application/json; charset=UTF-8",
 			  dataType : 'json',
 			  success : function(response) {
-			           //alert(response);
+			          // alert(response);
 			           $(".loading").hide();
+			           setTimeout(function() {
+				        	  window.location.reload(true);
+				      	}, 1000);
 			          toastr.success('Item added to cart successfully.');
-			          setTimeout(function() {
-			        	  window.location.reload(true);
-			      	}, 1000);
+			          
 			          
 			          
 			  },
@@ -123,11 +124,11 @@ function addToCart(l_cartId,l_productId,l_productType){ debugger;
 			  success : function(response) {
 			           //alert(response);
 			           $(".loading").hide();
-			          toastr.success('Item added to cart successfully.');
+			           toastr.success('Item added to cart successfully.');
 			          setTimeout(function() {
 			        	  window.location.reload(true);
 			      	}, 1000);
-			          
+			           
 			          
 			  },
 			  error : function(jqXHR, textStatus, errorThrown) {

@@ -907,9 +907,9 @@ function listViewTab(tutorList,login){
 	//var l_map = {};
 	//l_map.all = true;
 
-		ajaxWithJSON("/load-subjects",null, 'GET', function(response) {debugger;
+		ajaxWithJSON("/load-subjects",null, 'GET', function(response) {
 			var l_data = response.object;
-			for (var i = 0; i < l_data.length; i++) {debugger;
+			for (var i = 0; i < l_data.length; i++) {
 				var r_map = l_data[i];
 				/*$('#subjects').append("<option value='"+r_map.subjectName+"'>");*/
 				$('#subjectList').append("<option value='"+r_map.subjectName+"'>");
@@ -983,14 +983,21 @@ function listViewTab(tutorList,login){
 		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
 		return;
 	}
-	if($('.c_location').val()==''){
+/*	if($('.c_location').val()==''){
 		$('.c_error_create_batch').text("Please select location.");
 		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
 		return;
-	}
+	}*/
+	
 	
 		 var l_batch_map = {};
 		    l_batch_map = readForm('i_batch_data');
+		    
+			if(!(isDaysSelected(l_batch_map))){
+				$('.c_error_create_batch').text("Please select class/batch days.");
+				setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+				return
+			}
 		  var c_batches_html=""; 
 		 $(".loading").show();
 		 ajaxWithJSON("/tutor/save-batch-info", l_batch_map, 'POST', function(response) {debugger;
@@ -1027,7 +1034,23 @@ function listViewTab(tutorList,login){
 		 });
 		}
 
-
+	function isDaysSelected(batch){
+		
+		if(batch.SUNDAY)
+			return true;
+		if(batch.MONDAY)
+			return true;
+		if(batch.TUESDAY)
+			return true;
+		if(batch.WEDNESDAY)
+			return true;
+		if(batch.THURSDAY)
+			return true;
+		if(batch.FRIDAY)
+			return true;
+		if(batch.SATURDAY)
+			return true;
+	}
   function showoption(p_flage) {
 	if (p_flage == "NONE") {
 		toastr.error('Please select any one option.');
