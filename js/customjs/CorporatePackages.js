@@ -558,8 +558,8 @@ function addOneByOne() {
 		return false;
 	}
 	if ($('.c_group').val()=='') {
-		$('.c_errorInfo').html("Please select group.");
-		return false;
+		l_map.groupType='exist';
+		l_map.group = 'default';
 	}
 	if ($('.c_group').val()=='other') {
 		if($('.c_other_group_value').val()==''){

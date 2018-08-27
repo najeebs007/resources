@@ -11,12 +11,17 @@ $(document).ready(function() {
 
 var g_latitude;
 var g_longitude;
-function gridViewTab(tutorList){debugger;
+function gridViewTab(tutorList,login){debugger;
     		var html = "";
-    		
+    		var box;
     		for(var i=0;i<tutorList.length;i++){
     			var tutorMap = tutorList[i];
     			
+    			if(login){
+    				box = "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_grid"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"',\'i_tutor_grid\')\"><span>Select Tutor</span></label>";
+       		    }else{
+       			 box="<button type='button' class='btn btn-primary' style='float:right;'><a href='/'>Login/Signup to Select</a></button>";
+       		    }
     			html += "<div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-6 prop jQueryEqualHeightD\">";
     			html += "<div class=\"wht-cont\">";
     			html += "<div class=\"img-section\"><div class=\"exp-img-2\" style=\"background:url(http://placehold.it/255x200) center;background-size: cover;-webkit-filter: blur(2px);-moz-filter: blur(2px);-o-filter: blur(2px);-ms-filter: blur(2px);filter: blur(2px);\"></div>"; 
@@ -46,8 +51,8 @@ function gridViewTab(tutorList){debugger;
 				html += "<a href='../../tutor-profile?login=false&user="+tutorMap.userName+"' class=\"btn btn-primary\">View Profile</a>";
     			html += "</div>";
     				html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 c_add1"+i+"\" style='text-align:center;'>";
-					 html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_grid"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"',\'i_tutor_grid\')\"><span>Select Tutor</span>";
-				     html += "</label></div></div></div></div></div>";
+					 html+=box;
+				     html += "</div></div></div></div></div>";
     			    // html += "<a href=\"#\" onclick=\"return addTutorToRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\" class=\"btn btn-danger\">Select Tutor</a></div></div></div></div></div>";
     			    
     			
@@ -57,12 +62,17 @@ function gridViewTab(tutorList){debugger;
     		return html;
     	}
 		
-function listViewTab(tutorList){
+function listViewTab(tutorList,login){
 			var html = "";
-			
+			var box;
 			for(var i=0;i<tutorList.length;i++){
     			var tutorMap = tutorList[i];
 			
+    			if(login){
+    				box = "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_list"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"',\'i_tutor_list\')\"><span>Select Tutor</span></label>";
+       		    }else{
+       			 box="<button type='button' class='btn btn-primary' style='float:right;'><a href='/'>Login/Signup to Select</a></button>";
+       		    }
     			 html += "<div class=\"row white\" >";
      			html += "<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-12 prp-img\">";
      			html += "<div class=\"img-section\"><div class=\"exp-img-2\" style=\"background:url(http://placehold.it/255x200) center;background-size: cover;-webkit-filter: blur(2px);-moz-filter: blur(2px);-o-filter: blur(2px);-ms-filter: blur(2px);filter: blur(2px);\"></div>"; 
@@ -103,8 +113,8 @@ function listViewTab(tutorList){
  				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\" style='text-align:center;'><span class=\"profileSpan\"> <span class=\"rating-text tutor-val-text rviewText\" style='color:black;'>"+tutorMap.starCount+" reviews</span></span></div>";
  				html += "<div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-6 m-t-30\" style='text-align:center;'><a href='../../tutor-profile?login=false&user="+tutorMap.userName+"'class=\"btn btn-primary\">View Profile</a></div>";
      			html += "<div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-6 m-t-30\ c_add2"+i+"\" style='text-align:center;'>";
-			    html += "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_list"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"',\'i_tutor_list\')\"><span>Select Tutor</span>";
-				html += "</label></div>";
+     			html +=box;
+				html += "</div>";
 				html += " </div></div></div>";
  			}
  			
@@ -205,9 +215,9 @@ function listViewTab(tutorList){
 		
 		if(tutorSearchResult.length > 0 || tutorSearchResult != 'undefined' || tutorSearchResult != '' || tutorSearchResult != null){
 			
-			var gridviewhtml = gridViewTab(tutorSearchResult);
-			var listviewhtml = listViewTab(tutorSearchResult);
-			initializeCustomGoogleMap(tutorSearchResult,latitude,longitude,null);
+			var gridviewhtml = gridViewTab(tutorSearchResult,login);
+			var listviewhtml = listViewTab(tutorSearchResult,login);
+			initializeCustomGoogleMap(tutorSearchResult,latitude,longitude,null,login);
 	        paginationView();
 			$("#gridviewtabdiv").html("").append(gridviewhtml);
 			$("#listviewtabdiv").html("").append(listviewhtml);
@@ -897,9 +907,9 @@ function listViewTab(tutorList){
 	//var l_map = {};
 	//l_map.all = true;
 
-		ajaxWithJSON("/load-subjects",null, 'GET', function(response) {debugger;
+		ajaxWithJSON("/load-subjects",null, 'GET', function(response) {
 			var l_data = response.object;
-			for (var i = 0; i < l_data.length; i++) {debugger;
+			for (var i = 0; i < l_data.length; i++) {
 				var r_map = l_data[i];
 				/*$('#subjects').append("<option value='"+r_map.subjectName+"'>");*/
 				$('#subjectList').append("<option value='"+r_map.subjectName+"'>");
@@ -973,14 +983,21 @@ function listViewTab(tutorList){
 		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
 		return;
 	}
-	if($('.c_location').val()==''){
+/*	if($('.c_location').val()==''){
 		$('.c_error_create_batch').text("Please select location.");
 		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
 		return;
-	}
+	}*/
+	
 	
 		 var l_batch_map = {};
 		    l_batch_map = readForm('i_batch_data');
+		    
+			if(!(isDaysSelected(l_batch_map))){
+				$('.c_error_create_batch').text("Please select class/batch days.");
+				setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
+				return
+			}
 		  var c_batches_html=""; 
 		 $(".loading").show();
 		 ajaxWithJSON("/tutor/save-batch-info", l_batch_map, 'POST', function(response) {debugger;
@@ -1017,7 +1034,23 @@ function listViewTab(tutorList){
 		 });
 		}
 
-
+	function isDaysSelected(batch){
+		
+		if(batch.SUNDAY)
+			return true;
+		if(batch.MONDAY)
+			return true;
+		if(batch.TUESDAY)
+			return true;
+		if(batch.WEDNESDAY)
+			return true;
+		if(batch.THURSDAY)
+			return true;
+		if(batch.FRIDAY)
+			return true;
+		if(batch.SATURDAY)
+			return true;
+	}
   function showoption(p_flage) {
 	if (p_flage == "NONE") {
 		toastr.error('Please select any one option.');
