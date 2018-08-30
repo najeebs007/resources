@@ -404,6 +404,7 @@ $body.on('touchstart', function() {
 
             $('.blog-carousel').owlCarousel({
                 loop:true,
+				stagePadding:12,
                 margin:26,
 
                 responsive:{
@@ -419,10 +420,27 @@ $body.on('touchstart', function() {
                 }
             });
         }
+         
+		if ($('.sponsor-carousel').length > 0) {
 
+            $('.sponsor-carousel').owlCarousel({
+                loop:true,
+                margin:26,
 
-
-
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:3
+                    }
+                }
+            });
+        }
+ 
         /* === project carousel in digital agency demo === */
         if ($('.project-carousel').length > 0) {
 

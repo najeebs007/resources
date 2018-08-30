@@ -183,7 +183,7 @@
 }
 .volunteer-block
 {
-	    padding: 3.75rem;
+	    padding: 10px 38px;
 }
 .volunteer-card
 {
@@ -208,6 +208,41 @@
     font-size: 1.40rem;
     text-transform: uppercase;
 }
+.exam-card
+{
+	text-align: left;
+    position: relative;
+    display: inline-block;
+    background-color: #fff; 
+    box-shadow: 0px 5px 25px 0 rgba(46,61,73,.2);
+    border-radius: 10px;  
+}
+.card-body-padding-exam-card{padding:10px 15px;}
+.exam-name
+{
+	font-size:15px;
+	color: #9a9494;
+}
+.exam-icon
+{
+	width: 25px;
+    height: 25px;
+    background: -webkit-linear-gradient(left,#ffffff 0%,#eff7f7 100%);
+    padding: 0px 4px;
+    line-height: 28px;
+    border-radius: 50%;
+    margin-top: 0px;
+    margin-right: 10px;
+    display: inline-block;
+    box-shadow: 0px 0px 8px 0px #1a1a1b80;
+}
+.sponsor-block
+{
+	border: 1px solid #80808030;
+    border-radius: 3px;
+    padding: 2px;
+}
+
 @media screen and (min-width:480px){
     .program__content{
         padding:3.75rem
@@ -645,7 +680,7 @@
 }
  
 .contain{
-    height:45rem;
+    height:35rem;
     padding:0;
     display:block;
     width:100%;
@@ -660,7 +695,7 @@
 }
 @media screen and (min-width:480px){
     .contain{
-        height:45rem;
+        height:35rem;
         position:relative
     }
 }
@@ -722,7 +757,7 @@
     height:30rem;
     display:flex;
     align-items:center;
-    padding:4rem;
+   padding: 30px 20px;
     align-items:flex-start
 }
 @media screen and (min-width:480px){
@@ -765,10 +800,19 @@
 .on-overlay::before:last-child{
     margin-right:0
 }
-.content, .nd-summary-data{
+.content{
     float:left;
     display:block;
-    width:49.15254237%;
+    width:60%;
+    margin:0!important;
+    text-align:left;
+    z-index:7000;
+    height:100%
+}
+.nd-summary-data{
+    float:left;
+    display:block;
+    width:40%;
     margin:0!important;
     text-align:left;
     z-index:7000;
@@ -792,10 +836,10 @@
     color:#fff
 }
 .hero-data-wrapper > ul{
-    margin:0 2.5rem;
-    list-style:none;
-    height:100%;
-    padding:24px 0px;
+    margin: 0px 10px;
+    list-style: none;
+    height: 100%;
+    padding: 10px 0px;
 }
 .hero-data-wrapper > ul > li{
     height:auto; 
@@ -976,7 +1020,7 @@
 	display: inherit;
 }
 .sponsor .prize-list li{   
-    margin: 0 10px;
+    margin: 0 2px;
     width: auto;
     height: 30px;
     line-height: 29px;
@@ -986,7 +1030,7 @@
     border-radius: 25px;
     font-weight: 600;
     font-family: Open Sans;
-	padding: 0px 10px;
+    padding: 0px 5px;
  
 }
 .sponsor .affiliate-wrapper:last-child{
