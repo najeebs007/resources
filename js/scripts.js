@@ -440,6 +440,26 @@ $body.on('touchstart', function() {
                 }
             });
         }
+		if ($('.prize-carousel').length > 0) {
+
+            $('.prize-carousel').owlCarousel({
+                loop:true,
+				stagePadding:10,
+                margin:26,
+
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:2
+                    }
+                }
+            });
+        }
  
         /* === project carousel in digital agency demo === */
         if ($('.project-carousel').length > 0) {
