@@ -177,10 +177,21 @@ function loadEditIntro(p_flage) {
 	}
 	if (p_flage == 'EDIT') {
 		
-		var date = l_intro_data.dateOfBirth;
-		var dateOfBirth = getDateFormat(date);
+		//var date = l_intro_data.dateOfBirth;
+		//var dateOfBirth = getDateFormat(date);
 		
-		//alert(JSON.stringify(l_intro_data));
+		var l_dateE = l_intro_data.dateOfBirth;
+		var l_dateEnd = new Date(Number(l_dateE));
+		var monthname = new Array("01", "02", "03", "04", "05", "06",
+				"07", "08", "09", "10", "11", "12")
+		var l_date = (l_dateEnd.getDate() + " ")
+		var l_month = (monthname[l_dateEnd.getMonth()] + " ")
+		var l_year = (l_dateEnd.getFullYear())
+		var dateOfBirth = l_date.trim() + "/" + l_month.trim()
+				+ "/" + l_year;
+
+
+		//alert(JSON.stringify(dateOfBirth));
 		if (!(l_intro_data.tutorId == null || l_intro_data.tutorId == undefined || l_intro_data.tutorId == ''))
 			$('.c_tutorId').val(l_intro_data.tutorId);
 		if (!(dateOfBirth == null || dateOfBirth == undefined || dateOfBirth == ''))
@@ -434,6 +445,64 @@ function saveContact(p_form_id) {debugger;
 		return;
 	}
 	
+	if($('.c_addressType').val()==''){
+		$('.c_error_contact').text("Please enter Address Type.");
+		setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+		return;
+	}
+
+	if($('.c_addressTitle').val()==''){
+		$('.c_error_contact').text("Please enter address title.");
+		setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+		return;
+	}
+	if($('.c_addressLine1').val()==''){
+		$('.c_error_contact').text("Please enter address line 1.");
+		setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+		return;
+	}
+	if($('.c_addressLine2').val()==''){
+		$('.c_error_contact').text("Please enter address line 2.");
+		setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+		return;
+	}
+	if($('.c_countryId').val()==''){
+		$('.c_error_contact').text("Please select country name.");
+		setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+		return;
+	}
+	if($('.c_stateId').val()==''){
+		$('.c_error_contact').text("Please select state name.");
+		setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+		return;
+	}
+	if($('.c_districtId').val()==''){
+		$('.c_error_contact').text("Please select district name.");
+		setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+		return;
+	}
+	if($('.c_cityId').val()==''){
+		$('.c_error_contact').text("Please select city name.");
+		setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+		return;
+	}
+	if($('.c_pinCode').val()==''){
+		$('.c_error_contact').text("Please enter pin code.");
+		setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+		return;
+	}
+	if($('.c_addressPhoneNumber').val()==''){
+		$('.c_error_contact').text("Please enter phone number.");
+		setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+		return;
+	}
+
+	if($('.c_contactEmailId').val()==''){
+		$('.c_error_contact').text("Please enter email id.");
+		setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+		return;
+	}
+	
 	if(!($('.c_contactEmailId').val()=='')){
 		if(!isValidEmail($('.c_contactEmailId').val())){
 			$('.c_error_contact').text("Invalid email.");
@@ -490,27 +559,85 @@ function saveContact(p_form_id) {debugger;
 var g_contact_data = {};
 function loadContactData() { debugger;
 	// alert("/tutor-contact-data");
+
+if($('.c_addressType').val()==''){
+	$('.c_error_contact').text("Please enter Address Type.");
+	setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+	return;
+}
+
+if($('.c_addressTitle').val()==''){
+	$('.c_error_contact').text("Please enter address title.");
+	setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+	return;
+}
+if($('.c_addressLine1').val()==''){
+	$('.c_error_contact').text("Please enter address line 1.");
+	setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+	return;
+}
+if($('.c_addressLine2').val()==''){
+	$('.c_error_contact').text("Please enter address line 2.");
+	setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+	return;
+}
+if($('.c_countryId').val()==''){
+	$('.c_error_contact').text("Please select country name.");
+	setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+	return;
+}
+if($('.c_stateId').val()==''){
+	$('.c_error_contact').text("Please select state name.");
+	setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+	return;
+}
+if($('.c_districtId').val()==''){
+	$('.c_error_contact').text("Please select district name.");
+	setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+	return;
+}
+if($('.c_cityId').val()==''){
+	$('.c_error_contact').text("Please select city name.");
+	setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+	return;
+}
+if($('.c_pinCode').val()==''){
+	$('.c_error_contact').text("Please enter pin code.");
+	setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+	return;
+}
+if($('.c_addressPhoneNumber').val()==''){
+	$('.c_error_contact').text("Please enter phone number.");
+	setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+	return;
+}
+
+if($('.c_contactEmailId').val()==''){
+	$('.c_error_contact').text("Please enter email id.");
+	setTimeout(function(){ $('.c_error_contact').text(""); }, 3000);
+	return;
+}
 	var l_map = g_data;
 	var l_login=l_map.login;
 	//alert(l_login);
 	
 	//alert(JSON.stringify(l_map))
-	ajaxWithJSON("/tutor-contact-data", l_map, 'POST', function(response) {
+	ajaxWithJSON("/tutor-contact-data", l_map, 'POST', function(response) {debugger;
 				var l_data = response.object;
 				// alert(JSON.stringify(response));
 				if (response.status == 'SUCCESS') {
 					g_contact_data = l_data;
-					var html = "";
 					var l_html = "";
 					
 					l_html += "<div class='card-body card-body-padding-pro pro-height' id='i_contact' style='overflow-y:auto;margin-bottom:10px;'>";
 					l_html += "<div class='row'>";
-					for (var i = 0; i < l_data.length; i++) {
+					for (var i = 0; i < l_data.length; i++) {debugger;
 						var l_map_outer = l_data[i];
 						var l_map_inner = l_map_outer.address_entity; 
 						l_html += "<div class='col-lg-12'>";
 						l_html += "<div class='row'>";
 						l_html += "<div class='col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2'>";
+						
 						if (l_map_inner.addressType == 'HOME')
 							l_html += "<img src='resources/img/ico/ico3.png' alt='no image'>";
 						if (l_map_inner.addressType == 'OFFICE')
@@ -557,9 +684,8 @@ function loadContactData() { debugger;
 						//alert(l_html);
 
 					}
-					html = html +l_html;
-					html += "</div> ";
-					html += "</div> ";
+					l_html += "</div> ";
+					l_html += "</div> ";
 					//alert(l_html);
 					$("#i_contact").replaceWith(l_html);
 					// alert(JSON.stringify(l_data));
