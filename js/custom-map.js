@@ -127,12 +127,13 @@ $.ajaxSetup({
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Google Map - Homepage http://localhost:8080/resources/assets/js/locations.js
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
+function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh,login) {
 	var locations = [ ];
 	for (var i = 0; i < p_locations.length; i++) {
 		var l_map = p_locations[i];   
 		
 		var star = '';
+		var box;
 		for(var j=0;j<5;j++){
 				if(j<=parseInt(l_map.averageStar)) 
 					star += "<span class=\"fa fa-star checked\"></span>";
@@ -146,7 +147,11 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 		 }
 		 if(l_map.price==null || l_map.price==undefined || isNaN(l_map.price))
 			 l_map.price = 0.0;
-		 
+		 if(login){
+			 box='<label class="checkbox-inline checkbox-styled"><input id="i_tutor_map'+i+'" type="checkbox" value="option1" onclick="return initiateRequest(\''+l_map.userName+'\',\''+l_map.displayName+'\',\''+i+'\',\'i_tutor_map\')"><span>Select Tutor</span></label>';
+		 }else{
+			 box="<button type='button' class='btn btn-primary' style='float:right;'><a href='/'>Login/Signup to Select</a></button>";
+		 }
 		 var a=['<div class="card card-customize"><div class="card-body"><div class="row">'
 			  + '<div class="g-mapcard-left-img"> <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
 			  + '<div class="s-profile-pic-card"> <img src="../resources/img/batch-list/rs.png" alt="" style="width: 100%;border-radius: 50%;"> </div></div>'
@@ -179,10 +184,10 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh) {
 			  + '<div class="row"> <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 ">' 
 			  + '<button type="button" class="btn btn-primary"><a href="../../tutor-profile?login=false&user='+l_map.userName+'" >View Profile</a></button></div>'
 			  + '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'
-			  + '<label class="checkbox-inline checkbox-styled"><input id="i_tutor_map'+i+'" type="checkbox" value="option1" onclick="return initiateRequest(\''+l_map.userName+'\',\''+l_map.displayName+'\',\''+i+'\',\'i_tutor_map\')"><span>Select Tutor</span>'
-			  + '</label>'
+			  + box
+			  + '</div>'
 			 /* + '<button type="button" class="btn btn-danger" onclick="'+l_text+'">Request For Tution</button>'*/
-			  + '</div></div></div></div></div></div></div>', l_map.latitude, l_map.longitude];
+			  + '</div></div></div></div></div></div>', l_map.latitude, l_map.longitude];
 			  locations.push(a);
 	}
 

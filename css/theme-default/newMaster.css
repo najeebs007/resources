@@ -221,6 +221,10 @@
 .m-t-minus-15{margin-top:-15px;}
 .m-t-minus-20{margin-top:-20px;}
 .m-t-minus-24{margin-top:-24px;}
+.m-t-minus-30{margin-top:-30px;}
+.m-t-minus-35{margin-top:-35px;}
+.m-t-minus-40{margin-top:-40px;}
+.m-t-minus-45{margin-top:-45px;}
 .geneder-margin{margin-top: -24px;}
 .m-t-2{margin-top:2px;}
 .certificate-icon{
@@ -606,16 +610,17 @@ padding: 0px 10px !important;}
 }
 
 .add-batch{
-  border-radius: 19px;
-  font-size: 15px !important;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0px 0px 19px 0px #c3bdbd;
-  display:block;  
-  width: 190px;
-  height: 38px;
-  float:right;
-  color: rgb(83, 83, 83) !important;
-  padding: 5px !important;
+    border-radius: 19px;
+    font-size: 14px !important;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 19px 0px #c3bdbd;
+    display: block;
+    width: 160px;
+    height: 31px;
+    line-height: 18px;
+    float: right;
+    color: rgb(83, 83, 83) !important;
+    padding: 5px !important;
 }
 .add-batch:hover,
 .add-batch:focus,
@@ -637,8 +642,8 @@ padding: 0px 10px !important;}
       display: flex !important;
     align-items: center;
     justify-content: center;
-  width: 33px;
-  height: 33px;
+  width: 25px;
+  height: 25px;
   float:right;
   margin-top:-3px;
   margin-right:-4px;  
@@ -1067,7 +1072,7 @@ margin-left:10px;
 }
 .s-black{color:black;}
 .s-bold{font-weight:600;}
-.s-profile-padding-r-0{padding-right:1px;}
+.s-profile-padding-r-0{padding-right:0px;}
 .s-profile-padding-l-0{padding-left:0px;}
 .s-profile-cover-img
 { 
@@ -1572,6 +1577,138 @@ margin-left:10px;
 }
 .m-t-40-tdetails{margin-top: 40px;}
 
+/****** Subscription card style ********/
+/** sub=(subsription) **/
+.sub-card-head
+{
+	height: 115px;
+    padding: 15px 0px;
+}
+.sub-header-font{font-size:15px !important;}
+.sub-body-padding
+{
+ padding: 0px 16px 10px 16px !important;
+}
+.sub-body-padding-b
+{
+ padding: 0px 16px 0px 16px !important;
+}
+.sub-body-padding-sub-area
+{
+ padding:20px 0px !important;
+}
+.sub-box-radius{border-radius:10px !important;}
+.sub-card-head-radius{border-top-left-radius:10px !important;border-top-right-radius:10px !important;}
+.sub-price-section
+{
+	text-align:center;
+}
+.sub-price-section .price-block
+{
+    display: inline-block;
+    width: 90px;
+    height: 90px;
+	padding:28px 0px;
+    background: #f05510;
+    border-radius: 50%;
+	border: 2px solid white;
+}
+.price-text
+{
+    font-size: 16px;
+    color: white;
+	font-family:'Open Sans';
+}
+.sub-detail-text
+{
+  font-size: 14px;
+  font-family: "Open Sans"; 
+  color: rgb(153, 153, 173); 
+  text-align: left; 
+}
+
+.sub-description-block{padding: 0px 10px;}
+
+.sub-description-block .d-text
+{
+    font-size: 13px;
+    font-family: "Open Sans";
+    color: rgb(153, 153, 173);
+}
+.ribbin-section
+{
+	position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    width: 35px;
+	padding: 0px 5px 6px 0px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 25px;
+    /* ms-transform: rotate(-50deg); */
+    /* -webkit-transform: rotate(-50deg); */
+    /* transform: rotate(-50deg); */
+	background: white;
+    text-align: center;
+}
+/*========== Chetna Registration Form =============*/
+.form-padding{padding:10px 200px;}
+.form-heading
+{
+	display: inline-block;
+    width: 200px;
+    height: 35px;
+    line-height: 30px;
+    background: #1190e8;
+    margin-bottom: 40px;
+    border-radius: 2px;
+    color: white;
+    font-size: 18px;
+    font-family: Open sans;
+    box-shadow: 6px 6px 10px 0px #92c5e6;
+}
+.form-ribbin-section
+{
+	display: inline-block;
+    width: 100%;
+    height: 30px;
+    background: #1190e8;
+    color: white;
+    padding: 1px 10px;
+    border-radius: 3px;
+    font-size: 15px;
+    font-family: Open sans;
+    font-weight: 500;
+    box-shadow: 0px 5px 10px 0px #a9c3d6;
+}
+.form-label-text
+{
+	font-size: 14px;
+    color: black;
+    font-family: Open sans;
+    font-weight: 600;
+}
+.f-15{font-size:15px;}
+.rupee-bagage
+{
+	display: inline-block;
+    width: 50px;
+    height: 30px;
+    line-height: 28px;
+    background: #1190e8;
+    text-align: center;
+    border-radius: 25px;
+    color: white;
+    font-weight: 600;
+    font-family: Open sans;
+}
+.pay-btn
+{
+	float: right !important;
+    padding: 5px 15px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+}
 
  @media screen and (max-width: 767px){
 	 .top-header-author {
@@ -1632,7 +1769,8 @@ margin-left:10px;
 .m-o-m-t-15{margin-top:-15px;}
 .m-o-m-t-20{margin-top:-20px;}
 .m-o-m-t-24{margin-top:-24px;} 
-.m-t-40-tdetails{margin-top:0px;} 
+.m-t-40-tdetails{margin-top:0px;}
+.form-padding{padding:10px 10px;}
 }
 
 /*media 767 End Here ****/
@@ -1696,6 +1834,7 @@ margin-left:10px;
 .m-o-m-t-20{margin-top:-20px;} 
 .m-o-m-t-24{margin-top:-24px;}
 .no-minus-margin{margin-top:0px;}
+.form-padding{padding:10px 10px;}
 }
 /*media for ipad Pro only****/
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1200px) {
@@ -1728,6 +1867,7 @@ margin-left:10px;
 }
 .m-o-m-t-24{margin-top:-24px;}
 .no-minus-margin{margin-top:0px;}
+.form-padding{padding:10px 10px;}
 }
 /**** Rating bars css*/
 /* Three column layout */

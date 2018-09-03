@@ -1039,7 +1039,7 @@ thead {
 
 
 .section-title {
-    font-size: 40px;
+    font-size: 30px;
     margin-bottom: 20px;
 }
 .section-sub {
@@ -2667,4 +2667,49 @@ KEY FRAME
     text-align: justify;
 }
 .list-style li{list-style-type: initial;}
-
+/* ================= Notification Style ==================== */
+.radius-10{border-radius:10px;}
+.notifi-box
+{
+	box-shadow:0px 0px 25px 0px #b7cbf1;
+}
+.notifi-header
+{
+  padding:15px 10px;
+  background:#1090e7;
+  width:100%;
+  text-align:center;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;  
+}
+.notifi-header .n-h-text
+{
+	font-size:16px;
+	color:white;
+}
+.notifi-content
+{
+ padding:15px 15px;	
+}
+.nitifi-content-row{display:inline-block;}
+.n-icon
+{
+	font-size: 16px;
+    margin: 0px 5px 0px 0px;
+    color: #1190e8;
+}
+.m-t-10{margin-top:10px;}
+.notifi-bell
+{
+	float: left;
+    width: 25px;
+    height: 25px;
+    padding: 0px 0px;
+    margin-top: -15px;
+    margin-left: -10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 20px;
+    background: white;
+}
+.exam-heading{margin-left:15px;}
+.exam-padding{padding: 0px 0px 0px 35px;}
