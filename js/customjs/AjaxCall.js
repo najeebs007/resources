@@ -58,7 +58,7 @@ function ajaxWithJSON(p_url, p_data, p_method_type, callback) {
 		url : p_url,
 		data : JSON.stringify(p_data),
 		cache : false,
-		async : false,
+		async : true,
 		contentType : "application/json; charset=UTF-8",
 		dataType : 'json',
 		success : function(response) {
@@ -152,11 +152,11 @@ function getLocationCoordinate(address) {
 }
 
 
-$.ajax({ url:'http://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&sensor=true',
-    success: function(data){
+//$.ajax({ url:'http://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&sensor=true',
+   // success: function(data){
         //alert(data.results[0].formatted_address);
     	//callback(data.results[0].formatted_address);
         /*or you could iterate the components for only the city and state*/
-    }
+   //// }
 
-});
+//});

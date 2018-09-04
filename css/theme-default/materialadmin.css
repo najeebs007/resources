@@ -4289,8 +4289,10 @@ span.help-block {
 }
 
 .btn {
-	font-size:12px;
-	text-transform: capitalize;
+	font-size: 13px;
+    text-transform: capitalize;
+    font-family: Open Sans;
+    font-weight: 600;
 }
 
 .btn:active, .btn.active {
