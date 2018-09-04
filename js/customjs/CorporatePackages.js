@@ -2,6 +2,23 @@ var g_map = {};
 var existMap = {};
 var package_price = 0;
 
+//load more packages 
+
+$( document ).ready(function () {
+	  $(".moreBox").slice(0, 3).show();
+	    if ($(".blogBox:hidden").length != 0) {
+	      $("#loadMore").show();
+	    }   
+	    $("#loadMore").on('click', function (e) {
+	      e.preventDefault();
+	      $(".moreBox:hidden").slice(0, 6).slideDown();
+	      if ($(".moreBox:hidden").length == 0) {
+	        $("#loadMore").fadeOut('slow');
+	      }
+	    });
+	  });
+
+
 function addNumberOfStudent(count, flag) {
 
 	$('.c_examName').val($('.c_name' + count).val());
@@ -201,8 +218,7 @@ $(".c_savePackageWithCart")
 					if ($('.c_totalExam').val() == '0') {
 						// $('.c_errorPackage').html("Package cannot be empty.
 						// Add at least one exam in a package.");
-						toastr
-								.error('Package cannot be empty. Add at least one exam in a package.');
+						toastr.error('Package cannot be empty. Add at least one exam in a package.');
 						return false;
 					}
 					g_map["analysisType"] = 'None';

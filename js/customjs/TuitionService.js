@@ -467,7 +467,7 @@ function listViewTab(tutorList,login){
 						pre_html+='<div class="card-body m-r-a-body">';
 						pre_html+='<ul class="timeline collapse-md">';
 						var b_history_list = b_data_map.history;
-						alert(JSON.stringify(b_history_list));
+						//alert(JSON.stringify(b_history_list));
 			        	for(var k=0;k<b_history_list.length;k++){
 			        		var b_history_map = b_history_list[k];
                           pre_html+='<li class="timeline-inverted">';
@@ -637,7 +637,7 @@ function listViewTab(tutorList,login){
 			        	
 						
 						var b_history_list = b_data_map.history;
-						alert(JSON.stringify(b_history_list));
+						//alert(JSON.stringify(b_history_list));
 			        	for(var k=0;k<b_history_list.length;k++){
 			        		var b_history_map = b_history_list[k];
                           pre_html+='<li class="timeline-inverted">';
@@ -857,16 +857,16 @@ function listViewTab(tutorList,login){
 	            	var b_map = l_data[i];
 	            	var html = '';
 	            	html+='<option value="'+b_map.batchId+'">';
-	            	html+='<span style="color:gray !important;">Batch Name:- '+b_map.batchName+'&nbsp;&nbsp;&nbsp;&nbsp;</span>,';
+	            	html+='<span style="color:gray !important;">Batch Name:- '+b_map.batchName+'&nbsp;&nbsp;&nbsp;&nbsp;</span>';
 	            	if(b_map.feeAmount==null || b_map.feeAmount==undefined || b_map.feeAmount=='')
-	            	html+='<span class="s-profile-text-gray">Fee:- 0.0</span> &nbsp;&nbsp;,';
+	            	html+='<span class="s-profile-text-gray">Fee:- 0.0</span> &nbsp;&nbsp;';
 	            	else
-	            		html+='<span class="s-profile-text-gray">Fee:- '+b_map.feeAmount+'</span> &nbsp;&nbsp;,';
-	            	html+='<option><span class="s-profile-text-gray">Timing:-'+b_map.batchStartTime+' - '+b_map.batchEndTime+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+	            		html+='<span class="s-profile-text-gray">Fee:- '+b_map.feeAmount+'</span> &nbsp;&nbsp;';
+	            	/*html+='<option><span class="s-profile-text-gray">Timing:-'+b_map.batchStartTime+' - '+b_map.batchEndTime+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
 	            	if(b_map.enrollment==null || b_map.enrollment==undefined || b_map.enrollment=='')
 	            	html+='<span class="s-profile-text-gray">No of Students: 0</span></option>';
 	            	else
-	            		html+='<span class="s-profile-text-gray">No of Students: '+b_map.enrollment+'</span></option>';
+	            		html+='<span class="s-profile-text-gray">No of Students: '+b_map.enrollment+'</span></option>';*/
 	            	$('.c_tutor_batches').append(html);
 	            
 	            }
@@ -919,7 +919,6 @@ function listViewTab(tutorList,login){
 	}
 	 var input2 = document.getElementById('location');
 	  new google.maps.places.Autocomplete(input2);
-<<<<<<< HEAD
 	google.maps.event.addDomListener(window, 'load', initialize);
  function isDaysSelected(batch){
 		
@@ -939,11 +938,9 @@ function listViewTab(tutorList,login){
 			return true;
 	}
 	function addTutorBatch(){debugger;
-	
-=======
+
 	google.maps.event.addDomListener(window, 'load', initialize)
 	function addTutorBatch(){
->>>>>>> 785448091d9fb6e665f9df9f14ec8afb234f0d8d
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
 		return;
@@ -1030,7 +1027,7 @@ function listViewTab(tutorList,login){
 		   toastr.success(response.message);
 		   //$('.c_tutor_batches').append('<option value="'+l_batch_map.batchId+'"><span style="color:gray !important;">Batch Name:- '+l_batch_map.batchName+'&nbsp;</span>,<span class="s-profile-text-gray">Fee:- '+l_batch_map.feeAmount+'</span> &nbsp;,<option><span class="s-profile-text-gray">Timing:-'+l_batch_map.batchStartTime+' - '+l_batch_map.batchEndTime+'</span>&nbsp;,<span class="s-profile-text-gray">No of Students: 0</span></option>');
 		   
-		   c_batches_html+='<li><a href="#">';
+		  /* c_batches_html+='<li><a href="#">';
 		   c_batches_html+='<div class="row">';
 		   c_batches_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
 		   c_batches_html+='<input type="hidden" value="'+l_batch_map.batchId+'" id="selected_batch">';
@@ -1042,8 +1039,18 @@ function listViewTab(tutorList,login){
 		   c_batches_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
 		   c_batches_html+='<span class="s-profile-text-gray">No of Student: <span class="s-profile-text-gray s-black"  >'+l_batch_map.noOfStudent+'</span></span></div>';
 		   c_batches_html+='</div> ';
-		   c_batches_html+='</a></li>';
-		   $(".c_tutor_batches_pre").prepend(c_batches_html);
+		   c_batches_html+='</a></li>';*/
+		   
+		   
+		   c_batches_html+='<option value="'+l_batch_map.batchId+'">';
+		   c_batches_html+='<span style="color:gray !important;">Batch Name:- '+l_batch_map.batchName+'&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+       	  if(l_batch_map.feeAmount==null || l_batch_map.feeAmount==undefined || l_batch_map.feeAmount=='')
+       		c_batches_html+='<span class="s-profile-text-gray">Fee:- 0.0</span> &nbsp;&nbsp;';
+       	  else
+       		c_batches_html+='<span class="s-profile-text-gray">Fee:- '+l_batch_map.feeAmount+'</span> &nbsp;&nbsp;';
+       	 
+       	    $('.c_tutor_batches-request').append(html);
+		  
 		   //$(".c_tutor_batches").prepend('<option selected="selected" value="'+l_batch_map.batchId+'"><span style="color:gray !important;">Batch Name:- '+l_batch_map.batchName+' </span>,<span class="s-profile-text-gray">Fee:- '+l_batch_map.feeAmount+'</span>,<option><span class="s-profile-text-gray">Timing:-'+l_batch_map.batchStartTime+' - '+l_batch_map.batchEndTime+'</span>,<span class="s-profile-text-gray">No of Students: 0</span></option>');
 		   $("#i_batch_data").hide();
 		  }
@@ -1057,33 +1064,7 @@ function listViewTab(tutorList,login){
 		}
 
 	
-  function showoption(p_flage) {
-	if (p_flage == "NONE") {
-		toastr.error('Please select any one option.');
-
-	}
-	if (p_flage == "EXIST") {
-		$("#option1").show();
-		 
-		$("#info2").hide();
-		$("#option2").hide();
-		$("#option3").hide();
-		$('.c_footer').html('<button type="button" class="btn btn-modal" onclick="saveStudentRequest(\'EXIST\')">Submit Request</button><button type="button" class="btn btn-modal" data-dismiss="modal">Cancel</button>');
-	}
-	if (p_flage == "NEW") {
-		$("#option1").hide(); 
-		$("#info2").show();
-		$("#option2").show();
-		$("#option3").show();
-		$('.c_footer').html('<button type="button" class="btn btn-modal" onclick="saveStudentRequest(\'NEW\')">Submit Request</button><button type="button" class="btn btn-modal" data-dismiss="modal">Cancel</button>');
-		loadTutorSubjects();
-	}
-	$(".c_before_select").click(function(){
-		$('.c_request_error').html('Please select any one option EXIST OR NEW.');
-		setTimeout(function(){ $('.c_request_error').html(""); }, 3000);
-	    
-	});
-}
+  
 	
 	  function batchDays(p_flag){
 		   if(p_flag=='weekend'){
@@ -1633,6 +1614,33 @@ function selectAllStudents(p_flage,p_is_checked){
 			}
 	    	
 	    }
-	
 	$(p_flage).html(l_html);
 }
+}
+	function showoption(p_flage) {
+		if (p_flage == "NONE") {
+			toastr.error('Please select any one option.');
+
+		}
+		if (p_flage == "EXIST") {
+			$("#option1").show();
+			 
+			$("#info2").hide();
+			$("#option2").hide();
+			$("#option3").hide();
+			$('.c_footer').html('<button type="button" class="btn btn-modal" onclick="saveStudentRequest(\'EXIST\')">Submit Request</button><button type="button" class="btn btn-modal" data-dismiss="modal">Cancel</button>');
+		}
+		if (p_flage == "NEW") {
+			$("#option1").hide(); 
+			$("#info2").show();
+			$("#option2").show();
+			$("#option3").show();
+			$('.c_footer').html('<button type="button" class="btn btn-modal" onclick="saveStudentRequest(\'NEW\')">Submit Request</button><button type="button" class="btn btn-modal" data-dismiss="modal">Cancel</button>');
+			loadTutorSubjects();
+		}
+		$(".c_before_select").click(function(){
+			$('.c_request_error').html('Please select any one option EXIST OR NEW.');
+			setTimeout(function(){ $('.c_request_error').html(""); }, 3000);
+		    
+		});
+	}

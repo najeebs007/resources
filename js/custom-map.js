@@ -147,10 +147,15 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh,login
 		 }
 		 if(l_map.price==null || l_map.price==undefined || isNaN(l_map.price))
 			 l_map.price = 0.0;
-		 if(login){
+		/* if(login){
 			 box='<label class="checkbox-inline checkbox-styled"><input id="i_tutor_map'+i+'" type="checkbox" value="option1" onclick="return initiateRequest(\''+l_map.userName+'\',\''+l_map.displayName+'\',\''+i+'\',\'i_tutor_map\')"><span>Select Tutor</span></label>';
 		 }else{
 			 box="<button type='button' class='btn btn-primary' style='float:right;'><a href='/'>Login/Signup to Select</a></button>";
+		 }*/
+		 if(login){ 
+			 box='<button   class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Please go through grid and list view">Select Tutor</button>'; 	 
+		 }else{
+			 box='<button  class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Please go through grid and list view">Select Tutor</button>';
 		 }
 		 var a=['<div class="card card-customize"><div class="card-body"><div class="row">'
 			  + '<div class="g-mapcard-left-img"> <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">' 
@@ -270,3 +275,6 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh,login
 	}
 	autoCenter();
 }
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
