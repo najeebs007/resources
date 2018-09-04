@@ -386,7 +386,7 @@ function listViewTab(tutorList,login){
 				if (response.status == 'SUCCESS') {
 					for(var i=0;i<l_data.length;i++){
 						var b_data_map = l_data[i]; 
-						if(l_map.STUDENT){
+					if(l_map.STUDENT){
 						pre_html+='<div class="panel-group m-r-c-p-group">';
 			        	pre_html+='<div class="card panel manage-request-accordian">';
 			        	pre_html+='<div class="card-head collapsed m-r-a-head" data-toggle="collapse" data-parent="#accordion6" data-target="#accordion6-'+i+'">';
@@ -467,6 +467,7 @@ function listViewTab(tutorList,login){
 						pre_html+='<div class="card-body m-r-a-body">';
 						pre_html+='<ul class="timeline collapse-md">';
 						var b_history_list = b_data_map.history;
+						alert(JSON.stringify(b_history_list));
 			        	for(var k=0;k<b_history_list.length;k++){
 			        		var b_history_map = b_history_list[k];
                           pre_html+='<li class="timeline-inverted">';
@@ -636,6 +637,7 @@ function listViewTab(tutorList,login){
 			        	
 						
 						var b_history_list = b_data_map.history;
+						alert(JSON.stringify(b_history_list));
 			        	for(var k=0;k<b_history_list.length;k++){
 			        		var b_history_map = b_history_list[k];
                           pre_html+='<li class="timeline-inverted">';
