@@ -649,9 +649,8 @@ function listViewTab(tutorList,login){
 						  pre_html+=' <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">';
 						  pre_html+='<img class="img-responsive pull-left with-t-img" src="resources/img/batch-list/user-book.png" alt="" />';
 						  pre_html+='</div>';
-						  pre_html+='	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">';
-						  pre_html+='	<div class="row">';
-			              
+						  pre_html+='<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">';
+						  pre_html+='<div class="row">';
 			              pre_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">';
 						  pre_html+=' <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 			              pre_html+='<span class="s-profile-text-gray">Student Name: <span class="s-black">'+b_history_map.displayName+'</span></span>';
@@ -918,6 +917,7 @@ function listViewTab(tutorList,login){
 	}
 	 var input2 = document.getElementById('location');
 	  new google.maps.places.Autocomplete(input2);
+<<<<<<< HEAD
 	google.maps.event.addDomListener(window, 'load', initialize);
  function isDaysSelected(batch){
 		
@@ -938,6 +938,10 @@ function listViewTab(tutorList,login){
 	}
 	function addTutorBatch(){debugger;
 	
+=======
+	google.maps.event.addDomListener(window, 'load', initialize)
+	function addTutorBatch(){
+>>>>>>> 785448091d9fb6e665f9df9f14ec8afb234f0d8d
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
 		return;

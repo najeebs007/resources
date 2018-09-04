@@ -1349,7 +1349,7 @@ $('#i_inactives').click(function() {
 	}
 	searchCandidates();
 });
-$('#i_view_result').click(function() {
+$('#i_view_result').click(function() {debugger;
 
 	if ($(this).is(':checked')) {
 		l_is_view_result = true;
@@ -1359,7 +1359,7 @@ $('#i_view_result').click(function() {
 	searchCandidates();
 });
 
-function searchCandidates() {
+function searchCandidates() {debugger;
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
 		return;
@@ -1380,10 +1380,9 @@ function searchCandidates() {
 				dataType : 'json',
 				data : JSON.stringify(l_map),
 				type : 'POST',
-				success : function(response) {
-					debugger;
+				success : function(response) { debugger;
 					$('#i_candidate_body').html("");
-					if (response.status == "SUCCESS") {
+					if (response.status == "SUCCESS") {debugger;
 						g_load_time = false;
 						search_indexes = [];
 						$('#i_check_all').attr('checked', false);
@@ -1449,10 +1448,8 @@ function searchCandidates() {
 								l_html += "<input type='hidden' id='c"
 										+ (i + 1) + "' value='COMPLETED'>";
 								l_html += "<form  id='get_result'  action='../../corporate/exam-report'  method='post'>";
-								l_html += "<input name='examId' type='hidden' value='"
-										+ $('#i_g_exam_id').val() + "'/>";
-								l_html += "<input name='packageId' type='hidden' value='"
-										+ $('#i_g_package_id').val() + "'/>";
+								l_html += "<input name='examId' type='hidden' value='" + $('#i_g_exam_id').val() + "'/>";
+								l_html += "<input name='packageId' type='hidden' value='" + $('#i_g_package_id').val() + "'/>";
 
 								l_html += "<button type='submit' class='btnstlish btn-3 btn-3e fa fa-arrow-right'>View Result</button>";
 								l_html += "</form>";
@@ -1464,12 +1461,7 @@ function searchCandidates() {
 										+ (i + 1)
 										+ "' style='margin:0px 2px;'>";
 								if (l_map.status == 'ACTIVE') {
-									l_html += "<input type='checkbox' checked onclick='candidateActions(\""
-											+ $('#i_g_package_id').val()
-											+ "\",\""
-											+ $('#i_g_exam_id').val()
-											+ "\",\""
-											+ l_map.candidateId
+									l_html += "<input type='checkbox' checked onclick='candidateActions(\"" + $('#i_g_package_id').val() + "\",\"" + $('#i_g_exam_id').val() + "\",\"" + l_map.candidateId
 											+ "\",\""
 											+ (i + 1)
 											+ "\",\"status\",\""
