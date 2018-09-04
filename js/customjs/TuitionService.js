@@ -937,9 +937,12 @@ function listViewTab(tutorList,login){
 		if(batch.SATURDAY)
 			return true;
 	}
+<<<<<<< HEAD
 	function addTutorBatch(){debugger;
 
 	google.maps.event.addDomListener(window, 'load', initialize)
+=======
+>>>>>>> c7333393102e88a5c69a2afc11f4f668489ce17a
 	function addTutorBatch(){
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
