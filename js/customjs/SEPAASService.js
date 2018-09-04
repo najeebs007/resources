@@ -15,10 +15,12 @@ function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){
 				setTimeout(function(){ $('.c_program_error').text(""); }, 3000);
 				return;
 			}
+			l_map.groupId = $('.i_program_groups').val();
 		}
 		if(isCustomForm)
 		  l_map = readForm('i_program_student_registration');
 		l_map.programId = programId;
+		l_map.isFreeForStudent = isFreeForStudent;
 		
 		//alert(JSON.stringify(l_map));
 		ajaxWithJSON("/student/enroll-sepaas-program", l_map, 'POST', function(response) {
@@ -26,6 +28,7 @@ function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){
 			if (response.status == 'SUCCESS') {
 				if(isFreeForStudent){
 					toastr.success(response.message);
+					location.reload();
 				}else
 				 buyNowCart(cartId,programId,'PROGRAM');
 				
@@ -39,7 +42,7 @@ function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){
 function enroll(cartId,programId,isFreeForStudent){
 	
 	ajaxWithJSON("/student/enroll-sepaas-program", l_map, 'POST', function(response) {
-	    alert(JSON.stringify(response));
+	   // alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
 			if(isFreeForStudent){
 				toastr.success(response.message);
@@ -69,7 +72,7 @@ function programUtilInfo(programId,subscriptionId){debugger;
 		l_map.programId = programId;
 		l_map.subscriptionId = subscriptionId;
 		ajaxWithJSON("/student/program-util-info", l_map, 'POST', function(response) {
-		    alert(JSON.stringify(response));
+		    //alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				var data = response.object;
 				$('.c_enrollmentFees').text(data.enrollmentFee);
@@ -94,7 +97,7 @@ function loadProgramExams(programId){debugger;
 		l_map.programId =programId;
 		
 		ajaxWithJSON("/common/load-program-exam-detail", l_map, 'POST', function(response) {
-		    alert(JSON.stringify(response));
+		   // alert(JSON.stringify(response));
 		    var html = '';
 		    var html2 = '';
 			if (response.status == 'SUCCESS') {
@@ -154,7 +157,7 @@ function loadProgramSponsors(programId,sponsorsAllowed){debugger;
 		l_map.programId = programId;
 		if(sponsorsAllowed){
 		ajaxWithJSON("/common/get-sponsors", l_map, 'POST', function(response) {
-		    alert(JSON.stringify(response));
+		    //alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				var data = response.object;
 				var powered = data.powered;
@@ -192,7 +195,7 @@ function loadProgramVolunteers(programId,volunteerAllow){debugger;
 		l_map.programId = programId;
 		if(volunteerAllow){
 		ajaxWithJSON("/common/get-volunteers", l_map, 'POST', function(response) {
-		    alert(JSON.stringify(response));
+		   // alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				var data = response.object;
 				var html ='';
@@ -238,7 +241,7 @@ if (!(navigator.onLine)) {
 	l_map.from = from;
 	l_map.to = to;
 	ajaxWithJSON("/common/load-program-registered-students", l_map, 'POST', function(response) {
-	    alert(JSON.stringify(response));
+	   // alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
 			var data = response.object;
 			var html ='';
@@ -275,7 +278,7 @@ function loadProgramGroups(programId){
 	$('#i_program_groups').html('');
 	l_map.programId = programId;
 	ajaxWithJSON("/common/load-program-groups", l_map, 'POST', function(response) {
-	    alert(JSON.stringify(response));
+	   // alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
 			
 			var data = response.object;
