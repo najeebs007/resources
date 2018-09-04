@@ -919,7 +919,23 @@ function listViewTab(tutorList,login){
 	 var input2 = document.getElementById('location');
 	  new google.maps.places.Autocomplete(input2);
 	google.maps.event.addDomListener(window, 'load', initialize);
-
+ function isDaysSelected(batch){
+		
+		if(batch.SUNDAY)
+			return true;
+		if(batch.MONDAY)
+			return true;
+		if(batch.TUESDAY)
+			return true;
+		if(batch.WEDNESDAY)
+			return true;
+		if(batch.THURSDAY)
+			return true;
+		if(batch.FRIDAY)
+			return true;
+		if(batch.SATURDAY)
+			return true;
+	}
 	function addTutorBatch(){debugger;
 	
 	if (!(navigator.onLine)) {
@@ -937,7 +953,7 @@ function listViewTab(tutorList,login){
 		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
 		return;
 	}
-	if($('.c_totalNumberOfClasses').val()==''){
+	if($('.c_totalNumberOfClasses_1').val()==''){
 		$('.c_error_create_batch').text("Please enter total classes.");
 		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
 		return;
@@ -1034,23 +1050,7 @@ function listViewTab(tutorList,login){
 		 });
 		}
 
-	function isDaysSelected(batch){
-		
-		if(batch.SUNDAY)
-			return true;
-		if(batch.MONDAY)
-			return true;
-		if(batch.TUESDAY)
-			return true;
-		if(batch.WEDNESDAY)
-			return true;
-		if(batch.THURSDAY)
-			return true;
-		if(batch.FRIDAY)
-			return true;
-		if(batch.SATURDAY)
-			return true;
-	}
+	
   function showoption(p_flage) {
 	if (p_flage == "NONE") {
 		toastr.error('Please select any one option.');
