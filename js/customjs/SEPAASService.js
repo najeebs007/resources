@@ -2,22 +2,33 @@
  * 
  */
 
-function programEnroll(programId){
+function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){
 	
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
 		return;
 	}
 		var l_map = {};
-		l_map = readForm('i_program_student_registration');
+		if(isGroup){
+			if($('.i_program_groups').val()==''){
+				$('.c_program_error').text("Please select Group.");
+				setTimeout(function(){ $('.c_program_error').text(""); }, 3000);
+				return;
+			}
+		}
+		if(isCustomForm)
+		  l_map = readForm('i_program_student_registration');
 		l_map.programId = programId;
 		
-		alert(JSON.stringify(l_map));
+		//alert(JSON.stringify(l_map));
 		ajaxWithJSON("/student/enroll-sepaas-program", l_map, 'POST', function(response) {
-		    alert(JSON.stringify(response));
+		    //alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
+				if(isFreeForStudent){
+					toastr.success(response.message);
+				}else
+				 buyNowCart(cartId,programId,'PROGRAM');
 				
-				toastr.success(response.message);
 			}
 			if (response.status == 'ERROR') {
 				toastr.error(response.message);
@@ -25,7 +36,25 @@ function programEnroll(programId){
 		});
 	
 }
-
+function enroll(cartId,programId,isFreeForStudent){
+	
+	ajaxWithJSON("/student/enroll-sepaas-program", l_map, 'POST', function(response) {
+	    alert(JSON.stringify(response));
+		if (response.status == 'SUCCESS') {
+			if(isFreeForStudent){
+				toastr.success(response.message);
+				location.reload();
+			}else{
+				buyNowCart(cartId,programId,'PROGRAM');
+				//addToCart(cartId,programId,'PROGRAM');
+			}
+			
+		}
+		if (response.status == 'ERROR') {
+			toastr.error(response.message);
+		}
+	});
+}
 
 function programUtilInfo(programId,subscriptionId){debugger;
 	

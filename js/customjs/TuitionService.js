@@ -917,7 +917,6 @@ function listViewTab(tutorList,login){
 	}
 	 var input2 = document.getElementById('location');
 	  new google.maps.places.Autocomplete(input2);
-<<<<<<< HEAD
 	google.maps.event.addDomListener(window, 'load', initialize);
  function isDaysSelected(batch){
 		
@@ -936,12 +935,7 @@ function listViewTab(tutorList,login){
 		if(batch.SATURDAY)
 			return true;
 	}
-	function addTutorBatch(){debugger;
-	
-=======
-	google.maps.event.addDomListener(window, 'load', initialize)
 	function addTutorBatch(){
->>>>>>> 785448091d9fb6e665f9df9f14ec8afb234f0d8d
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
 		return;
