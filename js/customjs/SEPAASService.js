@@ -16,7 +16,7 @@ function programEnroll(programId){
 		ajaxWithJSON("/student/enroll-sepaas-program", l_map, 'POST', function(response) {
 		    alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
-				if()
+				
 				toastr.success(response.message);
 			}
 			if (response.status == 'ERROR') {
