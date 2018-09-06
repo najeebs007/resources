@@ -1,10 +1,9 @@
 /*======== Program Details =========**/
 .program-block
 {
-  padding:35px 20px;
+  padding:35px 40px;
 }
-.sylbs-details{float: right;}
-.pro-detail-p-r{padding-right:50%;}
+.pro-detail-p-r{padding-right:45%;}
 .b-radius-5{border-radius:5px;}
 .heading-pro-s
 {
@@ -24,10 +23,8 @@
 }
 .pro-img-right-section
 {
-	position: absolute;
-	right:15px;
-	top:0px;
-    width: 48%;
+	position: relative;
+    width: 100%;
     height: 260px;    
 }
 .sy-border
@@ -51,7 +48,7 @@
 	width:100%;
 	height:100%;
 	border-top-right-radius: 5px;
-    
+    border-top-left-radius: 5px;
 }
 .program-heading
 {   
@@ -332,7 +329,7 @@
 
 @media screen and (min-width:480px){
     .program__content{
-       padding: 40px 20px;
+        padding:3.75rem
     }
 }
 @media screen and (min-width:992px){
@@ -1240,8 +1237,27 @@ video{
 .nanodegree-hero-banner .button--primary, .nanodegree-hero-banner  .button--primary, .nanodegree-hero-banner .cta-button, .nanodegree-hero-banner  .cta-button{
     font-size:.9375rem
 }
-.required:after {
-    content: "*";
-    font-weight: bold;
-    color: red;
+.process-circle
+{
+	 border-radius: 50%;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 600;
+    background-color: rgb(31, 142, 250);
+    box-shadow: 0px 11px 16px 0px rgba(14, 21, 32, 0.17);
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 18px;
+}
+.process-circle:after
+{
+	content: "";
+    position: absolute;
+    border-left:2px solid #1f8efa;
+    z-index: 1;
+	height: 80%;
+    left: 24px;
+    top: 20px;
 }
