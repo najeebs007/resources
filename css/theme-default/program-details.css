@@ -6,6 +6,22 @@
 .sylbs-details{float: right;}
 .pro-detail-p-r{padding-right:50%;}
 .b-radius-5{border-radius:5px;}
+.heading-pro-s
+{
+	width:40%;
+	float:left;
+}
+.dropi-section
+{
+	float:right;
+	width:60%;
+}
+.dropi-pro
+{
+	border: 1px solid #2196f35c !important;
+    padding: 0px 10px !important;
+    border-radius: 5px;
+}
 .pro-img-right-section
 {
 	position: absolute;

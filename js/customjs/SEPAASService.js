@@ -36,8 +36,10 @@ function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){d
 					toastr.success(response.message);
 					$('#programGroupList').modal('hide');
 					location.reload();
-				}else
+				}else{
+					$('#programGroupList').modal('hide');
 				 buyNowCart(cartId,programId,'PROGRAM');
+				}
 				
 			}
 			if (response.status == 'ERROR') {
@@ -98,7 +100,7 @@ function programUtilInfo(programId,subscriptionId){debugger;
 		});
 	
 }
-
+var g_program_exams = [];
 function loadProgramExams(programId){debugger;
 	
 	if (!(navigator.onLine)) {
@@ -115,7 +117,7 @@ function loadProgramExams(programId){debugger;
 		    var html2 = '';
 			if (response.status == 'SUCCESS') {
 				var data = response.object;
-				
+				g_program_exams = data;
 				for(var i=0;i<data.length;i++){
 					var data_map = data[i];
 					html+='<li class="">';
@@ -363,6 +365,40 @@ if (!(navigator.onLine)) {
 	});
 	
 }
+var g_programGroups = [];
+function programGroups(p_programId){debugger;
+	
+	var l_map = {};
+	$('#i_program_groups').html('');
+	l_map.programId = p_programId;
+	ajaxWithJSON("/common/load-program-groups", l_map, 'POST', function(response) {
+	   // alert(JSON.stringify(response));
+		if (response.status == 'SUCCESS') {
+			
+			var data = response.object;
+			g_programGroups = data;
+			var other = response.other;
+			var html = '<option value="">Select Group</option>';
+			
+			for(var i=0;i<data.length;i++){
+				var group = data[i];
+				if(!(other==null || other==undefined)){
+					if(other==group.groupId)
+				      html+="<option selected value='"+group.groupId+"'>"+group.groupName+"</option>";
+					else
+						html+="<option value='"+group.groupId+"'>"+group.groupName+"</option>";
+				}else
+					html+="<option value='"+group.groupId+"'>"+group.groupName+"</option>";
+			}
+			html+="<option value='ALL'>ALL</option>";
+			$('#userProgramGroupList').html(html);
+			
+		}
+		if (response.status == 'ERROR') {
+			toastr.error(response.message);
+		}
+	});
+}
 function loadProgramGroups(programId){
 	
 	if(!($('#i_program_terms').prop('checked'))){
@@ -372,11 +408,11 @@ function loadProgramGroups(programId){
 	var l_map = {};
 	$('#i_program_groups').html('');
 	l_map.programId = programId;
-	ajaxWithJSON("/common/load-program-groups", l_map, 'POST', function(response) {
+	/*ajaxWithJSON("/common/load-program-groups", l_map, 'POST', function(response) {
 	   // alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
-			
-			var data = response.object;
+			*/
+			var data = g_programGroups;
 			var html = '<option value="">Select Group</option>';
 			
 			for(var i=0;i<data.length;i++){
@@ -386,11 +422,11 @@ function loadProgramGroups(programId){
 			
 			$('#programGroupList').modal('show');
 			$('#i_program_groups').html(html);
-		}
+	/*	}
 		if (response.status == 'ERROR') {
 			toastr.error(response.message);
 		}
-	});
+	});*/
 	
 }
 
@@ -422,4 +458,62 @@ function loadSyllabus(p_program_exam_series_id ,index,size){
 		});
 		}
 
-
+function selectExamGroupWise(){
+	var selectedGroup = '';
+	var html = '';
+	if($('#userProgramGroupList').val()==''){
+		toastr.error('No group selected.');
+		return;
+	}
+	selectedGroup = $('#userProgramGroupList').val();
+	for(var i=0;i<g_program_exams.length;i++){
+		var data_map = g_program_exams[i];
+		if(data_map.groupId==selectedGroup){
+		html+='<li class="">';
+		html+='<div class="part">'; 
+		html+='<div class="card exam-card">';
+		html+='<div class="card-body card-body-padding-exam-card">';
+		html+='<div class="row rw">'; 
+		html+='<div class="col-sm-12 col-md-12 col-lg-12">';
+		html+='<div class="">';	 
+		html+='<span class="exam-name s-font">Exam Name : <strong style="color:#525c65;">'+data_map.examTitle+'</strong></span>'; 
+		html+='</div>';
+		html+='</div>'; 
+		html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-5">'; 
+		html+='<div class="">';	 
+		html+='<span class="exam-name s-font">Exam Start date : <strong style="color:#525c65;">'+data_map.examStartDateStr+'</strong></span>'; 
+		html+='</div>';
+		html+='</div>';  
+		html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+		if(data_map.examDescription == null || data_map.examDescription == undefined)
+			 html+='<span class="program-text-normal s-font"></span>';
+		else
+		  html+='<span class="program-text-normal s-font">'+data_map.examDescription+'</span>';
+		html+='</div>'; 
+		html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10 center">'; 
+		var examStart = toDate(data_map.examStartDateStr);
+		var today = new Date();
+		var compared = dates.compare(today,examStart);
+		if(compared>=0)
+		 html+='<a href="http://exam.koescore.com.com"><button type="button" class="btn btn-primary">Take Test</button></a>';
+		else
+			html+='<button type="button" class="btn btn-primary" title="Exam will be unlock on '+data_map.examStartDateStr+'" style="cursor: no-drop;">Take Test</button>';
+		html+='<a onclick="loadSyllabus(\''+data_map.identifier+'\','+i+','+data.length+')" style="cursor:pointer;color:#2196f3;margin-left: 10px;"><u>View Syllabus</u></a>';
+		html+='</div>';
+		html+='</div>';
+		html+='</div>';	 
+		html+='</div>';
+	 
+		html+='<div  class="sylbs-details bind_syllabus'+i+'">';
+		html+='</div>';
+		 
+		html+='</div>';
+		html+='</li>';
+		html2+='<option value="'+data_map.examId+'">'+data_map.examTitle+'</option>';
+		}else{
+			toastr.error("No exam found.");
+		}	
+	}
+	$('.c_program_exams').html(html);
+	
+}
