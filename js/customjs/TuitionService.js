@@ -657,12 +657,14 @@ function listViewTab(tutorList,login){
 						  pre_html+=' <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 			              pre_html+='<span class="s-profile-text-gray">Student Name: <span class="s-black">'+b_history_map.displayName+'</span></span>';
 						  pre_html+=' </div>';
+						  if(!(b_history_map.status=='ACTIVE')){
 						  pre_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 			              pre_html+='<span class="s-profile-text-gray">Comment: <span class="s-black">'+b_history_map.comment+'</span></span>';
 						  pre_html+='</div>';
 						  pre_html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 			              pre_html+='<span class="s-profile-text-gray">Timing Opted: <span class="s-black">'+b_history_map.startTime+'-'+b_history_map.endTime+'</span></span>';
 						  pre_html+='</div>';
+						  }
 						  
 			              pre_html+='</div>';
 						  // button for different action
