@@ -1221,4 +1221,8 @@ video{
 .nanodegree-hero-banner .button--primary, .nanodegree-hero-banner  .button--primary, .nanodegree-hero-banner .cta-button, .nanodegree-hero-banner  .cta-button{
     font-size:.9375rem
 }
-
+.required:after {
+    content: "*";
+    font-weight: bold;
+    color: red;
+}
