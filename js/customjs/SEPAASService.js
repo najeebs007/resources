@@ -2,12 +2,14 @@
  * 
  */
 
-function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){
+function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){debugger;
 	
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
 		return;
 	}
+	
+		
 		var l_map = {};
 		if(isGroup){
 			if($('.i_program_groups').val()==''){
@@ -17,8 +19,12 @@ function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){
 			}
 			l_map.groupId = $('.i_program_groups').val();
 		}
-		if(isCustomForm)
-		  l_map = readForm('i_program_student_registration');
+		if(isCustomForm){
+			if(validateForm('i_program_student_registration','c_program_error'))
+		       l_map = readForm('i_program_student_registration');
+			else
+				return
+		}
 		l_map.programId = programId;
 		l_map.isFreeForStudent = isFreeForStudent;
 		
@@ -28,6 +34,7 @@ function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){
 			if (response.status == 'SUCCESS') {
 				if(isFreeForStudent){
 					toastr.success(response.message);
+					$('#programGroupList').modal('hide');
 					location.reload();
 				}else
 				 buyNowCart(cartId,programId,'PROGRAM');
@@ -41,13 +48,19 @@ function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){
 }
 function enroll(cartId,programId,isFreeForStudent){
 	
+	if(!($('#i_program_terms').prop('checked'))){
+		toastr.error("Please Accept Terms And Conditions.");
+		return;
+	}
 	ajaxWithJSON("/student/enroll-sepaas-program", l_map, 'POST', function(response) {
 	   // alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
 			if(isFreeForStudent){
 				toastr.success(response.message);
+				$('#programGroupList').modal('hide');
 				location.reload();
 			}else{
+				$('#programGroupList').modal('show');
 				buyNowCart(cartId,programId,'PROGRAM');
 				//addToCart(cartId,programId,'PROGRAM');
 			}
@@ -107,6 +120,8 @@ function loadProgramExams(programId){debugger;
 					var data_map = data[i];
 					html+='<li class="">';
 					html+='<div class="part">';
+					html+='<div class="row">';
+					html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">';
 					html+='<div class="card exam-card">';
 					html+='<div class="card-body card-body-padding-exam-card">';
 					html+='<div class="row rw">'; 
@@ -117,17 +132,31 @@ function loadProgramExams(programId){debugger;
 					html+='</div>'; 
 					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-5">'; 
 					html+='<div class="">';	 
-					html+='<span class="exam-name s-font">Exam Start date : <strong style="color:#525c65;">'+data_map.examStartDate+'</strong></span>'; 
+					html+='<span class="exam-name s-font">Exam Start date : <strong style="color:#525c65;">'+data_map.examStartDateStr+'</strong></span>'; 
 					html+='</div>';
 					html+='</div>';  
 					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
-					html+='<span class="program-text-normal s-font">'+data_map.examDescription+'</span>';
+					if(data_map.examDescription == null || data_map.examDescription == undefined)
+						 html+='<span class="program-text-normal s-font"></span>';
+					else
+					  html+='<span class="program-text-normal s-font">'+data_map.examDescription+'</span>';
 					html+='</div>'; 
 					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10 center">'; 
-					html+='<button type="button" class="btn btn-primary">Take Test</button>';                                                                   
+					var examStart = toDate(data_map.examStartDateStr);
+					var today = new Date();
+					var compared = dates.compare(today,examStart);
+					if(compared>=0)
+					 html+='<a href="http://exam.koescore.com.com"><button type="button" class="btn btn-primary">Take Test</button></a>';
+					else
+						html+='<button type="button" class="btn btn-primary" title="Exam will be unlock on '+data_map.examStartDateStr+'" style="cursor: no-drop;">Take Test</button>';
+					html+='<a onclick="loadSyllabus(\''+data_map.identifier+'\')" style="cursor:pointer;color:#2196f3;margin-left: 10px;"><u>View Syllabus</u></a>';
 					html+='</div>';
 					html+='</div>';
 					html+='</div>';	 
+					html+='</div>';
+					html+='</div>';
+					html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="bind_syllabus">';
+					html+='</div>';
 					html+='</div>';
 					html+='</div>';
 					html+='</li>';
@@ -144,6 +173,11 @@ function loadProgramExams(programId){debugger;
 			}
 		});
 	
+}
+
+function toDate(dateStr) {
+	  const [day, month, year] = dateStr.split(" ")
+	  return new Date(year, month - 1, day)
 }
 
 function loadProgramSponsors(programId,sponsorsAllowed){debugger;
@@ -163,18 +197,29 @@ function loadProgramSponsors(programId,sponsorsAllowed){debugger;
 				var powered = data.powered;
 				var coPowered = data.co-powered;
 				var html='';
+				if(powered.length>0)
+				html+='<div class="col-sm-12 col-md-12 col-lg-12"> <span class="f-size-medium s-font c-primary">Powered by (<strong>sponsors</strong>) </span> </div><div class="sponsor-carousel ">';
+                                            
 				for(var i=0;i<powered.length;i++){
 					html+='<article class="m-t-30">';
                     html+='<div class="sponsor-block"><img src="'+powered[0]+'"></div>';   
                     html+='</article>';
 				}
+				if(powered.length>0)
+					html+='</div>';
+	                 
 				$('.c_sponsor_logo').html(html);
 				html = '';
+				if(coPowered.length>0)
+					html+='<div class="col-sm-12 col-md-12 col-lg-12"> <span class="f-size-medium s-font c-primary">Co-Powered by (<strong>sponsors</strong>) </span> </div><div class="sponsor-carousel">';
+                
 				for(var i=0;i<coPowered.length;i++){
 					html+='<article class="m-t-30">';
                     html+='<div class="sponsor-block"><img src="'+coPowered[0]+'"></div>';   
                     html+='</article>';
 				}
+				if(coPowered.length>0)
+					html+='</div>';
 				$('.c_co-sponsor_logo').html(html);
 			}
 			if (response.status == 'ERROR') {
@@ -199,6 +244,11 @@ function loadProgramVolunteers(programId,volunteerAllow){debugger;
 			if (response.status == 'SUCCESS') {
 				var data = response.object;
 				var html ='';
+				if(data.length>0)
+					html+='<div class="col-sm-12 col-md-12 col-lg-12"> <span class="f-size-medium s-font c-primary">Our <strong>Volunteers</strong> </span> </div> <div class="blog-carousel main ">';
+                
+				  
+                 
 				for(var i=0;i<data.length;i++){
 					var row = data[i];
 					html+='<article class="m-t-30 jQueryEqualHeightD">';
@@ -220,6 +270,9 @@ function loadProgramVolunteers(programId,volunteerAllow){debugger;
 					html+='</div>';
 					html+='</article>';
 				}
+				if(data.length>0)
+					html+='</div>';
+                
 				$('.c_volunteers').html(html);
 			}
 			if (response.status == 'ERROR') {
@@ -274,6 +327,11 @@ if (!(navigator.onLine)) {
 	
 }
 function loadProgramGroups(programId){
+	
+	if(!($('#i_program_terms').prop('checked'))){
+		toastr.error("Please Accept Terms And Conditions.");
+		return;
+	}
 	var l_map = {};
 	$('#i_program_groups').html('');
 	l_map.programId = programId;
@@ -282,7 +340,8 @@ function loadProgramGroups(programId){
 		if (response.status == 'SUCCESS') {
 			
 			var data = response.object;
-			var html ='';
+			var html = '<option value="">Select Group</option>';
+			
 			for(var i=0;i<data.length;i++){
 				var group = data[i];
 				html+="<option value='"+group.groupId+"'>"+group.groupName+"</option>";
@@ -299,5 +358,28 @@ function loadProgramGroups(programId){
 }
 
 function showCustomForm(){
+	if(!($('#i_program_terms').prop('checked'))){
+		toastr.error("Please Accept Terms And Conditions.");
+		return;
+	}
 	$('#programGroupList').modal('show');
 }
+
+function loadSyllabus(p_program_exam_series_id){
+	var l_map = {};
+	l_map.seriesId = p_program_exam_series_id;
+	ajaxWithJSON("/common/load-program-exam-syllabus", l_map, 'POST', function(response) {
+		   //alert(JSON.stringify(response));
+			if (response.status == 'SUCCESS') {
+				var data = response.object;
+				var syllabus = data.whatToPrepare;
+				$('#bind_syllabus').html(syllabus);
+				setTimeout(function(){ $('#i_program_exam_group').html(''); }, (3000*20)*30);
+			}
+			if (response.status == 'ERROR') {
+				toastr.error(response.message);
+			}
+		});
+		}
+
+
