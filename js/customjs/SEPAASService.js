@@ -119,9 +119,7 @@ function loadProgramExams(programId){debugger;
 				for(var i=0;i<data.length;i++){
 					var data_map = data[i];
 					html+='<li class="">';
-					html+='<div class="part">';
-					html+='<div class="row">';
-					html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">';
+					html+='<div class="part">'; 
 					html+='<div class="card exam-card">';
 					html+='<div class="card-body card-body-padding-exam-card">';
 					html+='<div class="row rw">'; 
@@ -149,15 +147,15 @@ function loadProgramExams(programId){debugger;
 					 html+='<a href="http://exam.koescore.com.com"><button type="button" class="btn btn-primary">Take Test</button></a>';
 					else
 						html+='<button type="button" class="btn btn-primary" title="Exam will be unlock on '+data_map.examStartDateStr+'" style="cursor: no-drop;">Take Test</button>';
-					html+='<a onclick="loadSyllabus(\''+data_map.identifier+'\')" style="cursor:pointer;color:#2196f3;margin-left: 10px;"><u>View Syllabus</u></a>';
+					html+='<a onclick="loadSyllabus(\''+data_map.identifier+'\','+i+','+data.length+')" style="cursor:pointer;color:#2196f3;margin-left: 10px;"><u>View Syllabus</u></a>';
 					html+='</div>';
 					html+='</div>';
 					html+='</div>';	 
 					html+='</div>';
+				 
+					html+='<div  class="sylbs-details bind_syllabus'+i+'">';
 					html+='</div>';
-					html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="bind_syllabus">';
-					html+='</div>';
-					html+='</div>';
+					 
 					html+='</div>';
 					html+='</li>';
 					html2+='<option value="'+data_map.examId+'">'+data_map.examTitle+'</option>';
@@ -197,29 +195,55 @@ function loadProgramSponsors(programId,sponsorsAllowed){debugger;
 				var powered = data.powered;
 				var coPowered = data.co-powered;
 				var html='';
-				if(powered.length>0)
-				html+='<div class="col-sm-12 col-md-12 col-lg-12"> <span class="f-size-medium s-font c-primary">Powered by (<strong>sponsors</strong>) </span> </div><div class="sponsor-carousel ">';
-                                            
+				if(powered.length>0){
+					html+='<div class="row">';
+					html+='<div class="col-md-12">';
+					html+='<div class="card card-customize b-radius-5">';
+					html+='<div class="card-body">';
+					html+='<div class="volunteer-block center">';
+					html+='<div class="row">';
+				    html+='<div class="col-sm-12 col-md-12 col-lg-12"> <span class="f-size-medium s-font c-primary">Powered by (<strong>sponsors</strong>) </span> </div><div class="sponsor-carousel ">';
+				}                           
 				for(var i=0;i<powered.length;i++){
 					html+='<article class="m-t-30">';
                     html+='<div class="sponsor-block"><img src="'+powered[0]+'"></div>';   
                     html+='</article>';
 				}
-				if(powered.length>0)
+				if(powered.length>0){
 					html+='</div>';
+					html+=' </div>';
+					html+=' </div>';
+					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+				}
 	                 
 				$('.c_sponsor_logo').html(html);
 				html = '';
-				if(coPowered.length>0)
+				if(coPowered.length>0){
+					html+='<div class="row">';
+					html+='<div class="col-md-12">';
+					html+='<div class="card card-customize b-radius-5">';
+					html+='<div class="card-body">';
+					html+='<div class="volunteer-block center">';
+					html+='<div class="row">';
 					html+='<div class="col-sm-12 col-md-12 col-lg-12"> <span class="f-size-medium s-font c-primary">Co-Powered by (<strong>sponsors</strong>) </span> </div><div class="sponsor-carousel">';
-                
+				}
 				for(var i=0;i<coPowered.length;i++){
 					html+='<article class="m-t-30">';
                     html+='<div class="sponsor-block"><img src="'+coPowered[0]+'"></div>';   
                     html+='</article>';
 				}
-				if(coPowered.length>0)
+				if(coPowered.length>0){
 					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+				}
 				$('.c_co-sponsor_logo').html(html);
 			}
 			if (response.status == 'ERROR') {
@@ -244,10 +268,16 @@ function loadProgramVolunteers(programId,volunteerAllow){debugger;
 			if (response.status == 'SUCCESS') {
 				var data = response.object;
 				var html ='';
-				if(data.length>0)
+				if(data.length>0){
+					html+='<div class="row">';
+					html+='<div class="col-md-12">';
+					html+='<div class="card card-customize b-radius-5">';
+					html+='<div class="card-body">';
+					html+='<div class="volunteer-block center">';
+					html+='<div class="row c_volunteers">';
 					html+='<div class="col-sm-12 col-md-12 col-lg-12"> <span class="f-size-medium s-font c-primary">Our <strong>Volunteers</strong> </span> </div> <div class="blog-carousel main ">';
                 
-				  
+				}
                  
 				for(var i=0;i<data.length;i++){
 					var row = data[i];
@@ -270,8 +300,15 @@ function loadProgramVolunteers(programId,volunteerAllow){debugger;
 					html+='</div>';
 					html+='</article>';
 				}
-				if(data.length>0)
+				if(data.length>0){
 					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+				}
                 
 				$('.c_volunteers').html(html);
 			}
@@ -365,7 +402,7 @@ function showCustomForm(){
 	$('#programGroupList').modal('show');
 }
 
-function loadSyllabus(p_program_exam_series_id){
+function loadSyllabus(p_program_exam_series_id ,index,size){
 	var l_map = {};
 	l_map.seriesId = p_program_exam_series_id;
 	ajaxWithJSON("/common/load-program-exam-syllabus", l_map, 'POST', function(response) {
@@ -373,7 +410,10 @@ function loadSyllabus(p_program_exam_series_id){
 			if (response.status == 'SUCCESS') {
 				var data = response.object;
 				var syllabus = data.whatToPrepare;
-				$('#bind_syllabus').html(syllabus);
+				for(var i=0;i<size;i++){
+					$('.bind_syllabus'+i).html('');
+				}
+				$('.bind_syllabus'+index).html(syllabus);
 				setTimeout(function(){ $('#i_program_exam_group').html(''); }, (3000*20)*30);
 			}
 			if (response.status == 'ERROR') {

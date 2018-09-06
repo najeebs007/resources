@@ -80,7 +80,7 @@ $(".loading").show();
 },
 		  error : function(jqXHR, textStatus, errorThrown) {
 			  $(".loading").hide();
-			 toastr.error(response);
+			 toastr.error("there is some error.please try again later.");
 			  //alert("error:" + textStatus + " exception:" + errorThrown);
 		  }
 		 });
