@@ -1,16 +1,17 @@
 /*======== Program Details =========**/
 .program-block
 {
-  padding:35px 10px;
+  padding:35px 20px;
 }
+.sylbs-details{float: right;}
 .pro-detail-p-r{padding-right:50%;}
 .b-radius-5{border-radius:5px;}
 .pro-img-right-section
 {
 	position: absolute;
-	right:-9px;
-	top:-24px;
-    width: 50%;
+	right:15px;
+	top:0px;
+    width: 48%;
     height: 260px;    
 }
 .sy-border
@@ -315,7 +316,7 @@
 
 @media screen and (min-width:480px){
     .program__content{
-       padding: 40px 10px;
+       padding: 40px 20px;
     }
 }
 @media screen and (min-width:992px){
