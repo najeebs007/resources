@@ -458,7 +458,7 @@ function loadSyllabus(p_program_exam_series_id ,index,size){
 		});
 		}
 
-function selectExamGroupWise(){
+function selectExamGroupWise(){debugger;
 	var selectedGroup = '';
 	var html = '';
 	if($('#userProgramGroupList').val()==''){
@@ -498,7 +498,7 @@ function selectExamGroupWise(){
 		 html+='<a href="http://exam.koescore.com.com"><button type="button" class="btn btn-primary">Take Test</button></a>';
 		else
 			html+='<button type="button" class="btn btn-primary" title="Exam will be unlock on '+data_map.examStartDateStr+'" style="cursor: no-drop;">Take Test</button>';
-		html+='<a onclick="loadSyllabus(\''+data_map.identifier+'\','+i+','+data.length+')" style="cursor:pointer;color:#2196f3;margin-left: 10px;"><u>View Syllabus</u></a>';
+		html+='<a onclick="loadSyllabus(\''+data_map.identifier+'\','+i+','+g_program_exams.length+')" style="cursor:pointer;color:#2196f3;margin-left: 10px;"><u>View Syllabus</u></a>';
 		html+='</div>';
 		html+='</div>';
 		html+='</div>';	 
@@ -509,10 +509,59 @@ function selectExamGroupWise(){
 		 
 		html+='</div>';
 		html+='</li>';
-		html2+='<option value="'+data_map.examId+'">'+data_map.examTitle+'</option>';
-		}else{
-			toastr.error("No exam found.");
-		}	
+		
+		}
+		
+	}
+	if(selectedGroup=='ALL'){
+		
+		for(var i=0;i<g_program_exams.length;i++){
+			var data_map = g_program_exams[i];
+			
+			html+='<li class="">';
+			html+='<div class="part">'; 
+			html+='<div class="card exam-card">';
+			html+='<div class="card-body card-body-padding-exam-card">';
+			html+='<div class="row rw">'; 
+			html+='<div class="col-sm-12 col-md-12 col-lg-12">';
+			html+='<div class="">';	 
+			html+='<span class="exam-name s-font">Exam Name : <strong style="color:#525c65;">'+data_map.examTitle+'</strong></span>'; 
+			html+='</div>';
+			html+='</div>'; 
+			html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-5">'; 
+			html+='<div class="">';	 
+			html+='<span class="exam-name s-font">Exam Start date : <strong style="color:#525c65;">'+data_map.examStartDateStr+'</strong></span>'; 
+			html+='</div>';
+			html+='</div>';  
+			html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+			if(data_map.examDescription == null || data_map.examDescription == undefined)
+				 html+='<span class="program-text-normal s-font"></span>';
+			else
+			  html+='<span class="program-text-normal s-font">'+data_map.examDescription+'</span>';
+			html+='</div>'; 
+			html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10 center">'; 
+			var examStart = toDate(data_map.examStartDateStr);
+			var today = new Date();
+			var compared = dates.compare(today,examStart);
+			if(compared>=0)
+			 html+='<a href="http://exam.koescore.com.com"><button type="button" class="btn btn-primary">Take Test</button></a>';
+			else
+				html+='<button type="button" class="btn btn-primary" title="Exam will be unlock on '+data_map.examStartDateStr+'" style="cursor: no-drop;">Take Test</button>';
+			html+='<a onclick="loadSyllabus(\''+data_map.identifier+'\','+i+','+g_program_exams.length+')" style="cursor:pointer;color:#2196f3;margin-left: 10px;"><u>View Syllabus</u></a>';
+			html+='</div>';
+			html+='</div>';
+			html+='</div>';	 
+			html+='</div>';
+		 
+			html+='<div  class="sylbs-details bind_syllabus'+i+'">';
+			html+='</div>';
+			 
+			html+='</div>';
+			html+='</li>';
+			
+			
+			
+		}
 	}
 	$('.c_program_exams').html(html);
 	
