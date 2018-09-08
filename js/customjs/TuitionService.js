@@ -53,10 +53,16 @@ function gridViewTab(tutorList,login){debugger;
     				html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 c_add1"+i+"\" style='text-align:center;'>";
 					 html+=box;
 				     html += "</div></div></div></div></div>";
-    			    // html += "<a href=\"#\" onclick=\"return addTutorToRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\" class=\"btn btn-danger\">Select Tutor</a></div></div></div></div></div>";
+    			    // html += "<a href=\"#\" onclick=\"return
+					// addTutorToRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"')\"
+					// class=\"btn btn-danger\">Select
+					// Tutor</a></div></div></div></div></div>";
     			    
     			
-    			    //html += "<a href=\"#\" onclick=\"return requestForTuition('"+tutorMap.userName+"','"+tutorMap.displayName+"')\" class=\"btn btn-danger\">Request For Tuition</a></div></div></div></div></div>";
+    			    // html += "<a href=\"#\" onclick=\"return
+					// requestForTuition('"+tutorMap.userName+"','"+tutorMap.displayName+"')\"
+					// class=\"btn btn-danger\">Request For
+					// Tuition</a></div></div></div></div></div>";
     		}
     		
     		return html;
@@ -152,7 +158,8 @@ function listViewTab(tutorList,login){
 				formSubmitFilter(latitude,longitude);
 			} else {
 				formSubmitFilter(latitude,longitude);
-				// alert("Geocode was not successful for the following reason: " + status);
+				// alert("Geocode was not successful for the following reason: "
+				// + status);
 			}
 		});
 
@@ -172,10 +179,10 @@ function listViewTab(tutorList,login){
 		l_search_map.records = "10";
 		l_search_map.location = document.getElementById("address-map").value;
 		l_search_map.subjectId = document.getElementById("subjects").value;
-		//alert(JSON.stringify(l_search_map));
+		// alert(JSON.stringify(l_search_map));
 		$('.loading').show();
 		ajaxWithJSON("/common/search-tutor-data", l_search_map, 'POST', function(response) {
-			//alert(JSON.stringify(response));
+			// alert(JSON.stringify(response));
 		$('.loading').hide();
 	    if (response.status == 'SUCCESS') {
 				 l_data = response.object;
@@ -192,10 +199,11 @@ function listViewTab(tutorList,login){
 				 if(tutorSearchResult.length==0){
 					 toastr.error('No tutor find at this location.');
 				 }
-			    	//if(counter<10)
+			    	// if(counter<10)
 			    	$('.i_total_result').html("Total showing "+tutorSearchResult.length+" out of "+counter+l_text);
-			    	//else
-			    		//$('.i_total_result').html("Total showing 10 out of "+counter+l_text);
+			    	// else
+			    		// $('.i_total_result').html("Total showing 10 out of
+						// "+counter+l_text);
 				 SearchByFilter();
 
 			}
@@ -221,7 +229,8 @@ function listViewTab(tutorList,login){
 	        paginationView();
 			$("#gridviewtabdiv").html("").append(gridviewhtml);
 			$("#listviewtabdiv").html("").append(listviewhtml);
-			//setOptions("subjectId",l_subject_list_obj,'subjectId','subjectName',"Select Subject Name");	
+			// setOptions("subjectId",l_subject_list_obj,'subjectId','subjectName',"Select
+			// Subject Name");
 		}else{
 			toastr.error("No Tutor Available in this area.");
 		}
@@ -237,7 +246,7 @@ function listViewTab(tutorList,login){
 	    }
 	
 		if(!($('#'+requestFrom+p_count).prop('checked'))){
-			//alert("rejecting request:");
+			// alert("rejecting request:");
 			removeStudentRequest(p_tutor_id,p_count);
 		}
 		else{
@@ -279,7 +288,7 @@ function listViewTab(tutorList,login){
 					var l_data = response.object;
 					
 					$('.loading').hide();
-					//alert(JSON.stringify(response));
+					// alert(JSON.stringify(response));
 					if (response.status == 'SUCCESS') {
 						
 						$('#i_tutor_grid'+p_count).prop('checked', false);
@@ -305,7 +314,7 @@ function listViewTab(tutorList,login){
 	}
 		
 		var l_request_map ={};
-		//l_request_map.requestId = $('.c_requestId').val();
+		// l_request_map.requestId = $('.c_requestId').val();
 		var l_count = $('.c_count').val();
 		l_request_map.latitude = latitude;
 		l_request_map.longitude =longitude;
@@ -350,7 +359,7 @@ function listViewTab(tutorList,login){
 		ajaxWithJSON("/tutor-tuition-request",l_request_map,'POST',function(response) {
 					var l_data = response.object;
 					$('.loading').hide();
-					//alert(JSON.stringify(response));
+					// alert(JSON.stringify(response));
 					if (response.status == 'SUCCESS') {
 						$('#tuition_request').modal('hide');
 						$('#i_tutor_grid'+l_count).prop('checked', true);
@@ -381,7 +390,7 @@ function listViewTab(tutorList,login){
 	ajaxWithJSON("/common/load-tuition-requests",l_map,'POST',function(response) {debugger;
 	
 				var l_data = response.object;
-				//var l_data_other = response.other;
+				// var l_data_other = response.other;
 				var pre_html = '';
 				if (response.status == 'SUCCESS') {
 					for(var i=0;i<l_data.length;i++){
@@ -446,10 +455,10 @@ function listViewTab(tutorList,login){
 							pre_html+='<span class="s-black"></span>';
 						else{
 						var tutors = b_data_map.activeTutors;
-						//for(var j=0;j<tutors.length;j++){
-						//var tutor = tutors[j];
+						// for(var j=0;j<tutors.length;j++){
+						// var tutor = tutors[j];
 						pre_html+='<span class="s-black">'+tutors.toString()+',</span>';
-						//}
+						// }
 						}
 						pre_html+='</span>';
 						pre_html+='</div>'; 
@@ -467,12 +476,13 @@ function listViewTab(tutorList,login){
 						pre_html+='<div class="card-body m-r-a-body">';
 						pre_html+='<ul class="timeline collapse-md">';
 						var b_history_list = b_data_map.history;
-						//alert(JSON.stringify(b_history_list));
+						// alert(JSON.stringify(b_history_list));
 			        	for(var k=0;k<b_history_list.length;k++){
 			        		var b_history_map = b_history_list[k];
                           pre_html+='<li class="timeline-inverted">';
 			              pre_html+='<div class="timeline-circ"></div>';
-			             // var date1 = new Date(Number(b_history_map.createdAt));
+			             // var date1 = new
+							// Date(Number(b_history_map.createdAt));
 			              pre_html+='<div class="timeline-date">'+b_history_map.requestAt+'</div>';
 			              pre_html+='<div class="timeline-entry">';
 			              pre_html+='<div class="card timeline-card">';
@@ -602,7 +612,7 @@ function listViewTab(tutorList,login){
 			        	if(b_data_map.requestedAt == null || b_data_map.requestedAt == undefined)
 			        		pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black"></span></span>';
 			        	else{
-						//var date2 = new Date(Number(b_data_map.requestedAt));
+						// var date2 = new Date(Number(b_data_map.requestedAt));
 						pre_html+='<span class="s-profile-text-gray s-bold">Requested At : <span class="s-black">'+b_data_map.requestedAt+'</span></span>';
 					    }
 						pre_html+='</div>'; 
@@ -637,12 +647,13 @@ function listViewTab(tutorList,login){
 			        	
 						
 						var b_history_list = b_data_map.history;
-						//alert(JSON.stringify(b_history_list));
+						// alert(JSON.stringify(b_history_list));
 			        	for(var k=0;k<b_history_list.length;k++){
 			        		var b_history_map = b_history_list[k];
                           pre_html+='<li class="timeline-inverted">';
 			              pre_html+='<div class="timeline-circ"></div>';
-			              //var date1 = new Date(Number(b_history_map.createdAt));
+			              // var date1 = new
+							// Date(Number(b_history_map.createdAt));
 			              pre_html+='<div class="timeline-date">'+b_history_map.requestAt+'</div>';
 			              pre_html+='<div class="timeline-entry">';
 			              pre_html+='<div class="card timeline-card">';
@@ -750,7 +761,7 @@ function listViewTab(tutorList,login){
 		ajaxWithJSON("/common-tuition-request-action", l_map, 'POST', function(response) {
 			$('.loading').hide();
 			var l_data = response.object;
-			//alert(JSON.stringify(response));
+			// alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				toastr.success(response.message);
 				setTimeout(function(){ location.reload(); }, 3000);
@@ -764,7 +775,7 @@ function listViewTab(tutorList,login){
 	
 	function selectBatch(p_requestId,p_tuitionRequestId,p_studentId,p_startTime,p_endTime,p_location,p_subject,p_tutorId){debugger;
 		
-		  //alert(JSON.stringify(p_suggest_data));
+		  // alert(JSON.stringify(p_suggest_data));
 		    $('#i_suggestBatch').modal('show');
 		    $('.c_subject_request').text(p_subject);
 		    $('.c_location_request').text(p_location);
@@ -801,7 +812,7 @@ function listViewTab(tutorList,login){
 		
 		ajaxWithJSON("/common-tuition-request-action", l_map, 'POST', function(response) {
 			var l_data = response.object;
-			//alert(JSON.stringify(response));
+			// alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				$('#i_suggestBatch').modal('hide');
 				toastr.success(response.message);
@@ -821,7 +832,7 @@ function listViewTab(tutorList,login){
 		l_map.batchId = p_batchId;
 		ajaxWithJSON("/common-batch-detail", l_map, 'POST', function(response) {
 			var l_data = response.object;
-			//alert(JSON.stringify(response));
+			// alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				$('#i_batch_detail').modal('show');
 				$('.c_batch_name').text(l_data.batchName);
@@ -833,7 +844,7 @@ function listViewTab(tutorList,login){
 				$('.c_medium').text(l_data.medium);
 				$('.c_feeAmount').text(l_data.feeAmount);
 				$('.c_totalSeats').text(l_data.totalSeats);
-				//toastr.success(response.message);
+				// toastr.success(response.message);
 			}
 			if (response.status == 'ERROR') {
 				toastr.error(response.message);
@@ -852,7 +863,7 @@ function listViewTab(tutorList,login){
 		l_map.top = false;
 		ajaxWithJSON("/tutor-batches", l_map, 'POST', function(response) {
 			var l_data = response.object;
-			//alert(JSON.stringify(response));
+			// alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				g_batches = l_data;
 	            for(var i=0;i<l_data.length;i++){
@@ -864,17 +875,22 @@ function listViewTab(tutorList,login){
 	            	html+='<span class="s-profile-text-gray">Fee:- 0.0</span> &nbsp;&nbsp;';
 	            	else
 	            		html+='<span class="s-profile-text-gray">Fee:- '+b_map.feeAmount+'</span> &nbsp;&nbsp;';
-	            	/*html+='<option><span class="s-profile-text-gray">Timing:-'+b_map.batchStartTime+' - '+b_map.batchEndTime+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
-	            	if(b_map.enrollment==null || b_map.enrollment==undefined || b_map.enrollment=='')
-	            	html+='<span class="s-profile-text-gray">No of Students: 0</span></option>';
-	            	else
-	            		html+='<span class="s-profile-text-gray">No of Students: '+b_map.enrollment+'</span></option>';*/
+	            	/*
+					 * html+='<option><span
+					 * class="s-profile-text-gray">Timing:-'+b_map.batchStartTime+' -
+					 * '+b_map.batchEndTime+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+					 * if(b_map.enrollment==null || b_map.enrollment==undefined ||
+					 * b_map.enrollment=='') html+='<span
+					 * class="s-profile-text-gray">No of Students: 0</span></option>';
+					 * else html+='<span class="s-profile-text-gray">No of
+					 * Students: '+b_map.enrollment+'</span></option>';
+					 */
 	            	$('.c_tutor_batches').append(html);
 	            
 	            }
 			}
 			if (response.status == 'ERROR') {
-				//document.write(response.message);
+				// document.write(response.message);
 			}
 		});
 	}
@@ -884,37 +900,31 @@ function listViewTab(tutorList,login){
 
 
 
-/*	var l_lat, l_lng;
-	function codeAddress() {debugger;
-	if (!(navigator.onLine)) {
-		toastr.error('You are offline. please check internet connection.');
-		return;
-	}
-	    geocoder = new google.maps.Geocoder();
-	    var address = document.getElementById("location").value;
-	    geocoder.geocode( { 'address': address}, function(results, status) {
-	      if (status == google.maps.GeocoderStatus.OK) {
-	       l_lat = results[0].geometry.location.lat();
-	       l_lng = results[0].geometry.location.lng();
-	       $("#latitude").val(l_lat);
-	       $("#longitude").val(l_lng);
-	      addTutorBatch();
-	      } 
-
-	      else {
-	        alert("Geocode was not successful for the following reason: " + status);
-	      }
-	    }); 
-	  }*/
+/*
+ * var l_lat, l_lng; function codeAddress() {debugger; if (!(navigator.onLine)) {
+ * toastr.error('You are offline. please check internet connection.'); return; }
+ * geocoder = new google.maps.Geocoder(); var address =
+ * document.getElementById("location").value; geocoder.geocode( { 'address':
+ * address}, function(results, status) { if (status ==
+ * google.maps.GeocoderStatus.OK) { l_lat = results[0].geometry.location.lat();
+ * l_lng = results[0].geometry.location.lng(); $("#latitude").val(l_lat);
+ * $("#longitude").val(l_lng); addTutorBatch(); }
+ * 
+ * else { alert("Geocode was not successful for the following reason: " +
+ * status); } }); }
+ */
 	function subjectData() {
-	//var l_map = {};
-	//l_map.all = true;
+	// var l_map = {};
+	// l_map.all = true;
 
 		ajaxWithJSON("/load-subjects",null, 'GET', function(response) {
 			var l_data = response.object;
 			for (var i = 0; i < l_data.length; i++) {
 				var r_map = l_data[i];
-				/*$('#subjects').append("<option value='"+r_map.subjectName+"'>");*/
+				/*
+				 * $('#subjects').append("<option
+				 * value='"+r_map.subjectName+"'>");
+				 */
 				$('#subjectList').append("<option value='"+r_map.subjectName+"'>");
 			}
 		});
@@ -1004,11 +1014,11 @@ function listViewTab(tutorList,login){
 		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
 		return;
 	}
-/*	if($('.c_location').val()==''){
-		$('.c_error_create_batch').text("Please select location.");
-		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
-		return;
-	}*/
+/*
+ * if($('.c_location').val()==''){ $('.c_error_create_batch').text("Please
+ * select location."); setTimeout(function(){
+ * $('.c_error_create_batch').text(""); }, 3000); return; }
+ */
 	
 	
 		 var l_batch_map = {};
@@ -1027,21 +1037,38 @@ function listViewTab(tutorList,login){
 
 		  if (response.status == 'SUCCESS') {
 		   toastr.success(response.message);
-		   //$('.c_tutor_batches').append('<option value="'+l_batch_map.batchId+'"><span style="color:gray !important;">Batch Name:- '+l_batch_map.batchName+'&nbsp;</span>,<span class="s-profile-text-gray">Fee:- '+l_batch_map.feeAmount+'</span> &nbsp;,<option><span class="s-profile-text-gray">Timing:-'+l_batch_map.batchStartTime+' - '+l_batch_map.batchEndTime+'</span>&nbsp;,<span class="s-profile-text-gray">No of Students: 0</span></option>');
+		   // $('.c_tutor_batches').append('<option
+			// value="'+l_batch_map.batchId+'"><span style="color:gray
+			// !important;">Batch Name:-
+			// '+l_batch_map.batchName+'&nbsp;</span>,<span
+			// class="s-profile-text-gray">Fee:-
+			// '+l_batch_map.feeAmount+'</span> &nbsp;,<option><span
+			// class="s-profile-text-gray">Timing:-'+l_batch_map.batchStartTime+'
+			// - '+l_batch_map.batchEndTime+'</span>&nbsp;,<span
+			// class="s-profile-text-gray">No of Students: 0</span></option>');
 		   
-		  /* c_batches_html+='<li><a href="#">';
-		   c_batches_html+='<div class="row">';
-		   c_batches_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
-		   c_batches_html+='<input type="hidden" value="'+l_batch_map.batchId+'" id="selected_batch">';
-		   c_batches_html+='<span class="s-profile-text-gray">Batch Name: <span class="s-profile-text-gray s-black" >'+l_batch_map.batchName+'</span></span>';
-		   c_batches_html+='</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
-		   c_batches_html+='<span class="s-profile-text-gray">Fee: <span class="s-profile-text-gray s-black">'+l_batch_map.feeAmount+'</span></span></div>';
-		   c_batches_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
-		   c_batches_html+='<span class="s-profile-text-gray">timing: <span class="s-profile-text-gray s-black"  >'+l_batch_map.batchStartTime+' - '+l_batch_map.batchEndTime+'</span></span></div>';
-		   c_batches_html+='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
-		   c_batches_html+='<span class="s-profile-text-gray">No of Student: <span class="s-profile-text-gray s-black"  >'+l_batch_map.noOfStudent+'</span></span></div>';
-		   c_batches_html+='</div> ';
-		   c_batches_html+='</a></li>';*/
+		  /*
+			 * c_batches_html+='<li><a href="#">'; c_batches_html+='<div
+			 * class="row">'; c_batches_html+='<div class="col-lg-6 col-md-6
+			 * col-sm-6 col-xs-6">'; c_batches_html+='<input type="hidden"
+			 * value="'+l_batch_map.batchId+'" id="selected_batch">';
+			 * c_batches_html+='<span class="s-profile-text-gray">Batch Name:
+			 * <span class="s-profile-text-gray s-black"
+			 * >'+l_batch_map.batchName+'</span></span>'; c_batches_html+='</div><div
+			 * class="col-lg-6 col-md-6 col-sm-6 col-xs-6">'; c_batches_html+='<span
+			 * class="s-profile-text-gray">Fee: <span class="s-profile-text-gray
+			 * s-black">'+l_batch_map.feeAmount+'</span></span></div>';
+			 * c_batches_html+='<div class="col-lg-6 col-md-6 col-sm-6
+			 * col-xs-6">'; c_batches_html+='<span
+			 * class="s-profile-text-gray">timing: <span
+			 * class="s-profile-text-gray s-black"
+			 * >'+l_batch_map.batchStartTime+' - '+l_batch_map.batchEndTime+'</span></span></div>';
+			 * c_batches_html+='<div class="col-lg-6 col-md-6 col-sm-6
+			 * col-xs-6">'; c_batches_html+='<span
+			 * class="s-profile-text-gray">No of Student: <span
+			 * class="s-profile-text-gray s-black" >'+l_batch_map.noOfStudent+'</span></span></div>';
+			 * c_batches_html+='</div> '; c_batches_html+='</a></li>';
+			 */
 		   
 		   
 		   c_batches_html+='<option value="'+l_batch_map.batchId+'">';
@@ -1053,7 +1080,14 @@ function listViewTab(tutorList,login){
        	 
        	    $('.c_tutor_batches-request').append(html);
 		  
-		   //$(".c_tutor_batches").prepend('<option selected="selected" value="'+l_batch_map.batchId+'"><span style="color:gray !important;">Batch Name:- '+l_batch_map.batchName+' </span>,<span class="s-profile-text-gray">Fee:- '+l_batch_map.feeAmount+'</span>,<option><span class="s-profile-text-gray">Timing:-'+l_batch_map.batchStartTime+' - '+l_batch_map.batchEndTime+'</span>,<span class="s-profile-text-gray">No of Students: 0</span></option>');
+		   // $(".c_tutor_batches").prepend('<option selected="selected"
+			// value="'+l_batch_map.batchId+'"><span style="color:gray
+			// !important;">Batch Name:- '+l_batch_map.batchName+' </span>,<span
+			// class="s-profile-text-gray">Fee:-
+			// '+l_batch_map.feeAmount+'</span>,<option><span
+			// class="s-profile-text-gray">Timing:-'+l_batch_map.batchStartTime+'
+			// - '+l_batch_map.batchEndTime+'</span>,<span
+			// class="s-profile-text-gray">No of Students: 0</span></option>');
 		   $("#i_batch_data").hide();
 		  }
 		  if (response.status == 'ERROR') {
@@ -1077,7 +1111,7 @@ function listViewTab(tutorList,login){
 		     $('input:checkbox[name=SUNDAY]').attr('checked',false);
 		     $('input:checkbox[name=SATURDAY]').attr('checked',false);
 		    }
-		    //$('input:checkbox[name=checkme]').is(':checked');
+		    // $('input:checkbox[name=checkme]').is(':checked');
 		    
 		   }
 		            if(p_flag=='weekdays'){
@@ -1106,7 +1140,7 @@ function listViewTab(tutorList,login){
 		     $('input:checkbox[name=WEDNESDAY]').attr('checked',false);
 		     $('input:checkbox[name=FRIDAY]').attr('checked',false);
 		    }
-		    //$('input:checkbox[name=checkme]').is(':checked');
+		    // $('input:checkbox[name=checkme]').is(':checked');
 		    
 		   }
 		            if(p_flag=='TTS'){
@@ -1119,21 +1153,22 @@ function listViewTab(tutorList,login){
 		     $('input:checkbox[name=THURSDAY]').attr('checked',false);
 		     $('input:checkbox[name=SATURDAY]').attr('checked',false);
 		    }
-		    //$('input:checkbox[name=checkme]').is(':checked');
+		    // $('input:checkbox[name=checkme]').is(':checked');
 		    
 		   }
 	  }
 	  
 	  
-	  var lecture_batchId = '';
+	  /*var lecture_batchId = '';
 	  var lecture_size = 0;
+	  
 	  function loadTutorLectures(){debugger;
 		 var l_local_map = {};
 		 l_local_map = params;
 		 $(".loading").show();
 		 ajaxWithJSON("/tutor/load-lectures", l_local_map, 'POST', function(response) {debugger;
 		  $(".loading").hide();
-          //alert(JSON.stringify(response));
+          // alert(JSON.stringify(response));
 		  if (response.status == 'SUCCESS') {
 			  var l_data = response.object;
 			  var l_basic = response.other;
@@ -1179,7 +1214,8 @@ function listViewTab(tutorList,login){
 		  if (response.status == 'ERROR') {
 			  toastr.error(response.message);
 		  // $('.c_error_request_suggest').text(response.message);
-			//setTimeout(function(){ $('.c_error_request_suggest').text(""); }, 3000);
+			// setTimeout(function(){ $('.c_error_request_suggest').text(""); },
+			// 3000);
 
 		  }
 		  
@@ -1225,7 +1261,7 @@ function listViewTab(tutorList,login){
 		 l_map = readForm('i_lecture_data');
 		 l_map.batchId = params.batchId;
 		// l_map.batchId = lecture_batchId;
-		 //alert(JSON.stringify(l_map));
+		 // alert(JSON.stringify(l_map));
 		 $(".loading").show();
 		 ajaxWithJSON("/tutor/add-lecture", l_map, 'POST', function(response) {debugger;
 		  $(".loading").hide();
@@ -1247,10 +1283,18 @@ function listViewTab(tutorList,login){
 			  l_html+='<div class="action">';
 			
 			
-			 /* l_html+='<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#" onclick="markAttendance(\''+l_map.lectureId+'\',\''+$('.c_countAttendance').val()+'\',\''+$('.c_countAttendanceSize').val()+'\')">Mark Attendance</button>';
-			  l_html+='<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#"  onclick="cancelLecture(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+$('.c_countAttendance').val()+'\',\''+$('.c_countAttendanceSize').val()+'\')">Cancel</button>';
-			  l_html+='<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#batch"  onclick="changeLectureTime(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+$('.c_countAttendance').val()+'\',\''+$('.c_countAttendanceSize').val()+'\')">Change Timing</button>';
-			  */
+			 
+				 * l_html+='<button type="button" class="btn btn-primary"
+				 * data-toggle="modal" data-target="#"
+				 * onclick="markAttendance(\''+l_map.lectureId+'\',\''+$('.c_countAttendance').val()+'\',\''+$('.c_countAttendanceSize').val()+'\')">Mark
+				 * Attendance</button>'; l_html+='<button type="button"
+				 * class="btn btn-danger" data-toggle="modal" data-target="#"
+				 * onclick="cancelLecture(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+$('.c_countAttendance').val()+'\',\''+$('.c_countAttendanceSize').val()+'\')">Cancel</button>';
+				 * l_html+='<button type="button" class="btn btn-yellow"
+				 * data-toggle="modal" data-target="#batch"
+				 * onclick="changeLectureTime(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+$('.c_countAttendance').val()+'\',\''+$('.c_countAttendanceSize').val()+'\')">Change
+				 * Timing</button>';
+				 
 			  l_html+='<button id="markAttendance'+lecture_size+'" title="Mark Attendance" type="button" class="btn btn-primary" data-toggle="modal" data-target="#" onclick="markAttendance(\''+l_map.lectureId+'\',\''+lecture_size+'\',\''+(lecture_size+1)+'\')">Mark Attendance</button>';
 			  l_html+='<button id="markCancel'+lecture_size+'" type="button" class="btn btn-danger" data-toggle="modal" data-target="#"  onclick="cancelLecture(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+lecture_size+'\',\''+(lecture_size+1)+'\')">Cancel</button>';
 			  l_html+='<button id="markChange'+lecture_size+'" type="button" class="btn btn-yellow" data-toggle="modal" data-target="#batch"  onclick="changeLectureTime(\''+l_map.lectureId+'\',\''+l_map.lectureName+'\',\''+l_map.startTime+'\',\''+l_map.endTime+'\',\''+l_map.topicDescription+'\',\''+l_map.lectureAtString+'\',\''+lecture_size+'\',\''+(lecture_size+1)+'\')">Change Timing</button>';
@@ -1270,28 +1314,30 @@ function listViewTab(tutorList,login){
 			  $('.c_lecture_add_error').text(response.message);
 			  setTimeout(function(){ $('.c_lecture_add_error').text(""); }, 3000);
 		  // $('.c_lecture_add_error').text(response.message);
-			//setTimeout(function(){ $('.c_lecture_add_error').text(""); }, 3000);
+			// setTimeout(function(){ $('.c_lecture_add_error').text(""); },
+			// 3000);
 
 		  }
 
 		 });
 		}
-      var g_students = [];
+*/      var g_students = [];
 	  function loadBatchStudents(){
 		  
 		  var l_map = {};
 		  l_map = params;
-			 //$(".loading").show();
+			 // $(".loading").show();
 			 ajaxWithJSON("/tutor/load-batch-students", l_map, 'POST', function(response) {debugger;
-			  //$(".loading").hide();
-	          //alert(JSON.stringify(response));
+			  // $(".loading").hide();
+	          // alert(JSON.stringify(response));
 			  if (response.status == 'SUCCESS') {
 				  g_students = response.object;
 			   
 			  }
 			  if (response.status == 'ERROR') {
 			  // $('.c_error_request_suggest').text(response.message);
-				//setTimeout(function(){ $('.c_error_request_suggest').text(""); }, 3000);
+				// setTimeout(function(){
+				// $('.c_error_request_suggest').text(""); }, 3000);
 
 			  }
 
@@ -1336,7 +1382,7 @@ if (!(navigator.onLine)) {
 	 
 	 var keys = Object.keys(l_map);
 	 
-	 //alert(JSON.stringify(keys));
+	 // alert(JSON.stringify(keys));
 	 for(var i=0;i<keys.length;i++){
 		 var key = keys[i];
 		 if(key in l_map) { 
@@ -1351,7 +1397,7 @@ if (!(navigator.onLine)) {
 		 return;
 	 }
 	 l_map.batchId = lecture_batchId;
-	 //alert(JSON.stringify(l_map));
+	 // alert(JSON.stringify(l_map));
 	 $(".loading").show();
 	 ajaxWithJSON("/tutor/save-lecture-students-attendance", l_map, 'POST', function(response) {debugger;
 	  $(".loading").hide();
@@ -1360,9 +1406,11 @@ if (!(navigator.onLine)) {
 		toastr.success(response.message);
 		location.reload();
 		  
-		 /*$('#markAttendance'+button_id).prop("disabled",true);
-		 $('#markCancel'+button_id).prop("disabled",true);
-		 $('#markChange'+button_id).prop("disabled",true);*/
+		 /*
+			 * $('#markAttendance'+button_id).prop("disabled",true);
+			 * $('#markCancel'+button_id).prop("disabled",true);
+			 * $('#markChange'+button_id).prop("disabled",true);
+			 */
 	  }
 	  if (response.status == 'ERROR') {
 	     $('.c_AttendanceError').text(response.message);
