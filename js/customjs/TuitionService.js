@@ -2,13 +2,11 @@
  * 
  */
 
-
 $(document).ready(function() {
 	  $('#tuition_request').on('hidden', function() {
 	    clear()
 	  });
 });
-
 var g_latitude;
 var g_longitude;
 function gridViewTab(tutorList,login){debugger;

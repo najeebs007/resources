@@ -552,8 +552,7 @@ function selectExamGroupWise(){debugger;
 			html+='</div>';
 			html+='</li>';
 			
-			
-			
+		
 		}
 	}
 	$('.c_program_exams').html(html);
