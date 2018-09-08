@@ -164,7 +164,7 @@ function loadProgramExams(programId){debugger;
 					
 				}
 				$('.c_program_exams').html(html);
-				$('.c_exam_dropdown').html(html2);
+				$('.c_exam_dropdown').html('<option value="">Select Exam</option>'+html2);
 				
 			}
 			if (response.status == 'ERROR') {
@@ -355,7 +355,9 @@ if (!(navigator.onLine)) {
 				html+='</div>';
 				html+='</div>';
 				html+='</div>';
+				if(data.length>4){
 				html+='<div class="col-md-12 center"><button type="button" class="btn btn-primary" onclick="loadProgramStudents(\''+programId+'\','+from+5+',5)">Next</button> </div>';
+				}
 			}
 			$('.c_program_students').html(html);
 		}
@@ -408,10 +410,6 @@ function loadProgramGroups(programId){
 	var l_map = {};
 	$('#i_program_groups').html('');
 	l_map.programId = programId;
-	/*ajaxWithJSON("/common/load-program-groups", l_map, 'POST', function(response) {
-	   // alert(JSON.stringify(response));
-		if (response.status == 'SUCCESS') {
-			*/
 			var data = g_programGroups;
 			var html = '<option value="">Select Group</option>';
 			
@@ -422,11 +420,6 @@ function loadProgramGroups(programId){
 			
 			$('#programGroupList').modal('show');
 			$('#i_program_groups').html(html);
-	/*	}
-		if (response.status == 'ERROR') {
-			toastr.error(response.message);
-		}
-	});*/
 	
 }
 
@@ -565,4 +558,52 @@ function selectExamGroupWise(){debugger;
 	}
 	$('.c_program_exams').html(html);
 	
+}
+
+function loadMeritList(p_programId,from,size){
+	
+	if($('.c_exam_dropdown').val()==''){
+		toastr.error('No Exam Selected.');
+		return;
+	}
+	var l_map = {};
+	l_map.programId = p_programId;
+	l_map.examId = $('.c_exam_dropdown').val();
+	l_map.from = from;
+	l_map.size = size;
+	ajaxWithJSON("/common/load-merit-list", l_map, 'POST', function(response) {
+		   //alert(JSON.stringify(response));
+			if (response.status == 'SUCCESS') {
+				var html = '';
+				var data = response.object;
+				for(var i=0;i<data.length;i++){
+					var b_students_rank = data[i];
+					html+='<div class="col-sm-6 col-md-6 col-lg-6">';
+					html+='<div class="card b-radius-5">';
+					html+='<div class="card-body padding-5">';
+					html+='<div class="row">';
+					html+='<div class="col-sm-12 col-md-12 col-lg-12 center">';
+					html+='<div class="img-icon"> <img src="../../resources/img/profile-img/pro.jpg" alt="icon" class="p-img"> </div>';
+					html+='<h6 class="pro-heading-m s-font font-12" style="margin-top: 2px;margin-bottom:2px;font-weight: 600;"> '+b_students_rank[0]+'</h6>';
+					html+='</div>';
+					html+='<div class="col-sm-12 col-md-12 col-lg-12 center">';
+					html+='<h6 class="pro-heading-m s-font font-12" style="margin-top: 2px;margin-bottom:2px;font-weight: 600;">Rank</h6>';
+					html+='</div>';
+					html+='<div class="col-sm-12 col-md-12 col-lg-12 center"> <span class="exam-name s-font font-12"><strong style="color:#525c65;">'+b_students_rank[1]+'</strong></span> </div>';
+					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+					html+='</div>';
+					if(data.length>4){
+					html+='<div class="col-md-12 center"><button type="button" class="btn btn-primary" onclick="loadProgramStudents(\''+p_programId+'\','+from+5+',5)">Next</button> </div>';
+					}
+				}
+				if(data.length==0)
+					toastr.error('No rank found.');
+				$('.c_program_exam_rank').html(html);
+			}
+			if (response.status == 'ERROR') {
+				toastr.error(response.message);
+			}
+		});
 }
