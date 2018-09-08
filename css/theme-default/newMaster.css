@@ -420,6 +420,10 @@ padding: 0px 10px !important;}
 {
   padding: 5.5px 30px !important;
 }
+.btn-xl
+{
+	padding: 5.5px 45px !important;
+}
 .btn-green { 
   color:white;
  background-color: rgb(60, 184, 120)!important;
@@ -1932,3 +1936,10 @@ margin-left:10px;
 	border-top: 1px solid #80808063;
     border-left: 1px solid #80808063;
 } 
+.required:after{
+	  content:"*";
+	  font-weight:bold;
+	  color:red;
+	  
+	}
+	.form-heading{width: 350px;}

@@ -1245,3 +1245,83 @@ video{
     left: 24px;
     top: 20px;
 }
+/*========== Program listing style ========*/
+.pro-list
+{
+	border: 1px solid #2196f3;
+}
+.pro-img-section
+{
+	width:100%;
+	height:185px;
+}
+.p--img
+{
+	width: 100%;
+    height: 100%;
+}
+.pro-title-padding{padding:5px 8px;}
+.pro-title-description{padding:5px 8px;}
+.pro-button-padding{padding:10px 8px;}
+.pro-title
+{
+	font-size:16px;
+	font-weight:600;
+}
+.pro-description
+{
+	font-size:12px;
+	font-weight:600;
+}
+.pro-detail-text
+{
+	font-size:15px;
+	font-weight:400;
+}
+.pro-pricing-block
+{
+	display: inline-block;
+    width: 68px;
+    height: 35px;
+    background: #9bcf60;
+    text-align: center;
+    line-height: 32px;
+}
+.pro-price-text{color:#fff;font-size:15px;}
+.p-left{padding-left:0px;}
+.plus-icon-color
+{
+	color: white !important;
+    font-size: 16px !important;
+    margin-right: 10px;
+}
+.pencil-color
+{
+	color: black !important;
+    font-size: 16px !important;
+    margin-right: 10px;
+}
+.m-b-20
+{
+	margin-bottom:20px;
+}
+.pro-search-box
+{
+    
+   border-top: 1px solid #8080804d !important;
+   border-bottom: 1px solid #8080804d !important;
+   border-left: 1px solid #8080804d !important;
+   border-right:0;
+   padding: 0px 10px !important;
+}
+.pro-search-icon
+{
+   background:white !important;
+   padding: 5.5px 10px !important;
+   margin-left: -10px !important;
+   border-top: 1px solid #8080804d !important;
+   border-bottom: 1px solid #8080804d !important;
+   border-left:0;
+   border-right:1px solid #8080804d !important;
+    
+}
