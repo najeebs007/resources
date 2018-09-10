@@ -1,5 +1,9 @@
 /*======== Program Details =========**/
-
+.heading-pro-s
+{  
+    width: 40%;
+    float: left;
+}
 .dropi-section
 {
 	float:right;
@@ -1287,14 +1291,18 @@ video{
 .pro-pricing-block
 {
 	display: inline-block;
-    width: 68px;
+    width: 100%;
     height: 35px;
     background: #9bcf60;
     text-align: center;
     line-height: 32px;
 }
 .pro-price-text{color:#fff;font-size:15px;}
-.p-left{padding-left:0px;}
+.p-left
+{
+	padding-left: 0px;
+    padding-right: 7px;
+}
 .plus-icon-color
 {
 	color: white !important;
