@@ -1,13 +1,13 @@
 /*======== Program Details =========**/
 .heading-pro-s
 {  
-    width: 40%;
+    width: 50%;
     float: left;
 }
 .dropi-section
 {
 	float:right;
-	width:60%;
+	width:50%;
 }
 .dropi-pro
 {
@@ -15,6 +15,7 @@
     padding: 0px 10px !important;
     border-radius: 5px;
 }
+.c_program_exam_rank{width:100%;}
 .program-block
 {
   padding:35px 20px;
@@ -111,7 +112,8 @@
 	color: #505763;
 	font-weight:400;
 	display: inline-block;
-    width: 70px;
+    width: auto;
+    padding: 0px 10px;
     height: 35px;
 	line-height: 35px; 
     background: #338033;
@@ -894,7 +896,7 @@
     width:60%;
     margin:0!important;
     text-align:left;
-    z-index:7000;
+    z-index:1;
     height:100%
 }
 .nd-summary-data{
@@ -1036,6 +1038,28 @@
     justify-content:flex-start;
     flex-wrap:wrap
 }
+.d-left
+{
+	float:left;
+	width:70%;
+}
+.d-right
+{
+	float:right;
+	width:29%;
+}
+@media (max-width:1023px){
+	.d-left
+{
+	float:left;
+	width:100%;
+}
+.d-right
+{
+	float:right;
+	width:100%;
+}
+}
 @media (max-width:1180px){
 	.contain {
     height: 70rem;
@@ -1060,9 +1084,15 @@
 }
 .pro-img-right-section { 
     width: 100%;
-    height: 100%;
+    height: 230px;
     right: 0;
-    top: -15px;
+    top: 0px;
+}
+.pro-img-block {
+    width: 100%;
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .img-pro { 
     border-top-left-radius: 5px;
@@ -1093,7 +1123,7 @@
     margin-bottom:1rem
 }
 .sponsor{
-    margin-bottom:1.5rem;
+    
     display:block;
     margin-right:1.69491525%;
     width:100%;
@@ -1168,6 +1198,10 @@
     visibility:hidden
 }
 @media (max-width:992px){
+	.f-size-large {
+    font-size: 2.25rem !important;
+    
+}
     .sponsor.hidden{
         display:none
     }
@@ -1339,4 +1373,40 @@ video{
    border-right:1px solid #8080804d !important;
     
 }
- 
+.fee-tooltip
+{
+	position: relative;
+    display: inline-block;
+}
+.fee-tooltip .tooltiptext {
+    visibility: hidden;
+    width: 170px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 15px 15px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 0;
+    margin-left: -30px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.fee-tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.fee-tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
