@@ -122,10 +122,11 @@ function loadProgramExams(programId){debugger;
 		
 		ajaxWithJSON("/common/load-program-exam-detail", l_map, 'POST', function(response) {
 		   // alert(JSON.stringify(response));
+			var data = [];
 		    var html = '';
 		    var html2 = '';
 			if (response.status == 'SUCCESS') {
-				var data = response.object;
+				data = response.object;
 				g_program_exams = data;
 				for(var i=0;i<data.length;i++){
 					var data_map = data[i];
@@ -150,6 +151,18 @@ function loadProgramExams(programId){debugger;
 					else
 					  html+='<span class="program-text-normal s-font">'+data_map.examDescription+'</span>';
 					html+='</div>'; 
+					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+					if(data_map.minPercentageToPass == null || data_map.minPercentageToPass == undefined)
+						 html+='<span class="program-text-normal s-font"></span>';
+					else
+						html+='<span class="exam-name s-font">Exam Start date : <strong style="color:#525c65;">'+data_map.minPercentageToPass+'</strong></span>';
+					html+='</div>';
+					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+					if(data_map.maxPercentageToPass == null || data_map.maxPercentageToPass == undefined)
+						 html+='<span class="program-text-normal s-font"></span>';
+					else
+						html+='<span class="exam-name s-font">Exam Start date : <strong style="color:#525c65;">'+data_map.maxPercentageToPass+'</strong></span>';
+					html+='</div>';
 					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10 center">'; 
 					var examStart = new Date(data_map.examStartDate);
 					var today = new Date();
