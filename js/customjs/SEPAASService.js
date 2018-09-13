@@ -87,11 +87,20 @@ function programUtilInfo(programId,subscriptionId){debugger;
 		l_map.programId = programId;
 		l_map.subscriptionId = subscriptionId;
 		ajaxWithJSON("/student/program-util-info", l_map, 'POST', function(response) {
-		    //alert(JSON.stringify(response));
+		   // alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				var data = response.object;
-				$('.c_enrollmentFees').text(data.enrollmentFee);
+				var item_list = data.howToCalculate;
+				var html = '';
+				$('.c_enrollmentFees').text(parseFloat(data.enrollmentFee).toFixed(2));
 				$('.c_registered_students').text(data.registeredStudents);
+				for(var i=0;i<item_list.length;i++){
+					var data_map = item_list[i];
+					html+='<tr><td align="left" style="padding: 0px 10px;">'+data_map.subscriptionItemName+'</td><td align="right" style="padding: 0px 10px 0px 0px;">'+parseFloat(data_map.amount).toFixed(2)+'</td></tr>';
+					
+				}
+				$('.c_fee_calculated').html(html);
+				
 			}
 			if (response.status == 'ERROR') {
 				//toastr.error(response.message);
@@ -128,34 +137,46 @@ function loadProgramExams(programId){debugger;
 					html+='<div class="row rw">'; 
 					html+='<div class="col-sm-12 col-md-12 col-lg-12">';
 					html+='<div class="">';	 
-					html+='<span class="exam-name s-font">Exam Name : <strong style="color:#525c65;">'+data_map.examTitle+'</strong></span>'; 
+					html+='<span class="exam-name s-font">Exam Name: <strong style="color:#525c65;">'+data_map.examTitle+'</strong></span>'; 
 					html+='</div>';
 					html+='</div>'; 
 					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-5">'; 
 					html+='<div class="">';	 
-					html+='<span class="exam-name s-font">Exam Start date : <strong style="color:#525c65;">'+data_map.examStartDateStr+'</strong></span>'; 
+					html+='<span class="exam-name s-font">Exam Start date: <strong style="color:#525c65;">'+data_map.examStartDateStr+'</strong></span>'; 
 					html+='</div>';
-					html+='</div>';  
+					html+='</div>';
+					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-5">'; 
+					html+='<div class="">';	 
+					html+='<span class="exam-name s-font">Exam End date: <strong style="color:#525c65;">'+data_map.examEndDateStr+'</strong></span>'; 
+					html+='</div>';
+					html+='</div>';
+					
+					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+					if(data_map.minPercentagetoPass == null || data_map.minPercentagetoPass == undefined)
+						 html+='<span class="program-text-normal s-font"></span>';
+					else
+						html+='<span class="exam-name s-font">Min Percentage To Pass: <strong style="color:#525c65;">'+data_map.minPercentagetoPass+'</strong></span>';
+					html+='</div>';
+					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+					if(data_map.maxPercentagetoPass == null || data_map.maxPercentagetoPass == undefined)
+						 html+='<span class="program-text-normal s-font"></span>';
+					else
+						html+='<span class="exam-name s-font">Max Percentage To Pass: <strong style="color:#525c65;">'+data_map.maxPercentagetoPass+'</strong></span>';
+					html+='</div>';
+					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+					if(data_map.numberOfAttemptsAllowed == null || data_map.numberOfAttemptsAllowed == undefined)
+						 html+='<span class="program-text-normal s-font"></span>';
+					else
+						html+='<span class="exam-name s-font">Max Percentage To Pass: <strong style="color:#525c65;">'+data_map.numberOfAttemptsAllowed+'</strong></span>';
+					html+='</div>';
 					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
 					if(data_map.examDescription == null || data_map.examDescription == undefined)
 						 html+='<span class="program-text-normal s-font"></span>';
 					else
 					  html+='<span class="program-text-normal s-font">'+data_map.examDescription+'</span>';
 					html+='</div>'; 
-					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
-					if(data_map.minPercentageToPass == null || data_map.minPercentageToPass == undefined)
-						 html+='<span class="program-text-normal s-font"></span>';
-					else
-						html+='<span class="exam-name s-font">Exam Start date : <strong style="color:#525c65;">'+data_map.minPercentageToPass+'</strong></span>';
-					html+='</div>';
-					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
-					if(data_map.maxPercentageToPass == null || data_map.maxPercentageToPass == undefined)
-						 html+='<span class="program-text-normal s-font"></span>';
-					else
-						html+='<span class="exam-name s-font">Exam Start date : <strong style="color:#525c65;">'+data_map.maxPercentageToPass+'</strong></span>';
-					html+='</div>';
 					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10 center">'; 
-					var examStart = toDate(data_map.examStartDateStr);
+					var examStart = new Date(data_map.examStartDate);
 					var today = new Date();
 					var compared = dates.compare(today,examStart);
 					if(compared>=0)
@@ -352,18 +373,23 @@ if (!(navigator.onLine)) {
 			var html ='';
 			for(var i=0;i<data.length;i++){
 				var b_students = data[i];
-				html+='<div class="col-sm-6 col-md-6 col-lg-6">';
+				html+='<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">';
 				html+='<div class="card b-radius-5">';
 				html+='<div class="card-body padding-5">';
 				html+='<div class="row">';
-				html+='<div class="col-sm-12 col-md-12 col-lg-12 center">';
-				html+='<div class="img-icon"> <img src="../../resources/img/profile-img/pro.jpg" alt="icon" class="p-img"> </div>';
+				html+='<div class="col-sm-3 col-md-3 col-lg-3 center">';
+				html+='<div class="img-icon"> <img src="../../resources/img/profile-img/pro.jpg" alt="icon" class="p-img"> </div>'; 
+				html+='</div>';
+				html+='<div class="col-sm-9 col-md-9 col-lg-9 pro-right-padding-left">';
+				html+='<div class="row">';
+				html+='<div class="col-sm-12 col-md-12 col-lg-12">';
 				html+='<h6 class="pro-heading-m s-font font-12" style="margin-top: 2px;margin-bottom:2px;font-weight: 600;"> '+b_students[0]+'</h6>';
 				html+='</div>';
-				html+='<div class="col-sm-12 col-md-12 col-lg-12 center">';
-				html+='<h6 class="pro-heading-m s-font font-12" style="margin-top: 2px;margin-bottom:2px;font-weight: 600;">Reg date</h6>';
-				html+='</div>';
-				html+='<div class="col-sm-12 col-md-12 col-lg-12 center"> <span class="exam-name s-font font-12"><strong style="color:#525c65;">'+b_students[1]+'</strong></span> </div>';
+				html+='<div class="col-sm-12 col-md-12 col-lg-12">';
+				html+='<h6 class="pro-heading-m s-font font-12" style="margin-top: 2px;margin-bottom:2px;font-weight: 600;">Reg date: '+b_students[1]+'</h6>';
+				html+='</div>'; 
+				html+='</div>';  
+				html+='</div>'; 
 				html+='</div>';
 				html+='</div>';
 				html+='</div>';
@@ -394,12 +420,80 @@ function programGroups(p_programId){debugger;
 			g_programGroups = data;
 			var other = response.other;
 			var html = '<option value="">Select Group</option>';
-			
+			var isDisableGroup = false;
 			for(var i=0;i<data.length;i++){
 				var group = data[i];
 				if(!(other==null || other==undefined)){
-					if(other==group.groupId)
+					if(other==group.groupId){
+						isDisableGroup = true;
 				      html+="<option selected value='"+group.groupId+"'>"+group.groupName+"</option>";
+				      var html2 = '';
+				      for(var i=0;i<g_program_exams.length;i++){
+							var data_map = g_program_exams[i];
+							if(data_map.groupId==other){
+								html2+='<li class="">';
+								html2+='<div class="part">'; 
+								html2+='<div class="card exam-card">';
+								html2+='<div class="card-body card-body-padding-exam-card">';
+								html2+='<div class="row rw">'; 
+								html2+='<div class="col-sm-12 col-md-12 col-lg-12">';
+								html2+='<div class="">';	 
+								html2+='<span class="exam-name s-font">Exam Name: <strong style="color:#525c65;">'+data_map.examTitle+'</strong></span>'; 
+								html2+='</div>';
+								html2+='</div>'; 
+								html2+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-5">'; 
+								html2+='<div class="">';	 
+								html2+='<span class="exam-name s-font">Exam Start date: <strong style="color:#525c65;">'+data_map.examStartDateStr+'</strong></span>'; 
+								html2+='</div>';
+								html2+='</div>';  
+								html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+								if(data_map.minPercentagetoPass == null || data_map.minPercentagetoPass == undefined)
+									 html+='<span class="program-text-normal s-font"></span>';
+								else
+									html+='<span class="exam-name s-font">Min Percentage To Pass: <strong style="color:#525c65;">'+data_map.minPercentagetoPass+'</strong></span>';
+								html+='</div>';
+								html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+								if(data_map.maxPercentagetoPass == null || data_map.maxPercentagetoPass == undefined)
+									 html+='<span class="program-text-normal s-font"></span>';
+								else
+									html+='<span class="exam-name s-font">Max Percentage To Pass: <strong style="color:#525c65;">'+data_map.maxPercentagetoPass+'</strong></span>';
+								html+='</div>';
+								html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+								if(data_map.numberOfAttemptsAllowed == null || data_map.numberOfAttemptsAllowed == undefined)
+									 html+='<span class="program-text-normal s-font"></span>';
+								else
+									html+='<span class="exam-name s-font">Max Percentage To Pass: <strong style="color:#525c65;">'+data_map.numberOfAttemptsAllowed+'</strong></span>';
+								html+='</div>';
+								html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+								if(data_map.examDescription == null || data_map.examDescription == undefined)
+									 html+='<span class="program-text-normal s-font"></span>';
+								else
+								  html+='<span class="program-text-normal s-font">'+data_map.examDescription+'</span>';
+								html+='</div>';  
+							html2+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10 center">'; 
+							var examStart = new Date(data_map.examStartDate);
+							var today = new Date();
+							var compared = dates.compare(today,examStart);
+							if(compared>=0)
+								html2+='<a href="http://exam.koescore.com.com"><button type="button" class="btn btn-primary">Take Test</button></a>';
+							else
+								html2+='<button type="button" class="btn btn-primary" title="Exam will be unlock on '+data_map.examStartDateStr+'" style="cursor: no-drop;">Take Test</button>';
+							html2+='<a onclick="loadSyllabus(\''+data_map.identifier+'\','+i+','+g_program_exams.length+')" style="cursor:pointer;color:#2196f3;margin-left: 10px;"><u>View Syllabus</u></a>';
+							html2+='</div>';
+							html2+='</div>';
+							html2+='</div>';	 
+							html2+='</div>';
+						 
+							html2+='<div  class="sylbs-details bind_syllabus'+i+'">';
+							html2+='</div>';
+							 
+							html2+='</div>';
+							html2+='</li>';
+							}
+							$('.c_program_exams').html(html2);
+						
+						}
+					}
 					else
 						html+="<option value='"+group.groupId+"'>"+group.groupName+"</option>";
 				}else
@@ -407,6 +501,9 @@ function programGroups(p_programId){debugger;
 			}
 			html+="<option value='ALL'>ALL</option>";
 			$('#userProgramGroupList').html(html);
+			
+			if(isDisableGroup)
+				$('#userProgramGroupList').prop('disabled', true);
 			
 		}
 		if (response.status == 'ERROR') {
@@ -482,14 +579,32 @@ function selectExamGroupWise(){debugger;
 		html+='<div class="row rw">'; 
 		html+='<div class="col-sm-12 col-md-12 col-lg-12">';
 		html+='<div class="">';	 
-		html+='<span class="exam-name s-font">Exam Name : <strong style="color:#525c65;">'+data_map.examTitle+'</strong></span>'; 
+		html+='<span class="exam-name s-font">Exam Name: <strong style="color:#525c65;">'+data_map.examTitle+'</strong></span>'; 
 		html+='</div>';
 		html+='</div>'; 
 		html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-5">'; 
 		html+='<div class="">';	 
-		html+='<span class="exam-name s-font">Exam Start date : <strong style="color:#525c65;">'+data_map.examStartDateStr+'</strong></span>'; 
+		html+='<span class="exam-name s-font">Exam Start date: <strong style="color:#525c65;">'+data_map.examStartDateStr+'</strong></span>'; 
 		html+='</div>';
 		html+='</div>';  
+		html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+		if(data_map.minPercentagetoPass == null || data_map.minPercentagetoPass == undefined)
+			 html+='<span class="program-text-normal s-font"></span>';
+		else
+			html+='<span class="exam-name s-font">Min Percentage To Pass: <strong style="color:#525c65;">'+data_map.minPercentagetoPass+'</strong></span>';
+		html+='</div>';
+		html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+		if(data_map.maxPercentagetoPass == null || data_map.maxPercentagetoPass == undefined)
+			 html+='<span class="program-text-normal s-font"></span>';
+		else
+			html+='<span class="exam-name s-font">Max Percentage To Pass: <strong style="color:#525c65;">'+data_map.maxPercentagetoPass+'</strong></span>';
+		html+='</div>';
+		html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+		if(data_map.numberOfAttemptsAllowed == null || data_map.numberOfAttemptsAllowed == undefined)
+			 html+='<span class="program-text-normal s-font"></span>';
+		else
+			html+='<span class="exam-name s-font">Max Percentage To Pass: <strong style="color:#525c65;">'+data_map.numberOfAttemptsAllowed+'</strong></span>';
+		html+='</div>';
 		html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
 		if(data_map.examDescription == null || data_map.examDescription == undefined)
 			 html+='<span class="program-text-normal s-font"></span>';
@@ -497,7 +612,7 @@ function selectExamGroupWise(){debugger;
 		  html+='<span class="program-text-normal s-font">'+data_map.examDescription+'</span>';
 		html+='</div>'; 
 		html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10 center">'; 
-		var examStart = toDate(data_map.examStartDateStr);
+		var examStart = new Date(data_map.examStartDate);
 		var today = new Date();
 		var compared = dates.compare(today,examStart);
 		if(compared>=0)
@@ -531,12 +646,12 @@ function selectExamGroupWise(){debugger;
 			html+='<div class="row rw">'; 
 			html+='<div class="col-sm-12 col-md-12 col-lg-12">';
 			html+='<div class="">';	 
-			html+='<span class="exam-name s-font">Exam Name : <strong style="color:#525c65;">'+data_map.examTitle+'</strong></span>'; 
+			html+='<span class="exam-name s-font">Exam Name: <strong style="color:#525c65;">'+data_map.examTitle+'</strong></span>'; 
 			html+='</div>';
 			html+='</div>'; 
 			html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-5">'; 
 			html+='<div class="">';	 
-			html+='<span class="exam-name s-font">Exam Start date : <strong style="color:#525c65;">'+data_map.examStartDateStr+'</strong></span>'; 
+			html+='<span class="exam-name s-font">Exam Start date: <strong style="color:#525c65;">'+data_map.examStartDateStr+'</strong></span>'; 
 			html+='</div>';
 			html+='</div>';  
 			html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
@@ -546,7 +661,7 @@ function selectExamGroupWise(){debugger;
 			  html+='<span class="program-text-normal s-font">'+data_map.examDescription+'</span>';
 			html+='</div>'; 
 			html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10 center">'; 
-			var examStart = toDate(data_map.examStartDateStr);
+			var examStart = new Date(data_map.examStartDate);
 			var today = new Date();
 			var compared = dates.compare(today,examStart);
 			if(compared>=0)
@@ -590,19 +705,24 @@ function loadMeritList(p_programId,from,size){
 				var data = response.object;
 				for(var i=0;i<data.length;i++){
 					var b_students_rank = data[i];
-					html+='<div class="col-sm-6 col-md-6 col-lg-6">';
+					html+='<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">';
 					html+='<div class="card b-radius-5">';
 					html+='<div class="card-body padding-5">';
 					html+='<div class="row">';
-					html+='<div class="col-sm-12 col-md-12 col-lg-12 center">';
-					html+='<div class="img-icon"> <img src="../../resources/img/profile-img/pro.jpg" alt="icon" class="p-img"> </div>';
-					html+='<h6 class="pro-heading-m s-font font-12" style="margin-top: 2px;margin-bottom:2px;font-weight: 600;"> '+b_students_rank[0]+'</h6>';
+					html+='<div class="col-sm-3 col-md-3 col-lg-3 center">';
+					html+='<div class="img-icon"> <img src="../../resources/img/profile-img/pro.jpg" alt="icon" class="p-img"> </div>'; 
 					html+='</div>';
-					html+='<div class="col-sm-12 col-md-12 col-lg-12 center">';
-					html+='<h6 class="pro-heading-m s-font font-12" style="margin-top: 2px;margin-bottom:2px;font-weight: 600;">Rank</h6>';
+					html+='<div class="col-sm-9 col-md-9 col-lg-9 pro-right-padding-left">';
+					html+='<div class="row">';
+					html+='<div class="col-sm-12 col-md-12 col-lg-12">';
+					html+='<h6 class="pro-heading-m s-font font-12" style="margin-top: 2px;margin-bottom:2px;font-weight: 600;">'+b_students_rank[0]+'</h6>';
 					html+='</div>';
-					html+='<div class="col-sm-12 col-md-12 col-lg-12 center"> <span class="exam-name s-font font-12"><strong style="color:#525c65;">'+b_students_rank[1]+'</strong></span> </div>';
-					html+='</div>';
+					html+='<div class="col-sm-12 col-md-12 col-lg-12">';
+					html+='<h6 class="pro-heading-m s-font font-12" style="margin-top: 2px;margin-bottom:2px;font-weight: 600;">Rank: '+b_students_rank[1]+'</h6>';
+					html+='</div>'; 
+					html+='</div>';  
+					html+='</div>'; 
+					html+='</div>';  
 					html+='</div>';
 					html+='</div>';
 					html+='</div>';
