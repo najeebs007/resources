@@ -59,27 +59,36 @@ for(var i=0;i<p_program.length;i++){
 	var title = data_map.title;
 	var registrationStartDate= data_map.registrationStartDate;
 	var registrationEndDate= data_map.registrationEndDate;
-	var registrationStartDate= data_map.registrationStartDate;
 	var active = data_map.active;
-	var examDate=data_map.examDate;
-	var description=data_map.description;
+	var examDate1=data_map.examDate;
+	var l_dateEnd = new Date(Number(examDate1));
+	var monthname = new Array("01", "02", "03", "04", "05", "06",
+			"07", "08", "09", "10", "11", "12")
+	var l_date = (l_dateEnd.getDate() + " ")
+	var l_month = (monthname[l_dateEnd.getMonth()] + " ")
+	var l_year = (l_dateEnd.getFullYear())
+	var examDate = l_date.trim() + "/" + l_month.trim() + "/"
+			+ l_year;
+	
+	var description1=data_map.description;
+	var description = description1.substring(0, 49);
 	var photoOnHomePage=data_map.photoOnHomePage;
 	var cm2=data_map.cm2;
 	
 	if(role=='ROLE_STUDENT'){
 		html+='<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 jQueryEqualHeightD">';
-		html+='<div class="card card-customize pro-list"> ';
+		html+='<div class="card card-customize pro-list programArea"> ';
 		html+='<div class="card-body no-padding img-section">';
 		html+='<div class="pro-img-section">';
 		html+='<img src="'+photoOnHomePage+'"  alt="programs image" class="p--img">';
 		html+='</div>';
 		html+='</div> ';
-		html+='<div class="card-body pro-title-padding">';
+		html+='<div class="card-body pro-title-padding title-secton-pro">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">';
-		html+='<span class="pro-title s-font c-primary">"'+title+'"</span>';
+		html+='<span class="pro-title s-font c-primary">'+title+'</span>';
 		html+='</div>';
 		html+='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 m-t-minus-5 p-left"> <div class="pro-pricing-block"><strong class="pro-price-text s-font"> &#8377; 500 </strong></div></div>';
 		html+='</div>';
@@ -89,17 +98,17 @@ for(var i=0;i<p_program.length;i++){
 		html+='<div class="card-body pro-title-description">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-minus-10">';
-		html+='<div class="pro-description s-font">"'+description+'"</div>';
+		html+='<div class="pro-description s-font" title="'+description1+'">'+description+'...</div>';
 		html+='</div>';
 		html+='</div>';
 		html+='</div>';
 		html+='<div class="card-body pro-title-description">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-		html+='<div class="pro-detail-text s-font s-black">Registraion:"'+registrationStartDate+'"-"'+registrationEndDate+'"</div>';
+		html+='<div class="pro-detail-text s-font s-black">Registraion: '+registrationStartDate+'-'+registrationEndDate+'</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
-		html+='<div class="pro-detail-text s-font s-black">Exam :"'+examDate+'"</div>';
+		html+='<div class="pro-detail-text s-font s-black">Exam :'+examDate+'</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
 		html+='<div class="row">';
@@ -122,7 +131,7 @@ for(var i=0;i<p_program.length;i++){
 		html+='</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
-		html+=' <div class="pro-detail-text s-font s-black">'+cm2+'</div>';
+		html+=' <div class="pro-description s-font s-black">'+cm2+'</div>';
 		html+='</div>';
 		html+='</div>';
 		html+='</div>';
@@ -138,18 +147,18 @@ for(var i=0;i<p_program.length;i++){
 	}
 	if(role=='GUEST'){
 		html+='<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 jQueryEqualHeightD">';
-		html+='<div class="card card-customize pro-list"> ';
+		html+='<div class="card card-customize pro-list programArea"> ';
 		html+='<div class="card-body no-padding img-section">';
 		html+='<div class="pro-img-section">';
 		html+='<img src="'+photoOnHomePage+'"  alt="programs image" class="p--img">';
 		html+='</div>';
 		html+='</div> ';
-		html+='<div class="card-body pro-title-padding">';
+		html+='<div class="card-body pro-title-padding title-secton-pro">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">';
-		html+='<span class="pro-title s-font c-primary">"'+title+'"</span>';
+		html+='<span class="pro-title s-font c-primary">'+title+'</span>';
 		html+='</div>';
 		html+='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 m-t-minus-5 p-left"> <div class="pro-pricing-block"><strong class="pro-price-text s-font"> &#8377; 500 </strong></div></div>';
 		html+='</div>';
@@ -159,17 +168,17 @@ for(var i=0;i<p_program.length;i++){
 		html+='<div class="card-body pro-title-description">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-minus-10">';
-		html+='<div class="pro-description s-font">"'+description+'"</div>';
+		html+='<div class="pro-description s-font" title="'+description1+'">'+description+'...</div>';
 		html+='</div>';
 		html+='</div>';
 		html+='</div>';
 		html+='<div class="card-body pro-title-description">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-		html+='<div class="pro-detail-text s-font s-black">Registraion:"'+registrationStartDate+'"-"'+registrationEndDate+'"</div>';
+		html+='<div class="pro-detail-text s-font s-black">Registraion: '+registrationStartDate+'-'+registrationEndDate+'</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
-		html+='<div class="pro-detail-text s-font s-black">Exam :"'+examDate+'"</div>';
+		html+='<div class="pro-detail-text s-font s-black">Exam :'+examDate+'</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
 		html+='<div class="row">';
@@ -192,7 +201,7 @@ for(var i=0;i<p_program.length;i++){
 		html+='</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
-		html+=' <div class="pro-detail-text s-font s-black">'+cm2+'</div>';
+		html+=' <div class="pro-description s-font s-black">'+cm2+'</div>';
 		html+='</div>';
 		html+='</div>';
 		html+='</div>';
@@ -204,21 +213,22 @@ for(var i=0;i<p_program.length;i++){
 		html+='</div>';
 		html+='</div>';
 		html+='</div>';
+		html+='</div>';
 		}
 	if(role=='ROLE_ADMIN'){
 		html+='<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 jQueryEqualHeightD">';
-		html+='<div class="card card-customize pro-list"> ';
+		html+='<div class="card card-customize pro-list programArea"> ';
 		html+='<div class="card-body no-padding img-section">';
 		html+='<div class="pro-img-section">';
 		html+='<img src="'+photoOnHomePage+'"  alt="programs image" class="p--img">';
 		html+='</div>';
 		html+='</div> ';
-		html+='<div class="card-body pro-title-padding">';
+		html+='<div class="card-body pro-title-padding title-secton-pro">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">';
-		html+='<span class="pro-title s-font c-primary">"'+title+'"</span>';
+		html+='<span class="pro-title s-font c-primary">'+title+'</span>';
 		html+='</div>';
 		html+='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 m-t-minus-5 p-left"> <div class="pro-pricing-block"><strong class="pro-price-text s-font"> &#8377; 500 </strong></div></div>';
 		html+='</div>';
@@ -228,17 +238,17 @@ for(var i=0;i<p_program.length;i++){
 		html+='<div class="card-body pro-title-description">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-minus-10">';
-		html+='<div class="pro-description s-font">"'+description+'"</div>';
+		html+='<div class="pro-description s-font" title="'+description1+'">'+description+'...</div>';
 		html+='</div>';
 		html+='</div>';
 		html+='</div>';
 		html+='<div class="card-body pro-title-description">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-		html+='<div class="pro-detail-text s-font s-black">Registraion:"'+registrationStartDate+'"-"'+registrationEndDate+'"</div>';
+		html+='<div class="pro-detail-text s-font s-black">Registraion: '+registrationStartDate+'-'+registrationEndDate+'</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
-		html+='<div class="pro-detail-text s-font s-black">Exam :"'+examDate+'"</div>';
+		html+='<div class="pro-detail-text s-font s-black">Exam :'+examDate+'</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
 		html+='<div class="row">';
@@ -261,7 +271,7 @@ for(var i=0;i<p_program.length;i++){
 		html+='</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
-		html+=' <div class="pro-detail-text s-font s-black">'+cm2+'</div>';
+		html+=' <div class="pro-description s-font s-black">'+cm2+'</div>';
 		html+='</div>';
 		html+='</div>';
 		html+='</div>';
@@ -283,25 +293,34 @@ for(var i=0;i<p_program.length;i++){
 	var title = data_map.title;
 	var registrationStartDate= data_map.registrationStartDate;
 	var registrationEndDate= data_map.registrationEndDate;
-	var registrationStartDate= data_map.registrationStartDate;
 	var active = data_map.active;
-	var examDate=data_map.examDate;
-	var description=data_map.description;
+	var examDate1=data_map.examDate;
+	var l_dateEnd = new Date(Number(examDate1));
+	var monthname = new Array("01", "02", "03", "04", "05", "06",
+			"07", "08", "09", "10", "11", "12")
+	var l_date = (l_dateEnd.getDate() + " ")
+	var l_month = (monthname[l_dateEnd.getMonth()] + " ")
+	var l_year = (l_dateEnd.getFullYear())
+	var examDate = l_date.trim() + "/" + l_month.trim() + "/"
+			+ l_year;
+	
+	var description1=data_map.description;
+	var description = description1.substring(0, 49);
 	var photoOnHomePage=data_map.photoOnHomePage;
 	//alert(title);
 	html+='<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 jQueryEqualHeightD">';
-	html+='<div class="card card-customize pro-list"> ';
+	html+='<div class="card card-customize pro-list programArea"> ';
 	html+='<div class="card-body no-padding img-section">';
 	html+='<div class="pro-img-section">';
 	html+='<img src="'+photoOnHomePage+'"  alt="programs image" class="p--img">';
 	html+='</div>';
 	html+='</div> ';
-	html+='<div class="card-body pro-title-padding">';
+	html+='<div class="card-body pro-title-padding title-secton-pro">';
 	html+='<div class="row">';
 	html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
 	html+='<div class="row">';
 	html+='<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">';
-	html+='<span class="pro-title s-font c-primary">"'+title+'"</span>';
+	html+='<span class="pro-title s-font c-primary">'+title+'</span>';
 	html+='</div>';
 	html+='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 m-t-minus-5 p-left"> <div class="pro-pricing-block"><strong class="pro-price-text s-font"> &#8377; 500 </strong></div></div>';
 	html+='</div>';
@@ -311,17 +330,17 @@ for(var i=0;i<p_program.length;i++){
 	html+='<div class="card-body pro-title-description">';
 	html+='<div class="row">';
 	html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-minus-10">';
-	html+='<div class="pro-description s-font">"'+description+'"</div>';
+	html+='<div class="pro-description s-font" title="'+description1+'">'+description+'...</div>';
 	html+='</div>';
 	html+='</div>';
 	html+='</div>';
 	html+='<div class="card-body pro-title-description">';
 	html+='<div class="row">';
 	html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-	html+='<div class="pro-detail-text s-font s-black">Registraion:"'+registrationStartDate+'"-"'+registrationEndDate+'"</div>';
+	html+='<div class="pro-detail-text s-font s-black">Registraion: '+registrationStartDate+'-'+registrationEndDate+'</div>';
 	html+='</div>';
 	html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
-	html+='<div class="pro-detail-text s-font s-black">Exam :"'+examDate+'"</div>';
+	html+='<div class="pro-detail-text s-font s-black">Exam :'+examDate+'</div>';
 	html+='</div>';
 	html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
 	html+='<div class="row">';
@@ -342,7 +361,7 @@ for(var i=0;i<p_program.length;i++){
 	html+='</div>';
 	html+='</div>';
 	html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
-	html+=' <div class="pro-detail-text s-font s-black">'+cm2+'</div>';
+	html+=' <div class="pro-description s-font s-black">'+cm2+'</div>';
 	html+='</div>';
 	html+='</div>';
 	html+='</div>';
@@ -357,7 +376,7 @@ for(var i=0;i<p_program.length;i++){
  }
 }
 $('.c_program').html(html);
-
+equal_height();
 }
 
 
