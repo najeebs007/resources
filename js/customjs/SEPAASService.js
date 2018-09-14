@@ -49,7 +49,7 @@ function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){d
 	
 }
 function enroll(cartId,programId,isFreeForStudent){
-	
+	var l_map={};
 	if(!($('#i_program_terms').prop('checked'))){
 		toastr.error("Please Accept Terms And Conditions.");
 		return;
