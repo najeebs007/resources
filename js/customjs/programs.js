@@ -57,8 +57,10 @@ for(var i=0;i<p_program.length;i++){
 	var data_map = p_program[i];
 	//alert(JSON.stringify(data_map));
 	var title = data_map.title;
-	var registrationStartDate= data_map.registrationStartDate;
-	var registrationEndDate= data_map.registrationEndDate;
+	var date = new Date(data_map.registrationStartDate);
+	var registrationStartDate= date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
+	var date = new Date(data_map.registrationEndDate);
+	var registrationEndDate= date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
 	var active = data_map.active;
 	var examDate1=data_map.examDate;
 	var l_dateEnd = new Date(Number(examDate1));
@@ -291,8 +293,10 @@ for(var i=0;i<p_program.length;i++){
 	var data_map = p_program[i];
 	//alert(JSON.stringify(data_map));
 	var title = data_map.title;
-	var registrationStartDate= data_map.registrationStartDate;
-	var registrationEndDate= data_map.registrationEndDate;
+	var date = new Date(data_map.registrationStartDate);
+	var registrationStartDate= date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
+	var date = new Date(data_map.registrationEndDate);
+	var registrationEndDate= date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
 	var active = data_map.active;
 	var examDate1=data_map.examDate;
 	var l_dateEnd = new Date(Number(examDate1));
