@@ -140,7 +140,7 @@ for(var i=0;i<p_program.length;i++){
 		html+='<div class="card-body pro-button-padding">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">'; 
-		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center"> <button type="button"  class="btn btn-primary s-font">Details</button><button type="button"  class="btn btn-primary s-font">Add To Cart</button> </div>';
+		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center"> <a href="/services/sepaas/'+data_map.programId+'" class="btn btn-primary s-font">Details</a><button type="button"  class="btn btn-primary s-font">Add To Cart</button> </div>';
 		html+='</div>';
 		html+='</div>';
 		html+='</div>';
@@ -210,7 +210,7 @@ for(var i=0;i<p_program.length;i++){
 		html+='<div class="card-body pro-button-padding">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">'; 
-		html+=' <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center"> <button type="button"  class="btn btn-primary s-font">Details</button><button type="button"  class="btn btn-primary s-font">Login/Signup</button> </div>';
+		html+=' <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center"> <a href="/services/sepaas/'+data_map.programId+'" class="btn btn-primary s-font">Details</a><a href="http://www.scholarsmerit.com/" class="btn btn-primary s-font">Login/Signup</a> </div>';
 		html+='</div>';
 		html+='</div>';
 		html+='</div>';
