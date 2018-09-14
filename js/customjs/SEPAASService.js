@@ -388,8 +388,10 @@ if (!(navigator.onLine)) {
 				html+='<div class="col-sm-12 col-md-12 col-lg-12">';
 				html+='<h6 class="pro-heading-m s-font font-12" style="margin-top: 2px;margin-bottom:2px;font-weight: 600;"> '+b_students[0]+'</h6>';
 				html+='</div>';
+				var d = new Date(b_students[1]);
+				
 				html+='<div class="col-sm-12 col-md-12 col-lg-12">';
-				html+='<h6 class="pro-heading-m s-font font-12" style="margin-top: 2px;margin-bottom:2px;font-weight: 600;">Reg date: '+b_students[1]+'</h6>';
+				html+='<h6 class="pro-heading-m s-font font-12" style="margin-top: 2px;margin-bottom:2px;font-weight: 600;">Reg date: '+d.getDate()+'/'+d.getMonth()+'/'+d.getFullYear()+'</h6>';
 				html+='</div>'; 
 				html+='</div>';  
 				html+='</div>'; 
@@ -670,11 +672,38 @@ function selectExamGroupWise(){debugger;
 			html+='<span class="exam-name s-font">Exam Name: <strong style="color:#525c65;">'+data_map.examTitle+'</strong></span>'; 
 			html+='</div>';
 			html+='</div>'; 
+			var d = new Date(data_map.examStartDateStr);
 			html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-5">'; 
 			html+='<div class="">';	 
-			html+='<span class="exam-name s-font">Exam Start date: <strong style="color:#525c65;">'+data_map.examStartDateStr+'</strong></span>'; 
+			html+='<span class="exam-name s-font">Exam Start date: <strong style="color:#525c65;">'+d.getDate()+'/'+d.getMonth()+'/'+d.getFullYear()+'</strong></span>'; 
 			html+='</div>';
-			html+='</div>';  
+			html+='</div>';
+			var d = new Date(data_map.examEndDateStr);
+			
+			html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-5">'; 
+			html+='<div class="">';	 
+			html+='<span class="exam-name s-font">Exam End date: <strong style="color:#525c65;">'+d.getDate()+'/'+d.getMonth()+'/'+d.getFullYear()+'</strong></span>'; 
+			html+='</div>';
+			html+='</div>';
+			
+			html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+			if(data_map.minPercentagetoPass == null || data_map.minPercentagetoPass == undefined)
+				 html+='<span class="program-text-normal s-font"></span>';
+			else
+				html+='<span class="exam-name s-font">Min Percentage To Pass: <strong style="color:#525c65;">'+data_map.minPercentagetoPass+'</strong></span>';
+			html+='</div>';
+			html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+			if(data_map.maxPercentagetoPass == null || data_map.maxPercentagetoPass == undefined)
+				 html+='<span class="program-text-normal s-font"></span>';
+			else
+				html+='<span class="exam-name s-font">Max Percentage To Pass: <strong style="color:#525c65;">'+data_map.maxPercentagetoPass+'</strong></span>';
+			html+='</div>';
+			html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+			if(data_map.numberOfAttemptsAllowed == null || data_map.numberOfAttemptsAllowed == undefined)
+				 html+='<span class="program-text-normal s-font"></span>';
+			else
+				html+='<span class="exam-name s-font">Max Percentage To Pass: <strong style="color:#525c65;">'+data_map.numberOfAttemptsAllowed+'</strong></span>';
+			html+='</div>';
 			html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
 			if(data_map.examDescription == null || data_map.examDescription == undefined)
 				 html+='<span class="program-text-normal s-font"></span>';
