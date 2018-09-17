@@ -158,9 +158,9 @@ function loadProgramExams(programId){debugger;
 					if(data_map.minPercentagetoPass == null || data_map.minPercentagetoPass == undefined)
 						 html+='<span class="program-text-normal s-font"></span>';
 					else
-						html+='<span class="exam-name s-font">Min Percentage To Pass: <strong style="color:#525c65;">'+data_map.minPercentagetoPass+'</strong></span>';
+						html+='<span class="exam-name s-font">Min Marks To Pass: <strong style="color:#525c65;">'+data_map.minPercentagetoPass+'</strong></span>';
 					html+='</div>';
-					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
+					/*html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
 					if(data_map.maxPercentagetoPass == null || data_map.maxPercentagetoPass == undefined)
 						 html+='<span class="program-text-normal s-font"></span>';
 					else
@@ -171,7 +171,7 @@ function loadProgramExams(programId){debugger;
 						 html+='<span class="program-text-normal s-font"></span>';
 					else
 						html+='<span class="exam-name s-font">Max Percentage To Pass: <strong style="color:#525c65;">'+data_map.numberOfAttemptsAllowed+'</strong></span>';
-					html+='</div>';
+					html+='</div>';*/
 					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
 					if(data_map.examDescription == null || data_map.examDescription == undefined)
 						 html+='<span class="program-text-normal s-font"></span>';
