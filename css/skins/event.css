@@ -64,7 +64,7 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .footer-four .secondary-footer ul li a:hover,
 .carousel-testimonial .carousel-control:focus, 
 .carousel-testimonial .carousel-control:hover {
-    color: #f05814 !important; /*theme primary color*/
+    color: #e040fb !important; /*theme primary color*/
 }
 
 .brand-bg,
@@ -174,7 +174,7 @@ Background banner images
     background-image: url("../../img/event/event-banner-1.jpg");  
 }
 .event-banner-2 {
-    background-image: url("../../img/parallax.png");  
+    background-image: url("../../img/event/event-banner-2.jpg");  
 }
 .event-banner-3 {
     background-image: url("../../img/event/event-banner-3.jpg");  
