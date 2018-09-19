@@ -53,14 +53,33 @@ var selectedProm = '';
 var html = '';
 $('.c_program').html("");
 selectedProm = $('#userProgramList').val();
-for(var i=0;i<p_program.length;i++){
+//if(selectedProm==null){
+//	
+//}
+for(var i=0;i<p_program.length;i++){debugger;
 	var data_map = p_program[i];
 	//alert(JSON.stringify(data_map));
 	var title = data_map.title;
 	var date = new Date(data_map.registrationStartDate);
-	var registrationStartDate= date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
+	 var day= date.getDate();
+	 if(day <= 9){
+		 day = "0" + day;
+		}
+	var date_r = date.getMonth() + 1;
+	if(date_r <= 9){
+		date_r = "0" + date_r;
+	}
+	var registrationStartDate= day+'/'+date_r+'/'+date.getFullYear();
 	var date = new Date(data_map.registrationEndDate);
-	var registrationEndDate= date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
+	var day= date.getDate();
+	 if(day <= 9){
+		 day = "0" + day;
+		}
+	var date_e = date.getMonth() + 1;
+	if(date_e <= 9){
+		date_e = "0" + date_e;
+	}
+	var registrationEndDate= day+'/'+date_e+'/'+date.getFullYear();
 	var active = data_map.active;
 	var examDate1=data_map.examDate;
 	var l_dateEnd = new Date(Number(examDate1));
@@ -107,16 +126,24 @@ for(var i=0;i<p_program.length;i++){
 		html+='<div class="card-body pro-title-description">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-		html+='<div class="pro-detail-text s-font s-black">Registraion: '+registrationStartDate+'-'+registrationEndDate+'</div>';
+		html+='<div class="pro-detail-text s-font s-black">Registration: '+registrationStartDate+' - '+registrationEndDate+'</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
 		html+='<div class="pro-detail-text s-font s-black">Exam :'+examDate+'</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
 		html+='<div class="row">';
+		if(active==true){
 		html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
-		html+='<div class="pro-detail-text s-font s-black">Program is ACTIVE</div>';
+		html+='<div class="pro-detail-text s-font s-black isActive" onclick="updateStatus("'+data_map.programId+'")">Program is ACTIVE</div>';
 		html+='</div>';
+		}else{
+		
+		html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
+		html+='<div class="pro-detail-text s-font s-black isActive" onclick="updateStatus("'+data_map.programId+'")">Program is INACTIVE</div>';
+		html+='</div>';
+	}
+		
 		if(active==true){
 			html+='<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">';
 			html+='<input id="checkbox2" type="checkbox" checked disabled>';
@@ -140,7 +167,7 @@ for(var i=0;i<p_program.length;i++){
 		html+='<div class="card-body pro-button-padding">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">'; 
-		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center"> <a href="/services/sepaas/'+data_map.programId+'" class="btn btn-primary s-font">Details</a><button type="button"  class="btn btn-primary s-font">Add To Cart</button> </div>';
+		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center"> <a href="/services/sepaas/'+data_map.programId+'" class="btn btn-primary s-font">Details</a><button type="button" class="btn btn-primary s-font" disabled>Enrolled</button> </div>';
 		html+='</div>';
 		html+='</div>';
 		html+='</div>';
@@ -177,16 +204,23 @@ for(var i=0;i<p_program.length;i++){
 		html+='<div class="card-body pro-title-description">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-		html+='<div class="pro-detail-text s-font s-black">Registraion: '+registrationStartDate+'-'+registrationEndDate+'</div>';
+		html+='<div class="pro-detail-text s-font s-black">Registration: '+registrationStartDate+' - '+registrationEndDate+'</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
 		html+='<div class="pro-detail-text s-font s-black">Exam :'+examDate+'</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
 		html+='<div class="row">';
-		html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
-		html+='<div class="pro-detail-text s-font s-black">Program is ACTIVE</div>';
-		html+='</div>';
+		if(active==true){
+			html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
+			html+='<div class="pro-detail-text s-font s-black isActive" onclick="updateStatus("'+data_map.programId+'")">Program is ACTIVE</div>';
+			html+='</div>';
+			}else{
+			
+			html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
+			html+='<div class="pro-detail-text s-font s-black isActive" onclick="updateStatus("'+data_map.programId+'")">Program is INACTIVE</div>';
+			html+='</div>';
+		}
 		if(active==true){
 			html+='<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">';
 			html+='<input id="checkbox2" type="checkbox" checked disabled>';
@@ -247,16 +281,23 @@ for(var i=0;i<p_program.length;i++){
 		html+='<div class="card-body pro-title-description">';
 		html+='<div class="row">';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-		html+='<div class="pro-detail-text s-font s-black">Registraion: '+registrationStartDate+'-'+registrationEndDate+'</div>';
+		html+='<div class="pro-detail-text s-font s-black">Registration: '+registrationStartDate+' - '+registrationEndDate+'</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
 		html+='<div class="pro-detail-text s-font s-black">Exam :'+examDate+'</div>';
 		html+='</div>';
 		html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
 		html+='<div class="row">';
-		html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
-		html+='<div class="pro-detail-text s-font s-black">Program is ACTIVE</div>';
-		html+='</div>';
+		if(active==true){
+			html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
+			html+='<div class="pro-detail-text s-font s-black isActive" onclick="updateStatus("'+data_map.programId+'")">Program is ACTIVE</div>';
+			html+='</div>';
+			}else{
+			
+			html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
+			html+='<div class="pro-detail-text s-font s-black isActive" onclick="updateStatus("'+data_map.programId+'")">Program is INACTIVE</div>';
+			html+='</div>';
+		}
 		if(active==true){
 			html+='<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">';
 			html+='<input id="checkbox2" type="checkbox" checked>';
@@ -294,9 +335,27 @@ for(var i=0;i<p_program.length;i++){
 	//alert(JSON.stringify(data_map));
 	var title = data_map.title;
 	var date = new Date(data_map.registrationStartDate);
-	var registrationStartDate= date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
+	var day= date.getDate();
+	 if(day <= 9){
+		 day = "0" + day;
+		}
+	var date_e = date.getMonth() + 1;
+	if(date_e <= 9){
+		date_e = "0" + date_e;
+	}
+	
+	var registrationStartDate= day+'/'+date_e+'/'+date.getFullYear();
 	var date = new Date(data_map.registrationEndDate);
-	var registrationEndDate= date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
+	var day= date.getDate();
+	 if(day <= 9){
+		 day = "0" + day;
+		}
+	var date_r = date.getMonth() + 1;
+	if(date_r <= 9){
+		date_r = "0" + date_r;
+	}
+	
+	var registrationEndDate= day+'/'+date_r+'/'+date.getFullYear();
 	var active = data_map.active;
 	var examDate1=data_map.examDate;
 	var l_dateEnd = new Date(Number(examDate1));
@@ -341,16 +400,23 @@ for(var i=0;i<p_program.length;i++){
 	html+='<div class="card-body pro-title-description">';
 	html+='<div class="row">';
 	html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-	html+='<div class="pro-detail-text s-font s-black">Registraion: '+registrationStartDate+'-'+registrationEndDate+'</div>';
+	html+='<div class="pro-detail-text s-font s-black">Registration: '+registrationStartDate+' - '+registrationEndDate+'</div>';
 	html+='</div>';
 	html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
 	html+='<div class="pro-detail-text s-font s-black">Exam :'+examDate+'</div>';
 	html+='</div>';
 	html+='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
 	html+='<div class="row">';
-	html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
-	html+='<div class="pro-detail-text s-font s-black">Program is ACTIVE</div>';
-	html+='</div>';
+	if(active==true){
+		html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
+		html+='<div class="pro-detail-text s-font s-black isActive" onclick="updateStatus("'+data_map.programId+'")">Program is ACTIVE</div>';
+		html+='</div>';
+		}else{
+		
+		html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
+		html+='<div class="pro-detail-text s-font s-black isActive" onclick="updateStatus("'+data_map.programId+'")">Program is INACTIVE</div>';
+		html+='</div>';
+	}
 	if(active=='true'){
 		html+='<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">';
 		html+='<input id="checkbox'+i+'" type="checkbox" checked>';
@@ -383,7 +449,30 @@ $('.c_program').html(html);
 equal_height();
 }
 
+function updateStatus(programId) {debugger;
+var l_map = {};
+if (confirm("This action will make the program active/inactive. Only active programs are visible to users. Do you want to continue?"+"\n"+"click ok"))
+{
+l_map.programId = programId;
+	$(".loading").show();
+	//    $(".loading").show();
+	ajaxWithJSON("/common/update-status", l_map, 'POST', function(response) {debugger;
+		$(".loading").hide();
+		if (response.status == 'SUCCESS') {
+			toastr.success("successfully update status");
+			window.reload();
+		}
+		if (response.status == 'ERROR') {
+			toastr.success("some error occured");
+		}
 
+	});
+}else{
+	return false;
+}
+
+
+}
 
 //function pagination() {
 //	debugger;
