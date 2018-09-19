@@ -147,10 +147,10 @@ function saveIntro(p_form_id) {
 	today = dd + '/' + mm + '/' + yyyy;
 	var dateOfBirth = l_map.dateOfBirth;
 	//alert(l_map.haveDigitalPen);
-	if(dateOfBirth > today){
-		$(".c_error_intro").html("please select past date from today");
-		return;
-	}
+//	if(dateOfBirth > today){
+//		$(".c_error_intro").html("please select past date from today");
+//		return;
+//	}
 	//alert(JSON.stringify(l_map));
 	//alert(JSON.stringify(l_map));
 	ajaxWithJSON("/tutor-save-general-detail", l_map, 'POST',
