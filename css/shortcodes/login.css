@@ -74,7 +74,7 @@ Login Form
 /* card-wrapper */
 .card-wrapper {
   position: relative;
-  background: #fff;
+  background: rgba(0, 0, 0, 0.28);
   border-radius: 5px;
   padding: 60px 0 40px 0;
   box-sizing: border-box;
@@ -88,7 +88,7 @@ Login Form
   /* Alt card-wrapper */
 }
 .card-wrapper:first-child {
-  background: #fcfcfc;
+  background: rgba(28, 46, 84, 0.43);
   height: 10px;
   border-radius: 5px 5px 0 0;
   margin: 0 10px;
@@ -119,7 +119,7 @@ Login Form
   width: 100%;
   height: 60px;
   border: 0;
-  color: #212121;
+  color: #ffffff;
   font-size: 20px;
   font-weight: 400;
 }
@@ -212,7 +212,7 @@ Login Form
 }
 .card-wrapper.alt .toggle {
   position: relative;
-  background: #ed2553;
+  background: #03a9f4;
   width: 120px;
   height: 120px;
   border-radius: 100%;

@@ -94,7 +94,7 @@ Common featured boxes
 }
 
 .featured-wrapper .intro-header i.material-icons {
-    font-size: 40px;
+    font-size: 75px;
 }
 .featured-wrapper .intro-header h2 {
     font-weight: 500;
@@ -439,11 +439,7 @@ Border Box Style
 /*
 Owl Carousel Customize
 ----------------------------------------------------------------*/
-.owl-dot-customize
-{
-	border: 2px solid #cdc3c3;
-    border-radius: 25px;
-}
+
 .featured-carousel .owl-item {
     padding: 20px 8px;
 }
@@ -452,9 +448,9 @@ Owl Carousel Customize
     margin-top: 20px;
 }
 .owl-theme .owl-dots .owl-dot span {
-    width: 10px;
-    height: 10px;
-    background: #cdc3c3;
+    width: 13px;
+    height: 13px;
+    background: #dadada;
     -webkit-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -514,7 +510,7 @@ Flat Border Box Style
 
 .featured-item.flat-border-box:hover h2,
 .featured-item.flat-border-box:hover .icon {
-    color: #red;
+    color: #673ab7;
 }
 .featured-item.flat-border-box:hover {
     box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
