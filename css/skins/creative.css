@@ -20,31 +20,31 @@ a {
 
 
 /*common form style*/
-input1[type=text]:focus:not([readonly]), 
-input1[type=password]:focus:not([readonly]), 
-input1[type=email]:focus:not([readonly]), 
-input1[type=url]:focus:not([readonly]), 
-input1[type=time]:focus:not([readonly]), 
-input1[type=date]:focus:not([readonly]), 
-input1[type=datetime-local]:focus:not([readonly]), 
-input1[type=tel]:focus:not([readonly]), 
-input1[type=number]:focus:not([readonly]), 
-input1[type=search]:focus:not([readonly]), 
+input[type=text]:focus:not([readonly]), 
+input[type=password]:focus:not([readonly]), 
+input[type=email]:focus:not([readonly]), 
+input[type=url]:focus:not([readonly]), 
+input[type=time]:focus:not([readonly]), 
+input[type=date]:focus:not([readonly]), 
+input[type=datetime-local]:focus:not([readonly]), 
+input[type=tel]:focus:not([readonly]), 
+input[type=number]:focus:not([readonly]), 
+input[type=search]:focus:not([readonly]), 
 textarea.materialize-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #673ab7;
     box-shadow: 0 1px 0 0 #673ab7; 
 }
 
-input1[type=text]:focus:not([readonly]) + label, 
-input1[type=password]:focus:not([readonly]) + label, 
-input1[type=email]:focus:not([readonly]) + label, 
-input1[type=url]:focus:not([readonly]) + label, 
-input1[type=time]:focus:not([readonly]) + label, 
-input1[type=date]:focus:not([readonly]) + label, 
-input1[type=datetime-local]:focus:not([readonly]) + label, 
-input1[type=tel]:focus:not([readonly]) + label, 
-input1[type=number]:focus:not([readonly]) + label, 
-input1[type=search]:focus:not([readonly]) + label, 
+input[type=text]:focus:not([readonly]) + label, 
+input[type=password]:focus:not([readonly]) + label, 
+input[type=email]:focus:not([readonly]) + label, 
+input[type=url]:focus:not([readonly]) + label, 
+input[type=time]:focus:not([readonly]) + label, 
+input[type=date]:focus:not([readonly]) + label, 
+input[type=datetime-local]:focus:not([readonly]) + label, 
+input[type=tel]:focus:not([readonly]) + label, 
+input[type=number]:focus:not([readonly]) + label, 
+input[type=search]:focus:not([readonly]) + label, 
 textarea.materialize-textarea:focus:not([readonly]) + label {
     color: #673ab7 !important; 
 }
@@ -60,18 +60,22 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .contact-info .mail a:hover,
 .portfolio-with-title .portfolio-title h2 a:hover, 
 .portfolio-with-title .portfolio-title p a:hover {
-    color:#03a9f4 !important; /*theme primary color*/
+    color: #673ab7 !important; /*theme primary color*/
 }
 
 .brand-bg,
 .brand-hover:hover,
 .icon-hover-brand:hover .icon {
-    background-color: #1C2E54 !important; /*theme primary background color*/
+    background-color: rgb(255, 255, 255) !important; /*theme primary background color*/
+}
+.sec-footer {
+  background-color: rgb(10, 10, 10);
+   
 }
 
 
 .brand-bg.darken-2 {
-    background-color: #f15a16 !important;
+    background-color: rgb(10, 10, 10) !important;
 }
 
 
@@ -79,7 +83,7 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 
 /* === Navigation === */
 .menuzord-menu>li {
-    margin-left: 15px;
+    margin-left:10px;
 }
 
 .active-search .search-trigger .search-btn {
@@ -108,7 +112,7 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
     background-color: rgba(76, 35, 149, 0.6);
 }
 .overlay.purple-7::before {
-    background-color: rgba(235, 235, 235, 0);
+    background-color: rgba(81, 52, 145, 0.7);
 }
 
 
@@ -121,7 +125,172 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .breadcrumb>.active {
     color: #c5a5fe;
 }
-
+.aryabhatt
+{
+	width: 100%;
+       height: 190px;
+    background-image: url(../../img/program1.jpg);
+    background-size: 100% 100%;
+}
+.employability
+{
+	width: 100%;
+    height: 190px;
+    background-image: url(../../img/program2.jpg);
+    background-size: 100% 100%;
+}
+.aryan
+{
+	width: 100%;
+    height: 190px;
+    background-image: url(../../img/program3.jpg);
+    background-size: 100% 100%;
+}
+.allindiagate
+{
+	width: 100%;
+    /* height: 620px; */
+	height:700px;
+    background-image: url(../../img/allindiagate.png);
+    background-size: cover; 
+}
+.s-header
+{
+    width: 100%; 
+	height:auto;
+    background-image: url(../../img/services/s-header.png);
+    background-size: cover; 	
+}
+.supporting-f
+{
+    width: 100%; 
+	height:auto;
+    background-image: url(../../img/services/supporting-f.png);
+    background-size: cover; 	
+}
+.bnr-services-1
+{
+    width: 100%;
+    height:auto;	
+    background-image: url(../../img/services/bnr-section-1.png);
+    background-size: cover; 	
+}
+.bnr-services-2
+{
+    width: 100%;
+    height:100%;	
+    background-image: url(../../img/services/how-it-works.png);
+    background-size: cover; 
+    	
+}
+.white-bg
+{
+    width: 100%;
+    height:620px;	
+    background-image: url(../../img/services/white-bg.png);
+    background-size: cover; 
+    	
+}
+.bnr-services-3
+{
+    width: 100%;
+    height:540px;	
+    background-image: url(../../img/services/bnr-section-3.png);
+    background-size: cover; 
+    	
+}
+.bnr-services-4
+{
+    width: 100%;
+    height:540px;	
+    background-image: url(../../img/services/bnr-section-4.png);
+    background-size: cover; 
+    	
+}
+.bnr-services-5
+{
+    width: 100%;
+    height:540px;	
+    background-image: url(../../img/services/bnr-section-5.png);
+    background-size: cover; 
+    	
+}
+.h-auto{height:auto !important;}
+.bnr-services-6
+{
+    width: 100%;
+    height:360px;
+    margin-bottom:10px;	
+    background-image: url(../../img/services/bnr-section-6.png);
+    background-size: cover;
+    border-bottom-left-radius:130%;
+    border-bottom-right-radius:140%;
+    box-shadow: 0px 2px 4px 0px rgba(186, 202, 210, 0.2),0px -10px 15px 0px rgba(186, 202, 210, 0.2);	
+    	
+}
+ .inner-banner
+{
+    width: 100%;
+    height:404px;	
+    background-image: url(../../img/services/bnr-section-1-2.png);
+    background-size: cover;
+   	
+} 
+.key-f-2
+{
+    width: 100%;   
+    background-image: url(../../img/services/key-f-2.png);
+    background-size: cover; 	
+}
+.key-f-3
+{
+    width: 100%;   
+    background-image: url(../../img/services/key-f-3.png);
+    background-size: cover; 	
+}
+.key-f-4
+{
+    width: 100%;   
+    background-image: url(../../img/services/key-f-4.png);
+    background-size: cover; 	
+}
+.key-f-5
+{
+    width: 100%;   
+    background-image: url(../../img/services/key-f-5.png);
+    background-size: cover; 	
+}
+.key-f-6
+{
+    width: 100%;   
+    background-image: url(../../img/services/key-f-6.png);
+    background-size: cover; 	
+}
+.bnr-services
+{
+	width: 100%;
+    /* height: 620px; */
+	height:auto;
+    background-image: url(../../img/services-bg.jpg);
+    background-size: cover; 
+}
+.bnr-statistics
+{
+	width: 100%; 
+	height:auto;
+    background-image: url(../../img/layer-milestone.png);
+    background-size: cover; 
+    background-position: 100% 100%;
+}
+.img-padding
+{
+	padding:65px !important;
+}
+.pro-overlay-text
+{
+	font-weight: 600;
+    font-size: 20px;
+}
 .page-title.cover-1 {
     background-image: url(../../img/creative/cover-1.jpg);
 }
@@ -134,8 +303,12 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .page-title.cover-4 {
     background-image: url(../../img/creative/cover-4.jpg);
 }
-
-
+.coonselling-h{height:145px;}
+.finishing-h{height:150px;}
+.talentPro-h{height:170px;}
+.talentRating-h{height:225px;}
+.tuitioAgree-h-same{height:385px;}
+.tuitioAgree-h-all4{height:185px;}
 /*
 Background banner images
 ------------------------------------------------------------*/
@@ -147,12 +320,6 @@ Background banner images
 }
 .creative-banner-3 {
     background-image: url("../../img/creative/creative-banner-3.jpg");  
-}
-.creative-banner-4 {
-    background-image: url("../../img/creative/back3.png");  
-}
-.creative-banner-5 {
-     background-image: url("../../img/back2.png");  
 }
 
 
@@ -198,11 +365,100 @@ Background banner images
     position: absolute;
     border-top: dashed 1px #e6e6e6;
 }
+@media (max-width: 767px) {
+  .allindiagate{height:auto;} 
+  .pro-overlay-text
+{ 
+    font-size:16px;
+}
+.bnr-services-1 {
+    width: 100%;
+    height: 312px;
+   
+}
+.inner-banner {
+    width: 100%;
+    height: 280px; 
+    background-size: auto;
+}
+.white-bg
+{
+    width: 100%;
+    height:780px;	    	
+}
+.bnr-services-4 {
+    width: 100%;
+    height: 900px;
+    
+}
+.bnr-services-5 {
+    width: 100%;
+    height: auto; 
+}
+.bnr-services-6 {
+    
+    border-bottom-left-radius:20%;
+    border-bottom-right-radius:20%;
+    
+}
+}
+@media only screen and (min-device-width:768px) and (max-device-width:1023px) {
+.allindiagate{height:auto;} 	 
+ .img-padding {
+    padding: 58px !important;
+}
+   .pro-overlay-text
+{ 
+    font-size:16px;
+}
+.b1- {
+    padding: 0px 0px 0px 0px;
+    border-bottom: 2px solid #fbfbfb;
+}
+ .inner-banner {
+    width: 100%;
+    height: 260px;
+    background-image: url(../../img/services/bnr-section-1-2.png);
+    background-size: cover;
+}
+.bnr-services-2 {
+    width: 100%;
+    height: 260px;
+    background-image: url(../../img/services/how-it-works.png);
+    background-size: cover;
+}
+.white-bg {
+    width: 100%;
+    height: 490px;
+    background-image: url(../../img/services/white-bg.png);
+    background-size: cover;
+}
+.bnr-services-4 {
+    width: 100%;
+    height: 635px; 
+}
+.bnr-services-5 {
+    width: 100%;
+    height: 740px;
+    
+}
 
+
+}
+/*media for ipad Pro only****/
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
+ 
+}
 @media (max-width: 768px) {
   .process-in:before {
     border: none;
   }
+.s-header {
+    width: 100%;
+    height: auto;
+    background-image: url(../../img/services/s-header.png);
+    background-size: 100% 100%;
+}  
 }
 
 
@@ -310,30 +566,30 @@ Background banner images
         padding: 15px;
     }
 }
-
-
-
-
+ 
 /*Portfolio Details Page*/
 .portfolio-overview h2 {
     font-size: 36px;
     margin-top: 5px;
     margin-bottom: 25px;
 }
-
-
-
+ 
 /* === Footer === */
 .footer p,
 .footer-list li a {
-    color: #f5f5f5;
+    color: #a5a5a5;
+	font-weight:400;
 }
 
 .copy-text,
-.copy-text a:hover,
+.copy-text a:hover
+{
+	color:#e5e5e5;
+}
 .footer-list li a:hover,
 .twitter-widget-wrapper a {
-    color: #dadada;
+    color:black;
+	font-weight:600;
 }
 
 .twitter-widget-wrapper a:hover{
@@ -348,8 +604,8 @@ footer newsletter
 .primary-footer .widget .form-control {
     border: 1px solid transparent;
 }
-.primary-footer .form-group input1[type="text"],
-.primary-footer .form-group input1[type="email"] {
+.primary-footer .form-group input[type="text"],
+.primary-footer .form-group input[type="email"] {
     color: #999;
     background-color: #fff;
     width: 76%;
@@ -363,12 +619,36 @@ footer newsletter
     color: #fff;
 }
 
-.primary-footer.brand-bg .form-group input1::-webkit-input1-placeholder {
+.primary-footer.brand-bg .form-group input::-webkit-input-placeholder {
    color: #c5a4ff;
 }
-.primary-footer.brand-bg .form-group input1::-moz-placeholder {
+.primary-footer.brand-bg .form-group input::-moz-placeholder {
    color: #c5a4ff;  
 }
-.primary-footer.brand-bg .form-group input1:-ms-input1-placeholder {  
+.primary-footer.brand-bg .form-group input:-ms-input-placeholder {  
    color: #c5a4ff; 
+}
+ 
+/* .btn-sm-scholar */
+/* { */
+	/* margin-top: 20px !important; */
+    /* /* margin-bottom: 20px !important; */ */
+    /* border-radius: 25px !important; */
+    /* border: 1px solid rgb(17, 144, 232); */
+    /* background: transparent !important; */
+    /* width: 80px; */
+	/* line-height: 35px !important; */
+/* } */
+/* .btn-sm-merit */
+/* { */
+	/* margin-top: 20px !important; */
+    /* /* margin-bottom: 20px !important; */ */
+    /* border-radius: 25px !important; */
+    /* border: 1px solid rgb(240, 85, 16); */
+    /* background: transparent !important; */
+    /* width: 80px; */
+	/* line-height: 35px !important; */
+/* } */
+.aggregator-banner-1 {
+    background-image: url("../../images/inner-banner.jpg");  
 }

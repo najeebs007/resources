@@ -947,10 +947,10 @@ function listViewTab(tutorList,login){
 		if(batch.SATURDAY)
 			return true;
 	}
-	function addTutorBatch(){debugger;
+	/*function addTutorBatch(){debugger;
 
-	google.maps.event.addDomListener(window, 'load', initialize)
-	function addTutorBatch(){
+	google.maps.event.addDomListener(window, 'load', initialize)*/
+	function addTutorBatch(){debugger;
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
 		return;
@@ -971,12 +971,12 @@ function listViewTab(tutorList,login){
 		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
 		return;
 	}
-	if($('.c_totalHours').val()==''){
+	if($('.c_totalHourses').val()==''){
 		$('.c_error_create_batch').text("Please enter total hours.");
 		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
 		return;
 	}
-	if($('.c_totalSeats').val()==''){
+	if($('.c_totalSeatse').val()==''){
 		$('.c_error_create_batch').text("Please enter max registrations.");
 		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
 		return;
@@ -1007,7 +1007,7 @@ function listViewTab(tutorList,login){
 		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
 		return;
 	}
-	if($('.c_feeAmount').val()==''){
+	if($('.c_feeAmounts').val()==''){
 		$('.c_error_create_batch').text("Please enter fee for the batch.");
 		setTimeout(function(){ $('.c_error_create_batch').text(""); }, 3000);
 		return;
@@ -1663,7 +1663,7 @@ function selectAllStudents(p_flage,p_is_checked){
 	    	
 	    }
 	$(p_flage).html(l_html);
-}
+
 }
 	function showoption(p_flage) {
 		if (p_flage == "NONE") {

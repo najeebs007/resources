@@ -598,7 +598,7 @@
   color: #29b6f6 !important; }
 
 .light-blue {
-  background-color: #1C2E54  !important; }
+  background-color: #03a9f4 !important; }
 
 .light-blue-text {
   color: #03a9f4 !important; }
@@ -1808,7 +1808,7 @@ code, kbd, pre, samp {
  * 2. Correct font properties not being inherited.
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
-button, input1, optgroup, select, textarea {
+button, input, optgroup, select, textarea {
   color: inherit;
   /* 1 */
   font: inherit;
@@ -1834,11 +1834,11 @@ button, select {
 /**
  * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
  *    and `video` controls.
- * 2. Correct inability to style clickable `input1` types in iOS.
+ * 2. Correct inability to style clickable `input` types in iOS.
  * 3. Improve usability and consistency of cursor style between image-type
- *    `input1` and others.
+ *    `input` and others.
  */
-button, html input1[type="button"], input1[type="reset"], input1[type="submit"] {
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
   cursor: pointer;
@@ -1847,21 +1847,21 @@ button, html input1[type="button"], input1[type="reset"], input1[type="submit"] 
 /**
  * Re-set default cursor for disabled elements.
  */
-button[disabled], html input1[disabled] {
+button[disabled], html input[disabled] {
   cursor: default; }
 
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-button::-moz-focus-inner, input1::-moz-focus-inner {
+button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
 /**
- * Address Firefox 4+ setting `line-height` on `input1` using `!important` in
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-input1 {
+input {
   line-height: normal; }
 
 /**
@@ -1871,7 +1871,7 @@ input1 {
  * 1. Address box sizing set to `content-box` in IE 8/9/10.
  * 2. Remove excess padding in IE 8/9/10.
  */
-input1[type="checkbox"], input1[type="radio"] {
+input[type="checkbox"], input[type="radio"] {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -1879,10 +1879,10 @@ input1[type="checkbox"], input1[type="radio"] {
 
 /**
  * Fix the cursor style for Chrome's increment/decrement buttons. For certain
- * `font-size` values of the `input1`, it causes the cursor style of the
+ * `font-size` values of the `input`, it causes the cursor style of the
  * decrement button to change from `default` to `text`.
  */
-input1[type="number"]::-webkit-inner-spin-button, input1[type="number"]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
   height: auto; }
 
 /**
@@ -1890,7 +1890,7 @@ input1[type="number"]::-webkit-inner-spin-button, input1[type="number"]::-webkit
  * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
  *    (include `-moz` to future-proof).
  */
-input1[type="search"] {
+input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
   -moz-box-sizing: content-box;
@@ -1900,10 +1900,10 @@ input1[type="search"] {
 
 /**
  * Remove inner padding and search cancel button in Safari and Chrome on OS X.
- * Safari (but not Chrome) clips the cancel button when the search input1 has
+ * Safari (but not Chrome) clips the cancel button when the search input has
  * padding (and `textfield` appearance).
  */
-input1[type="search"]::-webkit-search-cancel-button, input1[type="search"]::-webkit-search-decoration {
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
 /**
@@ -2440,7 +2440,7 @@ span.badge {
 .right {
   float: right !important; }
 
-.no-select, input1[type=range], input1[type=range] + .thumb {
+.no-select, input[type=range], input[type=range] + .thumb {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -2651,7 +2651,7 @@ span.badge {
 .mdi-action-info-outline:before {
   content: "\e639"; }
 
-.mdi-action-input1:before {
+.mdi-action-input:before {
   content: "\e63a"; }
 
 .mdi-action-invert-colors:before {
@@ -2786,19 +2786,19 @@ span.badge {
 .mdi-action-settings-ethernet:before {
   content: "\e666"; }
 
-.mdi-action-settings-input1-antenna:before {
+.mdi-action-settings-input-antenna:before {
   content: "\e667"; }
 
-.mdi-action-settings-input1-component:before {
+.mdi-action-settings-input-component:before {
   content: "\e668"; }
 
-.mdi-action-settings-input1-composite:before {
+.mdi-action-settings-input-composite:before {
   content: "\e669"; }
 
-.mdi-action-settings-input1-hdmi:before {
+.mdi-action-settings-input-hdmi:before {
   content: "\e66a"; }
 
-.mdi-action-settings-input1-svideo:before {
+.mdi-action-settings-input-svideo:before {
   content: "\e66b"; }
 
 .mdi-action-settings-overscan:before {
@@ -5035,7 +5035,7 @@ nav {
       padding: 0px 15px; }
     nav ul.left {
       float: left; }
-  nav .input1-field input1 {
+  nav .input-field input {
     height: 100%;
     font-size: 1.2rem;
     border: none;
@@ -5043,24 +5043,24 @@ nav {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
-    nav .input1-field input1:focus, nav .input1-field input1[type=text]:valid, nav .input1-field input1[type=password]:valid, nav .input1-field input1[type=email]:valid, nav .input1-field input1[type=url]:valid, nav .input1-field input1[type=date]:valid {
+    nav .input-field input:focus, nav .input-field input[type=text]:valid, nav .input-field input[type=password]:valid, nav .input-field input[type=email]:valid, nav .input-field input[type=url]:valid, nav .input-field input[type=date]:valid {
       border: none;
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
       box-shadow: none; }
-  nav .input1-field label {
+  nav .input-field label {
     top: 0;
     left: 0; }
-    nav .input1-field label i {
+    nav .input-field label i {
       color: rgba(255, 255, 255, 0.7);
       -webkit-transition: color 0.3s;
       -moz-transition: color 0.3s;
       -o-transition: color 0.3s;
       -ms-transition: color 0.3s;
       transition: color 0.3s; }
-    nav .input1-field label.active i {
+    nav .input-field label.active i {
       color: #fff; }
-    nav .input1-field label.active {
+    nav .input-field label.active {
       -webkit-transform: translateY(0);
       -moz-transform: translateY(0);
       -ms-transform: translateY(0);
@@ -5360,7 +5360,9 @@ small {
       right: 0; }
   .card .card-image {
     position: relative;
-    overflow: hidden; }
+    overflow: hidden;
+	padding: 10px 10px 0px 10px;
+	}
     .card .card-image img {
       -webkit-border-radius: 2px 2px 0 0;
       -moz-border-radius: 2px 2px 0 0;
@@ -5415,7 +5417,6 @@ small {
   position: fixed;
   z-index: 1001; }
   @media only screen and (max-width : 600px) {
-	  .toast{height: 18px;}
     #toast-container {
       min-width: 100%;
       bottom: 0%; } }
@@ -5425,12 +5426,10 @@ small {
       left: 5%;
       bottom: 7%; } }
   @media only screen and (min-width : 993px) {
-	  
     #toast-container {
       min-width: 8%;
-      top: 20%;
-      right: 0%; }
-	  }
+      top: 10%;
+      right: 7%; } }
 
 .toast {
   -webkit-border-radius: 2px;
@@ -5447,7 +5446,7 @@ small {
   position: relative;
   max-width: 100%;
   height: 48px;
-  line-height: 18px;
+  line-height: 48px;
   background-color: #323232;
   padding: 0px 25px;
   font-size: 1.1rem;
@@ -5472,7 +5471,6 @@ small {
   @media only screen and (max-width : 600px) {
     .toast {
       width: 100%;
-	  line-height:18px;
       -webkit-border-radius: 0px;
       -moz-border-radius: 0px;
       border-radius: 0px;
@@ -5756,10 +5754,10 @@ ul.tabs li.tab {
   transform: translateZ(0);
   -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%); }
 
-.waves-input1-wrapper {
+.waves-input-wrapper {
   border-radius: 0.2em;
   vertical-align: bottom; }
-  .waves-input1-wrapper .waves-button-input1 {
+  .waves-input-wrapper .waves-button-input {
     position: relative;
     top: 0;
     left: 0;
@@ -5949,12 +5947,12 @@ label {
   color: #9e9e9e; }
 
 /***************************
-   Text input1s + Textarea
+   Text Inputs + Textarea
 ****************************/
-.input1-field {
+.input-field {
   position: relative;
   margin-top: 1rem; }
-  .input1-field label {
+  .input-field label {
     color: #9e9e9e;
     position: absolute;
     top: 0.8rem;
@@ -5966,26 +5964,26 @@ label {
     -o-transition: 0.2s ease-out;
     -ms-transition: 0.2s ease-out;
     transition: 0.2s ease-out; }
-  .input1-field label.active {
+  .input-field label.active {
     font-size: 0.8rem;
     -webkit-transform: translateY(-130%);
     -moz-transform: translateY(-130%);
     -ms-transform: translateY(-130%);
     -o-transform: translateY(-130%);
     transform: translateY(-130%); }
-  .input1-field input1[type=text]:focus + label, .input1-field input1[type=password]:focus + label, .input1-field input1[type=email]:focus + label, .input1-field input1[type=url]:focus + label, .input1-field input1[type=date]:focus + label, .input1-field input1[type=tel]:focus + label, .input1-field input1[type=number]:focus + label, .input1-field input1[type=search]:focus + label, .input1-field textarea:focus.materialize-textarea + label {
+  .input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label, .input-field input[type=email]:focus + label, .input-field input[type=url]:focus + label, .input-field input[type=date]:focus + label, .input-field input[type=tel]:focus + label, .input-field input[type=number]:focus + label, .input-field input[type=search]:focus + label, .input-field textarea:focus.materialize-textarea + label {
     color: #26a69a; }
-  .input1-field input1[type=text].valid, .input1-field input1[type=password].valid, .input1-field input1[type=email].valid, .input1-field input1[type=url].valid, .input1-field input1[type=date].valid, .input1-field input1[type=tel].valid, .input1-field input1[type=number].valid, .input1-field input1[type=search].valid, .input1-field textarea.materialize-textarea.valid {
+  .input-field input[type=text].valid, .input-field input[type=password].valid, .input-field input[type=email].valid, .input-field input[type=url].valid, .input-field input[type=date].valid, .input-field input[type=tel].valid, .input-field input[type=number].valid, .input-field input[type=search].valid, .input-field textarea.materialize-textarea.valid {
     border-bottom: 1px solid #4CAF50;
     -webkit-box-shadow: 0 1px 0 0 #4CAF50;
     -moz-box-shadow: 0 1px 0 0 #4CAF50;
     box-shadow: 0 1px 0 0 #4CAF50; }
-  .input1-field input1[type=text].invalid, .input1-field input1[type=password].invalid, .input1-field input1[type=email].invalid, .input1-field input1[type=url].invalid, .input1-field input1[type=date].invalid, .input1-field input1[type=tel].invalid, .input1-field input1[type=number].invalid, .input1-field input1[type=search].invalid, .input1-field textarea.materialize-textarea.invalid {
+  .input-field input[type=text].invalid, .input-field input[type=password].invalid, .input-field input[type=email].invalid, .input-field input[type=url].invalid, .input-field input[type=date].invalid, .input-field input[type=tel].invalid, .input-field input[type=number].invalid, .input-field input[type=search].invalid, .input-field textarea.materialize-textarea.invalid {
     border-bottom: 1px solid #F44336;
     -webkit-box-shadow: 0 1px 0 0 #F44336;
     -moz-box-shadow: 0 1px 0 0 #F44336;
     box-shadow: 0 1px 0 0 #F44336; }
-  .input1-field .prefix {
+  .input-field .prefix {
     position: absolute;
     width: 3rem;
     font-size: 2rem;
@@ -5994,23 +5992,23 @@ label {
     -o-transition: color 0.2s;
     -ms-transition: color 0.2s;
     transition: color 0.2s; }
-    .input1-field .prefix.active {
+    .input-field .prefix.active {
       color: #26a69a; }
-  .input1-field .prefix ~ input1, .input1-field .prefix ~ textarea {
+  .input-field .prefix ~ input, .input-field .prefix ~ textarea {
     margin-left: 3rem;
     width: 92%;
     width: calc(100% - 3rem); }
-  .input1-field .prefix ~ textarea {
+  .input-field .prefix ~ textarea {
     padding-top: 0.8rem; }
-  .input1-field .prefix ~ label {
+  .input-field .prefix ~ label {
     margin-left: 3rem; }
   @media only screen and (max-width : 992px) {
-    .input1-field .prefix ~ input1 {
+    .input-field .prefix ~ input {
       width: 86%;
       width: calc(100% - 3rem); }
  }
   @media only screen and (max-width : 600px) {
-    .input1-field .prefix ~ input1 {
+    .input-field .prefix ~ input {
       width: 80%;
       width: calc(100% - 3rem); }
  }
@@ -6020,7 +6018,7 @@ textarea {
   height: 3rem;
   background-color: transparent; }
 
-input11[type=text], input1[type=password], input1[type=email], input1[type=url], input1[type=date], input1[type=tel], input1[type=number], input1[type=search], textarea.materialize-textarea {
+input[type=text], input[type=password], input[type=email], input[type=url], input[type=date], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #9e9e9e;
@@ -6042,7 +6040,7 @@ input11[type=text], input1[type=password], input1[type=email], input1[type=url],
   -ms-transition: 0.3s;
   transition: 0.3s; }
 
-input1[type=text]:focus, input1[type=password]:focus, input1[type=email]:focus, input1[type=url]:focus, input1[type=date]:focus, input1[type=tel]:focus, input1[type=number]:focus, input1[type=search]:focus, textarea:focus.materialize-textarea {
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=url]:focus, input[type=date]:focus, input[type=tel]:focus, input[type=number]:focus, input[type=search]:focus, textarea:focus.materialize-textarea {
   border-bottom: 1px solid #26a69a;
   -webkit-box-shadow: 0 1px 0 0 #26a69a;
   -moz-box-shadow: 0 1px 0 0 #26a69a;
@@ -6079,7 +6077,7 @@ textarea.materialize-textarea {
   display: inline-block;
   height: 25px;
   line-height: 25px;
-  font-size: 13px;
+  font-size: 1rem;
   -webkit-transition: 0.28s ease;
   -moz-transition: 0.28s ease;
   -o-transition: 0.28s ease;
@@ -6131,8 +6129,8 @@ textarea.materialize-textarea {
 
 [type="radio"]:checked + label:after {
   border-radius: 50%;
-  border:2px solid #1190e8;
-  background-color: #1190e8;
+  border: 2px solid #26a69a;
+  background-color: #26a69a;
   z-index: 0;
   -webkit-transform: scale(1.02);
   -moz-transform: scale(1.02);
@@ -6296,18 +6294,18 @@ form p:last-child {
 .switch label {
   cursor: pointer; }
 
-.switch label input1[type=checkbox]:first-child {
+.switch label input[type=checkbox]:first-child {
   opacity: 0;
   width: 0;
   height: 0; }
 
-.switch label input1[type=checkbox]:first-child:checked + .lever {
+.switch label input[type=checkbox]:first-child:checked + .lever {
   background-color: #7bc5be; }
 
-.switch label input1[type=checkbox]:first-child:checked + .lever:after {
+.switch label input[type=checkbox]:first-child:checked + .lever:after {
   background-color: #009587; }
 
-.switch label .lever, .switch label input1[type=checkbox][disabled]:first-child + .lever {
+.switch label .lever, .switch label input[type=checkbox][disabled]:first-child + .lever {
   content: "";
   display: inline-block;
   width: 45px;
@@ -6332,16 +6330,16 @@ form p:last-child {
   top: -2px;
   transition: left 0.3s ease, background 0.3s ease, box-shadow 0.1s ease; }
 
-.switch label input1[type=checkbox][disabled]:first-child + .lever:after, .switch label input1[type=checkbox][disabled]:checked:first-child + .lever:after {
+.switch label input[type=checkbox][disabled]:first-child + .lever:after, .switch label input[type=checkbox][disabled]:checked:first-child + .lever:after {
   background-color: #BDBDBD; }
 
-input1[type=checkbox]:first-child:checked ~ .lever:active:after {
+input[type=checkbox]:first-child:checked ~ .lever:active:after {
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(0, 149, 135, 0.1); }
 
-input1[type=checkbox]:first-child ~ .lever:active:after, input1[type=checkbox][disabled]:first-child ~ .lever:active:after {
+input[type=checkbox]:first-child ~ .lever:active:after, input[type=checkbox][disabled]:first-child ~ .lever:active:after {
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(0, 0, 0, 0.1); }
 
-.switch label input1[type=checkbox]:first-child:checked + .lever:after {
+.switch label input[type=checkbox]:first-child:checked + .lever:after {
   left: 30px; }
 
 /***************
@@ -6391,10 +6389,10 @@ select:disabled {
 .range-field {
   position: relative; }
 
-input1[type=range], input1[type=range] + .thumb {
+input[type=range], input[type=range] + .thumb {
   cursor: pointer; }
 
-input1[type=range] {
+input[type=range] {
   position: relative;
   background-color: transparent;
   border: none;
@@ -6403,7 +6401,7 @@ input1[type=range] {
   margin: 15px 0px;
   padding: 0; }
 
-input1[type=range] + .thumb {
+input[type=range] + .thumb {
   position: absolute;
   border: none;
   height: 0;
@@ -6422,7 +6420,7 @@ input1[type=range] + .thumb {
   -ms-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg); }
-  input1[type=range] + .thumb .value {
+  input[type=range] + .thumb .value {
     display: block;
     width: 30px;
     text-align: center;
@@ -6433,26 +6431,26 @@ input1[type=range] + .thumb {
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg); }
-  input1[type=range] + .thumb.active {
+  input[type=range] + .thumb.active {
     border-radius: 50% 50% 50% 0; }
-    input1[type=range] + .thumb.active .value {
+    input[type=range] + .thumb.active .value {
       color: #fff;
       margin-left: -1px;
       margin-top: 8px;
       font-size: 10px; }
 
-input1[type=range]:focus {
+input[type=range]:focus {
   outline: none; }
 
-input1[type=range] {
+input[type=range] {
   -webkit-appearance: none; }
 
-input1[type=range]::-webkit-slider-runnable-track {
+input[type=range]::-webkit-slider-runnable-track {
   height: 3px;
   background: #c2c0c2;
   border: none; }
 
-input1[type=range]::-webkit-slider-thumb {
+input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: none;
   height: 14px;
@@ -6467,20 +6465,20 @@ input1[type=range]::-webkit-slider-thumb {
   -ms-transition: 0.3s;
   transition: 0.3s; }
 
-input1[type=range]:focus::-webkit-slider-runnable-track {
+input[type=range]:focus::-webkit-slider-runnable-track {
   background: #ccc; }
 
-input1[type=range] {
+input[type=range] {
   /* fix for FF unable to apply focus style bug  */
   border: 1px solid white;
   /*required for proper track sizing in FF*/ }
 
-input1[type=range]::-moz-range-track {
+input[type=range]::-moz-range-track {
   height: 3px;
   background: #ddd;
   border: none; }
 
-input1[type=range]::-moz-range-thumb {
+input[type=range]::-moz-range-thumb {
   border: none;
   height: 14px;
   width: 14px;
@@ -6489,14 +6487,14 @@ input1[type=range]::-moz-range-thumb {
   margin-top: -5px; }
 
 /*hide the outline behind the border*/
-input1[type=range]:-moz-focusring {
+input[type=range]:-moz-focusring {
   outline: 1px solid white;
   outline-offset: -1px; }
 
-input1[type=range]:focus::-moz-range-track {
+input[type=range]:focus::-moz-range-track {
   background: #ccc; }
 
-input1[type=range]::-ms-track {
+input[type=range]::-ms-track {
   height: 3px;
   /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
   background: transparent;
@@ -6506,27 +6504,27 @@ input1[type=range]::-ms-track {
   /*remove default tick marks*/
   color: transparent; }
 
-input1[type=range]::-ms-fill-lower {
+input[type=range]::-ms-fill-lower {
   background: #777; }
 
-input1[type=range]::-ms-fill-upper {
+input[type=range]::-ms-fill-upper {
   background: #ddd; }
 
-input1[type=range]::-ms-thumb {
+input[type=range]::-ms-thumb {
   border: none;
   height: 14px;
   width: 14px;
   border-radius: 50%;
   background: #26a69a; }
 
-input1[type=range]:focus::-ms-fill-lower {
+input[type=range]:focus::-ms-fill-lower {
   background: #888; }
 
-input1[type=range]:focus::-ms-fill-upper {
+input[type=range]:focus::-ms-fill-upper {
   background: #ccc; }
 
 /***************************
-   Text input1s + Textarea
+   Text Inputs + Textarea
 ****************************/
 select {
   background-color: #fffafa;
@@ -7180,15 +7178,15 @@ ul.side-nav .collapsible-body li.active, ul.side-nav.fixed .collapsible-body li.
   user-select: none; }
 
 /**
- * The picker input1 element.
+ * The picker input element.
  */
-.picker__input1 {
+.picker__input {
   cursor: default; }
 
 /**
- * When the picker is opened, the input1 element is "activated".
+ * When the picker is opened, the input element is "activated".
  */
-.picker__input1.picker__input1--active {
+.picker__input.picker__input--active {
   border-color: #0089ec; }
 
 /**
@@ -7322,7 +7320,7 @@ ul.side-nav .collapsible-body li.active, ul.side-nav.fixed .collapsible-body li.
 /* ==========================================================================
    CUSTOM MATERIALIZE STYLES
    ========================================================================== */
-.picker__input1.picker__input1--active {
+.picker__input.picker__input--active {
   border-color: #E3F2FD; }
 
 .picker__frame {

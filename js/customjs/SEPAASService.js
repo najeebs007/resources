@@ -158,19 +158,7 @@ function loadProgramExams(programId){debugger;
 					if(data_map.minPercentagetoPass == null || data_map.minPercentagetoPass == undefined)
 						 html+='<span class="program-text-normal s-font"></span>';
 					else
-						html+='<span class="exam-name s-font">Min Percentage To Pass: <strong style="color:#525c65;">'+data_map.minPercentagetoPass+'</strong></span>';
-					html+='</div>';
-					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
-					if(data_map.maxPercentagetoPass == null || data_map.maxPercentagetoPass == undefined)
-						 html+='<span class="program-text-normal s-font"></span>';
-					else
-						html+='<span class="exam-name s-font">Max Percentage To Pass: <strong style="color:#525c65;">'+data_map.maxPercentagetoPass+'</strong></span>';
-					html+='</div>';
-					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
-					if(data_map.numberOfAttemptsAllowed == null || data_map.numberOfAttemptsAllowed == undefined)
-						 html+='<span class="program-text-normal s-font"></span>';
-					else
-						html+='<span class="exam-name s-font">Max Percentage To Pass: <strong style="color:#525c65;">'+data_map.numberOfAttemptsAllowed+'</strong></span>';
+						html+='<span class="exam-name s-font">Min Marks To Pass: <strong style="color:#525c65;">'+data_map.minPercentagetoPass+'</strong></span>';
 					html+='</div>';
 					html+='<div class="col-sm-12 col-md-12 col-lg-12 m-t-10">'; 
 					if(data_map.examDescription == null || data_map.examDescription == undefined)
@@ -372,7 +360,8 @@ if (!(navigator.onLine)) {
 	ajaxWithJSON("/common/load-program-registered-students", l_map, 'POST', function(response) {
 	   // alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
-			var data = response.object;
+			var data = [];
+			 data = response.object;
 			var html ='';
 			for(var i=0;i<data.length;i++){
 				var b_students = data[i];
@@ -399,9 +388,10 @@ if (!(navigator.onLine)) {
 				html+='</div>';
 				html+='</div>';
 				html+='</div>';
-				if(data.length>4){
+				
+			}
+			if(data.length>5){
 				html+='<div class="col-md-12 center"><button type="button" class="btn btn-primary" onclick="loadProgramStudents(\''+programId+'\','+from+5+',5)">Next</button> </div>';
-				}
 			}
 			$('.c_program_students').html(html);
 		}

@@ -1054,13 +1054,13 @@ Featured List Style
 List Article Common Style
 ---------------------------------------------------------------*/
 .post-wrapper.list-article {
-    background-color: #e8e2e2;
+    background-color: #f7f7f7;
     overflow: hidden;
     position: relative;
 }
 .post-wrapper.list-article .thumb-wrapper {
     float: left;
-   /*  z-index: 100; */
+    z-index: 100;
 }
 
 @media (max-width: 479px) {
@@ -1073,7 +1073,7 @@ List Article Common Style
     padding: 20px 25px;
     overflow: hidden;
     position: relative;
-     /*  z-index: 100;   */
+    z-index: 100;
 }
 .post-wrapper.list-article .blog-content p{
     margin-bottom: 20px;
@@ -1092,7 +1092,7 @@ List Article Common Style
     left: 0;
     width: 0%;
     height: 100%;
-   /*  z-index: 1; */
+    z-index: 1;
     -webkit-transition: all 0.3s cubic-bezier(0.39,0.575,0.56499,1);
     -moz-transition: all 0.3s cubic-bezier(0.39,0.575,0.56499,1);
     -ms-transition: all 0.3s cubic-bezier(0.39,0.575,0.56499,1);
@@ -1134,7 +1134,7 @@ List Blog Style
     content: "";
     width: 24px;
     height: 2px;
-    background-color: #1C2E54;
+    background-color: #e040fb;
     position: absolute;
     bottom: -15px;
     left: 0;
@@ -1155,7 +1155,7 @@ List Blog Style
 }
 
 .list-news .entry-meta li {
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .list-news .blog-content p {

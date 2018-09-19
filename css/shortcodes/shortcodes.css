@@ -7,7 +7,7 @@ Shortcodes style
 @import url("blog.css");
 @import url("countdown.css");
 @import url("facts.css");
-/* @import url("form-style.css"); */
+@import url("form-style.css");
 @import url("featured-box.css");
 @import url("footer.css");
 @import url("header.css");

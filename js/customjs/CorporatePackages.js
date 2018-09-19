@@ -1421,8 +1421,7 @@ function searchCandidates() {debugger;
 							l_html += "<td id='name_row" + (i + 1) + "'>"
 									+ l_map.candidateName + "</td>";
 							l_html += "<td id='email_row" + (i + 1) + "'>"
-									+ l_map.candidateId
-									+ "<input id='candidate" + (i + 1)
+									+ "<input readonly style='border:none' id='candidate" + (i + 1)
 									+ "' type='hidden' value='"
 									+ l_map.candidateId + "'></td>";
 							l_html += "<td id='phone_row" + (i + 1) + "'>"

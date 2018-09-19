@@ -20,7 +20,17 @@ Portfolio
 /*
 Default Portfolio Hover
 -----------------------------------------------------------------*/
-
+.portfolio-wrapper
+{  
+    border-radius:5px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    text-align: center;
+    padding:10px 0px;
+    height: 100%; 
+	cursor:pointer;
+	background: linear-gradient(to right, rgb(27, 31, 38), rgb(64, 62, 74)); 
+}
 .portfolio-wrapper .bg-overlay {
     position: absolute;
     bottom: -200px;
@@ -44,13 +54,10 @@ Default Portfolio Hover
 }
 
 .portfolio-wrapper:hover .bg-overlay {
-    right: 0;
-    bottom: 0;
-    -webkit-transform: scale(10) translateZ(0);
-    -moz-transform: scale(10) translateZ(0);
-    -ms-transform: scale(10) translateZ(0);
-    -o-transform: scale(10) translateZ(0);
-    transform: scale(10) translateZ(0);
+    -webkit-transform:scale(1.05);
+    -ms-transform:scale(1.05);
+    -o-transform:scale(1.05);
+    transform:scale(1.05)
 }
 
 
@@ -197,6 +204,7 @@ Portfolio Filter
     margin:0;
     padding: 0;
     list-style: none;
+	text-align: center;
 }
 
 .portfolio-filter li {
@@ -225,7 +233,7 @@ Portfolio Filter
 /*Preset Color*/
 .brand-filter li:hover,
 .brand-filter li.active {
-    background-color: #03a9f4;
+    background-color: #1190e8;
 }
 
 
@@ -241,7 +249,8 @@ Portfolio with title
     transition: box-shadow 0.3s;
 }
 .portfolio-with-title .portfolio-wrapper:hover {
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    
+	box-shadow: 0px 0px 47px 3px rgba(0, 0, 0, 0.1);
 }
 .portfolio-with-title .portfolio-wrapper:hover .portfolio-title {
     border: 1px solid transparent;

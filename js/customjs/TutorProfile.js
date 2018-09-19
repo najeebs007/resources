@@ -999,7 +999,7 @@ function loadQualificationData() {
             	 var b_map = l_data[i];
              l_html+='<div class="col-lg-12">';
              l_html+='<div class="row">';
-             l_html+='<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2"> <span class="certificate-icon"><span style="font-size:15px;font-weight: 600;">'+b_map.level+'</span></span>';
+             l_html+='<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2"> <span class="certificate-icon fa fa-graduation-cap"></span>';
              l_html+=' </div>';
              l_html+='<div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 m-t-2 onhover">';
              l_html+='<div class="row">';
@@ -1855,7 +1855,7 @@ function selectEducation(){
 				}
               });
 		}
-		function selectEducationBranches(){
+		function selectEducationBranches(){debugger;
 			
 			  var l_is_found = false;
 			    $('#i_no_education_branch').html('');

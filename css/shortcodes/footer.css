@@ -1,29 +1,40 @@
 /*------------------------------------------------------------------
 Footer
 -------------------------------------------------------------------*/
+  
 .footer h2 {
     margin-bottom: 24px;
 }
 .footer p {
     color: #c9f0ff;
+	font-size: 14px;
 }
 
 .footer-one .primary-footer {
-    padding-top: 80px;
-    padding-bottom: 50px;
+    padding-top:25px;
+    /* padding-bottom: 50px; */
+	border-top:1px solid rgb(211, 211, 211);
 }
 .secondary-footer {
-    padding: 27px 0;
+    padding: 15px 0;
+	text-align: center;
 }
 
 .copy-text a{
-    color: #fff;
+    color: rgb(229, 229, 229);
 }
 .copy-text,
 .copy-text a:hover{
     color: #81ddff;
 }
-
+.footer-bg
+{
+	width: 100%;
+    height:auto;
+    background-image: url('../../img/footer-bg.jpg');
+    background-size:cover;
+     
+}
 /*
 Back To Top
 ----------------------------------------------------*/
@@ -83,24 +94,27 @@ Social Link Widget
 /* 
 Important Link Widget
 ------------------------------------------------ */
+.black-text{font-weight:600;}
 .footer-list {
     padding: 0;
     margin: 0;
     list-style: none;
+	margin-bottom: 30px;
 }
 .footer-list li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.25); */
+	font-size: 14px;
 }
 .footer-list li:last-child {
     border-bottom: 0;
 }
 .footer-list li a {
     display: block;
-    line-height: 45px;
+    line-height:38px;
     color: #c9f0ff;
 }
 .footer-list li a:hover {
-    color: #fff;
+    color: black;
 }
 
 
@@ -204,8 +218,13 @@ Tag Cloud Widget
 
 @media (max-width: 991px) {
     .footer .widget {
-        margin-bottom: 50px;
+        margin-bottom:10px;
     }
+	.footer-list li a {
+    
+    line-height: 25px;
+     
+}
 }
 
 
@@ -353,6 +372,7 @@ Footer 4
     .footer-intro p {
         width: 100%;
     }
+	.alignCenter{text-align:center;}
 }
 
 
