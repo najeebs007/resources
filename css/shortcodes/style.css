@@ -1814,10 +1814,11 @@ i[class^="flaticon-"]:before {
     font-weight: 600; 
     border-radius: 25px !important;
     border: 1px solid rgb(17, 144, 232);
-    background: transparent !important;
-    width: 80px;
-	height:37px;
+    background: transparent !important; 
 	line-height: 35px !important;
+	  width: auto !important;
+       height: 37px !important;
+       padding: 0px 10px !important 	;
 }
 .btn-sm-merit
 {   display: inline-block; 
@@ -1827,9 +1828,9 @@ i[class^="flaticon-"]:before {
     border-radius: 25px !important;
     border: 1px solid rgb(240, 85, 16);
     background: transparent !important;
-    width: 80px;
-	width: 80px;
-	height:37px;
+     width: auto !important;
+       height: 37px !important;
+       padding: 0px 10px !important 	;
 	line-height: 35px !important;
 }
 .forgetpassword-margin-top{margin-top:-55px;}

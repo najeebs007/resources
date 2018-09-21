@@ -183,7 +183,7 @@ img{
     -o-border-radius:20px;
     -ms-border-radius:20px;
     padding:6px 13px;
-    font-family:''
+    font-family:inherit;
 }
 .submit input[type="submit"]:hover{
     background:#44c7f4;
@@ -207,7 +207,7 @@ img{
     -o-border-radius:20px;
     -ms-border-radius:20px;
     padding:6px 13px;
-    font-family:''
+    font-family:inherit;
 }
 .submit input[type="button"]:hover{
     background:#44c7f4;
@@ -255,7 +255,7 @@ img{
 }
 .resp-tabs-list{
     list-style:none;
-    padding-left:19px;
+    padding-left:0px;
     text-align:center
 }
 .resp-tab-item{
@@ -278,7 +278,13 @@ img{
 .resp-tab-active span {
        background: #1090e7 !important;
        color: white !important; 
-       border: 1px solid rgb(235, 240, 244) !important;  
+       border: 1px solid rgb(235, 240, 244) !important;
+     	   
+}
+.btn-sm-merit
+{
+       width: auto !important; 
+       padding: 0px 10px !important 	
 }
 .resp-tabs-container{
     padding:0px;
@@ -338,4 +344,9 @@ h2.resp-accordion{
             padding:3px 11px
         }
     }
-    
+  @media screen and (max-width: 767px) {
+	  .resp-tab-item {
+     
+	  padding: 5px 0px;
+	  }
+  }	  
