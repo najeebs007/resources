@@ -153,7 +153,7 @@ $(".c_savePackage")
 							.ajax({
 
 								type : 'POST',
-								url : "/corporate/save-customize-package",
+								url : "/smopl/corporate/save-customize-package",
 								data : JSON.stringify(g_map),
 								cache : false,
 								async : true,
@@ -240,7 +240,7 @@ $(".c_savePackageWithCart")
 							.ajax({
 
 								type : 'POST',
-								url : "/corporate/save-customize-package",
+								url : "/smopl/corporate/save-customize-package",
 								data : JSON.stringify(g_map),
 								cache : false,
 								async : true,
@@ -323,7 +323,7 @@ $(".c_searchExams")
 							.ajax({
 
 								type : 'POST',
-								url : "/corporate/exam-list-by-filter",
+								url : "/smopl/corporate/exam-list-by-filter",
 								data : JSON.stringify(l_map),
 								cache : false,
 								async : true,
@@ -456,7 +456,7 @@ function searchByPagination(selectedPage) {
 	$.ajax({
 
 				type : 'POST',
-				url : "/corporate/exam-list-by-filter",
+				url : "/smopl/corporate/exam-list-by-filter",
 				data : JSON.stringify(l_map),
 				cache : false,
 				async : true,
@@ -600,7 +600,7 @@ function addOneByOne() {
 
 	$(".loading").show();
 	$.ajax({
-		url : '/corporate/add-candidate',
+		url : '/smopl/corporate/add-candidate',
 		data : JSON.stringify(l_map),
 		cache : false,
 		async : true,
@@ -686,7 +686,7 @@ function candidateActions(packageId, examId, candidateId, count, actionType,
 	if (l_confirm) {
 		$(".loading").show();
 		$.ajax({
-			url : '/corporate/candidate-actions',
+			url : '/smopl/corporate/candidate-actions',
 			data : JSON.stringify(l_map),
 			cache : false,
 			async : true,
@@ -758,7 +758,7 @@ function generateRandomIds() {
 	l_map.packageId = $('.c_package_id').val();
 	$(".loading").show();
 	$.ajax({
-		url : '/corporate/generate-random-password',
+		url : '/smopl/corporate/generate-random-password',
 		data : JSON.stringify(l_map),
 		cache : false,
 		async : true,
@@ -801,43 +801,43 @@ function managCredential(examId, packageId, status, count) {
 	examDetail += "<div class='row' id='addStudent'>";
 	examDetail += "<div class='col-md-12'><div class='row'> <a href='/corporate/add-candidates'>";
 	// start for one by one
-	examDetail += "<a href='/corporate/add-candidates?packageId="
+	examDetail += "<a href='/smopl/corporate/add-candidates?packageId="
 			+ packageId
 			+ "&examId="
 			+ examId
 			+ "&from=one'><div class='col-md-6'><div class='card ck1' style='border-radius: 25px;'>";
 	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div>";
+	examDetail += "<img src='/SMWebsite/resources/img/check-icon.png' alt='Check Icon'></div>";
 	examDetail += "<div class='col-md-12'><h5><strong>I have Candidate details (Email,Phone) and want to create one by one.</strong></h5>";
 	examDetail += "</div></div></div></div></div></a>";
 	// start for excel
-	examDetail += "<a href='/corporate/add-candidates?packageId="
+	examDetail += "<a href='/smopl/corporate/add-candidates?packageId="
 			+ packageId
 			+ "&examId="
 			+ examId
 			+ "&from=excel'><div class='col-md-6'><div class='card' style='border-radius: 25px;'>";
 	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'> </div><div class='col-md-12'>";
+	examDetail += "<img src='/SMWebsite/resources/img/check-icon.png' alt='Check Icon'> </div><div class='col-md-12'>";
 	examDetail += "<h5><strong>I want to upload excel file [ Please note that your excel should have email & phone ].</strong></h5>";
 	examDetail += "</div></div></div></div></div></a>";
 	// start for random
-	examDetail += "<a href='/corporate/add-candidates?packageId="
+	examDetail += "<a href='/smopl/corporate/add-candidates?packageId="
 			+ packageId
 			+ "&examId="
 			+ examId
 			+ "&from=random'><div class='col-md-6'><div class='card' style='border-radius: 25px;'>";
 	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
+	examDetail += "<img src='/SMWebsite/resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
 	examDetail += "<h5><strong>I don't have any information about Candidate. I want to generate Random Id.</strong></h5>";
 	examDetail += " </div></div></div></div></div></a>";
 	// start for Custom form
-	examDetail += "<a href='/corporate/build-custom-form?packageId="
+	examDetail += "<a href='/smopl/corporate/build-custom-form?packageId="
 			+ packageId
 			+ "&examId="
 			+ examId
 			+ "'><div class='col-md-6'><div class='card' style='border-radius: 25px;'>";
 	examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-	examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
+	examDetail += "<img src='/SMWebsite/resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
 	examDetail += "<h5 title=' Make your own registration form to plan your next event. Get started by editing a form template then send an email to your list and watch the responses pile up!' style='margin-bottom: 25px;'><strong>Customize your registration form to invite diverse candidate pool.</strong></h5>";
 	examDetail += " </div></div></div></div></div></a>";
 	// end for Custom form
@@ -871,7 +871,7 @@ function updateCandidateRegistrationAction(p_exam_id, p_package_id, p_status,
 	$(".loading").show();
 	$
 			.ajax({
-				url : '/common/update-candidates-register-action',
+				url : '/smopl/common/update-candidates-register-action',
 				data : JSON.stringify(l_map),
 				cache : false,
 				async : true,
@@ -919,7 +919,7 @@ function managExam(examId, packageId, status) {
 	$(".loading").show();
 	$
 			.ajax({
-				url : '/corporate/exam-detail',
+				url : '/smopl/corporate/exam-detail',
 				type : 'POST',
 				data : {
 					examId : examId
@@ -937,17 +937,17 @@ function managExam(examId, packageId, status) {
 						examDetail += "<div class='col-md-12'><div class='row'> <a href='/corporate/add-candidates'>";
 						examDetail += "<div class='col-md-4'><div class='card ck1' style='border-radius: 25px;'>";
 						examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-						examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div>";
+						examDetail += "<img src='/SMWebsite/resources/img/check-icon.png' alt='Check Icon'></div>";
 						examDetail += "<div class='col-md-12'><h5><strong>I have Candidate details (Email,Phone) and want to create one by one.</strong></h5>";
 						examDetail += "</div></div></div></div></div></a>";
 						examDetail += "<a href='#'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
 						examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-						examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'> </div><div class='col-md-12'>";
+						examDetail += "<img src='/SMWebsite/resources/img/check-icon.png' alt='Check Icon'> </div><div class='col-md-12'>";
 						examDetail += "<h5><strong>I want to upload excel file [ Please note that your excel should have email & phone ].</strong></h5>";
 						examDetail += "</div></div></div></div></div></a>";
 						examDetail += "<a href='#'><div class='col-md-4'><div class='card' style='border-radius: 25px;'>";
 						examDetail += "<div class='card-body'><div class='row'><div class='col-md-12' style='text-align:center;'>";
-						examDetail += "<img src='../../resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
+						examDetail += "<img src='/SMWebsite/resources/img/check-icon.png' alt='Check Icon'></div><div class='col-md-12'>";
 						examDetail += "<h5><strong>I don't have any information about Candidate. I want to generate Random Id.</strong></h5>";
 						examDetail += " </div></div></div></div></div></a></div></div></div></div>";
 						$(".loading").hide();
@@ -979,7 +979,7 @@ function generatePassword(examId, packageId) {
 	$(".loading").show();
 	$
 			.ajax({
-				url : '/corporate/generate-password',
+				url : '/smopl/corporate/generate-password',
 				type : 'POST',
 				data : JSON.stringify(l_map),
 				cache : false,
@@ -1044,7 +1044,7 @@ function changePin(examId, packageId) {
 	}
 	$(".loading").show();
 	$.ajax({
-		url : '/corporate/change-pin',
+		url : '/smopl/corporate/change-pin',
 		type : 'POST',
 		data : JSON.stringify(l_map),
 		cache : false,
@@ -1071,7 +1071,7 @@ function deleteAllStudent() {
 	if (confirm("You want to delete all students !")) {
 		$(".loading").show();
 		$.ajax({
-			url : '/corporate/delete-all',
+			url : '/smopl/corporate/delete-all',
 			type : 'POST',
 			success : function(data) {
 				$(".loading").hide();
@@ -1140,7 +1140,7 @@ function save_row(no, info_id) {
 	$(".loading").show();
 	$
 			.ajax({
-				url : '/corporate/update-candidate',
+				url : '/smopl/corporate/update-candidate',
 				type : 'POST',
 				data : JSON.stringify(l_map),
 				cache : false,
@@ -1185,7 +1185,7 @@ function delete_row(infoId, email, row) {
 	if (confirm("You want to delete candidate !")) {
 		$(".loading").show();
 		$.ajax({
-			url : '/corporate/delete',
+			url : '/smopl/corporate/delete',
 			data : {
 				email : email,
 				infoId : infoId
@@ -1258,7 +1258,7 @@ function getCustomFormURLs() {
 	$(".loading").show();
 	$
 			.ajax({
-				url : '/common/custom-form-urls',
+				url : '/smopl/common/custom-form-urls',
 				cache : false,
 				async : true,
 				contentType : "application/json; charset=UTF-8",
@@ -1312,24 +1312,24 @@ var indexes_checked = [];
 var g_load_time = true;
 var l_value = "";
 var g_total_candidates = parseInt($('#totalCandidates').val());
-$(document).ready(function() {debugger;
-					$('#search_candidates').keyup(function() {debugger;
+$(document).ready(function() {
+					$('#search_candidates').keyup(function() {
 						search_indexes = [];
 						g_is_load_time = false;
 						search_table($(this).val());
 					});
 
-					function search_table(value) {debugger;
-						$('#i_candidate_list tr').each(function() {debugger;
+					function search_table(value) {
+						$('#i_candidate_list tr').each(function() {
 											var found = 'false';
-											$(this).each(function() {debugger;
-											if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {debugger;
+											$(this).each(function() {
+											if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
 											found = 'true';
 											}
 											});
-											if (found == 'true') {debugger;
+											if (found == 'true') {
 												$(this).show();
-												if ($("tr").index(this) != 0) {debugger;
+												if ($("tr").index(this) != 0) {
 													search_indexes.push($("tr").index(this));
 													g_load_time = false;
 												}
@@ -1346,8 +1346,6 @@ var l_is_active = false;
 var l_is_inactive = false;
 var l_is_view_result = false;
 $('#i_actives').click(function() {
-	debugger;
-
 	if ($(this).is(':checked')) {
 		l_is_active = true;
 	} else {
@@ -1365,7 +1363,7 @@ $('#i_inactives').click(function() {
 	}
 	searchCandidates();
 });
-$('#i_view_result').click(function() {debugger;
+$('#i_view_result').click(function() {
 
 	if ($(this).is(':checked')) {
 		l_is_view_result = true;
@@ -1375,7 +1373,7 @@ $('#i_view_result').click(function() {debugger;
 	searchCandidates();
 });
 
-function searchCandidates() {debugger;
+function searchCandidates() {
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
 		return;
@@ -1389,16 +1387,16 @@ function searchCandidates() {debugger;
 	l_map.examId = $('#i_g_exam_id').val();
     $(".loading").show();
 	$.ajax({
-				url : '/common/search-candidates',
+				url : '/smopl/common/search-candidates',
 				cache : false,
 				async : true,
 				contentType : "application/json; charset=UTF-8",
 				dataType : 'json',
 				data : JSON.stringify(l_map),
 				type : 'POST',
-				success : function(response) { debugger;
+				success : function(response) { 
 					$('#i_candidate_body').html("");
-					if (response.status == "SUCCESS") {debugger;
+					if (response.status == "SUCCESS") {
 						g_load_time = false;
 						search_indexes = [];
 						$('#i_check_all').attr('checked', false);
@@ -1659,7 +1657,7 @@ function bulkCandidateActions(p_action_type) {
         $(".loading").show();
 		$
 				.ajax({
-					url : '/common/bulk-actions',
+					url : '/smopl/common/bulk-actions',
 					cache : false,
 					async : true,
 					contentType : "application/json; charset=UTF-8",

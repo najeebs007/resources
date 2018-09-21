@@ -34,7 +34,7 @@ function searchProgram() {
 				cache : false,
 				async : true,
 				contentType : "application/json; charset=UTF-8",
-				url : "/admin/search-program",
+				url : "/smopl/admin/search-program",
 				data : JSON.stringify(data),
 				datatype : "json",
 				success : function(response) {
@@ -219,7 +219,7 @@ function addProgram() {
 			cache : false,
 			async : true,
 			contentType : "application/json; charset=UTF-8",
-			url : "/admin/save-program",
+			url : "/smopl/admin/save-program",
 			data : JSON.stringify(l_input_data),
 			datatype : "json",
 			success : function(response) {
@@ -338,7 +338,7 @@ function editProgram() {
 			cache : false,
 			async : true,
 			contentType : "application/json; charset=UTF-8",
-			url : "/admin/edit-program",
+			url : "/smopl/admin/edit-program",
 			data : JSON.stringify(data),
 			datatype : "json",
 			success : function(response) {

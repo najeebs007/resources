@@ -44,7 +44,7 @@ function studentProfileRegistration() {
 		cache : false,
 		async : true,
 		contentType : "application/json; charset=UTF-8",
-		url : "/student/general-information",
+		url : "/smopl/student/general-information",
 		data : JSON.stringify(l_input_data),
 		datatype : "json",
 		success : function(response) {
@@ -107,7 +107,7 @@ function addStudentEducation() {
 		async : true,
 		contentType : "application/json; charset=UTF-8",
 
-		url : "/student/add-student-education",
+		url : "/smopl/student/add-student-education",
 		data : JSON.stringify(l_input_map),
 		dataType : 'json',
 		success : function(response) {
@@ -323,7 +323,7 @@ function addStudentProfessionalDetail() {
 		cache : false,
 		async : true,
 		contentType : "application/json; charset=UTF-8",
-		url : "/student/add-student-professional",
+		url : "/smopl/student/add-student-professional",
 		dataType : 'json',
 		data : JSON.stringify(l_input_map),
 		success : function(response) {
@@ -382,7 +382,7 @@ function addStudentCertificate() {
 				cache : false,
 				async : true,
 				contentType : "application/json; charset=UTF-8",
-				url : "/student/student-certificate",
+				url : "/smopl/student/student-certificate",
 				dataType : 'json',
 				data : JSON.stringify(l_input_map),
 				success : function(response) {
@@ -487,7 +487,7 @@ function addStudentContactDetail() {
 		cache : false,
 		async : true,
 		contentType : "application/json; charset=UTF-8",
-		url : "/student/add-contact",
+		url : "/smopl/student/add-contact",
 		dataType : 'json',
 		data : JSON.stringify(l_input_map),
 		success : function(response) {
@@ -572,7 +572,7 @@ function uploadDocuments(formObject, result) {
 	var form = new FormData(document.getElementById(formObject));
 	$
 			.ajax({
-				url : "/paytm-response/upload-image",
+				url : "/smopl/paytm-response/upload-image",
 				data : form,
 				dataType : 'text',
 				processData : false,
@@ -598,7 +598,7 @@ function ratingStarCount2() {
 	var s_html = "";
 	$('.s_rating').html("");
 	ajaxWithJSON(
-			"/common/load-star-count",
+			"/smopl/smopl/common/load-star-count",
 			g_data,
 			'POST',
 			function(response) {
@@ -674,7 +674,7 @@ function getSocialData1() {
 	var l_map = {};
 
 	ajaxWithJSON(
-			"/common/student-dashboard-socialdata",
+			"/smopl/common/student-dashboard-socialdata",
 			l_map,
 			'POST',
 			function(response) {

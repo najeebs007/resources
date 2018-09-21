@@ -86,7 +86,7 @@ function ratingList() {
 	// l_map.top = true;
 	var b_html = "";
 	$('.c_rating').html("");
-	ajaxWithJSON("/load-rating", null, 'GET', function(response) {
+	ajaxWithJSON("/smopl/load-rating", null, 'GET', function(response) {
 				debugger;
 				var l_data = response.object;
 				for (var i = 0; i < l_data.length; i++) {
@@ -234,7 +234,7 @@ l_map.comment=p_comment;
 l_map.givenByEmail = p_givenByEmail;
 	$(".loading").show();
 	//    $(".loading").show();
-	ajaxWithJSON("/tutor/save-rating-info", l_map, 'POST', function(response) {debugger;
+	ajaxWithJSON("/smopl/tutor/save-rating-info", l_map, 'POST', function(response) {debugger;
 		$(".loading").hide();
 		if (response.status == 'SUCCESS') {
 			toastr.success("successfully added rating");
@@ -301,7 +301,7 @@ function ratingStarCount() {debugger;
 
 	var r_html = "";
 	$('.r_rating').html("");
-	ajaxWithJSON("/common/load-star-count", g_data, 'POST', function(response) {debugger;
+	ajaxWithJSON("/smopl/common/load-star-count", g_data, 'POST', function(response) {debugger;
 				var l_data = response.object;
 				var l_fiveStar = l_data.fiveStar;
 				var l_fourStar = l_data.fourStar;

@@ -23,7 +23,7 @@ function addToCart(l_cartId,l_productId,l_productType){ debugger;
 		$.ajax({
 
 			  type : 'POST',
-			  url : "/cart/add",
+			  url : "/smopl/cart/add",
 			  data : JSON.stringify(l_input_map),
 			  cache : false,
 			  async : true,
@@ -63,7 +63,7 @@ $(".loading").show();
 	$.ajax({
 
 		  type : 'POST',
-		  url : "/cart/buy-now",
+		  url : "/smopl/cart/buy-now",
 		  data : JSON.stringify(l_input_map),
 		  cache : false,
 		  async : true,
@@ -115,7 +115,7 @@ function addToCart(l_cartId,l_productId,l_productType){ debugger;
 		$.ajax({
 
 			  type : 'POST',
-			  url : "/cart/add",
+			  url : "/smopl/cart/add",
 			  data : JSON.stringify(l_input_map),
 			  cache : false,
 			  async : true,
@@ -156,7 +156,7 @@ $(".loading").show();
 	$.ajax({
 
 		  type : 'POST',
-		  url : "/cart/buy-now",
+		  url : "/smopl/cart/buy-now",
 		  data : JSON.stringify(l_input_map),
 		  cache : false,
 		  async : true,
@@ -197,7 +197,7 @@ function removeCartItem(cartId,cartItemId){
 		$.ajax({
 
 			  type : 'POST',
-			  url : "/cart/removeCartItem",
+			  url : "/smopl/cart/removeCartItem",
 			  data : JSON.stringify(l_input_map),
 			  cache : false,
 			  async : true,

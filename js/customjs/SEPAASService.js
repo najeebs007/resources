@@ -29,7 +29,7 @@ function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){d
 		l_map.isFreeForStudent = isFreeForStudent;
 		
 		//alert(JSON.stringify(l_map));
-		ajaxWithJSON("/student/enroll-sepaas-program", l_map, 'POST', function(response) {
+		ajaxWithJSON("/smopl/student/enroll-sepaas-program", l_map, 'POST', function(response) {
 		    //alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				if(isFreeForStudent){
@@ -54,7 +54,7 @@ function enroll(cartId,programId,isFreeForStudent){
 		toastr.error("Please Accept Terms And Conditions.");
 		return;
 	}
-	ajaxWithJSON("/student/enroll-sepaas-program", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/student/enroll-sepaas-program", l_map, 'POST', function(response) {
 	   // alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
 			if(isFreeForStudent){
@@ -86,7 +86,7 @@ function programUtilInfo(programId,subscriptionId){debugger;
 		
 		l_map.programId = programId;
 		l_map.subscriptionId = subscriptionId;
-		ajaxWithJSON("/student/program-util-info", l_map, 'POST', function(response) {
+		ajaxWithJSON("/smopl/student/program-util-info", l_map, 'POST', function(response) {
 		   // alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				var data = response.object;
@@ -120,7 +120,7 @@ function loadProgramExams(programId){debugger;
 		
 		l_map.programId =programId;
 		
-		ajaxWithJSON("/common/load-program-exam-detail", l_map, 'POST', function(response) {
+		ajaxWithJSON("/smopl/common/load-program-exam-detail", l_map, 'POST', function(response) {
 		   // alert(JSON.stringify(response));
 			var data = [];
 		    var html = '';
@@ -215,7 +215,7 @@ function loadProgramSponsors(programId,sponsorsAllowed){debugger;
 		
 		l_map.programId = programId;
 		if(sponsorsAllowed){
-		ajaxWithJSON("/common/get-sponsors", l_map, 'POST', function(response) {
+		ajaxWithJSON("/smopl/common/get-sponsors", l_map, 'POST', function(response) {
 		    //alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				var data = response.object;
@@ -290,7 +290,7 @@ function loadProgramVolunteers(programId,volunteerAllow){debugger;
 		
 		l_map.programId = programId;
 		if(volunteerAllow){
-		ajaxWithJSON("/common/get-volunteers", l_map, 'POST', function(response) {
+		ajaxWithJSON("/smopl/common/get-volunteers", l_map, 'POST', function(response) {
 		   // alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				var data = response.object;
@@ -357,7 +357,7 @@ if (!(navigator.onLine)) {
 	l_map.programId = programId;
 	l_map.from = from;
 	l_map.to = to;
-	ajaxWithJSON("/common/load-program-registered-students", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/common/load-program-registered-students", l_map, 'POST', function(response) {
 	   // alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
 			var data = [];
@@ -407,7 +407,7 @@ function programGroups(p_programId){debugger;
 	var l_map = {};
 	$('#i_program_groups').html('');
 	l_map.programId = p_programId;
-	ajaxWithJSON("/common/load-program-groups", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/common/load-program-groups", l_map, 'POST', function(response) {
 	   // alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
 			
@@ -548,7 +548,7 @@ function showCustomForm(){
 function loadSyllabus(p_program_exam_series_id ,index,size){
 	var l_map = {};
 	l_map.seriesId = p_program_exam_series_id;
-	ajaxWithJSON("/common/load-program-exam-syllabus", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/common/load-program-exam-syllabus", l_map, 'POST', function(response) {
 		   //alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				var data = response.object;
@@ -738,7 +738,7 @@ function loadMeritList(p_programId,from,size){
 	l_map.examId = $('.c_exam_dropdown').val();
 	l_map.from = from;
 	l_map.size = size;
-	ajaxWithJSON("/common/load-merit-list", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/common/load-merit-list", l_map, 'POST', function(response) {
 		   //alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
 				var html = '';

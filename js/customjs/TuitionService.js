@@ -18,7 +18,7 @@ function gridViewTab(tutorList,login){debugger;
     			if(login){
     				box = "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_grid"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"',\'i_tutor_grid\')\"><span>Select Tutor</span></label>";
        		    }else{
-       			 box="<button type='button' class='btn btn-primary' style='float:right;'><a href='/'>Login/Signup to Select</a></button>";
+       			 box="<button type='button' class='btn btn-primary' style='float:right;'><a href='/smopl'>Login/Signup to Select</a></button>";
        		    }
     			html += "<div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-6 prop jQueryEqualHeightD\">";
     			html += "<div class=\"wht-cont\">";
@@ -46,7 +46,7 @@ function gridViewTab(tutorList,login){debugger;
     			html += "<div class=\"item-title btm-part\">";
     			html += "<div class=\"row\">";
     			html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\" style='text-align:center;'>";
-				html += "<a href='../../tutor-profile?login=false&user="+tutorMap.userName+"' class=\"btn btn-primary\">View Profile</a>";
+				html += "<a href='/smopl/tutor-profile?login=false&user="+tutorMap.userName+"' class=\"btn btn-primary\">View Profile</a>";
     			html += "</div>";
     				html += "<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 c_add1"+i+"\" style='text-align:center;'>";
 					 html+=box;
@@ -75,7 +75,7 @@ function listViewTab(tutorList,login){
     			if(login){
     				box = "<label class=\"checkbox-inline checkbox-styled\"><input id='i_tutor_list"+i+"' type=\"checkbox\" value=\"option1\" onclick=\"return initiateRequest('"+tutorMap.userName+"','"+tutorMap.displayName+"','"+i+"',\'i_tutor_list\')\"><span>Select Tutor</span></label>";
        		    }else{
-       			 box="<button type='button' class='btn btn-primary' style='float:right;'><a href='/'>Login/Signup to Select</a></button>";
+       			 box="<button type='button' class='btn btn-primary' style='float:right;'><a href='/smopl'>Login/Signup to Select</a></button>";
        		    }
     			 html += "<div class=\"row white\" >";
      			html += "<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-12 prp-img\">";
@@ -115,7 +115,7 @@ function listViewTab(tutorList,login){
  				}
  				html += "</span></div>";
  				html += "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\" style='text-align:center;'><span class=\"profileSpan\"> <span class=\"rating-text tutor-val-text rviewText\" style='color:black;'>"+tutorMap.starCount+" reviews</span></span></div>";
- 				html += "<div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-6 m-t-30\" style='text-align:center;'><a href='../../tutor-profile?login=false&user="+tutorMap.userName+"'class=\"btn btn-primary\">View Profile</a></div>";
+ 				html += "<div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-6 m-t-30\" style='text-align:center;'><a href='/smopl/tutor-profile?login=false&user="+tutorMap.userName+"'class=\"btn btn-primary\">View Profile</a></div>";
      			html += "<div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-6 m-t-30\ c_add2"+i+"\" style='text-align:center;'>";
      			html +=box;
 				html += "</div>";
@@ -179,7 +179,7 @@ function listViewTab(tutorList,login){
 		l_search_map.subjectId = document.getElementById("subjects").value;
 		// alert(JSON.stringify(l_search_map));
 		$('.loading').show();
-		ajaxWithJSON("/common/search-tutor-data", l_search_map, 'POST', function(response) {
+		ajaxWithJSON("/smopl/common/search-tutor-data", l_search_map, 'POST', function(response) {
 			// alert(JSON.stringify(response));
 		$('.loading').hide();
 	    if (response.status == 'SUCCESS') {
@@ -282,7 +282,7 @@ function listViewTab(tutorList,login){
 		l_request_map.tutorId = p_tutorId;
 		
 		$('.loading').show();
-		ajaxWithJSON("/tutor-remove-request",l_request_map,'POST',function(response) {
+		ajaxWithJSON("/smopl/tutor-remove-request",l_request_map,'POST',function(response) {
 					var l_data = response.object;
 					
 					$('.loading').hide();
@@ -354,7 +354,7 @@ function listViewTab(tutorList,login){
 			l_request_map.tutorId = $('.c_tutorId').val();
 		}
 		$('.loading').show();
-		ajaxWithJSON("/tutor-tuition-request",l_request_map,'POST',function(response) {
+		ajaxWithJSON("/smopl/tutor-tuition-request",l_request_map,'POST',function(response) {
 					var l_data = response.object;
 					$('.loading').hide();
 					// alert(JSON.stringify(response));
@@ -385,7 +385,7 @@ function listViewTab(tutorList,login){
 		 l_map.STUDENT = false;
 		 l_map.TUTOR = true;
 		 }
-	ajaxWithJSON("/common/load-tuition-requests",l_map,'POST',function(response) {debugger;
+	ajaxWithJSON("/smopl/common/load-tuition-requests",l_map,'POST',function(response) {debugger;
 	
 				var l_data = response.object;
 				// var l_data_other = response.other;
@@ -530,9 +530,9 @@ function listViewTab(tutorList,login){
 			            	   if(b_history_map.requestStatus=='COMPLETED'){
 			            		   if(b_history_map.status=='ACTIVE'){
 					            	  if(b_history_map.batchId=='' || b_history_map.batchId==null || b_history_map.batchId==undefined){
-					            		  pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'&batchId='+b_history_map.suggestBatchId+'&studentId='+b_history_map.studentId+'&login=true">View Booking Detail</a></button>';
+					            		  pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="/smopl/student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'&batchId='+b_history_map.suggestBatchId+'&studentId='+b_history_map.studentId+'&login=true">View Booking Detail</a></button>';
 					            	  }else
-					            		  pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'&batchId='+b_history_map.batchId+'&studentId='+b_history_map.studentId+'&login=true">View Booking Detail</a></button>';
+					            		  pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="/smopl/student-tuition-booking-detail?tuitionRequest='+b_history_map.tuitionRequestId+'&user='+b_history_map.tutorId+'&batchId='+b_history_map.batchId+'&studentId='+b_history_map.studentId+'&login=true">View Booking Detail</a></button>';
 			            		   }
 			            		   }
                            if(b_history_map.requestStatus=='SUGGESTED'){
@@ -693,9 +693,9 @@ function listViewTab(tutorList,login){
 			               if(b_history_map.requestStatus=='COMPLETED'){
 			            	   if(b_history_map.status=='ACTIVE'){
 			            		   if(b_history_map.batchType='EXIST')
-			            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="../../manage-lectures?tuitionRequest='+b_history_map.tuitionRequestId+'&batchId='+b_history_map.batchId+'">View Booking Detail</a></button>';
+			            		   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="/smopl/manage-lectures?tuitionRequest='+b_history_map.tuitionRequestId+'&batchId='+b_history_map.batchId+'">View Booking Detail</a></button>';
 			            		   else
-			            			   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="../../manage-lectures?tuitionRequest='+b_history_map.tuitionRequestId+'&batchId='+b_history_map.suggestBatchId+'">View Booking Detail</a></button>';
+			            			   pre_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;"><a href="/smopl/manage-lectures?tuitionRequest='+b_history_map.tuitionRequestId+'&batchId='+b_history_map.suggestBatchId+'">View Booking Detail</a></button>';
 			            	   }
 			            	 }
 			               if(b_history_map.requestStatus=='ACCEPTED'){}
@@ -756,7 +756,7 @@ function listViewTab(tutorList,login){
 		l_map.userType = p_user_type;
 
 		$('.loading').show();
-		ajaxWithJSON("/common-tuition-request-action", l_map, 'POST', function(response) {
+		ajaxWithJSON("/smopl/common-tuition-request-action", l_map, 'POST', function(response) {
 			$('.loading').hide();
 			var l_data = response.object;
 			// alert(JSON.stringify(response));
@@ -808,7 +808,7 @@ function listViewTab(tutorList,login){
 		l_map.userType = 'TUTOR';
 		l_map.suggestBatchId = $('.c_tutor_batches').val();
 		
-		ajaxWithJSON("/common-tuition-request-action", l_map, 'POST', function(response) {
+		ajaxWithJSON("/smopl/common-tuition-request-action", l_map, 'POST', function(response) {
 			var l_data = response.object;
 			// alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
@@ -828,7 +828,7 @@ function listViewTab(tutorList,login){
 		}
 		var l_map = {};
 		l_map.batchId = p_batchId;
-		ajaxWithJSON("/common-batch-detail", l_map, 'POST', function(response) {
+		ajaxWithJSON("/smopl/common-batch-detail", l_map, 'POST', function(response) {
 			var l_data = response.object;
 			// alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
@@ -859,7 +859,7 @@ function listViewTab(tutorList,login){
 		l_map.login = false;
 		l_map.user = p_user;
 		l_map.top = false;
-		ajaxWithJSON("/tutor-batches", l_map, 'POST', function(response) {
+		ajaxWithJSON("/smopl/tutor-batches", l_map, 'POST', function(response) {
 			var l_data = response.object;
 			// alert(JSON.stringify(response));
 			if (response.status == 'SUCCESS') {
@@ -915,7 +915,7 @@ function listViewTab(tutorList,login){
 	// var l_map = {};
 	// l_map.all = true;
 
-		ajaxWithJSON("/load-subjects",null, 'GET', function(response) {
+		ajaxWithJSON("/smopl/load-subjects",null, 'GET', function(response) {
 			var l_data = response.object;
 			for (var i = 0; i < l_data.length; i++) {
 				var r_map = l_data[i];
@@ -1029,7 +1029,7 @@ function listViewTab(tutorList,login){
 			}
 		  var c_batches_html=""; 
 		 $(".loading").show();
-		 ajaxWithJSON("/tutor/save-batch-info", l_batch_map, 'POST', function(response) {debugger;
+		 ajaxWithJSON("/smopl/tutor/save-batch-info", l_batch_map, 'POST', function(response) {debugger;
 		  $(".loading").hide();
 		  l_batch_map = response.other;
 
@@ -1325,7 +1325,7 @@ function listViewTab(tutorList,login){
 		  var l_map = {};
 		  l_map = params;
 			 // $(".loading").show();
-			 ajaxWithJSON("/tutor/load-batch-students", l_map, 'POST', function(response) {debugger;
+			 ajaxWithJSON("/smopl/tutor/load-batch-students", l_map, 'POST', function(response) {debugger;
 			  // $(".loading").hide();
 	          // alert(JSON.stringify(response));
 			  if (response.status == 'SUCCESS') {
@@ -1397,7 +1397,7 @@ if (!(navigator.onLine)) {
 	 l_map.batchId = lecture_batchId;
 	 // alert(JSON.stringify(l_map));
 	 $(".loading").show();
-	 ajaxWithJSON("/tutor/save-lecture-students-attendance", l_map, 'POST', function(response) {debugger;
+	 ajaxWithJSON("/smopl/tutor/save-lecture-students-attendance", l_map, 'POST', function(response) {debugger;
 	  $(".loading").hide();
     
 	  if (response.status == 'SUCCESS') {
@@ -1599,7 +1599,7 @@ if (!(navigator.onLine)) {
 	 
 	// alert(JSON.stringify(l_map));
 	 $(".loading").show();
-	 ajaxWithJSON("/tutor/update-lecture-changes", l_map, 'POST', function(response) {debugger;
+	 ajaxWithJSON("/smopl/tutor/update-lecture-changes", l_map, 'POST', function(response) {debugger;
 	  $(".loading").hide();
     
 	  if (response.status == 'SUCCESS') {

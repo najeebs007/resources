@@ -60,7 +60,7 @@ $(".c_savePackage").click(function(){debugger;
 	$.ajax({
 
 		type : 'POST',
-		url : "/common/save-customize-package",
+		url : "/smopl/common/save-customize-package",
 		data : JSON.stringify(g_map),
 		cache : false,
 		async : true,
@@ -123,7 +123,7 @@ $(".c_savePackageWithCart").click(function(){
 	$.ajax({
 
 		type : 'POST',
-		url : "/common/save-customize-package",
+		url : "/smopl/common/save-customize-package",
 		data : JSON.stringify(g_map),
 		cache : false,
 		async : true,
@@ -193,7 +193,7 @@ $(".c_searchExams").click(function(){
 	$.ajax({
 
 		type : 'POST',
-		url : "/common/exam-list-by-filter",
+		url : "/smopl/common/exam-list-by-filter",
 		data : JSON.stringify(l_map),
 		cache : false,
 		async : true,
@@ -298,7 +298,7 @@ function searchByPagination(selectedPage){
 	$.ajax({
 
 		type : 'POST',
-		url : "/common/exam-list-by-filter",
+		url : "/smopl/common/exam-list-by-filter",
 		data : JSON.stringify(l_map),
 		cache : false,
 		async : true,
@@ -400,7 +400,7 @@ function managExam(examId,packageId,status) {
 	$("." + activeClass).addClass("card-active2");*/
     $(".loading").show();
     $.ajax({
-        url : '/corporate/exam-detail',type : 'POST',data:{examId:examId},
+        url : '/smopl/corporate/exam-detail',type : 'POST',data:{examId:examId},
 
         success : function(data) {debugger;
         if(data.status = 'SUCCESS'){

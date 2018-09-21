@@ -187,7 +187,7 @@ function initializeCustomGoogleMap(p_locations, p_lati, p_longi,p_referesh,login
 			  + '<span class="rating-text" style="color:#f05827;font-weight:600;">'+l_map.starCount+' reviews</span></span> </div></div></div>'
 			  + '<div class="col-xl-12 col-lg-12 col-md-`2 col-sm-12 col-xs-12" style="margin-top:10px;"> '
 			  + '<div class="row"> <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 ">' 
-			  + '<button type="button" class="btn btn-primary"><a href="../../tutor-profile?login=false&user='+l_map.userName+'" >View Profile</a></button></div>'
+			  + '<button type="button" class="btn btn-primary"><a href="/smopl/tutor-profile?login=false&user='+l_map.userName+'" >View Profile</a></button></div>'
 			  + '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">'
 			  + box
 			  + '</div>'

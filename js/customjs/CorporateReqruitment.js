@@ -78,7 +78,7 @@ $(".c_savePackage").click(function(){
 	$.ajax({
 
 		type : 'POST',
-		url : "/corporate/save-customize-package",
+		url : "/smopl/corporate/save-customize-package",
 		data : JSON.stringify(g_map),
 		cache : false,
 		async : true,
@@ -140,7 +140,7 @@ $(".c_savePackageWithCart").click(function(){
 	$.ajax({
 
 		type : 'POST',
-		url : "/corporate/save-customize-package",
+		url : "/smopl/corporate/save-customize-package",
 		data : JSON.stringify(g_map),
 		cache : false,
 		async : true,
@@ -206,7 +206,7 @@ $(".c_searchExams").click(function(){
 	$.ajax({
 
 		type : 'POST',
-		url : "/corporate/exam-list-by-filter",
+		url : "/smopl/corporate/exam-list-by-filter",
 		data : JSON.stringify(l_map),
 		cache : false,
 		async : true,
@@ -296,7 +296,7 @@ function searchByPagination(selectedPage){
 	$.ajax({
 
 		type : 'POST',
-		url : "/corporate/exam-list-by-filter",
+		url : "/smopl/corporate/exam-list-by-filter",
 		data : JSON.stringify(l_map),
 		cache : false,
 		async : true,
@@ -391,7 +391,7 @@ function addOneByOne() {debugger;
 	l_map.email = $('.c_email').val();
 	$(".loading").show();
     $.ajax({
-        url : '/corporate/add-student',
+        url : '/smopl/corporate/add-student',
         data : JSON.stringify(l_map),
         cache : false,
 		async : true,
@@ -480,7 +480,7 @@ function generateRandomIds(examId,packageId){debugger;
 	l_map.packageId = packageId;
 	$(".loading").show();
 	$.ajax({
-        url : '/corporate/generate-random-password',
+        url : '/smopl/corporate/generate-random-password',
         data : JSON.stringify(l_map),
         cache : false,
 		async : true,
@@ -527,7 +527,7 @@ function managExam(examId,packageId,status,cartId,pin,activeClass) {debugger;
     $("."+activeClass).addClass("card-active2");
     $(".loading").show();
     $.ajax({
-        url : '/corporate/exam-detail',type : 'POST',data:{examId:examId},
+        url : '/smopl/corporate/exam-detail',type : 'POST',data:{examId:examId},
 
         success : function(data) {debugger;
         if(data.status = 'SUCCESS'){
@@ -712,7 +712,7 @@ function generatePassword(examId,packageId){debugger;
 	   l_map.packageId = packageId;
 	   $(".loading").show();
 	   $.ajax({
-	        url : '/corporate/generate-password',type : 'POST',
+	        url : '/smopl/corporate/generate-password',type : 'POST',
 	        data:JSON.stringify(l_map),
 	        cache : false,
 			async : true,
@@ -756,7 +756,7 @@ function changePin(examId,packageId){debugger;
 	   }
 	   $(".loading").show();
 	   $.ajax({
-	        url : '/corporate/change-pin',
+	        url : '/smopl/corporate/change-pin',
 	        type : 'POST',
 	        data:JSON.stringify(l_map),
 	        cache : false,
@@ -788,7 +788,7 @@ function deleteAllStudent(){debugger;
 	if(confirm("You want to delete all students !")){
 		$(".loading").show();
 	$.ajax({
-        url : '/corporate/delete-all',
+        url : '/smopl/corporate/delete-all',
         type : 'POST',
         success : function(data) {debugger;
         $(".loading").hide();
@@ -817,7 +817,7 @@ function deleteStudent(infoId,email,row){
 	if(confirm("You want to delete student !")){
 		$(".loading").show();
 		$.ajax({
-	        url : '/corporate/delete',
+	        url : '/smopl/corporate/delete',
 	        data:{email:email,infoId:infoId},
 	        type : 'POST',
 	        success : function(data) {debugger;

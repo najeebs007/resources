@@ -43,7 +43,7 @@ function loadProfileData() {
 	
 	
 	//var l_map = {};
-	ajaxWithJSON("/tutor-personal", l_profile, 'POST', function(response) {debugger;
+	ajaxWithJSON("/smopl/tutor-personal", l_profile, 'POST', function(response) {debugger;
 		var l_data = response.object;
 		$(".c_targetUser").val(l_data.userName);
 		// alert(JSON.stringify(l_data));
@@ -87,7 +87,7 @@ function loadProfileData() {
 function loadSocialData() {
 	var l_map = g_data;
 	//l_map.login = true;
-	ajaxWithJSON("/tutor-social", l_map, 'POST', function(response) {debugger;
+	ajaxWithJSON("/smopl/tutor-social", l_map, 'POST', function(response) {debugger;
 				var l_data = response.object;
 				// alert(JSON.stringify(response));
 				if (response.status == 'SUCCESS') {
@@ -153,7 +153,7 @@ function saveIntro(p_form_id) {
 //	}
 	//alert(JSON.stringify(l_map));
 	//alert(JSON.stringify(l_map));
-	ajaxWithJSON("/tutor-save-general-detail", l_map, 'POST',
+	ajaxWithJSON("/smopl/tutor-save-general-detail", l_map, 'POST',
 			function(response) {
 				if(response.status == 'SUCCESS'){
 					toastr.success(response.message);
@@ -247,7 +247,7 @@ function loadIntroData() {
 	// alert("/tutor-general-info");
 	var l_map = g_data;
 	//var l_map = {};
-	ajaxWithJSON("/tutor-general-info", l_map, 'POST', function(response) {debugger;
+	ajaxWithJSON("/smopl/tutor-general-info", l_map, 'POST', function(response) {debugger;
 				var l_data = response.object;
 				//alert(JSON.stringify(l_data));
 				if (response.status == 'SUCCESS') {
@@ -537,7 +537,7 @@ function saveContact(p_form_id) {debugger;
 	l_map.latitude=latitude;
 	l_map.longitude=longitude;
 	//alert(JSON.stringify(l_map));
-	ajaxWithJSON("/tutor/save-contact-detail", l_map, 'POST',function(response) {
+	ajaxWithJSON("/smopl/tutor/save-contact-detail", l_map, 'POST',function(response) {
 		        //alert(JSON.stringify(response));
 				if(response.status == 'SUCCESS'){
 					toastr.success(response.message);
@@ -622,7 +622,7 @@ if($('.c_contactEmailId').val()==''){
 	//alert(l_login);
 	
 	//alert(JSON.stringify(l_map))
-	ajaxWithJSON("/tutor-contact-data", l_map, 'POST', function(response) {debugger;
+	ajaxWithJSON("/smopl/tutor-contact-data", l_map, 'POST', function(response) {debugger;
 				var l_data = response.object;
 				// alert(JSON.stringify(response));
 				if (response.status == 'SUCCESS') {
@@ -962,7 +962,7 @@ function saveQualification(i_education_form) {debugger;
 	var l_form_data = {};
 	l_form_data = readForm(i_education_form);
 	//alert(JSON.stringify(l_form_data));
-	ajaxWithJSON("/common/save-qualification-detail", l_form_data, 'POST', function(response) {
+	ajaxWithJSON("/smopl/common/save-qualification-detail", l_form_data, 'POST', function(response) {
 		var l_data = response.object;
 		//alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
@@ -986,7 +986,7 @@ function loadQualificationData() {
 	//alert(l_login);
 	
 	//var l_map = {};
-	ajaxWithJSON("/common/load-user-qualifications", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/common/load-user-qualifications", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		
 		//alert(JSON.stringify(response));
@@ -1067,7 +1067,7 @@ function saveCertificate(p_form_id) {
 	var l_form_data = {};
 	l_form_data = readFormWithId(p_form_id);
 	//alert(JSON.stringify(l_form_data));
-	ajaxWithJSON("/common/save-certificate-detail", l_form_data, 'POST', function(response) {
+	ajaxWithJSON("/smopl/common/save-certificate-detail", l_form_data, 'POST', function(response) {
 		if (response.status == 'SUCCESS') {
 			$('#addcertificates').modal('hide');
 			toastr.success(response.message);
@@ -1093,7 +1093,7 @@ function loadCertificationData() {
 	//alert(l_login);
 	
 	//var l_map = {};
-	ajaxWithJSON("/common/load-user-certifications", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/common/load-user-certifications", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		//alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
@@ -1183,7 +1183,7 @@ function saveProfessional(p_form_id) {
 	}
 	
 	// alert(JSON.stringify(l_form_data));
-	ajaxWithJSON("/common/save-professional-detail", l_form_data, 'POST', function(response) {
+	ajaxWithJSON("/smopl/common/save-professional-detail", l_form_data, 'POST', function(response) {
 		if (response.status == 'SUCCESS') {
 			$('#addprofessional').modal('hide');
 			location.reload();
@@ -1207,7 +1207,7 @@ function loadProfessionalData() {
 	//alert(l_login);
 	
 	//var l_map = {};
-	ajaxWithJSON("/common/load-user-professional-detail", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/common/load-user-professional-detail", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		//alert(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
@@ -1299,7 +1299,7 @@ function loadBatchData() {
 	var l_html = "";
 	$('#i_batches').html("");
 	l_map.top = true;
-	ajaxWithJSON("/tutor-batches", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/tutor-batches", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		//alert("tutor batches = " + JSON.stringify(l_data));
 		if (response.status == 'SUCCESS') {
@@ -1346,7 +1346,7 @@ function loadBatchData() {
 function loadCountries(p_flage,p_country_id){
 	var l_map = {};
 	l_map.get = 'COUNTRIES';
-	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
+	ajaxWithJSON("/smopl/common/get-region-detail", l_map, 'POST',function(response) {
 		//alert(JSON.stringify(response));
 				if(response.status == 'SUCCESS'){
 					var data = response.object;
@@ -1374,7 +1374,7 @@ function loadStates(){
 	var l_map = {};
 	l_map.get = 'STATES';
 	l_map.countryId = $('.c_countryId').val();
-	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
+	ajaxWithJSON("/smopl/common/get-region-detail", l_map, 'POST',function(response) {
 		//alert(JSON.stringify(response));
 		if(response.status == 'SUCCESS'){
 			var data = response.object;
@@ -1393,7 +1393,7 @@ function loadDistricts(){
 	var l_map = {};
 	l_map.stateId = $('.c_stateId').val();
 	l_map.get = 'DISTRICTS';
-	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
+	ajaxWithJSON("/smopl/common/get-region-detail", l_map, 'POST',function(response) {
 		//alert(JSON.stringify(response));
 		if(response.status == 'SUCCESS'){
 			var data = response.object;
@@ -1412,7 +1412,7 @@ function loadCities(){
 	var l_map = {};
 	l_map.get = 'CITIES';
 	l_map.districtId = $('.c_districtId').val();
-	ajaxWithJSON("/common/get-region-detail", l_map, 'POST',function(response) {
+	ajaxWithJSON("/smopl/common/get-region-detail", l_map, 'POST',function(response) {
 		//alert(JSON.stringify(response));
 		if(response.status == 'SUCCESS'){
 			var data = response.object;
@@ -1673,7 +1673,7 @@ function selectEducation(){
 		var g_boards = [];
 		function loadBoards(){
 			if(g_boards.length==0){
-			ajaxWithJSON("/load-boards", null, 'GET',function(response) {
+			ajaxWithJSON("/smopl/load-boards", null, 'GET',function(response) {
 				var l_data = response.object;
 				var l_html = '';
 		        //alert(JSON.stringify(response));
@@ -1726,7 +1726,7 @@ function selectEducation(){
 		var g_mediums = [];
 		function loadMediums(){
 			if(g_mediums.length==0){
-				ajaxWithJSON("/load-mediums", null, 'GET',function(response) {
+				ajaxWithJSON("/smopl/load-mediums", null, 'GET',function(response) {
 				var l_data = response.object;
 				var l_html = '';
 		        //alert(JSON.stringify(response));
@@ -1792,7 +1792,7 @@ function selectEducation(){
 				    l_map.level = $('.c_education').val();
 				    l_map.all = false;
 				    
-			ajaxWithJSON("/common/load-education-type", l_map, 'POST',function(response) {debugger;
+			ajaxWithJSON("/smopl/common/load-education-type", l_map, 'POST',function(response) {debugger;
 				var l_data = response.object;
 				var l_html = '';
 		     // alert(JSON.stringify("load education type = " + l_data));
@@ -1834,7 +1834,7 @@ function selectEducation(){
 					}
 			 }
 			  
-			ajaxWithJSON("/common/load-education-type-branch", l_map, 'POST',function(response) {
+			ajaxWithJSON("/smopl/common/load-education-type-branch", l_map, 'POST',function(response) {
 		        //alert(JSON.stringify(response));
 		        var l_data = response.object;
 				var l_html = '';
@@ -1911,7 +1911,7 @@ function selectEducation(){
 		function loadInstitutes(){
 			
 				if(g_institutes.length==0){
-				ajaxWithJSON("/load-institutes", null, 'GET',function(response) {
+				ajaxWithJSON("/smopl/load-institutes", null, 'GET',function(response) {
 					var l_data = response.object;
 					var l_html = '';
 			        //alert(JSON.stringify(response));
@@ -1962,7 +1962,7 @@ function selectEducation(){
 			
 			$('.p_rating').html("");
 			
-			ajaxWithJSON("/common/load-star-count", g_data, 'POST', function(response) {debugger;
+			ajaxWithJSON("/smopl/common/load-star-count", g_data, 'POST', function(response) {debugger;
 						var l_data = response.object;
 						//alert(JSON.stringify(l_data));
 						//var dataLength =l_data.length;

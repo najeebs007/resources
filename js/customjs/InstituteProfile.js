@@ -26,7 +26,7 @@ var l_input_map = {};
 	l_input_map.description = $(".c_desc").val();
 	$(".loading").show();
 	$.ajax({
-		url : "/institute/save-institute-general-info",
+		url : "/smopl/institute/save-institute-general-info",
 		data : JSON.stringify(l_input_map),
 		type : 'POST',
 		cache : false,
@@ -65,7 +65,7 @@ function editInstituteGeneralInfo(p_formId,p_errorClass){
 		$(".c_buttonView").prop("disabled", true);*/
 	$(".loading").show();
 		$.ajax({
-			url : "institute/get-edit-institute-general",
+			url : "/smopl/institute/get-edit-institute-general",
 			type : 'GET',
 			success : function(data) {
 	             
@@ -114,7 +114,7 @@ var l_input_map = {};
 				cache : false,
 				async : true,
 				contentType : "application/json; charset=UTF-8",
-				url : "/institute/add-contact",
+				url : "/smopl/institute/add-contact",
 				dataType : 'json',
 				data : JSON.stringify(l_input_map),
 				success : function(response) {
@@ -187,7 +187,7 @@ $('.c_e_addTutorError').html('');
 			 cache : false,
 			 async : true,
 			 contentType : "application/json; charset=UTF-8",
-	         url : "/institute/add-tutor-info",
+	         url : "/smopl/institute/add-tutor-info",
 		     data : JSON.stringify(l_input_map),
 		     datatype : "json",
 		success : function(response) {debugger;
@@ -278,7 +278,7 @@ function instituteSocial(){
      $(".loading").show();
 	 $.ajax({
 		 
-		url : "institute/social-information",
+		url : "/smopl/institute/social-information",
 		cache : false,async : true,contentType : "application/json; charset=UTF-8",
 		type : 'POST',
 		datatype : "json",
@@ -330,7 +330,7 @@ function editInstituteSocial(socialId){debugger;
 	/*$('#i_addInstituteSocial').serializeArray()*/
     $(".loading").show();
 	$.ajax({
-		url : "/institute/get-social-information",
+		url : "/smopl/institute/get-social-information",
 		type : 'GET',
 		data : {socialMediaId:socialId},
 		success : function(data) {debugger;
@@ -389,7 +389,7 @@ var l_map_data = {};
 
 
 $.ajax({
-	url : "/institute/add-event-holiday-information",
+	url : "/smopl/institute/add-event-holiday-information",
 	type : 'POST',
 	cache : false,async : true,contentType : "application/json; charset=UTF-8",
 	datatype : "json",
@@ -452,7 +452,7 @@ $(function() {
     	
     // Ajax call for file uploaling
     var ajaxReq = $.ajax({
-      url : '/fileUpload',
+      url : '/smopl/fileUpload',
       type : 'POST',
       data : formData,
       cache : false,
@@ -502,7 +502,7 @@ $(function() {
 function ratingStarCount1() {debugger;
 	var k_html = "";
 	$('.k_rating').html("");
-	ajaxWithJSON("/load-star-count", null, 'GET', function(response) {debugger;
+	ajaxWithJSON("/smopl/load-star-count", null, 'GET', function(response) {debugger;
 				var l_data = response.object;
 				var dataLength =l_data.length;
 				var averageRating1=l_data.averageRating;

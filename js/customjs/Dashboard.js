@@ -5,7 +5,7 @@
 function loadProfileData() {debugger;
 	var l_map = {};
 	l_map.login = true;
-	ajaxWithJSON("/tutor-personal", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/tutor-personal", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		// //(JSON.stringify(response));
 		if (response.status == 'SUCCESS') {
@@ -51,7 +51,7 @@ function loadProfileData() {debugger;
 function loadTutorGeneral() {
 	var l_map = {};
 	l_map.login = true;
-	ajaxWithJSON("/tutor-general-info", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/tutor-general-info", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		var l_general = l_data.tutorGeneral;
 		// //(JSON.stringify(l_general));
@@ -68,7 +68,7 @@ function loadSocialData() {
 	var l_map = {};
 	l_map.login = true;
 	ajaxWithJSON(
-			"/tutor-social",
+			"/smopl/tutor-social",
 			l_map,
 			'POST',
 			function(response) {
@@ -104,7 +104,7 @@ function loadTutorStatistics() {
 
 	var l_map = {};
 	l_map.login = true;
-	ajaxWithJSON("/tutor-statistics", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/tutor-statistics", l_map, 'POST', function(response) {
 		var l_data = response.object;
 		if (response.status == 'SUCCESS') {
 			$('.c_visitor').text(l_data.visitor + " Visitors");
@@ -123,7 +123,7 @@ function loadBatchData() {
 	l_map.login = true;
 	l_map.top = true;
 	ajaxWithJSON(
-			"/tutor-batches",
+			"/smopl/tutor-batches",
 			l_map,
 			'POST',
 			function(response) {
@@ -139,7 +139,7 @@ function loadBatchData() {
 						b_html += '<div class="col-lg-12">';
 						b_html += '<div class="row">';
 						b_html += '<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">';
-						b_html += '<img src="resources/img/ico/icon-d.png" alt="batches-icon" width="24px">';
+						b_html += '<img src="/SMWebsite/resources/img/ico/icon-d.png" alt="batches-icon" width="24px">';
 						b_html += '</div>';
 						b_html += '<div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-xs-11 m-t-2 p-l-5">';
 						b_html += '<div class="row">';
@@ -181,7 +181,7 @@ function loadGraphData() {
 	var l_map = {};
 	l_map.login = true;
 
-	ajaxWithJSON("/tutor-dashboard-graph", l_map, 'POST', function(response) {
+	ajaxWithJSON("/smopl/tutor-dashboard-graph", l_map, 'POST', function(response) {
 
 		var categories = [];
 		var nonPaidData = [];
@@ -404,16 +404,16 @@ function loadCalendar() {
 
 }
 
-function loadStudentTop3Requests() {debugger;
+function loadStudentTop3Requests() {
 
 	var l_map = {};
 	l_map.STUDENT = true;
 	l_map.TUTOR = false;
 	ajaxWithJSON(
-			"/common/load-top3-tuition-requests",
+			"/smopl/common/load-top3-tuition-requests",
 			l_map,
 			'POST',
-			function(response) {debugger;
+			function(response) {
 			var l_data = response.object;
 			var l_data_other = response.other;
 			
@@ -503,9 +503,9 @@ function loadStudentTop3Requests() {debugger;
 								            }
 							              if(l_map.requestStatus=='COMPLETED'){
 							            	  if(l_map.batchType=='NEW'){
-							            		  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+l_map.tuitionRequestId+'&user='+l_map.tutorId+'&batchId='+l_map.suggestBatchId+'&studentId='+l_map.studentId+'&login=true">View Booking Detail</a></button>';
+							            		  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="/smopl/student-tuition-booking-detail?tuitionRequest='+l_map.tuitionRequestId+'&user='+l_map.tutorId+'&batchId='+l_map.suggestBatchId+'&studentId='+l_map.studentId+'&login=true">View Booking Detail</a></button>';
 							            	  }else
-							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="../../student-tuition-booking-detail?tuitionRequest='+l_map.tuitionRequestId+'&user='+l_map.tutorId+'&batchId='+l_map.batchId+'&studentId='+l_map.studentId+'&login=true">View Booking Detail</a></button>';
+							            	  l_html+='<div class="action-area"><button type="button" class="btn btn-primary" style="float: right;" ><a href="/smopl/student-tuition-booking-detail?tuitionRequest='+l_map.tuitionRequestId+'&user='+l_map.tutorId+'&batchId='+l_map.batchId+'&studentId='+l_map.studentId+'&login=true">View Booking Detail</a></button>';
 						                   }
 							              
 							              if(l_map.requestStatus=='ACCEPTED'){
@@ -540,7 +540,7 @@ function loadTutorTop3Requests() {debugger;
 var l_map = {};
 l_map.STUDENT = false;
 l_map.TUTOR = true;
-ajaxWithJSON("/common/load-top3-tuition-requests",l_map,'POST',function(response) {
+ajaxWithJSON("/smopl/common/load-top3-tuition-requests",l_map,'POST',function(response) {
 		var l_data = response.object;
 		//alert(JSON.stringify(l_data)); 
 		var l_data_other = response.other;

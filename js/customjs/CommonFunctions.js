@@ -24,7 +24,7 @@ function processUpload() {
 	MyForm.append("file", files[0]);
 	$.ajax({
 		dataType : 'json',
-		url : "/corporate/uploadQuestions",
+		url : "/smopl/corporate/uploadQuestions",
 		data : MyForm,
 		type : "POST",
 		enctype : 'multipart/form-data',

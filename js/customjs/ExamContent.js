@@ -69,7 +69,7 @@ function getBankQuestions(p_bank_id) {
 	$(".loading").show();
 	$
 			.ajax({
-				url : '/corporate/load-bank-questions',
+				url : '/smopl/corporate/load-bank-questions',
 				data : JSON.stringify(l_data),
 				cache : false,
 				async : true,
@@ -327,7 +327,7 @@ function saveBank() {
 		l_bank_data.tags = $("#i_bank_tags").val();
 	$(".loading").show();
 	$.ajax({
-		url : '/corporate/save-question-bank',
+		url : '/smopl/corporate/save-question-bank',
 		data : JSON.stringify(l_bank_data),
 		cache : false,
 		async : true,
@@ -381,7 +381,7 @@ function processUpload() {
 	$
 			.ajax({
 				dataType : 'json',
-				url : "/corporate/uploadQuestions",
+				url : "/smopl/corporate/uploadQuestions",
 				data : MyForm,
 				type : "POST",
 				enctype : 'multipart/form-data',
@@ -963,7 +963,7 @@ function saveQuestion() {
 	$(".loading").show();
 
 	$.ajax({
-		url : '/corporate/save-exam-question',
+		url : '/smopl/corporate/save-exam-question',
 		data : JSON.stringify(l_list),
 		cache : false,
 		async : true,
@@ -1018,7 +1018,7 @@ function loadExistExamDetail() {
 	l_map.examId = $(".c_exam_id").val();
 	$(".loading").show();
 	$.ajax({
-		url : '/corporate/load-exist-exam-detail',
+		url : '/smopl/corporate/load-exist-exam-detail',
 		data : JSON.stringify(l_map),
 		cache : false,
 		async : true,
@@ -1082,7 +1082,7 @@ function addNewSection() {
 	}
 	$(".loading").show();
 	$.ajax({
-		url : '/corporate/add-new-section',
+		url : '/smopl/corporate/add-new-section',
 		data : JSON.stringify(l_input),
 		cache : false,
 		async : true,
@@ -1178,7 +1178,7 @@ function saveExamDetail() {debugger;
 	if (confirm("would you like to save any changes of exam.")) {
 		$(".loading").show();
 		$.ajax({
-			url : '/corporate/save-exams-detail',
+			url : '/smopl/corporate/save-exams-detail',
 			data : JSON.stringify(l_final_map),
 			cache : false,
 			async : true,
@@ -1283,7 +1283,7 @@ function loadExams() {
 	$(".loading").show();
 	$
 			.ajax({
-				url : '/corporate/load-exams',
+				url : '/smopl/corporate/load-exams',
 				cache : false,
 				async : true,
 				contentType : "application/json; charset=UTF-8",
@@ -1345,7 +1345,7 @@ function loadExistExamInstruction() {
 	$(".loading").show();
 	$
 			.ajax({
-				url : '/corporate/load-instruction',
+				url : '/smopl/corporate/load-instruction',
 				data : JSON.stringify(l_map),
 				cache : false,
 				async : true,
@@ -1410,7 +1410,7 @@ function loadExamPublishDetail(p_exam_id) {
 	$(".loading").show();
 	toastr.success("wait! we are loading your exam detail.");
 	$.ajax({
-				url : '/corporate/load-publish-detail',
+				url : '/smopl/corporate/load-publish-detail',
 				data : JSON.stringify(l_map),
 				cache : false,
 				async : true,
@@ -1858,7 +1858,7 @@ function publishExam(examId) {
 	l_map.packageId = $('.c_current_package_id').val();
 	$(".loading").show();
 	$.ajax({
-		url : '/corporate/publish-exam',
+		url : '/smopl/corporate/publish-exam',
 		data : JSON.stringify(l_map),
 		cache : false,
 		async : true,

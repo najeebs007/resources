@@ -28,7 +28,7 @@ function aicteRegistration() {
 		cache : false,
 		async : true,
 		contentType : "application/json; charset=UTF-8",
-		url : "/institute/save-aicte-registration-info",
+		url : "/smopl/institute/save-aicte-registration-info",
 		data : JSON.stringify(data),
 		datatype : "json",
 		success : function(response) {
@@ -68,7 +68,7 @@ function aicteRegistrationContacts() {
 		cache : false,
 		async : true,
 		contentType : "application/json; charset=UTF-8",
-		url : "/institute/save-aicte-registration-contacts",
+		url : "/smopl/institute/save-aicte-registration-contacts",
 		data : JSON.stringify(data),
 		datatype : "json",
 		success : function(response) {
@@ -116,7 +116,7 @@ function addAICTECourses() {
 		cache : false,
 		async : true,
 		contentType : "application/json; charset=UTF-8",
-		url : "/institute/save-aicte-course-info",
+		url : "/smopl/institute/save-aicte-course-info",
 		data : JSON.stringify(data),
 		datatype : "json",
 		success : function(response) {
@@ -194,7 +194,7 @@ function userServicesDetail() {
 		cache : false,
 		async : true,
 		contentType : "application/json; charset=UTF-8",
-		url : "/institute/save-service-info",
+		url : "/smopl/institute/save-service-info",
 		data : JSON.stringify(l_input_data),
 		datatype : "json",
 		success : function(response) {
@@ -230,7 +230,7 @@ function addStudentsManual(p_formId,p_errorClass) {
                 type: "POST",
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
-                url: "/institute/add-students-manual",
+                url: "/smopl/institute/add-students-manual",
                 data: JSON.stringify(data), // Note it is important
                 success : function(response)
                 {

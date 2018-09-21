@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 $(".c_group").click(function(){
 	
-	ajaxWithJSON("/common/isGroupsContain", null, 'POST', function(response) {
+	ajaxWithJSON("/smopl/common/isGroupsContain", null, 'POST', function(response) {
 		
 		if(response.status=='SUCCESS'){
 			
@@ -74,7 +74,7 @@ function publishCustomform(p_form_id) {debugger;
 
 	$(".loading").show();
 	$.ajax({
-		url : '/common/publish-custom-form',
+		url : '/smopl/common/publish-custom-form',
 		data : JSON.stringify(l_final_map),
 		cache : false,
 		async : true,
@@ -165,7 +165,7 @@ if(!(navigator.onLine)){
     //alert(JSON.stringify(l_map));
 	$(".loading").show();
 	$.ajax({
-				url : '/common/add-candidate-from-custom',
+				url : '/smopl/common/add-candidate-from-custom',
 				cache : false,
 				async : true,
 				data : JSON.stringify(l_map),
@@ -215,7 +215,7 @@ if($('.c_exist_form').val()==''){
 l_map.customFormId = $('.c_exist_form').val();
 
 $(".loading").show();
-$.ajax({    url : '/common/load-exist-custom-form-content',
+$.ajax({    url : '/smopl/common/load-exist-custom-form-content',
 			cache : false,
 			async : true,
 			contentType : "application/json; charset=UTF-8",
