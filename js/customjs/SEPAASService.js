@@ -346,7 +346,7 @@ function loadProgramVolunteers(programId,volunteerAllow){debugger;
 		}
 }
 
-function loadProgramStudents(programId,from,to){debugger;
+function loadProgramStudents(programId,from,to){
 
 if (!(navigator.onLine)) {
 	toastr.error('You are offline. please check internet connection.');
@@ -370,7 +370,7 @@ if (!(navigator.onLine)) {
 				html+='<div class="card-body padding-5">';
 				html+='<div class="row">';
 				html+='<div class="col-sm-3 col-md-3 col-lg-3 center">';
-				html+='<div class="img-icon"> <img src="../../resources/img/profile-img/pro.jpg" alt="icon" class="p-img"> </div>'; 
+				html+='<div class="img-icon"> <img src="/SMWebsite/resources/img/profile-img/pro.jpg" alt="icon" class="p-img"> </div>'; 
 				html+='</div>';
 				html+='<div class="col-sm-9 col-md-9 col-lg-9 pro-right-padding-left">';
 				html+='<div class="row">';
@@ -750,7 +750,7 @@ function loadMeritList(p_programId,from,size){
 					html+='<div class="card-body padding-5">';
 					html+='<div class="row">';
 					html+='<div class="col-sm-3 col-md-3 col-lg-3 center">';
-					html+='<div class="img-icon"> <img src="../../resources/img/profile-img/pro.jpg" alt="icon" class="p-img"> </div>'; 
+					html+='<div class="img-icon"> <img src="/SMWebsite/resources/img/profile-img/pro.jpg" alt="icon" class="p-img"> </div>'; 
 					html+='</div>';
 					html+='<div class="col-sm-9 col-md-9 col-lg-9 pro-right-padding-left">';
 					html+='<div class="row">';
