@@ -162,7 +162,7 @@ function selectUniversityBoard(p_educationLevel){
 function loadTutorSubjects() {debugger;
 	
 	if(g_subjects.length==0){
-	ajaxWithJSON("/load-subjects", null, 'GET',function(response) {
+	ajaxWithJSON("/smopl/load-subjects", null, 'GET',function(response) {
 		var l_data = response.object;
 		g_subjects = l_data;
         //alert(JSON.stringify(response));

@@ -135,7 +135,7 @@ function editStudentEducation(educationId) {
 	$.ajax({
 
 		type : 'GET',
-		url : "edit-student-education",
+		url : "/smopl/edit-student-education",
 		data : {
 			educationId : educationId
 		},
@@ -211,7 +211,7 @@ function editProfession(professionId) {
 
 		type : 'GET',
 
-		url : "/student/get-profession",
+		url : "/smopl/student/get-profession",
 		data : {
 			professionId : professionId
 		},
@@ -420,7 +420,7 @@ function editStudentCertificate(certificateId) {
 	$.ajax({
 
 		type : 'GET',
-		url : "/student/get-certificate",
+		url : "/smopl/student/get-certificate",
 		data : {
 			certificateId : certificateId
 		},
