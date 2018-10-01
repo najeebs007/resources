@@ -474,42 +474,197 @@ l_map.programId = programId;
 
 }
 
-//function pagination() {
-//	debugger;
-//	var s_html = "";
-//	$('.pagination').html("");
-//	ajaxWithJSON("/common/pagination", g_data, 'POST', function(response) {debugger;
-//				var l_data = response.object;
-//				/* dynamic html code */
-//				
-//				s_html='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 m-t-30">';
-//				s_html='<span class="program-text-normal s-font c-primary" style="font-weight:600;">';
-//			    s_html='Showing 1-10 out of 50';
-//				s_html='</span>';							  
-//				s_html='</div>'; 
-//				s_html='<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">';
-//				s_html='<nav aria-label="Page navigation example">';
-//				s_html='<ul class="pagination" style="float:right;">';
-//				s_html='<li class="page-item">';
-//				s_html='<a class="page-link" href="#" aria-label="Previous">';
-//				s_html='<span aria-hidden="true">&laquo;</span>';
-//				s_html='<span class="sr-only">Previous</span>';
-//				s_html='</a>';
-//				s_html='</li>';
-//				s_html='<li class="page-item"><a class="page-link" href="#">1</a></li>';
-//				s_html='<li class="page-item"><a class="page-link" href="#">2</a></li>';
-//				s_html='<li class="page-item"><a class="page-link" href="#">3</a></li>';
-//				s_html='<li class="page-item">';
-//				s_html='<a class="page-link" href="#" aria-label="Next">';
-//				s_html='<span aria-hidden="true">&raquo;</span>';
-//				s_html='<span class="sr-only">Next</span>';
-//				s_html='</a>';
-//				s_html='</li>';
-//				s_html='</ul>';
-//				s_html='</nav>';
-//				s_html='</div>';
-//				 
-//				$('.pagination').html(s_html);
-//				// alert("binding successfully ");
-//			});
-//}
+function pagination(pageId) { debugger;
+	var s_html = "";
+	$('.pagination').html("");
+var l_map = {};
+
+var pageId;
+l_map.offSet = pageId;
+l_map.numberOfRecord = 10;
+l_map.source = "SM";
+	ajaxWithJSON("/common/pagination", l_map, 'POST', function(response) {debugger;
+				var l_data1 = response.object;
+				for(var i=0;i<l_data1;i++){
+					var l_data = l_data1[i];
+				
+				var role = response.other;
+				alert(JSON.stringify(l_data));
+				var cm2=l_data.cm2;
+				var active=l_data.active;
+				var createdDate=l_data.createdDate;
+				var description=l_data.description;
+				var endDateStr=l_data.endDateStr;
+				var examDate=l_data.examDate;
+				var examDateStr=l_data.examDateStr;
+				var fullAddress=l_data.fullAddress;
+				var photoOnHomePage=l_data.photoOnHomePage;
+				var programId=l_data.programId;
+				var registrationDetail=l_data.registrationDetail;
+				var registrationEndDate=l_data.registrationEndDate;
+				var registrationStartDate=l_data.registrationStartDate;
+				var startDateStr=l_data.startDateStr;
+				var termsAndCondtions=l_data.termsAndCondtions;
+				var title=l_data.title;
+				var type=l_data.type;
+				
+				/* dynamic html code */
+				
+				s_html='<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 jQueryEqualHeightD">';
+				s_html='<div class="card card-customize pro-list programArea">';
+				s_html='<div class="card-body no-padding img-section ">';
+				s_html='<div class="pro-img-section">';	
+				s_html='<img src="'+photoOnHomePage+'" alt="programs image"';
+				s_html='class="p--img">';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='<div class="card-body pro-title-padding title-secton-pro">';
+				s_html='<div class="row">';
+				s_html='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+				s_html='<div class="row">';
+				s_html='<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">';
+				s_html='<span class="pro-title s-font c-primary">'+title+'</span>';
+				s_html='</div>';
+				s_html='<div';
+				s_html='class="col-lg-3 col-md-3 col-sm-3 col-xs-3 m-t-minus-5 p-left">';
+				s_html='<div class="pro-pricing-block">';
+				s_html='<strong class="pro-price-text s-font">';
+				s_html='&#8377; 500 </strong>';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='<div class="card-body pro-title-description description-secton-pro">';
+				s_html='<div class="row">';
+				s_html='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-minus-10">';
+				s_html='<div class="pro-description s-font"';
+				s_html='title="'+description+'">${fn:substring(program.description,0,49)}...</div>';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='<div';
+				s_html='class="card-body pro-title-description details-secton-pro">';
+				s_html='<div class="row">';
+				s_html='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+				s_html='<div class="pro-detail-text s-font s-black">';
+				s_html='Registration: <span class="s-black"';
+				s_html='style="font-weight: 600;"><fmt:formatDate';
+				s_html='pattern="dd/MM/yyyy"';
+				s_html='value="'+registrationStartDate+'" /></span> - <span';
+				s_html='class="s-black" style="font-weight: 600;"><fmt:formatDate';
+				s_html='pattern="dd/MM/yyyy"';
+				s_html='value="'+registrationEndDate+'" /></span>';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
+				s_html='<div class="pro-detail-text s-font s-black">';
+				s_html='Exam : <span class="s-black" style="font-weight: 600;"><fmt:formatDate';
+				s_html='pattern="dd/MM/yyyy" value="'+examDate+'" /></span>';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
+				if(role=='ROLE_ADMIN'){
+				s_html='<div class="row">';
+				if(active==true){
+					html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
+					html+='<div class="pro-detail-text s-font s-black isActive" onclick="updateStatus("'+data_map.programId+'")">Program is ACTIVE</div>';
+					html+='</div>';
+					}else{
+					
+					html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
+					html+='<div class="pro-detail-text s-font s-black isActive" onclick="updateStatus("'+data_map.programId+'")">Program is INACTIVE</div>';
+					html+='</div>';
+				}
+				if(active=='true'){
+					html+='<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">';
+					html+='<input id="checkbox'+i+'" type="checkbox" checked>';
+					html+='<label for="checkbox'+i+'" data-text-true="&#x2714;" data-text-false="&#x2613;" class="s-font"><i></i></label>';
+				    html+='</div>';
+				}else{
+					html+='<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">';
+					html+='<input id="checkbox'+i+'" type="checkbox" >';
+					html+='<label for="checkbox'+i+'" data-text-true="&#x2714;" data-text-false="&#x2613;" class="s-font"><i></i></label>';
+				    html+='</div>';
+				}
+				s_html='</div>';
+				}
+				s_html='</div>';
+				if(role=='ROLE_ADMIN'){
+				s_html='<div';
+				s_html='class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
+				s_html='<div class="row">';
+				if(active==true){
+					html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
+					html+='<div class="pro-detail-text s-font s-black isActive" onclick="updateStatus("'+data_map.programId+'")">Program is ACTIVE</div>';
+					html+='</div>';
+					}else{
+					
+					html+='<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">';
+					html+='<div class="pro-detail-text s-font s-black isActive" onclick="updateStatus("'+data_map.programId+'")">Program is INACTIVE</div>';
+					html+='</div>';
+				}
+				if(active=='true'){
+					html+='<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">';
+					html+='<input id="checkbox'+i+'" type="checkbox" checked>';
+					html+='<label for="checkbox'+i+'" data-text-true="&#x2714;" data-text-false="&#x2613;" class="s-font"><i></i></label>';
+				    html+='</div>';
+				}else{
+					html+='<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">';
+					html+='<input id="checkbox'+i+'" type="checkbox" >';
+					html+='<label for="checkbox'+i+'" data-text-true="&#x2714;" data-text-false="&#x2613;" class="s-font"><i></i></label>';
+				    html+='</div>';
+				}
+				s_html='</div>';
+				s_html='</div>';
+				}
+				s_html='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-5">';
+				s_html='<div class="pro-description s-font s-black">'+cm2+'</div>';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='<div class="card-body pro-button-padding btn-secton-pro">';
+				
+				if(role=='ROLE_STUDENT'){
+				s_html='<c:set var="studentCount" value="${count+1}" scope="page" />';
+				s_html='<div';
+				s_html='class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">';
+				s_html='<a href="/services/sepaas/<c:out value="${program.programId}"/>"';
+				s_html='class="btn btn-primary s-font">Details</a>';
+				s_html='<button type="button" class="btn btn-primary s-font"';
+				s_html='disabled>Enrolled</button>';
+				s_html='</div>';
+				}
+				if(role=='ROLE_ANONYMOUS'){
+				s_html='<c:set var="anonymousCount" value="${count+1}" scope="page" />';
+				s_html='<div';
+				s_html='class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">';
+				s_html='<a';
+				s_html='href="/services/sepaas/<c:out value="${program.programId}"/>"';
+				s_html='class="btn btn-primary s-font">Details</a><a';
+				s_html='href="http://www.scholarsmerit.com/"';
+				s_html='class="btn btn-primary s-font">Login/Signup</a>';
+				s_html='</div>';
+				}
+			
+				if(role=='ROLE_ADMIN'){
+				s_html='<c:set var="adminCount" value="${count+1}" scope="page" />';
+				s_html='<div class="card-body pro-button-padding btn-secton-pro">';
+				s_html='<div class="row">';
+				s_html='<div';
+				s_html='class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">';
+				s_html='<a href="" class="btn btn-danger s-font"><i';
+				s_html='class="fa fa-pencil pencil-color"></i>Edit Program</a>';
+				s_html='</div>';
+				s_html='</div>';
+				s_html='</div>';
+				}
+				s_html='</div>';
+				s_html='</div>';
+				s_html='</div>';
+				 }
+				$('.pagination').html(s_html);
+			});
+}
+
