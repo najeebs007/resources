@@ -3,6 +3,7 @@
  */
 
 function saveProgram(){debugger;
+
 var check1 = document.getElementById("checkbox2").checked;
 var check2 = document.getElementById("checkbox3").checked;
     if($('.c_programId').val()==''){
@@ -34,27 +35,7 @@ function getProgramId(){
 	$('.programIdText').text($('.c_programId').val());
 	
 }
-function loadSubscriptions(){debugger;
-	var map = {};
-	map.admin = true;
-	
-	ajaxWithJSON("/smopl/common/load-subscriptions", map, 'POST', function(response) {
-	   
-		if (response.status == 'SUCCESS') {
-			 var data = response.object;
-			 if(!(data == null || data==undefined)){
-				 for(var i=0;i<data.length;i++){
-					 
-			        $('.c_subscripion_list').append("<option value='"+data.subscriptionId+"'>"+subscriptionName+"</option>");
-				 }
-			 }
-			
-		}
-		if (response.status == 'ERROR') {
-			toastr.error(response.message);
-		}
-	});
-}
+
 function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){
 	
 	if (!(navigator.onLine)) {
