@@ -2,7 +2,60 @@
  * 
  */
 
-function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){debugger;
+function saveProgram(){debugger;
+var check1 = document.getElementById("checkbox2").checked;
+var check2 = document.getElementById("checkbox3").checked;
+    if($('.c_programId').val()==''){
+    	toastr.error("please enter program id.");
+    	return;
+    }
+	var l_program_data = {};
+	l_program_data = readForm('i_programData');
+	if(check1==true)
+		l_program_data.isFreeForStudent = true;
+    if(check2==true)
+    	l_program_data.externalSiteAvailable = true;
+	//alert(JSON.stringify(l_program_data));
+	
+	ajaxWithJSON("/smopl/admin/set-program", l_program_data, 'POST', function(response) {
+	   // alert(JSON.stringify(response));
+		if (response.status == 'SUCCESS') {
+			window.location.href ="/smopl/admin/sepaas/"+$('.c_programId').val();
+			
+		}
+		if (response.status == 'ERROR') {
+			toastr.error(response.message);
+		}
+	});
+}
+
+function getProgramId(){
+	$('.c_total_url').text('http://www.scholarsmerit.com/services/sepaas/'+$('.c_programId').val());
+	$('.programIdText').text($('.c_programId').val());
+	
+}
+function loadSubscriptions(){debugger;
+	var map = {};
+	map.admin = true;
+	
+	ajaxWithJSON("/smopl/common/load-subscriptions", map, 'POST', function(response) {
+	   
+		if (response.status == 'SUCCESS') {
+			 var data = response.object;
+			 if(!(data == null || data==undefined)){
+				 for(var i=0;i<data.length;i++){
+					 
+			        $('.c_subscripion_list').append("<option value='"+data.subscriptionId+"'>"+subscriptionName+"</option>");
+				 }
+			 }
+			
+		}
+		if (response.status == 'ERROR') {
+			toastr.error(response.message);
+		}
+	});
+}
+function programEnroll(programId,isGroup,isCustomForm,cartId,isFreeForStudent){
 	
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
@@ -74,7 +127,7 @@ function enroll(cartId,programId,isFreeForStudent){
 	});
 }
 
-function programUtilInfo(programId,subscriptionId){debugger;
+function programUtilInfo(programId,subscriptionId){
 	
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
@@ -110,7 +163,7 @@ function programUtilInfo(programId,subscriptionId){debugger;
 	
 }
 var g_program_exams = [];
-function loadProgramExams(programId){debugger;
+function loadProgramExams(programId){
 	
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
@@ -205,7 +258,7 @@ function toDate(dateStr) {
 	  return new Date(year, month - 1, day)
 }
 
-function loadProgramSponsors(programId,sponsorsAllowed){debugger;
+function loadProgramSponsors(programId,sponsorsAllowed){
 	
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
@@ -280,7 +333,7 @@ function loadProgramSponsors(programId,sponsorsAllowed){debugger;
 		}
 	
 }
-function loadProgramVolunteers(programId,volunteerAllow){debugger;
+function loadProgramVolunteers(programId,volunteerAllow){
 	
 	if (!(navigator.onLine)) {
 		toastr.error('You are offline. please check internet connection.');
@@ -402,7 +455,7 @@ if (!(navigator.onLine)) {
 	
 }
 var g_programGroups = [];
-function programGroups(p_programId){debugger;
+function programGroups(p_programId){
 	
 	var l_map = {};
 	$('#i_program_groups').html('');
@@ -565,7 +618,7 @@ function loadSyllabus(p_program_exam_series_id ,index,size){
 		});
 		}
 
-function selectExamGroupWise(){debugger;
+function selectExamGroupWise(){
 	var selectedGroup = '';
 	var html = '';
 	if($('#userProgramGroupList').val()==''){
