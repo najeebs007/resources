@@ -1449,6 +1449,32 @@ video{
 	display:none;
 }
 .E-open-3{display:block;}
+.animateSection-4{width:100%;}
+.sildeDiv--pro-4.open {
+	 
+    float: left;
+    width: 54%;
+}
+.programDetails--Editsection-4
+{
+	float:right;
+	width:45%;
+	display:none;
+}
+.E-open-4{display:block;}
+.animateSection-5{width:100%;}
+.sildeDiv--pro-5.open {
+	 
+    float: left;
+    width: 54%;
+}
+.programDetails--Editsection-5
+{
+	float:right;
+	width:45%;
+	display:none;
+}
+.E-open-5{display:block;}
 .form-card
 {
 	    box-shadow: 0px 5px 25px 0 rgba(46,61,73,.2);
